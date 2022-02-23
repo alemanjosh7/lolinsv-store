@@ -2,121 +2,128 @@
   margin: 0;
   padding: 0;
 }
-/*Hacer el Footer Sticky*/
+
 body {
   display: flex;
   min-height: 100vh;
   flex-direction: column;
   background-color: #F7F0E9;
+  font-family: 'Poppins', sans-serif;
 }
 
 main {
  flex: 1 0 auto;
+ font-family: 'Poppins', sans-serif;
 }
-/*Edición del footer*/
+/*Footer*/
 .page-footer{
-  display: block;
-  background-color: #FF9E86;
-  padding-bottom: 0%;
-  padding-top: 1%;
-  color: black;
-  font-family: 'Popins', sans-serif;
-  border-top: 2px solid black;  
+display: block;
+background-color: #FF9E86;
+padding-bottom: 0%;
+padding-top: 1%;
+color: black;
+font-family: 'Poppins', sans-serif;
+border-top: 2px solid black;
 }
 
 #facebook{
-  padding-top: 5px;
-  margin-top: 5px;
-  background-color: black;
-  border-radius: 5px; 
-  width: 47px;
-  position: relative;
-  left: 150px;
+padding-top: 5px;
+margin-top: 5px;
+background-color: black;
+border-radius: 5px;
+width: 47px;
+position: relative;
+left: 150px;
 }
 
 #whatsapp{
-  align-items: center;
-  padding-top: 2px;
-  margin-top: 5px;
-  background-color: black;
-  border-radius: 5px;
-  width: 45px;
-  height: 42px;
-  position: relative;
-  left: 150px;
+align-items: center;
+padding-top: 2px;
+margin-top: 5px;
+background-color: black;
+border-radius: 5px;
+width: 45px;
+height: 42px;
+position: relative;
+left: 150px;
 }
 
 #copywhat{
-  display: none;
+display: none;
 }
 
 #whatsappcopied{
-  background:0;
-  border: 0;
-  outline: none;
+background:0;
+border: 0;
+outline: none;
+cursor: pointer;
+}
+
+#whatsappcopied:hover{
+  opacity: 0.8;
 }
 
 #instagram{
-  align-items: center;
-  padding-top: 5px;
-  margin-top: 5px;
-  background-color: black;
-  border-radius: 5px;
-  width: 45px;
-  height: 42px;
-  position: relative;
-  left: 150px;
+align-items: center;
+padding-top: 5px;
+margin-top: 5px;
+background-color: black;
+border-radius: 5px;
+width: 45px;
+height: 42px;
+position: relative;
+left: 150px;
 }
 
 #preguntasfrec{
-  color: black;
-  align-items: center;
+color: black;
+align-items: center;
 }
 #terminos-footer{
-  color: black;
+color: black;
 }
 
 #Anexo{
-  padding-top: 0%;
-  margin: 0%;
+padding-top: 0%;
+margin: 0%;
 }
 #copyrigth{
-  padding-top: 1.5px;
+padding-top: 1.5px;
 }
-/*Edición de los tooltip no Materialize*/
+/*Tooltips no materialize*/
 .tooltip{
-  font-weight: normal;
-  color: gray;
-  position: relative;
+font-weight: normal;
+color: gray;
+position: relative;
 }
 
 .tooltip-box{
-  display: none;
-  position: absolute;
-  background-color: #DF5333;
-  line-height: 20px;
-  z-index: 500;
-  text-align: center;
-  color: white;
-  font-size: 14px;
-  padding: 9px 10px;
-  border-radius: 5px;
-  left: 0;
-  bottom: 50px;
+display: none;
+position: absolute;
+background-color: #DF5333;
+line-height: 20px;
+z-index: 500;
+text-align: center;
+color: white;
+font-size: 14px;
+padding: 9px 10px;
+border-radius: 5px;
+left: 0;
+bottom: 50px;
 }
 
 .tooltip:hover .tooltip-box{
-  display: inline-block;
+display: inline-block;
 }
 
 .tooltip-box::after{
-  content: "";
-  display: block;
-  border-top: 20px solid #DF5333;
-  border-left: 20px solid transparent;
-  border-right: 20px solid transparent;
-  position: absolute;
-  bottom: -7px;
+content: "";
+display: block;
+border-top: 20px solid #DF5333;
+border-left: 20px solid transparent;
+border-right: 20px solid transparent;
+position: absolute;
+bottom: -7px;
 }
 /*Edición del perfil*/
 #regresar-boton{
@@ -130,51 +137,66 @@ main {
   padding-left: 25px;
   padding-bottom: 0;
   padding-right: 0;
-  font-family: 'Popins',sans-serif;
+  font-family: 'Poppins', sans-serif;
+  margin-right: 60px;
+  margin-left: 60px;
+  align-items: center;
+}
+
+#perfil-usuario{
+  background: linear-gradient(145.17deg, #EB9E9E 36.74%, rgba(235, 158, 158, 0.703125) 43.97%, rgba(235, 158, 158, 0) 61.08%);
+  margin-top: 45px;
+  border-top: 2px solid black;
+  border-right: 2px solid black;   
+  border-left: 2px solid black;
+  border-bottom: 2px solid black;  
+}
+.imagen-perfil{
+  margin-top: 75px;
 }
 
 #col-perfil{
-  background-color: linear-gradient(145.17deg, #EB9E9E 36.74%, rgba(235, 158, 158, 0.703125) 43.97%, rgba(235, 158, 158, 0) 61.08%);
-  margin-top: 25px;
-  padding: 0;
-  font-family: 'Popins',sans-serif;
-}
-
-#contenido-perfil{
   background-color: #FBE9E8;
-  padding-top: 30px;
-  padding-left: 125px;
-  padding-right: 125px;
-  margin-top: 25px;
-  margin-bottom: 0;
-  margin-left: 0;
-  margin-right: 0;
+  margin-top: 50px;
+  padding: 0;
   border-top: 2px solid black;
   border-right: 2px solid black;   
   border-left: 2px solid black;
 }
 
-#contenido-usuario{
-  background: linear-gradient(145.17deg, #EB9E9E 36.74%, rgba(235, 158, 158, 0.703125) 43.97%, rgba(235, 158, 158, 0) 61.08%);
-  border-top: 2px solid black;
-  border-right: 2px solid black;   
-  border-left: 2px solid black;
-  border-bottom: 2px solid black;
-  padding-top: 10px;
-  margin: 0;
-}
 
 #iconousuario{
   margin-top: 50px;
   padding: 25px;
 }
 
-.input-field{
+#inputs-datos{
+  margin: 0;
+  padding-top: 0;
+  padding-bottom: 0;
+  padding-left: 50px;
+  padding-right: 50px;
+}
+
+#input-username{
   padding: 25px;
+  margin-top: 35px;
+  margin-bottom: 0px;
+}
+
+#label-inputsdatos{
+  margin: 0;
+  padding: 0;
+}
+
+#span-datosperfil{
+  margin: 0;
+  padding: 0;
 }
 
 .input-field label{
   color: black;
+
 }
 
 .input-field input[type=text]:focus {
@@ -189,4 +211,235 @@ main {
 
 .input-field input{
   font-weight: bold;
+}
+
+#perfil-datos .input-field input{
+  font-size: 10px;
+}
+
+#perfil-datos .input-field textarea{
+  font-size: 10px;
+  font-weight: bold;
+}
+
+#cerrarsesion-boton{
+  background:linear-gradient(90deg, #DF5333 50%, rgba(255, 158, 134, 0) 102.37%);
+  color: #000;
+  font-weight: bold;
+  margin-top: 0px;
+  margin-bottom: 5px;
+  border-top: 4.5px solid black;
+  border-left: 4.5px solid black;
+  width: 100%;  
+}
+
+#cerrarsesion-boton:hover{
+  opacity: 0.8;
+}
+
+#boton-cambiarcontra{
+  color: black;
+}
+
+#div-botoncambiarcontra{
+  margin: 0;
+  padding-bottom: 7px;
+}
+
+#perfil-datos{
+  margin-top: 45px;
+  /*border-top: 2px solid black;
+  border-right: 2px solid black;   
+  border-left: 2px solid black;
+  border-bottom: 2px solid black;*/
+  padding-left: 90px;
+  padding-right: 0;
+  padding-top: 0;
+  padding-bottom: 0;
+}
+
+#containerdatos-perfil{
+  background: linear-gradient(145.17deg, #EB9E9E 36.74%, rgba(235, 158, 158, 0.703125) 43.08%, rgba(255, 228, 174, 0.37) 61.08%);
+  border-top: 2px solid black;
+  border-right: 2px solid black;   
+  border-left: 2px solid black;
+  border-bottom: 2px solid black;
+  position: relative;
+  top: 0;
+  margin-top: 0;
+  margin-right: 0px;
+}
+
+#decoracion-perfildatos{
+  margin-top: 35px;
+  width: 70%;
+  margin-left: 35px;
+  margin-bottom: 35px;
+  background-color: #000;
+}
+
+#decoracion-perfildatos2{
+  margin-top: 3px;
+  width: 70%;
+  margin-left: 35px;
+  margin-bottom: 35px;
+  background-color: #000;
+}
+/*Boton del guardar datos del perfil*/
+#boton_guardadoperfil{
+  margin-bottom: 10px;
+}
+/*Ocultar y mostrar la información del número de telefono y el dui del usuario*/
+#ocultarmostrar_duiuser{
+  cursor: pointer;
+}
+
+#ocultarmostrar_duiuser:hover{
+  opacity: 0.8;
+}
+
+#ocultarmostrar_teleuser{
+  cursor: pointer;
+}
+
+#ocultarmostrar_teleuser:hover{
+  opacity: 0.8;
+}
+
+#cancelactdatosperfil_boton{
+  font-family: 'Poppins', sans-serif;
+  background: linear-gradient(99.82deg, #FFBD81 42.62%, #FB1515 198.11%);
+  box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+  border-radius: 15px;
+  color: black;
+  border-top: 6px solid black;
+  border-left: 5px solid black;
+  margin-bottom: 4px;
+  padding: 0 25px 35px 25px;
+}
+
+.modal{
+  font-family: 'Poppins', sans-serif;
+}
+
+#confirmardatosact_modal{
+  margin-top: 7%;
+  border-radius: 10px;
+  background: linear-gradient(121.84deg, #FF8686 30.85%, #D5CA68 101.86%);  
+  width: 350px;
+  font-family: 'Poppins', sans-serif;
+}
+
+#decoracion-modal{
+  border: 1px solid black;
+  margin-top: 13px;
+  background-color: black;
+}
+.fondo-modaldatos{
+  margin: 10px;
+  background-color: #F7F0E9;
+  box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+  font-family: 'Poppins', sans-serif;
+}
+
+#fondomodal-footer{
+  background-color: #F7F0E9;
+  font-family: 'Poppins', sans-serif;
+}
+
+#aceptaractdatosperfil_boton{
+  font-family: 'Poppins', sans-serif;
+  background: linear-gradient(99.82deg, #FFBD81 42.62%, #FB1515 198.11%);
+  border-radius: 15px;
+  color: black;
+  border-top: 6px solid black;
+  border-left: 5px solid black;
+  margin-bottom: 7px;
+  padding: 0 25px 35px 25px;
+  margin-top: 15px;
+}
+
+#actdatosperfil_preloader{
+  position: relative;
+  left: 100px;
+  margin: 20px;
+  display: none;
+}
+
+#actdatoscontra_preloader{
+  position: relative;
+  left: 350px;
+  top: 85px;
+  margin: 20px;
+  display: none;
+}
+
+#modal-cambiarcontra{
+  margin-top: 7%;
+  border-radius: 10px;
+  background: linear-gradient(121.84deg, #FF8686 30.85%, #D5CA68 101.86%);  
+  font-family: 'Poppins', sans-serif;
+}
+
+#aceptaractcontra_boton{
+  font-family: 'Poppins', sans-serif;
+  background: linear-gradient(99.82deg, #FFBD81 42.62%, #FB1515 198.11%);
+  border-radius: 15px;
+  color: black;
+  border-top: 6px solid black;
+  border-left: 5px solid black;
+  margin-bottom: 7px;
+  padding: 0 25px 35px 25px;
+  margin-top: 35px;
+}
+
+#cancelactdatoscontra_boton{
+  font-family: 'Poppins', sans-serif;
+  background: linear-gradient(99.82deg, #FFBD81 42.62%, #FB1515 198.11%);
+  box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+  border-radius: 15px;
+  color: black;
+  border-top: 6px solid black;
+  border-left: 5px solid black;
+  margin-bottom: 4px;
+  padding: 0 25px 35px 25px;
+}
+
+#cambiocontra{
+  margin-top: 25px;
+  font-family: 'Poppins', sans-serif;
+}
+
+#mensajecontra{
+  font-family: 'Poppins', sans-serif;
+  color: #DF5333;
+  display: none;
+}
+
+/*Edición extras en caso de modificaciones responsive*/
+@media (max-width:39.9375em) { /*Diseño de los mobiles*/
+  /*Ajustando el diseño de los datos del perfil*/
+  #perfil-datos{
+    padding-left: 10px;
+  }
+  #fondomodal-footer{
+    height: 110px;
+  }
+  #actdatoscontra_preloader{
+    position: relative;
+    left: 80px;
+    top: 235px;
+    margin: 20px;
+    display: none;
+  }
+}
+
+@media screen and (min-width: 40em) and (max-width: 63.9375em) {
+  #actdatoscontra_preloader{
+    position: relative;
+    left: 195px;
+    top: 75px;
+    margin: 20px;
+    display: none;
+  }
 }
