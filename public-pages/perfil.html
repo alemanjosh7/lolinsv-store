@@ -9,6 +9,10 @@
   <link type="text/css" rel="stylesheet" href="../css/perfil.css" media="screen,projection" />
   <!--Let browser know website is optimized for mobile-->
   <meta name="viewport" content="width=device-width, initial-scale=1.0" charset="utf-8" />
+  <!--Importando las fuentes de google-->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=PT+Serif&family=Poppins&display=swap" rel="stylesheet">
 </head>
 
 <body>
@@ -38,20 +42,192 @@
     <div class="container-main">
       <div class="row">
         <!--Parte de boton regresar-->
-        <div class="col l1 m2 s12 left-align" id="div-regresarboton">
+        <div class="col l1 m2 s10 left-align" id="div-regresarboton">
           <a href="javascript: history.go(-1)" id="regresar-boton">
             < Volver</a>
         </div>
         <!--Parte del perfil-->
-        <div class="col l11 m10 s12" id="col-perfil">
-          <div>
-            
+        <div class="col l8 m12 s12" id="col-perfil">
+          <div class="container">
+            <div class="row" id="columna">
+              <!--Perfil-Usuario-->
+              <div class="col l5 m6 s12" id="perfil-usuario">
+                <div class="imagen-perfil center-align col s12 m12 s12">
+                  <!--Icono de Usuario no modificable-->
+                  <img class="responsive-image" src="../resources/Icons/UserIcon-Perfil.png">
+                </div>
+                <div class="col s12 center-align input-field" id="input-username">
+                  <!--Nombre de usuario-->
+                  <input value="Username" id="Username" type="text" class="validate center-align">
+                  <label for="Username">Nombre de Usuario</label>
+                  <span class="helper-text" data-error="Nombre de Usuario invalido"
+                    data-success="Nombre de Usuario permitido"></span>
+                </div>
+                <div class="center-align col s12">
+                  <!--Boton de Cerrar sesion-->
+                  <a class="waves-effect waves-light btn-large" id="cerrarsesion-boton" href="./index.html">Cerrar
+                    Sesion</a>
+                </div>
+                <div class="col s12 center-align" id="div-botoncambiarcontra">
+                  <!--Activador del Modal-->
+                  <a class="modal-trigger" href="#modal-cambiarcontra" id="boton-cambiarcontra">Cambiar contraseña</a>
+                  <!-- Modal diseño -->
+                  <div id="modal-cambiarcontra" class="modal">
+                    <div class="fondo-modaldatos modal-content">
+                      <div class="center-align">
+                        <h4>Cambiar contraseña</h4>
+                        <p>Ingrese su contraseña actual, confirmela e ingrese la contraseña nueva</p>
+                        <i class="tooltipped material-icons right-align" data-position="top"
+                          data-tooltip="Mostrar/Ocultar" id="ocultarmostrar_contraseñas">visibility</i>
+                      </div>
+                      <!--Inputs para el cambio de la contraseña-->
+                      <form class="col s12" id="cambiocontra">
+                        <div class="row">
+                          <div class="input-field col l4 m4 s12">
+                            <input placeholder="Contraseña actual" id="contraseña_actual" type="password">
+                            <label for="contraseña_actual">Contraseña actual</label>
+                          </div>
+                          <div class="input-field col l4 m4 s12">
+                            <input placeholder="Contraseña nueva" id="contraseña_nueva" type="password">
+                            <label for="contraseña_nueva">Contraseña nueva</label>
+                          </div>
+                          <div class="input-field col l4 m4 s12">
+                            <input placeholder="Confirme nueva contraseña" id="contraseña_confirma" type="password">
+                            <label for="contraseña_confirma">Confirmación</label>
+                          </div>
+                        </div>
+                      </form>
+                      <!--Preloader del cambio de contraseña-->
+                      <div class="preloader-wrapper active" id="actdatoscontra_preloader">
+                        <div class="spinner-layer spinner-red-only">
+                          <div class="circle-clipper left">
+                            <div class="circle"></div>
+                          </div>
+                          <div class="gap-patch">
+                            <div class="circle"></div>
+                          </div>
+                          <div class="circle-clipper right">
+                            <div class="circle"></div>
+                          </div>
+                        </div>
+                      </div>
+                      <!--Campos o contenido importante del modal de actualizar contraseña-->
+                      <div class="center-align">
+                        <a href="#!" class="waves-effect waves-light btn center-align"
+                          id="aceptaractcontra_boton">Actualizar contraseña</a>
+                      </div>
+                      <!--Pie del modal-->
+                      <div class="modal-footer center-align" id="fondomodal-footer">
+                        <div class="col s12">
+                          <div class="col m6 s12 left-align">
+                            <h6 id="mensajecontra">Las contraseñas deben coincidir</h6>
+                          </div>
+                          <div class="col m6 s12">
+                            <a href="#!" class="modal-close waves-effect waves-light btn "
+                              id="cancelactdatoscontra_boton">Cancelar</a>
+                          </div>
+                        </div>
+                        <div class="col s12" id="decoracion-modal"></div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <!--Perfil-Datos-->
+              <div class="col l6 m6 s12 center-align" id="perfil-datos">
+                <div class="row" id="containerdatos-perfil">
+                  <div class="col l10" id="decoracion-perfildatos">
+                  </div>
+                  <div class="col l2 m12 right-align" id="boton_guardadoperfil">
+                    <button class="tooltipped modal-trigger" data-position="bottom" data-tooltip="Modificar perfil"
+                      type="button" id="whatsappcopied" href="#confirmardatosact_modal">
+                      <img class="responsive-img" src="../resources/Icons/editaricon-perfil.png">
+                    </button>
+                    <!--Diseño del modal de confirmación de actualización de datos-->
+                    <div id="confirmardatosact_modal" class="modal">
+                      <div class="fondo-modaldatos modal-content">
+                        <div class="center-align">
+                          <h4>Confirmar actualización de datos de perfil</h4>
+                          <p>¿Desea actualizar sus datos?</p>
+                        </div>
+                        <!--Preloader de la actualización de los datos del perdil-->
+                        <div class="preloader-wrapper active" id="actdatosperfil_preloader">
+                          <div class="spinner-layer spinner-red-only">
+                            <div class="circle-clipper left">
+                              <div class="circle"></div>
+                            </div>
+                            <div class="gap-patch">
+                              <div class="circle"></div>
+                            </div>
+                            <div class="circle-clipper right">
+                              <div class="circle"></div>
+                            </div>
+                          </div>
+                        </div>
+                        <!--Contenido importante del modal-Boton de actualizar-->
+                        <div class="center-align">
+                          <a href="#!" class="waves-effect waves-light btn center-align"
+                            id="aceptaractdatosperfil_boton">Actualizar Datos</a>
+                        </div>
+                        <!--Pie del modal-->
+                        <div class="modal-footer center-align" id="fondomodal-footer">
+                          <a href="#!" class="modal-close waves-effect waves-light btn "
+                            id="cancelactdatosperfil_boton">Cancelar</a>
+                          <div class="col s12" id="decoracion-modal"></div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                  <!--Diseño del modal de confirmación de actualización de datos SI DA ERROR PONER AQUI-->
+
+                  <!--Continuación de la parte de datos del perfil-->
+                  <div class="col s12 center-align input-field" id="inputs-datos">
+                    <!--Nombre de usuario-->
+                    <input value="Jesús" id="nombre_usuario" type="text" class="center-align">
+                    <label for="nombre_usuario">Nombre:</label>
+                  </div>
+                  <div class="col s12 center-align input-field " id="inputs-datos">
+                    <!--Apellido de usuario-->
+                    <input value="Esquivel" id="apellido_usuario" type="text" class="center-align">
+                    <label for="apellido_usuario">Apellido:</label>
+                  </div>
+                  <div class="col s12 center-align input-field" id="inputs-datos">
+                    <!--Correo de usuario-->
+                    <input value="20200067@ricaldone.edu.sv" id="e-mail" type="email" class=" validate center-align">
+                    <label for="e-mail">Correo:</label>
+                    <span class="helper-text" data-error="Correo de Usuario invalido"
+                      data-success="Correo de usuario permitido"></span>
+                  </div>
+                  <div class="col s12 center-align input-field" id="inputs-datos">
+                    <!--DUI de usuario-->
+                    <input value="85857858-7" id="dui_usuario" type="password"
+                      class="ocultar-mostrar validate center-align">
+                    <label for="dui_usuario">DUI:</label>
+                    <i class="tooltipped material-icons prefix right-align" data-position="top"
+                      data-tooltip="Mostrar/Ocultar" id="ocultarmostrar_duiuser">visibility</i>
+                  </div>
+                  <div class="col s12 center-align input-field" id="inputs-datos">
+                    <!--Telefono de usuario-->
+                    <input value="7708-5832" id="telefono_usuario" type="password" class="validate center-align">
+                    <label for="telefono_usuario">Telefono:</label>
+                    <i class="tooltipped material-icons prefix right-align" data-position="bottom"
+                      data-tooltip="Mostrar/Ocultar" id="ocultarmostrar_teleuser">visibility</i>
+                  </div>
+                  <div class="col s12 center-align input-field" id="inputs-datos">
+                    <!--Dirección de usuario-->
+                    <textarea id="textarea1" class="materialize-textarea">Calle honduras 123</textarea>
+                    <label for="textarea1">Textarea</label>
+                  </div>
+                  <div class="col l10" id="decoracion-perfildatos2">
+                  </div>
+                </div>
+              </div>
+            </div>
           </div>
         </div>
       </div>
-    </div>
   </main>
-<footer class="page-footer">
+  <footer class="page-footer">
     <div class="container">
       <div class="row" id="redes-footer">
         <div class="col l4 m2 s12">
