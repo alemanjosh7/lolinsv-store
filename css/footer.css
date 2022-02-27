@@ -28,8 +28,9 @@ body {
 
 /*Estilos del las redes sociales*/
 #facebook-container{
-    margin-left: 425px;
     padding: 0;
+    position: relative;
+    right: 5px;
 }
 
 #facebook{
@@ -43,6 +44,8 @@ body {
 #whatsapp-container{
     padding: 0;
     margin: 0;
+    position: relative;
+    right: 20px;
 }
 
 #whatsapp{
@@ -63,6 +66,8 @@ body {
 #instagram-container{
     padding: 0;
     margin: 0;
+    position: relative;
+    right: 40px;
 }
 
 #instagram{
@@ -135,12 +140,42 @@ body {
   /*Telefonos*/
   @media (max-width:600px){
     #facebook-container{
-        margin-left: 95px;
+        position: relative;
+        right: 20px;
+    }
+
+    #whatsapp-container{
+        padding: 0;
+        margin: 0;
+        position: relative;
+        right: 17px;
+    }
+
+    #instagram-container{
+        padding: 0;
+        margin: 0;
+        position: relative;
+        right: 15px;
     }
 }
 /*Tablets*/
 @media screen and (min-width: 600px) and (max-width: 992px) {
     #facebook-container{
-        margin-left: 255px;
+        position: relative;
+        right: 26px;
+    }
+
+    #whatsapp-container{
+        padding: 0;
+        margin: 0;
+        position: relative;
+        right: 15px;
+    }
+
+    #instagram-container{
+        padding: 0;
+        margin: 0;
+        position: relative;
+        right: 5px;
     }
 }
