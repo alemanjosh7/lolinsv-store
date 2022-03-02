@@ -58,7 +58,7 @@ main {
 .logo-navbar {
   width: 40%;
   height: 40%;
-  margin: 5px 0 0 0;
+  margin: 5px auto 0 auto;
 }
 
 
@@ -152,18 +152,6 @@ main {
   background: linear-gradient(145.17deg, rgba(235, 158, 158, 0) 49.29%, rgba(235, 158, 158, 0.703125) 61.08%, #EB9E9E 61.08%);
 }
 
-.text {
-  position: relative;
-  font-size: 30px;
-  text-transform: capitalize;
-  color: transparent;
-  -webkit-text-stroke: 3px black;
-  margin-bottom: 30px;
-  font-family: 'Nunito',
-    sans-serif;
-
-}
-
 .animate-text {
   margin: auto;
   margin-top: 30px;
@@ -177,21 +165,23 @@ main {
   border-radius: 20px;
 }
 
-.text::before {
-  content: attr(data-fill-text);
-  position: absolute;
-  width: 0;
-  height: 100%;
-  color: var(--fourth-color);
-  -webkit-text-stroke: 0px transparent;
-  overflow: hidden;
-  transition: width 0.8s cubic-bezier(0.165, 0.84, 0.44, 1);
+.text {
+  position: relative;
+  font-size: 25px;
+  text-transform: capitalize;
+  color: transparent;
+  color: black;
+  margin-bottom: 30px;
+  font-family: 'Nunito',
+    sans-serif;
 }
 
-.text:hover::before {
-  width: 100%;
+.card-content {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
 }
-
 
 .card-content p {
   font-size: 18px;
@@ -269,8 +259,12 @@ main {
 
 @media screen and (max-width: 660px) {
   .about-img img {
-    height: 50%;
-    width: 50%;
+    height: 40%;
+    width: 40%;
+  }
+
+  .animate-text {
+    width: 30%;
   }
 
   .design-section {
@@ -290,4 +284,58 @@ main {
     padding-left: 25px;
     padding-right: 80px;
   }
+
+  .text {
+    font-size: 18px;
+  }
+
+
+
+  .about-design {
+    top: 10%;
+  }
+
+}
+
+@media screen and (max-width: 450px) {
+  .about-img img {
+    height: 36%;
+    width: 36%;
+  }
+
+  .design-section {
+    font-size: 5px;
+  }
+
+  .card .card-content span {
+    font-size: 15px;
+  }
+
+  .about-img {
+    top: 46%;
+    left: 45%;
+  }
+
+  .about-btn a {
+    padding-left: 25px;
+    padding-right: 80px;
+  }
+
+  .text {
+    font-size: 15px;
+  }
+
+  .animate-text {
+    width: 40%;
+  }
+
+  .about-design {
+    top: 10%;
+  }
+
+  .about-btn .btn {
+    font-size: 11px;
+    padding: 0 60px 0 20px;
+  }
+
 }
