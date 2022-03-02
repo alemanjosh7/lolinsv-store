@@ -1,0 +1,293 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins&display=swap');
+
+@import url('https://fonts.googleapis.com/css2?family=Nunito:wght@700&family=Poppins&display=swap');
+
+:root {
+  --primary-color: #df5333;
+  --second-color: #f48080;
+  --third-color: #ff5b5b;
+  --fourth-color: #ffb2b2;
+}
+
+.primary-bg-color {
+  background-color: var(--primary-color);
+}
+
+.primary-text-color {
+  color: var(--primary-color);
+}
+
+.second-bg-color {
+  background-color: var(--secondary-color);
+}
+
+.second-text-color {
+  color: var(--secondary-color);
+}
+
+.third-bg-color {
+  background-color: var(--third-color);
+}
+
+.third-text-color {
+  color: var(--third-color);
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  display: flex;
+  min-height: 100vh;
+  flex-direction: column;
+  background-color: #f7f0e9;
+  font-family: 'Poppins',
+    sans-serif;
+}
+
+main {
+  flex: 1 0 auto;
+}
+
+
+/* navbar */
+
+.logo-navbar {
+  width: 40%;
+  height: 40%;
+  margin: 5px 0 0 0;
+}
+
+
+.card-section .card {
+  margin: 40px 4px 10px 0px;
+}
+
+.card .card-image {
+  margin: 10px 10px 0 10px;
+}
+
+
+.card-image img {
+  margin-top: 10px;
+}
+
+.card .card-content p {
+  font-family: "Popins", sans-serif;
+}
+
+.navbar-fixed .boton,
+.sidenav .boton {
+  background: linear-gradient(99.82deg, #FFBD81 42.62%, #FB1515 198.11%);
+  color: #000;
+  border-radius: 15px;
+  border-left: 3px solid black;
+  border-top: 3px solid black;
+  font-family: Poppins;
+  font-style: normal;
+  font-weight: normal;
+}
+
+.card-title {
+  padding-right: 10px;
+  padding-left: 10px;
+}
+
+.sidenav {
+  background-color: var(--primary-color);
+}
+
+.boton img {
+  padding: 2px;
+  margin: 3px 0 0 0;
+  width: 90%;
+  height: 80%;
+}
+
+.about-img img {
+  height: 100%;
+  width: 100%;
+}
+
+.design-section {
+  position: relative;
+  text-align: justify;
+  font-size: 18px;
+  margin-top: 30px;
+}
+
+
+
+.about-img {
+  position: absolute;
+  top: 48%;
+  left: 29%;
+  transform: translate(-50%, -50%);
+
+}
+
+.about-design {
+  position: absolute;
+  top: 29%;
+  right: 15%;
+  width: 30%;
+}
+
+.about-btn .btn {
+  border-radius: 17.5px;
+  width: 25%;
+  background: rgba(255, 47, 0, 0.7);
+  text-align: center;
+
+}
+
+.card-title {
+  color: #000;
+}
+
+.card {
+  background: linear-gradient(145.17deg, rgba(235, 158, 158, 0) 49.29%, rgba(235, 158, 158, 0.703125) 61.08%, #EB9E9E 61.08%);
+}
+
+.text {
+  position: relative;
+  font-size: 30px;
+  text-transform: capitalize;
+  color: transparent;
+  -webkit-text-stroke: 3px black;
+  margin-bottom: 30px;
+  font-family: 'Nunito',
+    sans-serif;
+
+}
+
+.animate-text {
+  margin: auto;
+  margin-top: 30px;
+  display: flex;
+  justify-content: center;
+  width: 20%;
+  height: 10%;
+  -webkit-box-shadow: -7px 5px 14px 2px rgba(0, 0, 0, 0.64);
+  box-shadow: -7px 5px 14px 2px rgba(0, 0, 0, 0.64);
+  background: #F48080;
+  border-radius: 20px;
+}
+
+.text::before {
+  content: attr(data-fill-text);
+  position: absolute;
+  width: 0;
+  height: 100%;
+  color: var(--fourth-color);
+  -webkit-text-stroke: 0px transparent;
+  overflow: hidden;
+  transition: width 0.8s cubic-bezier(0.165, 0.84, 0.44, 1);
+}
+
+.text:hover::before {
+  width: 100%;
+}
+
+
+.card-content p {
+  font-size: 18px;
+}
+
+/* Media Query */
+@media screen and (max-width: 1200px) {
+  .design-section {
+    font-size: 14px;
+  }
+
+  .about-img img {
+    height: 70%;
+    width: 70%;
+  }
+
+  .about-img {
+    top: 48%;
+    left: 31%;
+  }
+}
+
+@media screen and (max-width: 992px) {
+  .design-section {
+    font-size: 10px;
+  }
+
+  .about-img img {
+    height: 60%;
+    width: 60%;
+  }
+
+  .about-img {
+    top: 48%;
+    left: 31%;
+  }
+
+  .container .brand-logo .logo-navbar {
+    margin: 5px 0 0 40%;
+
+  }
+
+  .about-btn a {
+    padding-left: 25px;
+    padding-right: 80px;
+  }
+}
+
+
+
+@media screen and (max-width: 768px) {
+  .about-img img {
+    height: 50%;
+    width: 50%;
+  }
+
+  .design-section {
+    font-size: 8px;
+  }
+
+  .card .card-content span {
+    font-size: 15px;
+  }
+
+  .about-img {
+    top: 48%;
+    left: 35%;
+  }
+
+  .about-btn a {
+    padding-left: 25px;
+    padding-right: 80px;
+  }
+}
+
+@media screen and (max-width: 660px) {
+  .about-img img {
+    height: 50%;
+    width: 50%;
+  }
+
+  .design-section {
+    font-size: 8px;
+  }
+
+  .card .card-content span {
+    font-size: 15px;
+  }
+
+  .about-img {
+    top: 46%;
+    left: 35%;
+  }
+
+  .about-btn a {
+    padding-left: 25px;
+    padding-right: 80px;
+  }
+}
