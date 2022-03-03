@@ -1,9 +1,12 @@
 document.addEventListener("DOMContentLoaded", function () {
-  var instances = M.Sidenav.init(document.querySelectorAll(".sidenav"));
+  var instance = M.Carousel.init({
+    fullWidth: true,
+  });
+  var instances = M.Carousel.init(document.querySelectorAll(".carousel"));
 });
 
 // Or with jQuery
 
 $(document).ready(function () {
-  $(".sidenav").sidenav();
+  $(".carousel").carousel();
 });

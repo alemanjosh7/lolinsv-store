@@ -208,7 +208,9 @@ main {
   .design-section {
     font-size: 10px;
   }
-
+  .sidenav .boton img{
+    width: ;
+  }
   .about-img img {
     height: 60%;
     width: 60%;
@@ -217,6 +219,14 @@ main {
   .about-img {
     top: 48%;
     left: 31%;
+  }
+
+  .animate-text {
+    width: 35%;
+  }
+
+  .card .card-content span {
+    font-size: 18px;
   }
 
   .container .brand-logo .logo-navbar {
@@ -242,6 +252,8 @@ main {
     font-size: 8px;
   }
 
+
+
   .card .card-content span {
     font-size: 15px;
   }
@@ -264,7 +276,7 @@ main {
   }
 
   .animate-text {
-    width: 30%;
+    width: 35%;
   }
 
   .design-section {
@@ -325,9 +337,6 @@ main {
     font-size: 15px;
   }
 
-  .animate-text {
-    width: 40%;
-  }
 
   .about-design {
     top: 10%;
