@@ -204,13 +204,20 @@ main {
   }
 }
 
+.sidenav .boton{
+  color: #000!important;
+}
+.sidenav .boton img{
+  margin-top: 3px;
+  width: 20%;
+  height: 70%;
+}
+
 @media screen and (max-width: 992px) {
   .design-section {
     font-size: 10px;
   }
-  .sidenav .boton img{
-    width: ;
-  }
+  
   .about-img img {
     height: 60%;
     width: 60%;
