@@ -53,15 +53,6 @@ main {
 }
 
 
-/* navbar */
-
-.logo-navbar {
-  width: 40%;
-  height: 40%;
-  margin: 5px auto 0 auto;
-}
-
-
 .card-section .card {
   margin: 40px 4px 10px 0px;
 }
@@ -79,33 +70,16 @@ main {
   font-family: "Popins", sans-serif;
 }
 
-.navbar-fixed .boton,
-.sidenav .boton {
-  background: linear-gradient(99.82deg, #FFBD81 42.62%, #FB1515 198.11%);
-  color: #000;
-  border-radius: 15px;
-  border-left: 3px solid black;
-  border-top: 3px solid black;
-  font-family: Poppins;
-  font-style: normal;
-  font-weight: normal;
-}
+
 
 .card-title {
   padding-right: 10px;
   padding-left: 10px;
 }
 
-.sidenav {
-  background-color: var(--primary-color);
-}
 
-.boton img {
-  padding: 2px;
-  margin: 3px 0 0 0;
-  width: 90%;
-  height: 80%;
-}
+
+
 
 .about-img img {
   height: 100%;
@@ -187,171 +161,3 @@ main {
   font-size: 18px;
 }
 
-/* Media Query */
-@media screen and (max-width: 1200px) {
-  .design-section {
-    font-size: 14px;
-  }
-
-  .about-img img {
-    height: 70%;
-    width: 70%;
-  }
-
-  .about-img {
-    top: 48%;
-    left: 31%;
-  }
-}
-
-.sidenav .boton{
-  color: #000!important;
-}
-.sidenav .boton img{
-  margin-top: 3px;
-  width: 20%;
-  height: 70%;
-}
-
-@media screen and (max-width: 992px) {
-  .design-section {
-    font-size: 10px;
-  }
-  
-  .about-img img {
-    height: 60%;
-    width: 60%;
-  }
-
-  .about-img {
-    top: 48%;
-    left: 31%;
-  }
-
-  .animate-text {
-    width: 35%;
-  }
-
-  .card .card-content span {
-    font-size: 18px;
-  }
-
-  .container .brand-logo .logo-navbar {
-    margin: 5px 0 0 40%;
-
-  }
-
-  .about-btn a {
-    padding-left: 25px;
-    padding-right: 80px;
-  }
-}
-
-
-
-@media screen and (max-width: 768px) {
-  .about-img img {
-    height: 50%;
-    width: 50%;
-  }
-
-  .design-section {
-    font-size: 8px;
-  }
-
-
-
-  .card .card-content span {
-    font-size: 15px;
-  }
-
-  .about-img {
-    top: 48%;
-    left: 35%;
-  }
-
-  .about-btn a {
-    padding-left: 25px;
-    padding-right: 80px;
-  }
-}
-
-@media screen and (max-width: 660px) {
-  .about-img img {
-    height: 40%;
-    width: 40%;
-  }
-
-  .animate-text {
-    width: 35%;
-  }
-
-  .design-section {
-    font-size: 8px;
-  }
-
-  .card .card-content span {
-    font-size: 15px;
-  }
-
-  .about-img {
-    top: 46%;
-    left: 35%;
-  }
-
-  .about-btn a {
-    padding-left: 25px;
-    padding-right: 80px;
-  }
-
-  .text {
-    font-size: 18px;
-  }
-
-
-
-  .about-design {
-    top: 10%;
-  }
-
-}
-
-@media screen and (max-width: 450px) {
-  .about-img img {
-    height: 36%;
-    width: 36%;
-  }
-
-  .design-section {
-    font-size: 5px;
-  }
-
-  .card .card-content span {
-    font-size: 15px;
-  }
-
-  .about-img {
-    top: 46%;
-    left: 45%;
-  }
-
-  .about-btn a {
-    padding-left: 25px;
-    padding-right: 80px;
-  }
-
-  .text {
-    font-size: 15px;
-  }
-
-
-  .about-design {
-    top: 10%;
-  }
-
-  .about-btn .btn {
-    font-size: 11px;
-    padding: 0 60px 0 20px;
-  }
-
-}
