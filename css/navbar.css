@@ -221,6 +221,12 @@
   width: 90%;
   height: 80%;
 }
+
+.purchase-info{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
 .sidenav {
   background-color: var(--primary-color);
 }
