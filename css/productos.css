@@ -161,3 +161,10 @@ main {
   font-size: 18px;
 }
 
+#hasta_arriba{
+
+  display: none;
+
+  transition: .2s;
+
+}
