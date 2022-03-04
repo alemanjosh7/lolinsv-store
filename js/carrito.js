@@ -1,9 +1,11 @@
+/*Opciones del carrito*/
 var opcionesCarrito ={
     edge: 'right'
 }
 //Inicializando componentes de Materialize
 document.addEventListener('DOMContentLoaded', function () {
-    M.Sidenav.init(document.querySelectorAll('.sidenav'),opcionesCarrito);
+    M.Sidenav.init(document.querySelectorAll('.sidenav'));
+    M.Sidenav.init(document.querySelectorAll('#carrito'), opcionesCarrito);
     M.Slider.init(document.querySelectorAll('.slider'));
     M.Carousel.init(document.querySelectorAll('.carousel'));
     M.Tooltip.init(document.querySelectorAll('.tooltipped'));
