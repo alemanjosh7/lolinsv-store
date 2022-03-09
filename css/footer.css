@@ -1,0 +1,181 @@
+*{
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    display: flex;
+    min-height: 100vh;
+    flex-direction: column;
+    background-color: #F7F0E9;
+    font-family: 'Poppins',sans-serif;
+  }
+  
+ main {
+   flex: 1 0 auto;
+}
+/*Estilos del footer*/
+/*Estilo del footer en general*/
+.page-footer{
+    background-color: #FF9E86;
+    padding-bottom: 0%;
+    padding-top: 1%;
+    color: black;
+    font-family: 'Poppins', sans-serif;
+    border-top: 2px solid black;
+    padding-bottom: 0;
+}
+
+/*Estilos del las redes sociales*/
+#facebook-container{
+    padding: 0;
+    position: relative;
+    right: 5px;
+}
+
+#facebook{
+    margin: 0;
+    padding-top: 5px;
+    background-color: black;
+    border-radius: 5px;
+    width: 47px;
+}
+
+#whatsapp-container{
+    padding: 0;
+    margin: 0;
+    position: relative;
+    right: 20px;
+}
+
+#whatsapp{
+    padding-top: 2px;
+    align-items: center;
+    background-color: black;
+    border-radius: 5px;
+    width: 45px;
+    height: 42px;
+}
+
+#whatsappcopied{
+    background:0;
+    border: 0;
+    outline: none;
+}
+
+#instagram-container{
+    padding: 0;
+    margin: 0;
+    position: relative;
+    right: 40px;
+}
+
+#instagram{
+    align-items: center;
+    padding-top: 5px;
+    background-color: black;
+    border-radius: 5px;
+    width: 45px;
+    height: 42px;
+    }
+/*Estilo de los links*/
+#preguntasfrec{
+    color: black;
+    align-items: center;
+}
+#terminos-footer{
+    color: black;
+}
+
+/*Estilo del copyrigth*/
+#Anexo{
+    padding-top: 0%;
+    margin: 0%;
+}
+#copyrigth{
+    padding-top: 1.5px;
+}
+
+/*Estilos de los tooltipped*/
+.tooltip{
+    font-weight: normal;
+    color: gray;
+    position: relative;
+  }
+  
+  .tooltip-box{
+    display: none;
+    position: absolute;
+    background-color: #DF5333;
+    line-height: 20px;
+    z-index: 500;
+    text-align: center;
+    color: white;
+    font-size: 14px;
+    padding: 9px 10px;
+    border-radius: 5px;
+    left: 0;
+    bottom: 50px;
+  }
+  
+  .tooltip:hover .tooltip-box{
+    display: inline-block;
+  }
+  
+  .tooltip-box::after{
+    content: "";
+    display: block;
+    border-top: 20px solid #DF5333;
+    border-left: 20px solid transparent;
+    border-right: 20px solid transparent;
+    position: absolute;
+    bottom: -7px;
+  }
+
+  #copywhat{
+    display: none;
+  }
+  /*Fin de estilos del footer*/
+
+  /*Telefonos*/
+  @media (max-width:600px){
+    #facebook-container{
+        position: relative;
+        right: 20px;
+    }
+
+    #whatsapp-container{
+        padding: 0;
+        margin: 0;
+        position: relative;
+        right: 17px;
+    }
+
+    #instagram-container{
+        padding: 0;
+        margin: 0;
+        position: relative;
+        right: 15px;
+    }
+}
+/*Tablets*/
+@media screen and (min-width: 600px) and (max-width: 992px) {
+    #facebook-container{
+        position: relative;
+        right: 26px;
+    }
+
+    #whatsapp-container{
+        padding: 0;
+        margin: 0;
+        position: relative;
+        right: 15px;
+    }
+
+    #instagram-container{
+        padding: 0;
+        margin: 0;
+        position: relative;
+        right: 5px;
+    }
+}
