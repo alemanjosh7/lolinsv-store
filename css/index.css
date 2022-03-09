@@ -1,69 +1,70 @@
 :root {
-    --primary-color: #df5333;
-    --second-color: #f48080;
-    --third-color: #ff5b5b;
-    --fourth-color: #ffb2b2;
-  }
-  
-  .primary-bg-color {
-    background-color: var(--primary-color);
-  }
-  
-  .primary-text-color {
-    color: var(--primary-color);
-  }
-  
-  .second-bg-color {
-    background-color: var(--secondary-color);
-  }
-  
-  .second-text-color {
-    color: var(--secondary-color);
-  }
-  
-  .third-bg-color {
-    background-color: var(--third-color);
-  }
-  
-  .third-text-color {
-    color: var(--third-color);
-  }
+  --primary-color: #df5333;
+  --second-color: #f48080;
+  --third-color: #ff5b5b;
+  --fourth-color: #ffb2b2;
+}
+
+.primary-bg-color {
+  background-color: var(--primary-color);
+}
+
+.primary-text-color {
+  color: var(--primary-color);
+}
+
+.second-bg-color {
+  background-color: var(--secondary-color);
+}
+
+.second-text-color {
+  color: var(--secondary-color);
+}
+
+.third-bg-color {
+  background-color: var(--third-color);
+}
+
+.third-text-color {
+  color: var(--third-color);
+}
 
 .carousel-section {
-    margin-top: 30px;
-    display: flex;
-    justify-content: center;
-    align-items: center;
+  margin-top: 30px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
 }
 
 .carousel {
-    width: 100vw !important;
+  width: 100vw !important;
 }
 
 .line {
-    border-bottom: 2px solid rgb(100, 100, 100);
-    width: 100%;
-    margin-top: 30px;
+  border-bottom: 2px solid rgb(100, 100, 100);
+  width: 100%;
+  margin-top: 30px;
 }
 
-*{
+* {
   margin: 0;
   padding: 0;
   box-sizing: border-box;
 }
 
 
-.information{
+.information {
   margin-top: 50px;
 }
 
-.information h1{
+.information h1 {
   font-size: 52px;
   margin-bottom: 60px;
   text-align: center;
 }
 
-.team{
+.info {
   display: flex;
   justify-content: center;
   width: auto;
@@ -71,31 +72,32 @@
   flex-wrap: wrap;
 }
 
-.team .team_member{
+.info .info-card {
   background: #fff;
   margin: 5px;
   margin-bottom: 50px;
   width: 300px;
   padding: 20px;
   line-height: 20px;
-  color: #8e8b8b;  
+  color: #8e8b8b;
   position: relative;
 }
 
-.team .team_member h3{
-  color: var();
+.info .info-card h3 {
   font-size: 26px;
   margin-top: 50px;
 }
 
-.team .team_member p.role{
+.info .info-card p.role {
   color: #ccc;
   margin: 12px 0;
   font-size: 12px;
   text-transform: uppercase;
+  text-align: justify;
+
 }
 
-.team .team_member .team_img{
+.info .info-card .info_img {
   position: absolute;
   top: -50px;
   left: 50%;
@@ -106,12 +108,110 @@
   background: #fff;
 }
 
-.team .team_member .team_img img{
+.info .info-card .info_img img {
   width: 100px;
   height: 100px;
   padding: 5px;
 }
 
-.section-information{
-    margin-top: 100px;
+.section-information {
+  margin-top: 100px;
+}
+
+.info-div-img {
+  width: 60%;
+  max-height: 220px;
+}
+
+#banner-confirmacion {
+  font-family: 'Pt Serif', serif;
+  background-color: #F48080;
+  border-radius: 3px;
+  box-shadow: -10px -5px black;
+  min-width: 300px;
+  margin-bottom: 20px;
+}
+
+.info-div-img {
+  position: absolute;
+  transform: translate(-50%, -50%);
+}
+
+/* Carousel */
+.mySlides {
+  display: none;
+}
+
+img {
+  vertical-align: middle;
+}
+
+.slideshow-container {
+  max-width: 80%;
+  position: relative;
+  margin: auto;
+}
+
+.prev,
+.next {
+  cursor: pointer;
+  position: absolute;
+  top: 50%;
+  width: auto;
+  padding: 16px;
+  margin-top: -22px;
+  color: white;
+  font-weight: bold;
+  font-size: 18px;
+  transition: 0.6s ease;
+  border-radius: 0 3px 3px 0;
+  user-select: none;
+}
+
+.next {
+  right: 0;
+  border-radius: 3px 0 0 3px;
+
+}
+
+.prev:hover,
+.next:hover {
+  background-color: rgba(0, 0, 0, 0.8);
+}
+
+
+.fade {
+  -webkit-animation-name: fade;
+  -webkit-animation-duration: 1.5s;
+  animation-name: fade;
+  animation-duration: 1.5s;
+}
+
+@-webkit-keyframes fade {
+  from {
+    opacity: .4
+  }
+
+  to {
+    opacity: 1
+  }
+}
+
+@keyframes fade {
+  from {
+    opacity: .4
+  }
+
+  to {
+    opacity: 1
+  }
+}
+
+/* responsive */
+@media only screen and (max-width: 300px) {
+
+  .prev,
+  .next {
+    font-size: 11px;
+  }
 }
