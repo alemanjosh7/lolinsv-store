@@ -27,19 +27,24 @@
                                 class="material-icons">menu</i></a>
                         <ul class="right hide-on-med-and-down">
                             <li>
-                                <a class="waves-effect waves-light btn second-bg-color boton" href="#">Inicio</a>
+                                <a class="waves-effect waves-light btn second-bg-color boton"
+                                    href="index.html">Inicio</a>
                             </li>
                             <li>
-                                <a class="waves-effect waves-light btn second-bg-color boton" href="#">Productos</a>
+                                <a class="waves-effect waves-light btn second-bg-color boton"
+                                    href="productos.html">Productos</a>
                             </li>
                             <li>
-                                <a class="waves-effect waves-light btn second-bg-color boton" href="#">Registrarse</a>
+                                <a class="waves-effect waves-light btn second-bg-color boton"
+                                    href="registro-usuario.html">Registrarse</a>
                             </li>
                             <li>
-                            <li><a class="waves-effect waves-light btn second-bg-color boton">Iniciar sesión <i
-                                        class="material-icons left">person</i></a></li>
+                            <li><a class="waves-effect waves-light btn second-bg-color boton" href="login.html">Iniciar
+                                    sesión <i class="material-icons left">person</i></a></li>
                             </li>
-                            <li><a class="waves-effect waves-light btn second-bg-color boton"><img
+                            <li><a href="#carrito" data-target="carrito"
+                                    class="sidenav-trigger show-on-large waves-effect waves-light btn second-bg-color boton"
+                                    id="carrito-correcion"><img class="responsive-img"
                                         src="../resources/Amigurumis/shopping.png" alt=""></a></li>
                             </li>
                         </ul>
@@ -49,20 +54,344 @@
         </div>
         <ul class="sidenav" id="mobile-demo">
             <li>
-                <a class="waves-effect waves-light btn second-bg-color boton" href="#">Inicio</a>
+                <a class="waves-effect waves-light btn second-bg-color boton" href="index.html">Inicio</a>
             </li>
             <li>
-                <a class="waves-effect waves-light btn second-bg-color boton" href="#">Productos</a>
+                <a class="waves-effect waves-light btn second-bg-color boton" href="productos.html">Productos</a>
             </li>
             <li>
-                <a class="waves-effect waves-light btn second-bg-color boton" href="#">Registrarse</a>
+                <a class="waves-effect waves-light btn second-bg-color boton"
+                    href="registro-usuario.html">Registrarse</a>
             </li>
             <li>
-            <li><a class="waves-effect waves-light btn second-bg-color boton">Iniciar sesión <i
+            <li><a class="waves-effect waves-light btn second-bg-color boton" href="login.html">Iniciar sesión <i
                         class="material-icons left">person</i></a></li>
             </li>
-            <li><a class="waves-effect waves-light btn second-bg-color boton"><img
-                        src="../resources/Amigurumis/shopping.png" alt=""></a></li>
+            <li><a href="#carrito" data-target="carrito"
+                    class="sidenav-trigger show-on-large waves-effect waves-light btn second-bg-color boton"
+                    id="abrircarrito-mobile"><img src="../resources/Amigurumis/shopping.png" alt=""></a></li>
+            </li>
+        </ul>
+        <!--Diseño del carrito-->
+        <ul id="carrito" class="sidenav">
+            <!--Diseño del encabezado del carrito-->
+            <li>
+                <div class="fondodecoracion-carrito">
+                    <div class="background">
+                        <h4 id="titulo-carrito">Carrito</h4>
+                        <img class="responsive-img" src="../resources/Icons/carrito-icono.png" id="carrito-icon">
+                        <img class="responsive-img" src="../resources/Icons/fondo-carrito.png" id="fondotitulo-carrito">
+                    </div>
+                </div>
+            </li>
+            <!--Diseño de la información del carrito-->
+            <li id="parte-infocarrito">
+                <div class="container">
+                    <div class="row">
+                        <form class="col s12">
+                            <!--Elementos de la compra en el carrito-->
+                            <!--Elemento-->
+                            <div class="row">
+                                <!--Fondo del elemento-->
+                                <div class="col s12" id="fondocompra-carrito1">
+                                    <!--Icono de eliminar-->
+                                    <div class="elimardel-carrito">
+                                        <img class="responsive-img" src="..//resources/Icons/eliminardel-carrito.png">
+                                    </div>
+                                    <!--Contenedor del contenido del carrito-->
+                                    <div class="row" id="fila-contenidocarrito">
+                                        <!--Columna de la imagen-->
+                                        <div class="col s6 center-align" id="imagencontenido-carrito">
+                                            <img class="responsive-img" src="../resources/Icons/amigurumi4-carrito.png"
+                                                height="276px" width="254">
+                                        </div>
+                                        <!--Columna del detalle del contenido-->
+                                        <div class="col s6">
+                                            <!--Fila de los detalles-->
+                                            <div class="row">
+                                                <!--Columna del nombre del producto-->
+                                                <div class="col s12 center-align">
+                                                    <h6 id="nombreAmigurumi_carrito">Brown Guy</h6>
+                                                </div>
+                                                <!--Columna de la cantidad-->
+                                                <div class="col s12" id="coldetalle-carrito">
+                                                    <div class="col l1 s1 left-align">
+                                                        <p><b>Cantidad:</b></p>
+                                                    </div>
+                                                    <div class="col l1 offset-l6 s1 offset-s6 right-align">
+                                                        <p id="cantidaddetalle_carrito">2</p>
+                                                    </div>
+                                                </div>
+                                                <!--Columna del precio-->
+                                                <div class="col s12" id="coldetalle-carrito">
+                                                    <div class="col l1 s1 left-align">
+                                                        <p><b>Precio:</b></p>
+                                                    </div>
+                                                    <div class="col l1 offset-l3 s1 offset-s5 right-align">
+                                                        <p id="preciodetalle_carrito">$19.83</p>
+                                                    </div>
+                                                </div>
+                                                <!--Columna del subtotal-->
+                                                <div class="col s12" id="coldetalle-carrito">
+                                                    <div class="col l1 s1 left-align">
+                                                        <p><b>Subtotal:</b></p>
+                                                    </div>
+                                                    <div class="col l1 offset-l4 s1 offset-s5 right-align">
+                                                        <p id="preciodetalle_carrito">$39.66</p>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <!--Elemento-->
+                            <div class="row">
+                                <!--Fondo del elemento-->
+                                <div class="col s12" id="fondocompra-carrito1">
+                                    <!--Icono de eliminar-->
+                                    <div class="elimardel-carrito">
+                                        <img class="responsive-img" src="..//resources/Icons/eliminardel-carrito.png">
+                                    </div>
+                                    <!--Contenedor del contenido del carrito-->
+                                    <div class="row" id="fila-contenidocarrito">
+                                        <!--Columna de la imagen-->
+                                        <div class="col s6 center-align" id="imagencontenido-carrito">
+                                            <img class="responsive-img" src="../resources/Icons/amigurumi1-carrito.png"
+                                                height="276px" width="254">
+                                        </div>
+                                        <!--Columna del detalle del contenido-->
+                                        <div class="col s6">
+                                            <!--Fila de los detalles-->
+                                            <div class="row">
+                                                <!--Columna del nombre del producto-->
+                                                <div class="col s12 center-align">
+                                                    <h6 id="nombreAmigurumi_carrito">Harry Potter</h6>
+                                                </div>
+                                                <!--Columna de la cantidad-->
+                                                <div class="col s12" id="coldetalle-carrito">
+                                                    <div class="col l1 s1 left-align">
+                                                        <p><b>Cantidad:</b></p>
+                                                    </div>
+                                                    <div class="col l1 offset-l6 s1 offset-s6 right-align">
+                                                        <p id="cantidaddetalle_carrito">2</p>
+                                                    </div>
+                                                </div>
+                                                <!--Columna del precio-->
+                                                <div class="col s12" id="coldetalle-carrito">
+                                                    <div class="col l1 s1 left-align">
+                                                        <p><b>Precio:</b></p>
+                                                    </div>
+                                                    <div class="col l1 offset-l3 s1 offset-s5 right-align">
+                                                        <p id="preciodetalle_carrito">$19.98</p>
+                                                    </div>
+                                                </div>
+                                                <!--Columna del subtotal-->
+                                                <div class="col s12" id="coldetalle-carrito">
+                                                    <div class="col l1 s1 left-align">
+                                                        <p><b>Subtotal:</b></p>
+                                                    </div>
+                                                    <div class="col l1 offset-l4 s1 offset-s5 right-align">
+                                                        <p id="preciodetalle_carrito">$39.96</p>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <!--Elemento-->
+                            <div class="row">
+                                <!--Fondo del elemento-->
+                                <div class="col s12" id="fondocompra-carrito1">
+                                    <!--Icono de eliminar-->
+                                    <div class="elimardel-carrito">
+                                        <img class="responsive-img" src="..//resources/Icons/eliminardel-carrito.png">
+                                    </div>
+                                    <!--Contenedor del contenido del carrito-->
+                                    <div class="row" id="fila-contenidocarrito">
+                                        <!--Columna de la imagen-->
+                                        <div class="col s6 center-align" id="imagencontenido-carrito">
+                                            <img class="responsive-img" src="../resources/Icons/amigurumi1-carrito.png"
+                                                height="276px" width="254">
+                                        </div>
+                                        <!--Columna del detalle del contenido-->
+                                        <div class="col s6">
+                                            <!--Fila de los detalles-->
+                                            <div class="row">
+                                                <!--Columna del nombre del producto-->
+                                                <div class="col s12 center-align">
+                                                    <h6 id="nombreAmigurumi_carrito">Brown Guy</h6>
+                                                </div>
+                                                <!--Columna de la cantidad-->
+                                                <div class="col s12" id="coldetalle-carrito">
+                                                    <div class="col l1 s1 left-align">
+                                                        <p><b>Cantidad:</b></p>
+                                                    </div>
+                                                    <div class="col l1 offset-l6 s1 offset-s6 right-align">
+                                                        <p id="cantidaddetalle_carrito">2</p>
+                                                    </div>
+                                                </div>
+                                                <!--Columna del precio-->
+                                                <div class="col s12" id="coldetalle-carrito">
+                                                    <div class="col l1 s1 left-align">
+                                                        <p><b>Precio:</b></p>
+                                                    </div>
+                                                    <div class="col l1 offset-l3 s1 offset-s5 right-align">
+                                                        <p id="preciodetalle_carrito">$19.38</p>
+                                                    </div>
+                                                </div>
+                                                <!--Columna del subtotal-->
+                                                <div class="col s12" id="coldetalle-carrito">
+                                                    <div class="col l1 s1 left-align">
+                                                        <p><b>Subtotal:</b></p>
+                                                    </div>
+                                                    <div class="col l1 offset-l4 s1 offset-s5 right-align">
+                                                        <p id="preciodetalle_carrito">$38.76</p>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <!--Elemento-->
+                            <div class="row">
+                                <!--Fondo del elemento-->
+                                <div class="col s12" id="fondocompra-carrito1">
+                                    <!--Icono de eliminar-->
+                                    <div class="elimardel-carrito">
+                                        <img class="responsive-img" src="..//resources/Icons/eliminardel-carrito.png">
+                                    </div>
+                                    <!--Contenedor del contenido del carrito-->
+                                    <div class="row" id="fila-contenidocarrito">
+                                        <!--Columna de la imagen-->
+                                        <div class="col s6 center-align" id="imagencontenido-carrito">
+                                            <img class="responsive-img" src="../resources/Icons/amigurumi1-carrito.png"
+                                                height="276px" width="254">
+                                        </div>
+                                        <!--Columna del detalle del contenido-->
+                                        <div class="col s6">
+                                            <!--Fila de los detalles-->
+                                            <div class="row">
+                                                <!--Columna del nombre del producto-->
+                                                <div class="col s12 center-align">
+                                                    <h6 id="nombreAmigurumi_carrito">Brown Guy</h6>
+                                                </div>
+                                                <!--Columna de la cantidad-->
+                                                <div class="col s12" id="coldetalle-carrito">
+                                                    <div class="col l1 s1 left-align">
+                                                        <p><b>Cantidad:</b></p>
+                                                    </div>
+                                                    <div class="col l1 offset-l6 s1 offset-s6 right-align">
+                                                        <p id="cantidaddetalle_carrito">2</p>
+                                                    </div>
+                                                </div>
+                                                <!--Columna del precio-->
+                                                <div class="col s12" id="coldetalle-carrito">
+                                                    <div class="col l1 s1 left-align">
+                                                        <p><b>Precio:</b></p>
+                                                    </div>
+                                                    <div class="col l1 offset-l3 s1 offset-s5 right-align">
+                                                        <p id="preciodetalle_carrito">$19.38</p>
+                                                    </div>
+                                                </div>
+                                                <!--Columna del subtotal-->
+                                                <div class="col s12" id="coldetalle-carrito">
+                                                    <div class="col l1 s1 left-align">
+                                                        <p><b>Subtotal:</b></p>
+                                                    </div>
+                                                    <div class="col l1 offset-l4 s1 offset-s5 right-align">
+                                                        <p id="preciodetalle_carrito">$38.76</p>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <!--Elemento-->
+                            <div class="row">
+                                <!--Fondo del elemento-->
+                                <div class="col s12" id="fondocompra-carrito1">
+                                    <!--Icono de eliminar-->
+                                    <div class="elimardel-carrito">
+                                        <img class="responsive-img" src="..//resources/Icons/eliminardel-carrito.png">
+                                    </div>
+                                    <!--Contenedor del contenido del carrito-->
+                                    <div class="row" id="fila-contenidocarrito">
+                                        <!--Columna de la imagen-->
+                                        <div class="col s6 center-align" id="imagencontenido-carrito">
+                                            <img class="responsive-img" src="../resources/Icons/amigurumi1-carrito.png"
+                                                height="276px" width="254">
+                                        </div>
+                                        <!--Columna del detalle del contenido-->
+                                        <div class="col s6">
+                                            <!--Fila de los detalles-->
+                                            <div class="row">
+                                                <!--Columna del nombre del producto-->
+                                                <div class="col s12 center-align">
+                                                    <h6 id="nombreAmigurumi_carrito">Brown Guy</h6>
+                                                </div>
+                                                <!--Columna de la cantidad-->
+                                                <div class="col s12" id="coldetalle-carrito">
+                                                    <div class="col l1 s1 left-align">
+                                                        <p><b>Cantidad:</b></p>
+                                                    </div>
+                                                    <div class="col l1 offset-l6 s1 offset-s6 right-align">
+                                                        <p id="cantidaddetalle_carrito">2</p>
+                                                    </div>
+                                                </div>
+                                                <!--Columna del precio-->
+                                                <div class="col s12" id="coldetalle-carrito">
+                                                    <div class="col l1 s1 left-align">
+                                                        <p><b>Precio:</b></p>
+                                                    </div>
+                                                    <div class="col l1 offset-l3 s1 offset-s5 right-align">
+                                                        <p id="preciodetalle_carrito">$19.38</p>
+                                                    </div>
+                                                </div>
+                                                <!--Columna del subtotal-->
+                                                <div class="col s12" id="coldetalle-carrito">
+                                                    <div class="col l1 s1 left-align">
+                                                        <p><b>Subtotal:</b></p>
+                                                    </div>
+                                                    <div class="col l1 offset-l4 s1 offset-s5 right-align">
+                                                        <p id="preciodetalle_carrito">$38.76</p>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </li>
+            <li id="footer-carrito">
+                <div class="row">
+                    <div class="col s12">
+                        <div class="col s4 right-align" id="total-carrito">
+                            <p>Total a pagar: </p>
+                        </div>
+                        <div class="col s1 left-align">
+                            <p id="pagot_carrito">$176.11</p>
+                        </div>
+                    </div>
+                    <div class="col s12">
+                        <div class="row">
+                            <div class="col offset-s1 s5">
+                                <a href="../public-pages/confirmacion-compra.html"
+                                    class="modal-trigger waves-effect waves-light btn" id="comprar_carrito">Comprar</a>
+                            </div>
+                            <div class="col s5">
+                                <a href="#" class="modal-trigger waves-effect waves-light btn"
+                                    id="seguirv_carrito">Seguir Viendo</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
             </li>
         </ul>
     </header>
@@ -174,10 +503,6 @@
             </div>
         </div>
     </footer>
-    <!--JavaScript at end of body for optimized loading-->
-    <script type="text/javascript" src="../js/materialize.min.js"></script>
-    <script type="text/javascript" src="../js/footer.js"></script>
-
     <!--JavaScript at end of body for optimized loading-->
     <script type="text/javascript" src="../js/materialize.min.js"></script>
     <script type="text/javascript" src="../js/index.js"></script>
