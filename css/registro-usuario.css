@@ -1,0 +1,98 @@
+* {
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    display: flex;
+    min-height: 100vh;
+    flex-direction: column;
+    background-color: #F7F0E9;
+    font-family: 'Poppins', sans-serif;
+}
+
+main {
+    flex: 1 0 auto;
+}
+
+/*Inicio de estilos de registro de usuario */
+/*Estilos la para información de envio*/
+/*Estilo del banner o Titulo de la página*/
+#banner-confirmacion {
+    font-family: 'Pt Serif', serif;
+    background-color: #F48080;
+    margin-top: 50px;
+    border-radius: 3px;
+    box-shadow: -10px -5px black;
+}
+
+/*Estilos para la columa de la información para el envio*/
+#columna-info {
+    font-family: 'Poppins', sans-serif;
+    background: linear-gradient(145.17deg, #EB9E9E 36.74%, rgba(235, 158, 158, 0.703125) 43.08%, rgba(255, 228, 174, 0.37) 61.08%);
+    border: 1px solid gray;
+}
+
+/*Estilo para los inputs*/
+/*Estilo del input del correo del usuario*/
+
+/*Estilo del input del nombre el usuario*/
+#nombre_usuario,
+#correo,
+#apellido_usuario,
+#contrasena_usuario,
+#confirmar,
+#dui_usuario,
+#telefono_usuario,
+#direccion_usuario {
+    box-shadow: inset 515px 5px white;
+    color: #807B7B;
+    font-family: 'Poppins', sans-serif;
+    padding: 0 3px 0 3px;
+}
+
+.input-field {
+    margin: 5px auto 5px auto;
+}
+
+.form-registro {
+    margin: auto;
+    max-width: 500px;
+}
+
+.line {
+    border-bottom: 2px solid rgb(100, 100, 100);
+    width: 100%;
+    margin: 10px 0 10px 0;
+}
+
+
+.form-registro {
+    margin-top: 40px;
+}
+
+#pagar_btn {
+    font-family: 'Poppins', sans-serif;
+    background: linear-gradient(99.82deg, #FFBD81 42.62%, #FB1515 198.11%);
+    box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+    border-radius: 15px;
+    color: black;
+    border-top: 6px solid black;
+    border-left: 5px solid black;
+    padding: 0 50px 35px 50px;
+    font-weight: bold;
+    margin-top: 15px;
+}
+
+/*Estilos del modal de confirmación de compra*/
+.modal {
+    font-family: 'Poppins', sans-serif;
+}
+
+#confirmar-compra_modal {
+    margin-top: 7%;
+    border-radius: 10px;
+    background: linear-gradient(121.84deg, #FF8686 30.85%, #D5CA68 101.86%);
+    width: 350px;
+    font-family: 'Poppins', sans-serif;
+}
