@@ -886,3 +886,13 @@ img {
 .sidenav {
   background-color: var(--primary-color);
 }
+
+/*Estilos del apartad de ir hacia arriba*/
+
+#hasta_arriba {
+
+  display: none;
+
+  transition: .2s;
+
+}
