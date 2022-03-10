@@ -1,22 +1,7 @@
-*{
-    margin: 0;
-    padding: 0;
-}
 
-body {
-    display: flex;
-    min-height: 100vh;
-    flex-direction: column;
-    background-color: #F7F0E9;
-    font-family: 'Poppins',sans-serif;
-  }
-  
- main {
-   flex: 1 0 auto;
-}
 /*Estilos del footer*/
 /*Estilo del footer en general*/
-.page-footer{
+.page-footer {
     background-color: #FF9E86;
     padding-bottom: 0%;
     padding-top: 1%;
@@ -24,16 +9,17 @@ body {
     font-family: 'Poppins', sans-serif;
     border-top: 2px solid black;
     padding-bottom: 0;
+    margin-top: 80px;
 }
 
 /*Estilos del las redes sociales*/
-#facebook-container{
+#facebook-container {
     padding: 0;
     position: relative;
     right: 5px;
 }
 
-#facebook{
+#facebook {
     margin: 0;
     padding-top: 5px;
     background-color: black;
@@ -41,14 +27,14 @@ body {
     width: 47px;
 }
 
-#whatsapp-container{
+#whatsapp-container {
     padding: 0;
     margin: 0;
     position: relative;
     right: 20px;
 }
 
-#whatsapp{
+#whatsapp {
     padding-top: 2px;
     align-items: center;
     background-color: black;
@@ -57,53 +43,56 @@ body {
     height: 42px;
 }
 
-#whatsappcopied{
-    background:0;
+#whatsappcopied {
+    background: 0;
     border: 0;
     outline: none;
 }
 
-#instagram-container{
+#instagram-container {
     padding: 0;
     margin: 0;
     position: relative;
     right: 40px;
 }
 
-#instagram{
+#instagram {
     align-items: center;
     padding-top: 5px;
     background-color: black;
     border-radius: 5px;
     width: 45px;
     height: 42px;
-    }
+}
+
 /*Estilo de los links*/
-#preguntasfrec{
+#preguntasfrec {
     color: black;
     align-items: center;
 }
-#terminos-footer{
+
+#terminos-footer {
     color: black;
 }
 
 /*Estilo del copyrigth*/
-#Anexo{
+#Anexo {
     padding-top: 0%;
     margin: 0%;
 }
-#copyrigth{
+
+#copyrigth {
     padding-top: 1.5px;
 }
 
 /*Estilos de los tooltipped*/
-.tooltip{
+.tooltip {
     font-weight: normal;
     color: gray;
     position: relative;
-  }
-  
-  .tooltip-box{
+}
+
+.tooltip-box {
     display: none;
     position: absolute;
     background-color: #DF5333;
@@ -116,13 +105,13 @@ body {
     border-radius: 5px;
     left: 0;
     bottom: 50px;
-  }
-  
-  .tooltip:hover .tooltip-box{
+}
+
+.tooltip:hover .tooltip-box {
     display: inline-block;
-  }
-  
-  .tooltip-box::after{
+}
+
+.tooltip-box::after {
     content: "";
     display: block;
     border-top: 20px solid #DF5333;
@@ -130,49 +119,51 @@ body {
     border-right: 20px solid transparent;
     position: absolute;
     bottom: -7px;
-  }
+}
 
-  #copywhat{
+#copywhat {
     display: none;
-  }
-  /*Fin de estilos del footer*/
+}
 
-  /*Telefonos*/
-  @media (max-width:600px){
-    #facebook-container{
+/*Fin de estilos del footer*/
+
+/*Telefonos*/
+@media (max-width:600px) {
+    #facebook-container {
         position: relative;
         right: 20px;
     }
 
-    #whatsapp-container{
+    #whatsapp-container {
         padding: 0;
         margin: 0;
         position: relative;
         right: 17px;
     }
 
-    #instagram-container{
+    #instagram-container {
         padding: 0;
         margin: 0;
         position: relative;
         right: 15px;
     }
 }
+
 /*Tablets*/
 @media screen and (min-width: 600px) and (max-width: 992px) {
-    #facebook-container{
+    #facebook-container {
         position: relative;
         right: 26px;
     }
 
-    #whatsapp-container{
+    #whatsapp-container {
         padding: 0;
         margin: 0;
         position: relative;
         right: 15px;
     }
 
-    #instagram-container{
+    #instagram-container {
         padding: 0;
         margin: 0;
         position: relative;
