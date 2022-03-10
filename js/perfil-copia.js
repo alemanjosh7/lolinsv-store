@@ -1,29 +1,20 @@
-/*document.addEventListener('DOMContentLoaded', function () {
+document.addEventListener('DOMContentLoaded', function () {
     M.Sidenav.init(document.querySelectorAll('.sidenav'));
     M.Slider.init(document.querySelectorAll('.slider'));
     M.Carousel.init(document.querySelectorAll('.carousel'));
-    M.Modal.init(document.querySelectorAll('.modal'));
     M.Tooltip.init(document.querySelectorAll('.tooltipped'));
-});
-/*Copiar número de Whatsaap en el Footer*/
-function copiarWhat() {
-    var content = document.getElementById('copywhat').innerHTML;
-    navigator.clipboard.writeText(content)
-}
-document.addEventListener('DOMContentLoaded', function () {
-    var elems = document.querySelectorAll('.modal');
-    let options = {
-
-    };
-    M.Modal.init(elems, options);
+    M.Modal.init(document.querySelectorAll('.modal'));
 });
 
 document.addEventListener('DOMContentLoaded', function () {
     var elems = document.querySelectorAll('.tooltipped');
     var instances = M.Tooltip.init(elems);
 });
-/*Hasta aqui llega*/
-
+/*Copiar número de Whatsaap en el Footer*/
+function copiarWhat() {
+    var content = document.getElementById('copywhat').innerHTML;
+    navigator.clipboard.writeText(content)
+}
 /*Mostrar u ocultar para dui y número en el perfil*/
 /*DUI*/
 var ojo = document.getElementById('ocultarmostrar_duiuser');
@@ -67,7 +58,7 @@ btncancelperfil.addEventListener("click", function () {
     btnactperfil.classList.remove("disabled")
 });
 
-/*Mostrar-Ocultar preloader para la actualización de datos del perfil*/
+/*Mostrar-Ocultar preloader para la actualización de contraseña del perfil*/
 var btnactcontra = document.getElementById('aceptaractcontra_boton');
 var preloaderactcontra = document.getElementById('actdatoscontra_preloader');
 var btncancelcontra = document.getElementById('cancelactdatoscontra_boton');
@@ -119,5 +110,3 @@ ojo3.addEventListener("click", function () {
         ojo3.innerText = "visibility"
     }
 });
-
-//"col l7 offset-l5 m7 offset-m3 s12 right-align"
