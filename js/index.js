@@ -68,7 +68,7 @@ document.addEventListener("DOMContentLoaded", function () {
 var hastatop = document.getElementById("hasta_arriba");
 
 window.onscroll = function () {
-  if (document.documentElement.scrollTop > 100) {
+  if (document.documentElement.scrollTop > 200) {
     hastatop.style.display = "block";
   } else {
     hastatop.style.display = "none";

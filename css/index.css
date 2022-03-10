@@ -1,3 +1,8 @@
+* {
+  font-family: 'Poppins',
+    sans-serif;
+}
+
 :root {
   --primary-color: #df5333;
   --second-color: #f48080;
@@ -134,6 +139,10 @@
   min-height: 60px;
 }
 
+#banner-confirmacion {
+  min-width: 275px;
+}
+
 #objetivos {
   background-color: #FDC064;
 }
@@ -145,6 +154,14 @@
   box-shadow: 10px -5px #F48080;
   max-width: 300px;
   margin-top: 30px;
+}
+
+.objetivos-section .info-img img {
+  box-shadow: -10px 5px #FDC064;
+}
+
+.objetivos-section .info-img {
+  margin: 0 0 15px 0;
 }
 
 #banner-confirmacion {
