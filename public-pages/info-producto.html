@@ -6,12 +6,11 @@
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
     <!--Import materialize.css-->
     <link type="text/css" rel="stylesheet" href="../css/materialize.min.css" media="screen,projection" />
-    <link rel="stylesheet" href="../css/info-producto.css">
+    <link rel="stylesheet" href="../css/estilos-publica.css">
     <!--Icono del sitio web-->
     <link rel="icon" href="../resources/Icons/icono-web.jpeg">
     <!--Let browser know website is optimized for mobile-->
     <meta name="viewport" content="width=device-width, initial-scale=1.0" charset="utf-8" />
-    <link rel="stylesheet" href="../css/navbar.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.1/css/all.min.css"
         integrity="sha512-+4zCK9k+qNFUR5X+cKL9EIR+ZOhtIloNl9GIKS57V1MyNsYpYcUrUeQc9vNfzsWfV28IaLL3i96P9sdNyeRssA=="
         crossorigin="anonymous" />
@@ -23,32 +22,28 @@
             <nav class="primary-bg-color">
                 <div class="container">
                     <div class="nav-wrapper">
-                        <a href="#!" class="brand-logo">
+                        <a href="perfil.html" class="brand-logo">
                             <img class="logo-navbar" src="../resources/Icons/logo.png" alt="">
                         </a>
                         <a href="#carrito" data-target="mobile-demo" class="sidenav-trigger"><i
                                 class="material-icons">menu</i></a>
                         <ul class="right hide-on-med-and-down">
                             <li>
-                                <a class="waves-effect waves-light btn second-bg-color boton"
-                                    href="index.html">Inicio</a>
+                                <a class="waves-effect waves-light btn second-bg-color boton" href="index.html">Inicio</a>
                             </li>
                             <li>
-                                <a class="waves-effect waves-light btn second-bg-color boton"
-                                    href="productos.html">Productos</a>
+                                <a class="waves-effect waves-light btn second-bg-color boton" href="productos.html">Productos</a>
                             </li>
                             <li>
-                                <a class="waves-effect waves-light btn second-bg-color boton"
-                                    href="registro-usuario.html">Registrarse</a>
+                                <a class="waves-effect waves-light btn second-bg-color boton" href="registro-usuario.html">Registrarse</a>
                             </li>
                             <li>
-                            <li><a class="waves-effect waves-light btn second-bg-color boton" href="login.html">Iniciar
-                                    sesión <i class="material-icons left">person</i></a></li>
+                            <li><a class="waves-effect waves-light btn second-bg-color boton" href="login.html">Iniciar sesión <i
+                                        class="material-icons left">person</i></a></li>
                             </li>
-                            <li><a href="#carrito" data-target="carrito"
-                                    class="sidenav-trigger show-on-large waves-effect waves-light btn second-bg-color boton"
-                                    id="carrito-correcion"><img class="responsive-img"
-                                        src="../resources/Amigurumis/shopping.png" alt=""></a></li>
+                            <li><a href="#carrito" data-target="carrito" class="sidenav-trigger show-on-large waves-effect waves-light btn second-bg-color boton" 
+                                id="carrito-correcion"><img id="correcion-carrito-img"
+                                        class="responsive-img" src="../resources/Amigurumis/shopping.png"alt=""></a></li>
                             </li>
                         </ul>
                     </div>
@@ -383,7 +378,7 @@
                         </div>
                     </div>
                     <div class="col s12">
-                        <div class="row">
+                        <div class="row carrito-opciones">
                             <div class="col offset-s1 s5">
                                 <a href="../public-pages/confirmacion-compra.html"
                                     class="modal-trigger waves-effect waves-light btn" id="comprar_carrito">Comprar</a>
@@ -400,9 +395,9 @@
     </header>
     <section>
         <div class="card-wrapper">
-            <div class="card">
+            <div class="card-producto">
                 <!-- card left -->
-                <div class="product-imgs">
+                <div class="product-imgs" id="card-product">
                     <div class="img-display">
                         <div class="img-showcase">
                             <img src="../resources/Amigurumis/amigurumi2.png" alt="shoe image">
@@ -448,7 +443,7 @@
                     <div class="product-price">
                         <p class="new-price">Precio: <span>$10.00</span></p>
                     </div>
-                    <div class="line"></div>
+                    <div class="line-3"></div>
                     <div class="product-detail">
                         <p class="desc">Descripción:</p>
                         <p>Un texto es una composición de signos codificados en un sistema de escritura que forma una
@@ -475,12 +470,11 @@
         </div>
 
     </section>
-
     <div class="line-1"></div>
 
     <section class="comments-section">
         <div class="title-comment">
-            <div class="animate-text">
+            <div class="animate-text-product">
                 <p>Añade tu opinión</p>
             </div>
             <p>Comentarios: 2</p>
