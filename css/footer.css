@@ -1,0 +1,291 @@
+/*Estilos del footer*/
+/*Estilo del footer en general*/
+.page-footer{
+    background-color: #FF9E86;
+    padding-bottom: 0%;
+    padding-top: 1%;
+    color: black;
+    font-family: 'Poppins', sans-serif;
+    border-top: 2px solid black;
+    padding-bottom: 0;
+}
+
+/*Estilos del las redes sociales*/
+#facebook-container{
+    padding: 0;
+    position: relative;
+    right: 5px;
+}
+
+#facebook{
+    margin: 0;
+    padding-top: 5px;
+    background-color: black;
+    border-radius: 5px;
+    width: 47px;
+}
+
+#whatsapp-container{
+    padding: 0;
+    margin: 0;
+    position: relative;
+    right: 20px;
+}
+
+#whatsapp{
+    padding-top: 2px;
+    align-items: center;
+    background-color: black;
+    border-radius: 5px;
+    width: 45px;
+    height: 42px;
+}
+
+#whatsappcopied{
+    background:0;
+    border: 0;
+    outline: none;
+}
+
+#instagram-container{
+    padding: 0;
+    margin: 0;
+    position: relative;
+    right: 40px;
+}
+
+#instagram{
+    align-items: center;
+    padding-top: 5px;
+    background-color: black;
+    border-radius: 5px;
+    width: 45px;
+    height: 42px;
+    }
+/*Estilo de los links*/
+#preguntasfrec{
+    color: black;
+    align-items: center;
+}
+#terminos-footer{
+    color: black;
+}
+
+/*Estilo del copyrigth*/
+#Anexo{
+    padding-top: 0%;
+    margin: 0%;
+}
+#copyrigth{
+    padding-top: 1.5px;
+}
+
+/*Estilos de los tooltipped*/
+.tooltip{
+    font-weight: normal;
+    color: gray;
+    position: relative;
+}
+  
+.tooltip-box{
+    display: none;
+    position: absolute;
+    background-color: #DF5333;
+    line-height: 20px;
+    z-index: 500;
+    text-align: center;
+    color: white;
+    font-size: 14px;
+    padding: 9px 10px;
+    border-radius: 5px;
+    left: 0;
+    bottom: 50px;
+}
+  
+.tooltip:hover .tooltip-box{
+    display: inline-block;
+}
+  
+.tooltip-box::after{
+    content: "";
+    display: block;
+    border-top: 20px solid #DF5333;
+    border-left: 20px solid transparent;
+    border-right: 20px solid transparent;
+    position: absolute;
+    bottom: -7px;
+}
+
+#copywhat{
+    display: none;
+}
+  /*Fin de estilos del footer*/
+/*Telefonos*/
+@media (max-width:600px){
+    #facebook-container{
+        position: relative;
+        right: 20px;
+    }
+
+    #whatsapp-container{
+        padding: 0;
+        margin: 0;
+        position: relative;
+        right: 17px;
+    }
+
+    #instagram-container{
+        padding: 0;
+        margin: 0;
+        position: relative;
+        right: 15px;
+    }
+    /*Estilo para los inputs*/
+    /*Estilo del input del correo del usuario*/
+    #correo{
+        font-family: 'Poppins', sans-serif;
+        font-size: 13px;
+    }
+    /*Estilo del input del nombre el usuario*/
+    #nombre_usuario{
+        font-family: 'Poppins', sans-serif;
+        font-size: 13px;
+    }
+    /*Estilo del Input del apellido del usuario*/
+    #apellido_usuario{
+        font-family: 'Poppins', sans-serif;
+        font-size: 13px;
+    }
+    /*Estilo de la direccion de usuario*/
+    #direccion_usuario{
+        font-family: 'Poppins', sans-serif;
+        font-size: 13px;
+    }
+    /*Estiro del Punto de referencia respecto a la direccion del usuairo*/
+    #preferencia_usuario{
+        font-family: 'Poppins',sans-serif;
+        font-size: 13px;
+    }
+    /*Estilo del sidenav*/
+    #carrito{
+        font-family: 'Poppins',sans-serif;
+        width: 325px;
+    }
+    /*Edicion del backgroun del header del carrito*/
+    .background{
+        height: 93px;
+    }
+    /*Edicion de la parte de la informacion del carrito*/
+    #parte-infocarrito{
+        height: 60%;
+        background-color: #F7F0E9;
+        margin-top: 0;
+        overflow: auto;
+    }  
+    /*Estilo de los carritos*/
+    #comprar_carrito{
+        font-family: 'Poppins', sans-serif;
+        background: linear-gradient(99.82deg, #FFBD81 42.62%, #FB1515 198.11%);
+        box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+        border-radius: 15px;
+        color: black;
+        border-top: 6px solid black;
+        border-left: 5px solid black;
+        padding: 0 25px 35px 25px;
+    }
+    /*Estilo de la imagen o icono*/
+    .elimardel-carrito img{
+        cursor: pointer;
+        position: relative;
+        bottom: 15px;
+        left: 96%;
+        margin: 0;
+        padding: 0;
+    }
+}
+/*Tablets*/
+@media screen and (min-width: 600px) and (max-width: 992px) {
+    #facebook-container{
+        position: relative;
+        right: 26px;
+    }
+
+    #whatsapp-container{
+        padding: 0;
+        margin: 0;
+        position: relative;
+        right: 15px;
+    }
+
+    #instagram-container{
+        padding: 0;
+        margin: 0;
+        position: relative;
+        right: 5px;
+    }
+    /*Estilo para los inputs*/
+    /*Estilo del input del correo del usuario*/
+    #correo{
+        font-family: 'Poppins', sans-serif;
+        font-size: 12px;
+    }
+    /*Estilo del input del nombre el usuario*/
+    #nombre_usuario{
+        font-family: 'Poppins', sans-serif;
+        font-size: 12px;
+    }
+    /*Estilo del Input del apellido del usuario*/
+    #apellido_usuario{
+        font-family: 'Poppins', sans-serif;
+        font-size: 12px;
+    }
+    /*Estilo de la direccion de usuario*/
+    #direccion_usuario{
+        font-family: 'Poppins', sans-serif;
+        font-size: 12px;
+    }
+    /*Estiro del Punto de referencia respecto a la direccion del usuairo*/
+    #preferencia_usuario{
+        font-family: 'Poppins',sans-serif;
+        font-size: 12px;
+    }
+    /*Estilo del sidenav*/
+    #carrito{
+        font-family: 'Poppins',sans-serif;
+        overflow: scroll;
+    }
+    /*Edicion del footer del carrito*/
+    #footer-carrito{
+        overflow: auto;
+        margin: 0;
+        padding: 0;
+    }
+    /*Edicion de los botones del carrito*/
+    #comprar_carrito{
+        margin-bottom: 25px;
+    }
+    /*Edicion del boton del carrito de seguir viendo*/
+    #seguirv_carrito{
+        margin-bottom: 25px;
+    }
+    /*Estilo de la imagen o icono*/
+    .elimardel-carrito img{
+        cursor: pointer;
+        position: relative;
+        bottom: 15px;
+        left: 98%;
+        margin: 0;
+        padding: 0;
+    }
+    #parte-infocarrito{
+        height: 62%;
+        background-color: #F7F0E9;
+        margin-top: 0;
+        overflow: auto;
+    } 
+    .background{
+        margin-bottom: 0;
+        padding: 0;
+        height: 109px;
+    }
+}
