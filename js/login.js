@@ -120,7 +120,14 @@ btncancelr.addEventListener('click', function () {
     clearInterval(cronometro);
     seg = 0;
 });
-
+btncancelrc.addEventListener('click', function(){
+    preloader.style.display = "none";
+    restablecerctr.classList.remove("disabled");
+    let contran = document.getElementById('contraseña_nueva');
+    let contrac = document.getElementById('contraseña_confirma');
+    contrac.value = '';
+    contran.value = '';
+});
 //Validar contraseñas iguales y campos vacios en el restablecer contraseña
 var restablecerctr = document.getElementById('restablecerContraseña');
 
