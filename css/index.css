@@ -1,38 +1,51 @@
+/* Body */
 * {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
   font-family: 'Poppins',
     sans-serif;
 }
-
+/* Añadir colores principales */
 :root {
   --primary-color: #df5333;
   --second-color: #f48080;
   --third-color: #ff5b5b;
   --fourth-color: #ffb2b2;
 }
-
+/* Clase color primario para backgrounds*/
 .primary-bg-color {
   background-color: var(--primary-color);
 }
+/* Clase color primario para textos*/
 
 .primary-text-color {
   color: var(--primary-color);
 }
+/* Clase color secundario para backgrounds */
 
 .second-bg-color {
   background-color: var(--secondary-color);
 }
+/* Clase color secundario para textos */
 
 .second-text-color {
   color: var(--secondary-color);
 }
 
+/* Clase color terciario para backgrounds */
+
 .third-bg-color {
   background-color: var(--third-color);
 }
 
+/* Clase color terciario para textos */
+
 .third-text-color {
   color: var(--third-color);
 }
+
+/* Estilos Seccion Carousel */
 
 .carousel-section {
   margin-top: 30px;
@@ -42,9 +55,12 @@
   flex-direction: column;
 }
 
+/* Clase Carousel */
 .carousel {
   width: 100vw !important;
 }
+
+/* Clase para el separador */
 
 .line {
   border-bottom: 2px solid rgb(100, 100, 100);
@@ -52,12 +68,7 @@
   margin-top: 30px;
 }
 
-* {
-  margin: 0;
-  padding: 0;
-  box-sizing: border-box;
-}
-
+/*Seccion de Informacion sobre el negocio*/
 
 .information {
   margin-top: 50px;
