@@ -1,7 +1,8 @@
+/*Fuentes a usar para la pagina*/
 @import url('https://fonts.googleapis.com/css2?family=Poppins&display=swap');
 
 @import url('https://fonts.googleapis.com/css2?family=Nunito:wght@700&family=Poppins&display=swap');
-
+/*Incializacion de colores principales*/
 :root {
   --primary-color: #df5333;
   --second-color: #f48080;
@@ -52,6 +53,7 @@ main {
   flex: 1 0 auto;
 }
 
+/*Incializacion de estilos de las card */
 
 .card-section .card {
   margin: 40px 4px 10px 0px;
@@ -528,7 +530,9 @@ main {
     width: 20%;
     height: 70%;
   }
-  
+
+/*Responsive*/
+
   @media screen and (max-width: 992px) {
     .design-section {
       font-size: 10px;
