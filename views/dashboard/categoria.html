@@ -1,0 +1,266 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <!--Import Google Icon Font-->
+  <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+  <!--Import materialize.css-->
+  <link type="text/css" rel="stylesheet" href="../../resources/css/materialize.min.css" media="screen,projection" />
+  <link type="text/css" rel="stylesheet" href="../../resources/css/estilos-privada.css" media="screen,projection" />
+  <!--Let browser know website is optimized for mobile-->
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" charset="utf-8" />
+  <!--Importando las fuentes de google-->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=PT+Serif&family=Poppins&display=swap" rel="stylesheet">
+  <link rel="icon" href="../../resources/Icons/icono-web.jpeg">
+</head>
+
+<body id="categoriaP">
+  <header>
+    <div class="navbar-fixed">
+      <nav>
+        <div class="nav-wrapper">
+          <a href="#!" class="brand-logo"><img src="../../resources/Icons/Logo.png"></a>
+          <a href="#" data-target="mobile-demo" class="sidenav-trigger"><i class="material-icons">menu</i></a>
+          <ul class="center-align hide-on-med-and-down">
+            <a class="boton-menu waves-effect waves-teal btn-flat center-align" href="inicio.html">Inicio</a>
+            <a class="boton-menu waves-effect waves-teal btn-flat center-align" href="clientes.html">Clientes</a>
+            <a class="boton-menu waves-effect waves-teal btn-flat center-align" href="productos.html">Productos</a>
+            <a class="boton-menu waves-effect waves-teal btn-flat center-align" href="usuarios.html">Usuarios</a>
+            <a class="boton-menu waves-effect waves-teal btn-flat center-align"
+              href="pendientesami.html">Establecidos</a>
+            <a class="boton-menu waves-effect waves-teal btn-flat center-align"
+              href="pendientesper.html">Personalizados</a>
+            <a href="perfilpriv.html" class="user brand-logo" id="color-icononav"><i
+                class="material-icons">person</i></a>
+          </ul>
+        </div>
+      </nav>
+
+    </div>
+    <ul class="sidenav" id="mobile-demo">
+      <li><a class="boton-menu waves-effect waves-teal btn-flat center-align" href="inicio.html">Inicio</a></li>
+      <li><a class="boton-menu waves-effect waves-teal btn-flat center-align" href="clientes.html">Clie</a></li>
+      <li><a class="boton-menu waves-effect waves-teal btn-flat center-align" href="productos.html">Productos</a>
+      </li>
+      <li><a class="boton-menu waves-effect waves-teal btn-flat center-align" href="usuarios.html">Usuarios</a>
+      </li>
+      <li><a class="boton-menu waves-effect waves-teal btn-flat center-align" href="pedidosami.html">Establecidos</a>
+      </li>
+      <li><a class="boton-menu waves-effect waves-teal btn-flat center-align" href="pedidosper.html">Personalizados</a>
+      </li>
+      <li><a class="boton-menu waves-effect waves-teal btn-flat center-align" href="perfil.html"
+          class="user brand-logo">Perfil<i class="material-icons">person</i></a></li>
+    </ul>
+  </header>
+  <main>
+    <div class="container">
+
+
+      <!--Fila del titulo de confirmación de compra-->
+      <div class="row">
+        <div class="col offset-s3 s6 center-align" id="banner-confirmacion">
+          <h5>Categorias</h5>
+        </div>
+      </div>
+      <div>
+        <div class="col l1 m2 s10 left-align" id="div-regresarboton">
+          <a href="javascript: history.go(-1)" id="regresar-boton">
+            < Volver</a>
+        </div>
+        <div class="divider" id="divider-1"></div>
+      </div>
+      <!--Fila de la información-->
+      <!--Perfil-Datos-->
+
+
+      <div class="row">
+        <form class="col s12">
+          <div class="row">
+            <div class="input-field col s5">
+              <input id="icon_prefix" type="text" class="validate">
+              <label for="icon_prefix">Buscar</label>
+              <i class="material-icons prefix ">search</i>
+            </div>
+          </div>
+        </form>
+        <div class="col s12">
+          <div class="row">
+            <div class="col offset-m6 m6 s12 right-align">
+              <a class="btn-floating btn-medium waves-effect waves-light green"><i class="material-icons">add</i></a>
+              <a href="#confirmar-compra_modal" class="modal-trigger waves-effect waves-light btn"
+                id="pagar_btn_">Añadir</a>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div>
+
+        <div class="row">
+          <form class="col s12" id="ah">
+            <div class="row">
+              <div class="input-field col s12 m4">
+                <input disabled value="Caricaturas" id="disabled" type="text" class="validate">
+                <label for="last_name">Categoria</label>
+                <a class="btn-floating btn-small waves-effect waves-light red"><i class="material-icons">add</i></a>
+                <a class="btn-floating btn-small waves-effect waves-light black"><i class="material-icons">edit</i></a>
+              </div>
+              <div class="input-field col s12 m4">
+                <input disabled value="Superheroes" id="disabled" type="text" class="validate">
+                <label for="last_name">Categoria</label>
+                <a class="btn-floating btn-small waves-effect waves-light red"><i class="material-icons">add</i></a>
+                <a class="btn-floating btn-small waves-effect waves-light black"><i class="material-icons">edit</i></a>
+              </div>
+            </div>
+          </form>
+          <form class="col s12" id="ah">
+            <div class="row">
+              <div class="input-field col s12 m4">
+                <input disabled value="Cantantes" id="disabled" type="text" class="validate">
+                <label for="last_name">Categoria</label>
+                <a class="btn-floating btn-small waves-effect waves-light red"><i class="material-icons">add</i></a>
+                <a class="btn-floating btn-small waves-effect waves-light black"><i class="material-icons">edit</i></a>
+              </div>
+              <div class="input-field col s12 m4">
+                <input disabled value="Actores" id="disabled" type="text" class="validate">
+                <label for="last_name">Categoria</label>
+                <a class="btn-floating btn-small waves-effect waves-light red"><i class="material-icons">add</i></a>
+                <a class="btn-floating btn-small waves-effect waves-light black"><i class="material-icons">edit</i></a>
+              </div>
+            </div>
+          </form>
+          <form class="col s12" id="ah">
+            <div class="row">
+              <div class="input-field col s12 m4">
+                <input disabled value="Peliculas" id="disabled" type="text" class="validate">
+                <label for="last_name">Categoria</label>
+                <a class="btn-floating btn-small waves-effect waves-light red"><i class="material-icons">add</i></a>
+                <a class="btn-floating btn-small waves-effect waves-light black"><i class="material-icons">edit</i></a>
+              </div>
+              <div class="input-field col s12 m4">
+                <input disabled value="Animales" id="disabled" type="text" class="validate">
+                <label for="last_name">Categoria</label>
+                <a class="btn-floating btn-small waves-effect waves-light red"><i class="material-icons">add</i></a>
+                <a class="btn-floating btn-small waves-effect waves-light black"><i class="material-icons">edit</i></a>
+              </div>
+            </div>
+          </form>
+          <form class="col s12" id="ah">
+            <div class="row">
+              <div class="input-field col s12 m4">
+                <input disabled value="Flores" id="disabled" type="text" class="validate">
+                <label for="last_name">Categoria</label>
+                <a class="btn-floating btn-small waves-effect waves-light red"><i class="material-icons">add</i></a>
+                <a class="btn-floating btn-small waves-effect waves-light black"><i class="material-icons">edit</i></a>
+              </div>
+              <div class="input-field col s12 m4">
+                <input disabled value="Amor" id="disabled" type="text" class="validate">
+                <label for="disabled">Categoria</label>
+                <a class="btn-floating btn-small waves-effect waves-light red"><i class="material-icons">add</i></a>
+                <a class="btn-floating btn-small waves-effect waves-light black"><i class="material-icons">edit</i></a>
+              </div>
+            </div>
+          </form>
+        </div>
+      </div>
+    </div>
+
+    <!--Diseño del modal de confirmación de actualización de datos-->
+    <div id="confirmar-compra_modal" class="modal">
+      <div class="fondo-modaldatos modal-content">
+        <div class="center-align">
+          <div class="row">
+            <div class="col offset-s3 s6 center-align" id="banner-confirmacion">
+              <h5>Categorias</h5>
+            </div>
+          </div>
+
+          <div class="col s12" id="decoracion-modal"></div>
+          <div class="col l1 m2 s10 left-align" id="div-regresarboton">
+            <a href="javascript: history.go(-1)" id="regresar-boton-popup">
+              < Volver a cateorias</a>
+          </div>
+        </div>
+        <!--Preloader de la actualización de los datos del perdil-->
+        <div class="preloader-wrapper active" id="confirmarcompra_preloader">
+          <div class="spinner-layer spinner-red-only">
+            <div class="circle-clipper left">
+              <div class="circle"></div>
+            </div>
+            <div class="gap-patch">
+              <div class="circle"></div>
+            </div>
+            <div class="circle-clipper right">
+              <div class="circle"></div>
+            </div>
+          </div>
+        </div>
+
+        <div class="col s12">
+          <div class="input-field col s6 m4">
+            <input id="popup-text" type="text" class="validate">
+            <label for="last_name">Categoria</label>
+          </div>
+          <div class="row">
+            <div class="col offset-m6 m6 s6 right-align">
+              <a href="#confirmar-compra_modal" class="modal-trigger waves-effect waves-light btn"
+                id="pagar_btn">Añadir</a>
+            </div>
+          </div>
+        </div>
+        <div class="col s12" id="decoracion-modal"></div>
+      </div>
+    </div>
+  </main>
+  <footer class="page-footer">
+    <div class="container">
+      <div class="row" id="redes-footer">
+        <div class="col center-align l1 offset-l5 m1 offset-m5 s2 offset-s4" id="facebook-container">
+          <div class="center-align z-depth-4" id="facebook">
+            <a class="tooltip" href="https://www.instagram.com/lolin.sv/" target="_blank">
+              <img class="responsive-img " src="../../resources/Icons/facebook.png">
+              <span class="tooltip-box">¡Siguenos! en Facebook</span>
+            </a>
+          </div>
+        </div>
+        <div class="col l1 m1 s2" id="whatsapp-container">
+          <div class="center-align z-depth-4" id="whatsapp">
+            <button class="tooltip" type="button" id="whatsappcopied"
+              onclick="copiarWhat(); M.toast({html:'Número telefonico Copiado ¡Esperamos tu llamada!'})">
+              <p class="center-align" id="copywhat">77085832</p>
+              <img class="responsive-img " src="../../resources/Icons/whatsapp.png">
+              <span class="tooltip-box">¡Copia nuestro Whatsapp!</span>
+            </button>
+          </div>
+        </div>
+        <div class="col l1 m1 s2" id="instagram-container">
+          <div class="center-align z-depth-4" id="instagram">
+            <a class="tooltip" href="https://www.instagram.com/lolin.sv/">
+              <img class="responsive-img " src="../../resources/Icons/instagram.png" target="_blank">
+              <span class="tooltip-box">¡Siguenos! en Instagram</span>
+            </a>
+          </div>
+        </div>
+      </div>
+      <div class="row" id="Anexo">
+        <!--Anexo-->
+        <div class="center-align">
+          <a href="inicio.html" class="right-align " id="inicio">Inicio</a>
+        </div>
+      </div>
+      <div>
+        <!--Derechos de autor-->
+        <div class="container center-align" id="copyrigth">
+          <p id="copyri"><span>&copy 2022 Lolin</span></p>
+        </div>
+      </div>
+    </div>
+  </footer>
+  <!--JavaScript at end of body for optimized loading-->
+  <script type="text/javascript" src="../../js/materialize.min.js"></script>
+  <script type="text/javascript" src="../../controllers/dashboard/confirmacion-compra.js"></script>
+
+</body>
+
+</html>

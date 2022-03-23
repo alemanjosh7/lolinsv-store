@@ -1,0 +1,597 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <!--Import Google Icon Font-->
+  <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+  <!--Import materialize.css-->
+  <link type="text/css" rel="stylesheet" href="../../resources/css/materialize.min.css" media="screen,projection" />
+  <link type="text/css" rel="stylesheet" href="../../resources/css/estilos-publica.css" media="screen,projection" />
+  <!--Let browser know website is optimized for mobile-->
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" charset="utf-8" />
+  <!--Importando las fuentes de google-->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=PT+Serif&family=Poppins&display=swap" rel="stylesheet">
+  <!--Icono del sitio web-->
+  <link rel="icon" href="../../resources/Icons/icono-web.png">
+</head>
+
+<body>
+  <header>
+    <div class="navbar-fixed">
+        <nav class="primary-bg-color">
+            <div class="container">
+                <div class="nav-wrapper">
+                    <a href="#!" class="brand-logo">
+                        <img class="logo-navbar" src="../../resources/Icons/logo.png" alt="">
+                    </a>
+                    <a href="#carrito" data-target="mobile-demo" class="sidenav-trigger"><i
+                            class="material-icons">menu</i></a>
+                    <ul class="right hide-on-med-and-down">
+                        <li>
+                            <a class="waves-effect waves-light btn second-bg-color boton" href="index.html">Inicio</a>
+                        </li>
+                        <li>
+                            <a class="waves-effect waves-light btn second-bg-color boton" href="productos.html">Productos</a>
+                        </li>
+                        <li>
+                            <a class="waves-effect waves-light btn second-bg-color boton" href="registro-usuario.html">Registrarse</a>
+                        </li>
+                        <li>
+                        <li><a class="waves-effect waves-light btn second-bg-color boton" href="login.html">Iniciar sesión <i
+                                    class="material-icons left">person</i></a></li>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </nav>
+    </div>
+    <ul class="sidenav" id="mobile-demo">
+        <li>
+            <a class="waves-effect waves-light btn second-bg-color boton" href="index.html">Inicio</a>
+        </li>
+        <li>
+            <a class="waves-effect waves-light btn second-bg-color boton" href="productos.html">Productos</a>
+        </li>
+        <li>
+            <a class="waves-effect waves-light btn second-bg-color boton" href="registro-usuario.html">Registrarse</a>
+        </li>
+        <li>
+        <li><a class="waves-effect waves-light btn second-bg-color boton" href="login.html">Iniciar sesión <i
+                    class="material-icons left">person</i></a></li>
+        </li>
+    </ul>
+    <!--Diseño del carrito-->
+    <ul id="carrito" class="sidenav">
+        <!--Diseño del encabezado del carrito-->
+        <li>
+            <div class="fondodecoracion-carrito">
+                <div class="background">
+                    <h4 id="titulo-carrito">Carrito</h4>
+                    <img class="responsive-img" src="../../resources/Icons/carrito-icono.png" id="carrito-icon">
+                    <img class="responsive-img" src="../../resources/Icons/fondo-carrito.png" id="fondotitulo-carrito">
+                </div>
+            </div>
+        </li>
+        <!--Diseño de la información del carrito-->
+        <li id="parte-infocarrito">
+            <div class="container">
+                <div class="row">
+                    <form class="col s12">
+                        <!--Elementos de la compra en el carrito-->
+                        <!--Elemento-->
+                        <div class="row">
+                            <!--Fondo del elemento-->
+                            <div class="col s12" id="fondocompra-carrito1">
+                                <!--Icono de eliminar-->
+                                <div class="elimardel-carrito">
+                                    <img class="responsive-img" src="..//resources/Icons/eliminardel-carrito.png">
+                                </div>
+                                <!--Contenedor del contenido del carrito-->
+                                <div class="row" id="fila-contenidocarrito">
+                                    <!--Columna de la imagen-->
+                                    <div class="col s6 center-align" id="imagencontenido-carrito">
+                                        <img class="responsive-img" src="../../resources/Icons/amigurumi4-carrito.png"
+                                            height="276px" width="254">
+                                    </div>
+                                    <!--Columna del detalle del contenido-->
+                                    <div class="col s6">
+                                        <!--Fila de los detalles-->
+                                        <div class="row">
+                                            <!--Columna del nombre del producto-->
+                                            <div class="col s12 center-align">
+                                                <h6 id="nombreAmigurumi_carrito">Brown Guy</h6>
+                                            </div>
+                                            <!--Columna de la cantidad-->
+                                            <div class="col s12" id="coldetalle-carrito">
+                                                <div class="col l1 s1 left-align">
+                                                    <p><b>Cantidad:</b></p>
+                                                </div>
+                                                <div class="col l1 offset-l6 s1 offset-s6 right-align">
+                                                    <p id="cantidaddetalle_carrito">2</p>
+                                                </div>
+                                            </div>
+                                            <!--Columna del precio-->
+                                            <div class="col s12" id="coldetalle-carrito">
+                                                <div class="col l1 s1 left-align">
+                                                    <p><b>Precio:</b></p>
+                                                </div>
+                                                <div class="col l1 offset-l3 s1 offset-s5 right-align">
+                                                    <p id="preciodetalle_carrito">$19.83</p>
+                                                </div>
+                                            </div>
+                                            <!--Columna del subtotal-->
+                                            <div class="col s12" id="coldetalle-carrito">
+                                                <div class="col l1 s1 left-align">
+                                                    <p><b>Subtotal:</b></p>
+                                                </div>
+                                                <div class="col l1 offset-l4 s1 offset-s5 right-align">
+                                                    <p id="preciodetalle_carrito">$39.66</p>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <!--Elemento-->
+                        <div class="row">
+                            <!--Fondo del elemento-->
+                            <div class="col s12" id="fondocompra-carrito1">
+                                <!--Icono de eliminar-->
+                                <div class="elimardel-carrito">
+                                    <img class="responsive-img" src="..//resources/Icons/eliminardel-carrito.png">
+                                </div>
+                                <!--Contenedor del contenido del carrito-->
+                                <div class="row" id="fila-contenidocarrito">
+                                    <!--Columna de la imagen-->
+                                    <div class="col s6 center-align" id="imagencontenido-carrito">
+                                        <img class="responsive-img" src="../../resources/Icons/amigurumi1-carrito.png"
+                                            height="276px" width="254">
+                                    </div>
+                                    <!--Columna del detalle del contenido-->
+                                    <div class="col s6">
+                                        <!--Fila de los detalles-->
+                                        <div class="row">
+                                            <!--Columna del nombre del producto-->
+                                            <div class="col s12 center-align">
+                                                <h6 id="nombreAmigurumi_carrito">Harry Potter</h6>
+                                            </div>
+                                            <!--Columna de la cantidad-->
+                                            <div class="col s12" id="coldetalle-carrito">
+                                                <div class="col l1 s1 left-align">
+                                                    <p><b>Cantidad:</b></p>
+                                                </div>
+                                                <div class="col l1 offset-l6 s1 offset-s6 right-align">
+                                                    <p id="cantidaddetalle_carrito">2</p>
+                                                </div>
+                                            </div>
+                                            <!--Columna del precio-->
+                                            <div class="col s12" id="coldetalle-carrito">
+                                                <div class="col l1 s1 left-align">
+                                                    <p><b>Precio:</b></p>
+                                                </div>
+                                                <div class="col l1 offset-l3 s1 offset-s5 right-align">
+                                                    <p id="preciodetalle_carrito">$19.98</p>
+                                                </div>
+                                            </div>
+                                            <!--Columna del subtotal-->
+                                            <div class="col s12" id="coldetalle-carrito">
+                                                <div class="col l1 s1 left-align">
+                                                    <p><b>Subtotal:</b></p>
+                                                </div>
+                                                <div class="col l1 offset-l4 s1 offset-s5 right-align">
+                                                    <p id="preciodetalle_carrito">$39.96</p>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <!--Elemento-->
+                        <div class="row">
+                            <!--Fondo del elemento-->
+                            <div class="col s12" id="fondocompra-carrito1">
+                                <!--Icono de eliminar-->
+                                <div class="elimardel-carrito">
+                                    <img class="responsive-img" src="..//resources/Icons/eliminardel-carrito.png">
+                                </div>
+                                <!--Contenedor del contenido del carrito-->
+                                <div class="row" id="fila-contenidocarrito">
+                                    <!--Columna de la imagen-->
+                                    <div class="col s6 center-align" id="imagencontenido-carrito">
+                                        <img class="responsive-img" src="../../resources/Icons/amigurumi1-carrito.png"
+                                            height="276px" width="254">
+                                    </div>
+                                    <!--Columna del detalle del contenido-->
+                                    <div class="col s6">
+                                        <!--Fila de los detalles-->
+                                        <div class="row">
+                                            <!--Columna del nombre del producto-->
+                                            <div class="col s12 center-align">
+                                                <h6 id="nombreAmigurumi_carrito">Brown Guy</h6>
+                                            </div>
+                                            <!--Columna de la cantidad-->
+                                            <div class="col s12" id="coldetalle-carrito">
+                                                <div class="col l1 s1 left-align">
+                                                    <p><b>Cantidad:</b></p>
+                                                </div>
+                                                <div class="col l1 offset-l6 s1 offset-s6 right-align">
+                                                    <p id="cantidaddetalle_carrito">2</p>
+                                                </div>
+                                            </div>
+                                            <!--Columna del precio-->
+                                            <div class="col s12" id="coldetalle-carrito">
+                                                <div class="col l1 s1 left-align">
+                                                    <p><b>Precio:</b></p>
+                                                </div>
+                                                <div class="col l1 offset-l3 s1 offset-s5 right-align">
+                                                    <p id="preciodetalle_carrito">$19.38</p>
+                                                </div>
+                                            </div>
+                                            <!--Columna del subtotal-->
+                                            <div class="col s12" id="coldetalle-carrito">
+                                                <div class="col l1 s1 left-align">
+                                                    <p><b>Subtotal:</b></p>
+                                                </div>
+                                                <div class="col l1 offset-l4 s1 offset-s5 right-align">
+                                                    <p id="preciodetalle_carrito">$38.76</p>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <!--Elemento-->
+                        <div class="row">
+                            <!--Fondo del elemento-->
+                            <div class="col s12" id="fondocompra-carrito1">
+                                <!--Icono de eliminar-->
+                                <div class="elimardel-carrito">
+                                    <img class="responsive-img" src="..//resources/Icons/eliminardel-carrito.png">
+                                </div>
+                                <!--Contenedor del contenido del carrito-->
+                                <div class="row" id="fila-contenidocarrito">
+                                    <!--Columna de la imagen-->
+                                    <div class="col s6 center-align" id="imagencontenido-carrito">
+                                        <img class="responsive-img" src="../../resources/Icons/amigurumi1-carrito.png"
+                                            height="276px" width="254">
+                                    </div>
+                                    <!--Columna del detalle del contenido-->
+                                    <div class="col s6">
+                                        <!--Fila de los detalles-->
+                                        <div class="row">
+                                            <!--Columna del nombre del producto-->
+                                            <div class="col s12 center-align">
+                                                <h6 id="nombreAmigurumi_carrito">Brown Guy</h6>
+                                            </div>
+                                            <!--Columna de la cantidad-->
+                                            <div class="col s12" id="coldetalle-carrito">
+                                                <div class="col l1 s1 left-align">
+                                                    <p><b>Cantidad:</b></p>
+                                                </div>
+                                                <div class="col l1 offset-l6 s1 offset-s6 right-align">
+                                                    <p id="cantidaddetalle_carrito">2</p>
+                                                </div>
+                                            </div>
+                                            <!--Columna del precio-->
+                                            <div class="col s12" id="coldetalle-carrito">
+                                                <div class="col l1 s1 left-align">
+                                                    <p><b>Precio:</b></p>
+                                                </div>
+                                                <div class="col l1 offset-l3 s1 offset-s5 right-align">
+                                                    <p id="preciodetalle_carrito">$19.38</p>
+                                                </div>
+                                            </div>
+                                            <!--Columna del subtotal-->
+                                            <div class="col s12" id="coldetalle-carrito">
+                                                <div class="col l1 s1 left-align">
+                                                    <p><b>Subtotal:</b></p>
+                                                </div>
+                                                <div class="col l1 offset-l4 s1 offset-s5 right-align">
+                                                    <p id="preciodetalle_carrito">$38.76</p>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <!--Elemento-->
+                        <div class="row">
+                            <!--Fondo del elemento-->
+                            <div class="col s12" id="fondocompra-carrito1">
+                                <!--Icono de eliminar-->
+                                <div class="elimardel-carrito">
+                                    <img class="responsive-img" src="..//resources/Icons/eliminardel-carrito.png">
+                                </div>
+                                <!--Contenedor del contenido del carrito-->
+                                <div class="row" id="fila-contenidocarrito">
+                                    <!--Columna de la imagen-->
+                                    <div class="col s6 center-align" id="imagencontenido-carrito">
+                                        <img class="responsive-img" src="../../resources/Icons/amigurumi1-carrito.png"
+                                            height="276px" width="254">
+                                    </div>
+                                    <!--Columna del detalle del contenido-->
+                                    <div class="col s6">
+                                        <!--Fila de los detalles-->
+                                        <div class="row">
+                                            <!--Columna del nombre del producto-->
+                                            <div class="col s12 center-align">
+                                                <h6 id="nombreAmigurumi_carrito">Brown Guy</h6>
+                                            </div>
+                                            <!--Columna de la cantidad-->
+                                            <div class="col s12" id="coldetalle-carrito">
+                                                <div class="col l1 s1 left-align">
+                                                    <p><b>Cantidad:</b></p>
+                                                </div>
+                                                <div class="col l1 offset-l6 s1 offset-s6 right-align">
+                                                    <p id="cantidaddetalle_carrito">2</p>
+                                                </div>
+                                            </div>
+                                            <!--Columna del precio-->
+                                            <div class="col s12" id="coldetalle-carrito">
+                                                <div class="col l1 s1 left-align">
+                                                    <p><b>Precio:</b></p>
+                                                </div>
+                                                <div class="col l1 offset-l3 s1 offset-s5 right-align">
+                                                    <p id="preciodetalle_carrito">$19.38</p>
+                                                </div>
+                                            </div>
+                                            <!--Columna del subtotal-->
+                                            <div class="col s12" id="coldetalle-carrito">
+                                                <div class="col l1 s1 left-align">
+                                                    <p><b>Subtotal:</b></p>
+                                                </div>
+                                                <div class="col l1 offset-l4 s1 offset-s5 right-align">
+                                                    <p id="preciodetalle_carrito">$38.76</p>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </li>
+        <li id="footer-carrito">
+            <div class="row">
+                <div class="col s12">
+                    <div class="col s4 right-align" id="total-carrito">
+                        <p>Total a pagar: </p>
+                    </div>
+                    <div class="col s1 left-align">
+                        <p id="pagot_carrito">$176.11</p>
+                    </div>
+                </div>
+                <div class="col s12">
+                    <div class="row">
+                        <div class="col offset-s1 s5">
+                            <a href="../public-pages/confirmacion-compra.html"
+                                class="modal-trigger waves-effect waves-light btn" id="comprar_carrito">Comprar</a>
+                        </div>
+                        <div class="col s5">
+                            <a href="#" class="modal-trigger waves-effect waves-light btn"
+                                id="seguirv_carrito">Seguir Viendo</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </li>
+    </ul>
+</header>
+  <main>
+    <div class="container center-align">
+      <div class="row center-align">
+        <!--Contenedor que da fondo al log in-->
+        <div class="col s12" id="fondo">
+          <!--Imagen de decoración de amigurumi-->
+          <div class="col l5" id="imagen-decoracion">
+            <div class="row">
+              <div class="col l12">
+                <img class="responsive-image" src="../../resources/Icons/decoracion-login.png">
+                <div class="col l12" id="decoracion-img"></div>
+              </div>
+            </div>
+          </div>
+          <!--Contenido del Log In-->
+          <div class="col l5 m11 s10" id="parte-login">
+            <div class="row">
+              <!--Icono de imagen del login-->
+              <div class="col s12">
+                <img class="responsive-image" src="../../resources/Icons/UserIcon-Login.png">
+              </div>
+              <!--Inputs del nombre de usuario-->
+              <div class="input-field col m11 s10" id="inputs-login">
+                <input id="username" type="text" class="validate center-align">
+                <label for="username">Usuario</label>
+              </div>
+              <!--Inputs de la contraseña de usuario-->
+              <div class="input-field col m11 s10" id="inputs-login">
+                <input id="contraseña" type="password" class="validate center-align">
+                <label for="contraseña">Contraseña</label>
+                <i class="tooltipped material-icons prefix right-align" data-position="top"
+                  data-tooltip="Mostrar/Ocultar" id="ocultarmostrar_contraseña">visibility</i>
+              </div>
+              <!--Boton de iniciar sesión-->
+              <div class="center-align col s12" id="iniciar-sesion">
+                <a class="waves-effect waves-light btn-large" id="iniciarsesion_boton" href="index.html">Iniciar sesión</a>
+              </div>
+              <!--Boton de Olvidar contraseña-->
+              <div class="col s12" id="contenedor-olvidarctr">
+                <a class="modal-trigger" id="olvidarcontra_boton" href="#modalPIN">¿Olvidaste tu contraseña?</a>
+                <!--Inicio del diseño del Modal-->
+                <div id="modalPIN" class="modal">
+                  <div class="modal-content">
+                    <div class="center-align">
+                      <h4>Recuperar cuenta</h4>
+                      <p>Antes de recuperar tu cuenta primero debes ingresar el PIN que se ha enviado a tu correo
+                        asociado a la cuenta</p>
+                    </div>
+                    <form class="col s12">
+                      <div class="row">
+                        <!--Inputs para el PIN-->
+                        <div class="input-field col s12 ">
+                          <div class="row">
+                            <div class="col m5 s12 offset-m3" id="inputPIN">
+                              <input class="center-align" placeholder="Inserte los 4 digitos" id="PIN-numeros"
+                                type="text" maxlength="4" onkeypress=" return solonumeros(event);"></input>
+                            </div>
+                            <div class="col m1 s12">
+                              <i class="medium material-icons tooltipped " data-tooltip="Reenviar PIN"
+                                id="reenviarPIN">settings_backup_restore</i>
+                              <p class="center-align"><span id="cronometro">120s</span></p>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                    </form>
+                    <!--Campos o contenido importante del modal de actualizar contraseña-->
+                    <div class="center-align">
+                      <a href="#" class="waves-effect waves-light btn center-align" id="recuperarPIN">Recuperar
+                        Cuenta</a>
+                    </div>
+                    <!--Pie del modal-->
+                    <div class="modal-footer center-align" id="pinfooter-modal">
+                      <div class="col s12">
+                        <div class="col m6 s12 left-align">
+                          <h6 id="mensaje-PIN">El PIN no es el correcto</h6>
+                        </div>
+                        <div class="col m6 s12">
+                          <a href="#!" class="modal-close waves-effect waves-light btn " id="cancelar_restablecer">Cancelar</a>
+                        </div>
+                      </div>
+                      <div class="col s12" id="decoracion-modal"></div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="col s6 offset-s6" id="parte-crearcuenta">
+          <div class="col s10 ">
+            <p class="right-align">¿No tienes una cuenta?</p>
+          </div>
+          <div class="col s1 left-align">
+            <a href="registro-usuario.html">Registrate</a>
+          </div>
+        </div>
+      </div>
+    </div>
+    <!--Inicio del diseño del Modal de Restablecer contraseña-->
+    <div id="modalrestablecer" class="modal">
+      <div class="modal-content">
+        <div class="center-align">
+          <h4>Restablecer contraseña</h4>
+          <p>Ingresa tu nueva contraseña y confirmala para poder iniciar sesión</p>
+          <i class="tooltipped material-icons right-align" data-position="top" data-tooltip="Mostrar/Ocultar"
+            id="ocultarmostrar_contraseñas">visibility</i>
+        </div>
+        <form class="col s12">
+          <div class="row">
+            <!--Inputs para restablecer contraseña-->
+            <div class="input-field col l6 m6 s12">
+              <input placeholder="Contraseña actual" id="contraseña_nueva" type="password" class="center-align">
+              <label for="contraseña_nueva">Contraseña nueva</label>
+            </div>
+            <div class="input-field col l6 m6 s12">
+              <input placeholder="Confirma tu contraseña" id="contraseña_confirma" type="password" class="center-align">
+              <label for="contraseña_confirma">Confirmación</label>
+            </div>
+          </div>
+        </form>
+        <div class="col s12">
+          <div class="row">
+            <div class="col m12 ofsset-m8 s12 center-align">
+              <a href="#" class="waves-effect waves-light btn center-align" id="restablecerContraseña">Restablecer contraseña</a>
+              <div class="preloader-wrapper active" id="actdatoscontra_preloader-login">
+                <div class="spinner-layer spinner-red-only">
+                  <div class="circle-clipper left">
+                    <div class="circle"></div>
+                  </div>
+                  <div class="gap-patch">
+                    <div class="circle"></div>
+                  </div>
+                  <div class="circle-clipper right">
+                    <div class="circle"></div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="col s12">
+            <div class="row">
+              <div class="col m6 s12 left-align">
+                <h6 id="mensaje-restablecer">El PIN no es el correcto</h6>
+              </div>
+              <div class="col m6 s12 right-align">
+                <a href="#!" class="modal-close waves-effect waves-light btn " id="cancelarPIN">Cancelar</a>
+              </div>
+            </div>
+          </div>
+          <div class="col s12" id="decoracionr-modal"></div>
+        </div>
+      </div>
+    </div>
+  </main>
+  <footer class="page-footer">
+    <div class="container">
+      <div class="row" id="redes-footer">
+        <div class="col center-align l1 offset-l5 m1 offset-m5 s2 offset-s4" id="facebook-container">
+          <div class="center-align z-depth-4" id="facebook">
+            <a class="tooltip" href="https://www.instagram.com/lolin.sv/" target="_blank">
+              <img class="responsive-img " src="../../resources/Icons/facebook.png">
+              <span class="tooltip-box">¡Siguenos! en Facebook</span>
+            </a>
+          </div>
+        </div>
+        <div class="col l1 m1 s2" id="whatsapp-container">
+          <div class="center-align z-depth-4" id="whatsapp">
+            <button class="tooltip" type="button" id="whatsappcopied"
+              onclick="copiarWhat(); M.toast({html:'Número telefonico Copiado ¡Esperamos tu llamada!'})">
+              <p class="center-align" id="copywhat">77085832</p>
+              <img class="responsive-img " src="../../resources/Icons/whatsapp.png">
+              <span class="tooltip-box">¡Copia nuestro Whatsapp!</span>
+            </button>
+          </div>
+        </div>
+        <div class="col l1 m1 s2" id="instagram-container">
+          <div class="center-align z-depth-4" id="instagram">
+            <a class="tooltip" href="https://www.instagram.com/lolin.sv/">
+              <img class="responsive-img " src="../../resources/Icons/instagram.png" target="_blank">
+              <span class="tooltip-box">¡Siguenos! en Instagram</span>
+            </a>
+          </div>
+        </div>
+      </div>
+      <div class="row" id="Anexo">
+        <!--Anexo-->
+        <div class="col l6 m4 offset-m2 s6 right-align">
+          <a href="preguntasfrec.html" class="right-align " id="preguntasfrec">Preguntas Frecuentes</a>
+        </div>
+        <div class="col l6 m4 s6">
+          <a href="https://www.instagram.com/lolin.sv/" id="terminos-footer" class="left-align">Teminos y
+              condiciones</a>
+        </div>
+      </div>
+      <div>
+        <!--Derechos de autor-->
+        <div class="container center-align" id="copyrigth">
+          <p id="copyri"><span>&copy 2022 Lolin</span></p>
+        </div>
+      </div>
+    </div>
+  </footer>
+  <!--JavaScript at end of body for optimized loading-->
+  <script type="text/javascript" src="../../js/materialize.min.js"></script>
+  <script type="text/javascript" src="../../controllers/public/login.js"></script>
+
+</body>
+
+</html>
