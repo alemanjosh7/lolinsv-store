@@ -1628,3 +1628,37 @@ font-size: 15px;
     height: 109px;
 }
 }
+/*Estilos de los botones de navegación*/
+/*Inicio de estilos del footer*/
+/*Contenedor de los botones de navegación footer*/
+#contenedor-botonnavg{
+  padding: 0;
+  position: relative;
+  right: 25px;
+}
+#contenedor-botonnavg:hover{
+  transform: scale(1.2);
+}
+/*boton de navegación del footer*/
+.botonnavg-footer{
+  margin: 5px;
+  background-color: #DF5333;
+  width: 50px;
+  color: white;
+  height: 50px;
+  border-radius: 5px;
+  cursor: pointer;
+}
+/*Icono dentro del contenedor del menu de navegación del footer*/
+.botonnavg-footer i{
+  position: relative;
+  right: 5px;
+  bottom: 5px;
+  color: white;
+}
+/*Span dentro del contenedor del menu de navegación del footer*/
+.botonnavg-footer span{
+  font-size: 30px;
+  color: white;
+}
+/*Fin de inicios de estilos del footer*/
