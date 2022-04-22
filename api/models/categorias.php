@@ -50,10 +50,7 @@ class Categorias extends Validator
     */
     public function searchRows($value)
     {
-        $sql = 'SELECT id_categoria, nombre_categoria, imagen_categoria, descripcion_categoria
-                FROM categorias
-                WHERE nombre_categoria ILIKE ? OR descripcion_categoria ILIKE ?
-                ORDER BY nombre_categoria';
+        $sql = '';
         $params = array("%$value%", "%$value%");
         return Database::getRows($sql, $params);
     }
