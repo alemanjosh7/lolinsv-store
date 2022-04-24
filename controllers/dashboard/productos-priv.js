@@ -12,35 +12,61 @@ function copiarWhat() {
     var content = document.getElementById('copywhat').innerHTML;
     navigator.clipboard.writeText(content)
 }
-/*Programación del select de paises*/
-const select = document.querySelector('#select');
-const opcionesselect = document.querySelector('#opciones-select');
-const contenidoselect = document.querySelector('#select .contenido-select');
 
-document.querySelectorAll('#opciones-select > .opcion-select').forEach((opcion) => {
-    opcion.addEventListener('click',(e) => {
-        e.preventDefault();
-        contenidoselect.innerHTML = e.currentTarget.innerHTML;
-        opcionesselect.classList.toggle('active');
-        select.classList.toggle('active');
+
+document.querySelectorAll(".pagnavg").forEach(el => {
+    el.addEventListener("click", e => {
+        //Se obtiene el numero dentro del span
+        let number =Number(el.textContent);
+        //Se hace la operación para calcular cuanto será el top de elementos a no mostrarse en la consulta
+        let topAct = (number*4)-4;
+        console.log("Se ha clickeado el id "+number+" "+topAct);
+        //Se ejecuta la recarga de datos enviando la variable de topAct
     });
 });
 
-select.addEventListener('click',function(){
-    select.classList.toggle('active');
-    opcionesselect.classList.toggle('active');
+//Evento cuando se precione el boton de ir atras y adelante en la páginación
+var botonAtras = document.getElementById("pagnavg-atr");
+var botonNumeroPagI = document.getElementById("pagnumeroi");
+var botonNumeroPagF = document.getElementById("pagnumerof");
+var botonAdelante = document.getElementById("pagnavg-adl")
+
+//Boton de atras
+botonAtras.addEventListener('click',function(){
+    let paginaActual = Number(botonNumeroPagI.textContent);
+    if(paginaActual!=1){
+        botonNumeroPagI.innerHTML=Number(botonNumeroPagI.innerHTML)-2;
+        botonNumeroPagF.innerHTML=Number(botonNumeroPagI.innerHTML)+1;
+        if((Number(botonNumeroPagI.innerHTML)-1)==0){
+            botonAtras.style.display = 'none';
+        }
+    }else{
+    }
 });
 
-/*Mostrar-Ocultar preloader para la actualización de datos del perfil*/
-var btnactperfil = document.getElementById('aceptarcompra_boton');
-var preloaderactperfil = document.getElementById('confirmarcompra_preloader');
-var btncancelperfil = document.getElementById('cancelacompra_boton');
-btnactperfil.addEventListener("click", function () {
-    preloaderactperfil.style.display = "block";
-    btnactperfil.classList.add("disabled")
+//Boton de adelante
+botonAdelante.addEventListener('click',function(){
+    botonAtras.style.display = 'block';
+    let paginaFinal = (Number(botonNumeroPagF.innerHTML))+1;
+    console.log("pagina maxima "+paginaFinal);
+    /*Aqui se debe obtener si hay más datos o no, pueden usar una función que puede devolver un valor booleano
+    deben realizar una operación sumando a la pagina final mostrada la cantidad de elementos que muestran y enviarlos para comprobar
+    si hay datos entonces la variable será true, si no hay más datos entonces no se mostrará nada
+    */
+    let topAct = (paginaFinal*4)-4;
+    console.log("el top a no mostrar sería "+paginaFinal)
+    masDatos = true;
+    if(masDatos!=false){
+        botonNumeroPagI.innerHTML=Number(botonNumeroPagI.innerHTML)+2;
+        botonNumeroPagF.innerHTML=Number(botonNumeroPagI.innerHTML)+1;
+    }else{
+
+    }
 });
 
-btncancelperfil.addEventListener("click", function () {
-    preloaderactperfil.style.display = "none";
-    btnactperfil.classList.remove("disabled")
-});
+/*Ejemplo de la consulta para la navegación
+select * from productos where id_producto
+not in(select id_producto from productos order by id_producto limit 4) order by id_producto limit 4;
+
+donde el limit dentro del not in sería la variable de pagNavegm
+*/
