@@ -64,7 +64,7 @@ botonAdelante.addEventListener('click',function(){
     }
 });
 
-/*Ejemplo de la consulta para la navegación
+/*Ejemplo de la consulta para la navegación aqui se hace el ejemplo como si se mostrará 4 dentro del select no debe ir * sino lo que se busca traer
 select * from productos where id_producto
 not in(select id_producto from productos order by id_producto limit 4) order by id_producto limit 4;
 
