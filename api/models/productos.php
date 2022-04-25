@@ -6,13 +6,14 @@
 class Productos extends Validator
 {
     // Declaración de atributos (propiedades).
-    private $id = null;
-    private $nombre = null;
-    private $descripcion = null;
-    private $precio = null;
-    private $imagen = null;
-    private $categoria = null;
-    private $estado = null;
+    private $id_producto = null;
+    private $nombre_producto = null;
+    private $imagen_producto = null;
+    private $precio_producto = null;
+    private $cantidad_producto = null;
+    private $id_categoria = null;
+    private $id_valoraciones = null;
+    private $id_admin = null;
     private $ruta = '../images/productos/';
 
     /*
@@ -21,67 +22,77 @@ class Productos extends Validator
     public function setId($value)
     {
         if ($this->validateNaturalNumber($value)) {
-            $this->id = $value;
+            $this->id_producto = $value;
             return true;
         } else {
             return false;
         }
     }
 
-    public function setNombre($value)
+    public function setName($value)
     {
         if ($this->validateAlphanumeric($value, 1, 50)) {
-            $this->nombre = $value;
+            $this->nombre_producto = $value;
             return true;
         } else {
             return false;
         }
     }
 
-    public function setDescripcion($value)
-    {
-        if ($this->validateString($value, 1, 250)) {
-            $this->descripcion = $value;
-            return true;
-        } else {
-            return false;
-        }
-    }
-
-    public function setPrecio($value)
-    {
-        if ($this->validateMoney($value)) {
-            $this->precio = $value;
-            return true;
-        } else {
-            return false;
-        }
-    }
-
-    public function setImagen($file)
+    public function setImage($file)
     {
         if ($this->validateImageFile($file, 500, 500)) {
-            $this->imagen = $this->getFileName();
+            $this->imagen_producto = $this->getFileName();
             return true;
         } else {
             return false;
         }
     }
 
-    public function setCategoria($value)
+    public function setPrice($value)
+    {
+        if ($this->validateMoney($value)) {
+            $this->precio_producto = $value;
+            return true;
+        } else {
+            return false;
+        }
+    }
+
+    public function setQuantity($value)
     {
         if ($this->validateNaturalNumber($value)) {
-            $this->categoria = $value;
+            $this->cantidad_producto = $value;
             return true;
         } else {
             return false;
         }
     }
 
-    public function setEstado($value)
+    public function setCategory($value)
     {
-        if ($this->validateBoolean($value)) {
+        if ($this->validateNaturalNumber($value)) {
+            $this->id_categoria = $value;
+            return true;
+        } else {
+            return false;
+        }
+    }
+
+    public function setRating($value)
+    {
+        if ($this->validateNaturalNumber($value)) {
             $this->estado = $value;
+            return true;
+        } else {
+            return false;
+        }
+    }
+
+    public function setAdmin($value)
+    {
+        if ($this->validateNaturalNumber($value)) {
+            $this->id_admin = $value;
             return true;
         } else {
             return false;
@@ -93,40 +104,46 @@ class Productos extends Validator
     */
     public function getId()
     {
-        return $this->id;
+        return $this->id_producto;
     }
 
-    public function getNombre()
+    public function getName()
     {
-        return $this->nombre;
+        return $this->nombre_producto;
     }
 
-    public function getDescripcion()
+    public function getPrice()
     {
-        return $this->descripcion;
+        return $this->precio_producto;
     }
 
-    public function getPrecio()
+    public function getQuantity()
     {
-        return $this->precio;
+        return $this->cantidad_producto;
     }
 
-    public function getImagen()
+    public function getImage()
     {
-        return $this->imagen;
+        return $this->imagen_producto;
     }
 
-    public function getCategoria()
+    public function getCategory()
     {
-        return $this->categoria;
+        return $this->id_categoria;
     }
 
-    public function getEstado()
+    public function getRating()
     {
-        return $this->estado;
+        return $this->id_valoraciones;
     }
 
-    public function getRuta()
+    public function getAdmin()
+    {
+        return $this->id_admin;
+    }
+
+
+    public function getRoute()
     {
         return $this->ruta;
     }
@@ -134,103 +151,80 @@ class Productos extends Validator
     /*
     *   Métodos para realizar las operaciones SCRUD (search, create, read, update, delete).
     */
-    public function searchRows($value)
+
+    /*  
+    *   Buscar productos por su nombre
+    */
+    public function searchProducts($nombre)
     {
-        $sql = 'SELECT id_producto, imagen_producto, nombre_producto, descripcion_producto, precio_producto, nombre_categoria, estado_producto
-                FROM productos INNER JOIN categorias USING(id_categoria)
-                WHERE nombre_producto ILIKE ? OR descripcion_producto ILIKE ?
+        $sql = 'SELECT p.id_producto, p.nombre_producto, p.nombre_producto, p.precio_producto, p.cantidad, p.nombre_categoria, cate.nombre_categoria, val.valoraciones
+                FROM productos AS p 
+                INNER JOIN categorias AS cat ON cate.id_categoria = p.fk_id_categoria
+                INNER JOIN valoraciones AS val ON val.id_valoraciones = p.fk_id_valoraciones
+                WHERE nombre_producto ILIKE ? 
                 ORDER BY nombre_producto';
-        $params = array("%$value%", "%$value%");
+        $params = array("%$nombre%");
         return Database::getRows($sql, $params);
     }
 
-    public function createRow()
+    public function createProduct()
     {
-        $sql = 'INSERT INTO productos(nombre_producto, descripcion_producto, precio_producto, imagen_producto, estado_producto, id_categoria, id_usuario)
+        $sql = 'INSERT INTO productos(nombre_producto, imagen_producto, precio_producto, cantidad, fk_id_categoria, fk_id_valoraciones, fk_id_admin)
                 VALUES(?, ?, ?, ?, ?, ?, ?)';
-        $params = array($this->nombre, $this->descripcion, $this->precio, $this->imagen, $this->estado, $this->categoria, $_SESSION['id_usuario']);
+        $params = array($this->nombre_producto, $this->imagen_producto, $this->precio_producto, $this->cantidad_producto, $this->id_categoria, $this->id_valoraciones, $this->id_admin);
         return Database::executeRow($sql, $params);
     }
 
-    public function readAll()
+    public function readAllProducts()
     {
-        $sql = 'SELECT id_producto, imagen_producto, nombre_producto, descripcion_producto, precio_producto, nombre_categoria, estado_producto
-                FROM productos INNER JOIN categorias USING(id_categoria)
+        $sql = 'SELECT p.id_producto, p.nombre_producto, p.nombre_producto, p.precio_producto, p.cantidad, p.nombre_categoria, cate.nombre_categoria, val.valoraciones
+                FROM productos AS p 
+                INNER JOIN categorias AS cat ON cate.id_categoria = p.fk_id_categoria
+                INNER JOIN valoraciones AS val ON val.id_valoraciones = p.fk_id_valoraciones
                 ORDER BY nombre_producto';
         $params = null;
         return Database::getRows($sql, $params);
     }
 
-    public function readOne()
+    public function readOneProduct()
     {
-        $sql = 'SELECT id_producto, nombre_producto, descripcion_producto, precio_producto, imagen_producto, id_categoria, estado_producto
-                FROM productos
-                WHERE id_producto = ?';
-        $params = array($this->id);
+        $sql = 'SELECT p.id_producto, p.nombre_producto, p.nombre_producto, p.precio_producto, p.cantidad, p.nombre_categoria, cate.nombre_categoria, val.valoraciones
+                FROM productos AS p 
+                INNER JOIN categorias AS cat ON cate.id_categoria = p.fk_id_categoria
+                INNER JOIN valoraciones AS val ON val.id_valoraciones = p.fk_id_valoraciones
+                WHERE id_producto ILIKE ? 
+                ORDER BY nombre_producto';
+        $params = array($this->id_producto);
         return Database::getRow($sql, $params);
     }
 
-    public function updateRow($current_image)
+    public function updateProduct($current_image)
     {
         // Se verifica si existe una nueva imagen para borrar la actual, de lo contrario se mantiene la actual.
-        ($this->imagen) ? $this->deleteFile($this->getRuta(), $current_image) : $this->imagen = $current_image;
+        ($this->imagen_producto) ? $this->deleteFile($this->getRoute(), $current_image) : $this->imagen_producto = $current_image;
 
         $sql = 'UPDATE productos
-                SET imagen_producto = ?, nombre_producto = ?, descripcion_producto = ?, precio_producto = ?, estado_producto = ?, id_categoria = ?
-                WHERE id_producto = ?';
-        $params = array($this->imagen, $this->nombre, $this->descripcion, $this->precio, $this->estado, $this->categoria, $this->id);
+                SET imagen_producto = ?, nombre_producto = ?, precio_producto = ?, cantidad = ?, fk_id_categoria = ?
+                fk_id_valoraciones = ?, fk_id_admin = ?, WHERE id_producto = ?';
+        $params = array($this->imagen_producto, $this->nombre_producto, $this->precio_producto, $this->cantidad_producto, $this->id_categoria, $this->id_valoraciones, $this->id_admin, $this->id_producto);
         return Database::executeRow($sql, $params);
     }
 
-    public function deleteRow()
+    public function updateProductPrice()
+    {
+        $sql = 'update productos set precio_producto = ? where id_producto = ?';
+        $params = array($this->precio_producto, $this->id_producto);
+        return Database::executeRow($sql, $params);
+    }
+
+
+    public function deleteProduct()
     {
         $sql = 'DELETE FROM productos
                 WHERE id_producto = ?';
-        $params = array($this->id);
+        $params = array($this->id_producto);
         return Database::executeRow($sql, $params);
     }
 
-    public function readProductosCategoria()
-    {
-        $sql = 'SELECT id_producto, imagen_producto, nombre_producto, descripcion_producto, precio_producto
-                FROM productos INNER JOIN categorias USING(id_categoria)
-                WHERE id_categoria = ? AND estado_producto = true
-                ORDER BY nombre_producto';
-        $params = array($this->id);
-        return Database::getRows($sql, $params);
-    }
-
-    /*
-    *   Métodos para generar gráficas.
-    */
-    public function cantidadProductosCategoria()
-    {
-        $sql = 'SELECT nombre_categoria, COUNT(id_producto) cantidad
-                FROM productos INNER JOIN categorias USING(id_categoria)
-                GROUP BY nombre_categoria ORDER BY cantidad DESC';
-        $params = null;
-        return Database::getRows($sql, $params);
-    }
-
-    public function porcentajeProductosCategoria()
-    {
-        $sql = 'SELECT nombre_categoria, ROUND((COUNT(id_producto) * 100.0 / (SELECT COUNT(id_producto) FROM productos)), 2) porcentaje
-                FROM productos INNER JOIN categorias USING(id_categoria)
-                GROUP BY nombre_categoria ORDER BY porcentaje DESC';
-        $params = null;
-        return Database::getRows($sql, $params);
-    }
-
-    /*
-    *   Métodos para generar reportes.
-    */
-    public function productosCategoria()
-    {
-        $sql = 'SELECT nombre_producto, precio_producto, estado_producto
-                FROM productos INNER JOIN categorias USING(id_categoria)
-                WHERE id_categoria = ?
-                ORDER BY nombre_producto';
-        $params = array($this->categoria);
-        return Database::getRows($sql, $params);
-    }
+    
 }
