@@ -22,7 +22,7 @@ class Categorias extends Validator
         }
     }
 
-    public function setNombre($value)
+    public function setName($value)
     {
         if ($this->validateAlphanumeric($value, 1, 50)) {
             $this->nombre_categoria = $value;
@@ -48,52 +48,48 @@ class Categorias extends Validator
     /*
     *   Métodos para realizar las operaciones SCRUD (search, create, read, update, delete).
     */
-    public function searchRows($value)
+    public function searchCategory($value)
     {
         $sql = '';
         $params = array("%$value%", "%$value%");
         return Database::getRows($sql, $params);
     }
 
-    public function createRow()
+    public function createCategory()
     {
-        $sql = 'INSERT INTO categorias(nombre_categoria, imagen_categoria, descripcion_categoria)
-                VALUES(?, ?, ?)';
-        $params = array($this->nombre, $this->imagen, $this->descripcion);
+        $sql = 'INSERT INTO categorias(nombre_categoria)
+                VALUES(?)';
+        $params = array($this->nombre_categoria);
         return Database::executeRow($sql, $params);
     }
 
-    public function readAll()
+    public function readCategories()
     {
-        $sql = 'SELECT id_categoria, nombre_categoria, imagen_categoria, descripcion_categoria
+        $sql = 'SELECT id_categoria, nombre_categoria
                 FROM categorias
                 ORDER BY nombre_categoria';
         $params = null;
         return Database::getRows($sql, $params);
     }
 
-    public function readOne()
+    public function readACategory()
     {
-        $sql = 'SELECT id_categoria, nombre_categoria, imagen_categoria, descripcion_categoria
+        $sql = 'SELECT id_categoria, nombre_categoria
                 FROM categorias
                 WHERE id_categoria = ?';
-        $params = array($this->id);
+        $params = array($this->id_categoria);
         return Database::getRow($sql, $params);
     }
 
-    public function updateRow($current_image)
+    public function updateCategory()
     {
-        // Se verifica si existe una nueva imagen para borrar la actual, de lo contrario se mantiene la actual.
-        ($this->imagen) ? $this->deleteFile($this->getRuta(), $current_image) : $this->imagen = $current_image;
-
         $sql = 'UPDATE categorias
-                SET imagen_categoria = ?, nombre_categoria = ?, descripcion_categoria = ?
-                WHERE id_categoria = ?';
-        $params = array($this->imagen, $this->nombre, $this->descripcion, $this->id);
+                SET nombre_categoria = ?';
+        $params = array($this->nombre_categoria);
         return Database::executeRow($sql, $params);
     }
 
-    public function deleteRow()
+    public function deleteCategory()
     {
         $sql = 'DELETE FROM categorias
                 WHERE id_categoria = ?';
