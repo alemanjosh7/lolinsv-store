@@ -5,7 +5,7 @@
 /*
 *   Constante para establecer la ruta del servidor.
 */
-const SERVER = 'http://localhost/coffeeshop/api/';
+const SERVER = 'http://localhost/lolinsv/api/';
 
 /*
 *   Función para obtener todos los registros disponibles en los mantenimientos de tablas (operación read).
