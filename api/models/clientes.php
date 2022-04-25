@@ -153,12 +153,12 @@ class Cliente extends Validator
 
     public function getUsuario()
     {
-        return $this->alias;
+        return $this->usuario;
     };
 
     public function getContrasena()
     {
-        return $this->clave;
+        return $this->contrasena;
     };
 
     /*
@@ -168,10 +168,10 @@ class Cliente extends Validator
     public function checkUsuarioCl($usuario)
     {
         $sql = 'SELECT id_cliente FROM clientes WHERE usuario = ?';
-        $params = array($alias);
+        $params = array($usuario);
         if ($data = Database::getRow($sql, $params)) {
             $this->id = $data['id_cliente'];
-            $this->alias = $alias;
+            $this->usuario = $usuario;
             return true;
         } else {
             return false;
