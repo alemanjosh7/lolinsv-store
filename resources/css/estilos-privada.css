@@ -1662,3 +1662,139 @@ font-size: 15px;
   color: white;
 }
 /*Fin de inicios de estilos del footer*/
+/*Jesús*/
+/*Primer Uso*/
+/*Logo del navbar*/
+.primeruso .logoprimer-us{
+  left: 45% !important;
+}
+.logoprimer-us{
+  left: 45% !important;
+}
+/*Contenedor del formulario*/
+.primeruso .fondo{
+  background-color: #FBE9E8;
+  margin-top: 7%;
+  padding: 0;
+  border-top: 2px solid black;
+  border-right: 2px solid black;   
+  border-left: 2px solid black;
+  margin-bottom: 5px;
+}
+.primeruso .form-container{
+  margin:25px 5% 0 5%;
+}
+/*Estilo de los inputs*/
+.primeruso .inputs-estilizados{
+  box-shadow: inset 700px 5px white !important;
+  color: black !important;
+  font-family: 'Poppins', sans-serif !important;
+  border-bottom: none !important;
+  margin-top: 10px !important;
+}
+
+.primeruso .inputs-estilizados:focus{
+  box-shadow: 0px 0px 5px 3px #DF5333!important;
+  background-color: white;
+  transition: .1s ease all !important;
+}
+/*Estilo de los labels*/
+.primeruso .labels-estilizados{
+  color: black !important;
+  font-weight: bold;
+}
+/*Estilos del contenedor de los botones*/
+.primeruso .botones-container{
+  margin-bottom: 25px;
+}
+/*Estilo del boton de estilizar*/
+/*Boton de crear administrador*/
+.primeruso .boton-estilizado{
+  color: black;
+  font-weight: bold;
+  font-family: 'Poppins', sans-serif !important;
+  background: linear-gradient(99.82deg, #FFBD81 42.62%, #FB1515 198.11%);
+  box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+  border-radius: 15px;
+  color: black;
+  border-top: 6px solid black;
+  border-left: 5px solid black;
+  padding: 0 15px 35px 15px;
+  margin-left: 5%;
+}
+/*Estilo del modal para confirmar el registro*/
+.primeruso #confirmar-primeruso{
+  margin-top: 7%;
+  border-radius: 10px;
+  background: linear-gradient(121.84deg, #FF8686 30.85%, #D5CA68 101.86%);
+  width: 350px;
+  font-family: 'Poppins', sans-serif;
+}
+
+.primeruso #confirmar-primeruso #decoracion-modal {
+  border: 1px solid black;
+  margin-top: 13px;
+  background-color: black;
+}
+
+.primeruso #confirmar-primeruso .fondo-modaldatos {
+  margin: 10px;
+  background-color: #F7F0E9;
+  box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+  font-family: 'Poppins', sans-serif;
+}
+
+.primeruso #confirmar-primeruso #fondomodal-footer {
+  background-color: #F7F0E9;
+  font-family: 'Poppins', sans-serif;
+}
+
+.primeruso #confirmar-primeruso #confirmar-primerbtn {
+  font-family: 'Poppins', sans-serif;
+  background: linear-gradient(99.82deg, #FFBD81 42.62%, #FB1515 198.11%);
+  border-radius: 15px;
+  color: black;
+  border-top: 6px solid black;
+  border-left: 5px solid black;
+  margin-bottom: 7px;
+  padding: 0 25px 35px 25px;
+  margin-top: 15px;
+}
+
+.primeruso #confirmar-primeruso #confirmarprimer_preloader {
+  position: relative;
+  left: 100px;
+  margin: 20px;
+  display: none;
+}
+
+.primeruso #confirmar-primeruso #cancelaprimer_boton {
+  font-family: 'Poppins', sans-serif;
+  background: linear-gradient(99.82deg, #FFBD81 42.62%, #FB1515 198.11%);
+  box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+  border-radius: 15px;
+  color: black;
+  border-top: 6px solid black;
+  border-left: 5px solid black;
+  margin-bottom: 4px;
+  padding: 0 25px 35px 25px;
+}
+/*Mensaje de indicacion*/
+.primeruso .indicacion{
+  color: red;
+  margin-top: 5px;
+  margin-bottom: 10px;
+  display: none;
+}
+
+/*Ajustes responsive*/
+@media (max-width:600px) {
+  .primeruso .logoprimer-us{
+    left: 43% !important;
+  }
+}
+
+/*Tablets*/
+@media screen and (min-width: 600px) and (max-width: 992px) {
+  
+}
