@@ -29,7 +29,7 @@ class Pedidos_personalizados extends Validator
 
     public function setFecha($value)
     {
-        if ($this->date($value)) {
+        if ($this->validateDate($value)) {
             $this->fecha_pedidopersonal = $value;
             return true;
         } else {
@@ -47,10 +47,10 @@ class Pedidos_personalizados extends Validator
         }
     }
 
-    public function setImagen($value)
+    public function setImagen($file)
     {
-        if ($this->validateString($value, 1, 500)) {
-            $this->imagenejemplo_pedidopersonal = $value;
+        if ($this->validateImageFile($file, 500, 500)) {
+            $this->imagenejemplo_pedidopersonal = $this->getFileName();
             return true;
         } else {
             return false;
