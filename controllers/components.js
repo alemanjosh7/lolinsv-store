@@ -110,16 +110,20 @@ function saveRow(api, action, form, modal) {
 *   Retorno: ninguno.
 */
 function confirmDelete(api, data) {
-    swal({
+    Swal.fire({
         title: 'Advertencia',
         text: '¿Desea eliminar el registro?',
         icon: 'warning',
-        buttons: ['No', 'Sí'],
-        closeOnClickOutside: false,
-        closeOnEsc: false
+        showDenyButton: true,
+        confirmButtonText: 'Si',
+        denyButtonText: 'Cancelar',
+        allowEscapeKey: false,
+        allowOutsideClick: false,
+        background: '#F7F0E9',
+        confirmButtonColor: 'green',
     }).then(function (value) {
         // Se comprueba si fue cliqueado el botón Sí para hacer la petición de borrado, de lo contrario no se hace nada.
-        if (value) {
+        if (value.isConfirmed) {
             fetch(api + 'delete', {
                 method: 'post',
                 body: data
@@ -173,24 +177,28 @@ function sweetAlert(type, text, url) {
     }
     // Si existe una ruta definida, se muestra el mensaje y se direcciona a dicha ubicación, de lo contrario solo se muestra el mensaje.
     if (url) {
-        swal({
+        Swal.fire({
             title: title,
             text: text,
             icon: icon,
-            button: 'Aceptar',
-            closeOnClickOutside: false,
-            closeOnEsc: false
+            allowEscapeKey: false,
+            allowOutsideClick: false,
+            confirmButtonText: 'Aceptar',
+            background: '#F7F0E9',
+            confirmButtonColor: 'green',
         }).then(function () {
             location.href = url
         });
     } else {
-        swal({
+        Swal.fire({
             title: title,
             text: text,
             icon: icon,
-            button: 'Aceptar',
-            closeOnClickOutside: false,
-            closeOnEsc: false
+            allowEscapeKey: false,
+            allowOutsideClick: false,
+            confirmButtonText: 'Aceptar',
+            background: '#F7F0E9',
+            confirmButtonColor: 'green',
         });
     }
 }
@@ -336,16 +344,20 @@ function pieGraph(canvas, legends, values, title) {
 
 // Función para mostrar un mensaje de confirmación al momento de cerrar sesión.
 function logOut() {
-    swal({
+    Swall.fire({
         title: 'Advertencia',
-        text: '¿Está seguro de cerrar la sesión?',
+        text: '¿Desea cerrar sesion?',
         icon: 'warning',
-        buttons: ['No', 'Sí'],
-        closeOnClickOutside: false,
-        closeOnEsc: false
+        showDenyButton: true,
+        confirmButtonText: 'Si',
+        denyButtonText: 'Cancelar',
+        allowEscapeKey: false,
+        allowOutsideClick: false,
+        background: '#F7F0E9',
+        confirmButtonColor: 'green',
     }).then(function (value) {
         // Se verifica si fue cliqueado el botón Sí para hacer la petición de cerrar sesión, de lo contrario se muestra un mensaje.
-        if (value) {
+        if (value.isConfirmed) {
             fetch(API + 'logOut', {
                 method: 'get'
             }).then(function (request) {
