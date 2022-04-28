@@ -6,6 +6,7 @@ document.addEventListener('DOMContentLoaded', function () {
     M.Tooltip.init(document.querySelectorAll('.tooltipped'));
     M.FormSelect.init(document.querySelectorAll('select'));
     M.Modal.init(document.querySelectorAll('.modal'));
+    botonAdelante.style.display = 'block';
 });
 /*Copiar número de Whatsaap en el Footer*/
 function copiarWhat() {
@@ -29,7 +30,7 @@ document.querySelectorAll(".pagnavg").forEach(el => {
 var botonAtras = document.getElementById("pagnavg-atr");
 var botonNumeroPagI = document.getElementById("pagnumeroi");
 var botonNumeroPagF = document.getElementById("pagnumerof");
-var botonAdelante = document.getElementById("pagnavg-adl")
+var botonAdelante = document.getElementById("pagnavg-adl");
 
 //Boton de atras
 botonAtras.addEventListener('click',function(){
@@ -56,15 +57,20 @@ botonAdelante.addEventListener('click',function(){
     let topAct = (paginaFinal*4)-4;
     console.log("el top a no mostrar sería "+paginaFinal)
     masDatos = true;
-    if(masDatos!=false){
+    
+    if(botonAdelante.style.display != 'none'){
+        console.log('no se esta mostrando')
+    }
+
+    /*if(botonAdelante.style.display != 'block'){
         botonNumeroPagI.innerHTML=Number(botonNumeroPagI.innerHTML)+2;
         botonNumeroPagF.innerHTML=Number(botonNumeroPagI.innerHTML)+1;
     }else{
 
-    }
+    }*/
 });
 
-/*Ejemplo de la consulta para la navegación aqui se hace el ejemplo como si se mostrará 4 dentro del select no debe ir * sino lo que se busca traer
+/*Ejemplo de la consulta para la navegación
 select * from productos where id_producto
 not in(select id_producto from productos order by id_producto limit 4) order by id_producto limit 4;
 

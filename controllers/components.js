@@ -7,6 +7,7 @@
 */
 const SERVER = 'http://localhost/lolinsv/api/';
 
+
 /*
 *   Función para obtener todos los registros disponibles en los mantenimientos de tablas (operación read).
 *
@@ -378,6 +379,73 @@ function logOut() {
             });
         } else {
             sweetAlert(4, 'Puede continuar con la sesión', null);
+        }
+    });
+}
+
+/*
+*   Función para obtener todos los registros con limites en los mantenimientos de tablas (operación read).
+*
+*   Parámetros: api (ruta del servidor para obtener los datos) y limit (limite que no estará dentro de la consulta).
+*   El limite es necesario para poder usar la páginación
+*   Retorno: ninguno.
+*/
+function readRowsLimit(api,limit) {
+    let form = new FormData();
+    form.append('limit',limit);
+    fetch(api + 'readAllLimit', {
+        method: 'post',
+        body: form
+    }).then(function (request) {
+        // Se verifica si la petición es correcta, de lo contrario se muestra un mensaje en la consola indicando el problema.
+        if (request.ok) {
+            // Se obtiene la respuesta en formato JSON.
+            request.json().then(function (response) {
+                let data = [];
+                // Se comprueba si la respuesta es satisfactoria para obtener los datos, de lo contrario se muestra un mensaje con la excepción.
+                if (response.status) {
+                    //Se ejecuta el metodo de llenado
+                    fillTable(response.dataset);
+                } else {
+                    sweetAlert(4, response.exception, null);
+                }
+            });
+        } else {
+            console.log(request.status + ' ' + request.statusText);
+        }
+    });
+}
+
+/*
+*   Función para obtener todos los registros con limites en los mantenimientos de tablas (operación read) y lográr predecir si
+*    habra otra página para la páginación.
+*
+*   Parámetros: api (ruta del servidor para obtener los datos) y limit (limite que no estará dentro de la consulta).
+*   El limite es necesario para poder usar la páginación
+*   Retorno: ninguno.
+*/
+function predictLImit(api,limit) {
+    let form = new FormData();
+    form.append('limit',limit);
+    fetch(api + 'readAllLimit', {
+        method: 'post',
+        body: form
+    }).then(function (request) {
+        // Se verifica si la petición es correcta, de lo contrario se muestra un mensaje en la consola indicando el problema.
+        if (request.ok) {
+            // Se obtiene la respuesta en formato JSON.
+            request.json().then(function (response) {
+                // Se comprueba si la respuesta es satisfactoria para obtener los datos, de lo contrario se muestra un mensaje con la excepción.
+                if (response.status) {
+                    console.log('hay más datos');
+                    ocultarMostrarAdl(true);
+                } else {
+                    console.log('No hay más datos')
+                    ocultarMostrarAdl(false);
+                }
+            });
+        } else {
+            console.log(request.status + ' ' + request.statusText);
         }
     });
 }

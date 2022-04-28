@@ -5,6 +5,15 @@ var opcionesCarrito = {
 var navbarmobile = {
     edge: 'left'
 }
+var opcionesModalg = {
+    //onOpenStart: function () {
+    // Se restauran los elementos del formulario.
+    dissmisible:false,
+    onOpenStart: function () {
+        // Se restauran los elementos del formulario.
+        document.getElementById('cambiocontra').reset();
+    }
+}
 document.addEventListener('DOMContentLoaded', function () {
     M.Sidenav.init(document.querySelectorAll('.sidenav'));
     M.Sidenav.init(document.querySelectorAll('#mobile-demo'), navbarmobile);
@@ -12,7 +21,7 @@ document.addEventListener('DOMContentLoaded', function () {
     M.Slider.init(document.querySelectorAll('.slider'));
     M.Carousel.init(document.querySelectorAll('.carousel'));
     M.Tooltip.init(document.querySelectorAll('.tooltipped'));
-    M.Modal.init(document.querySelectorAll('.modal'));
+    M.Modal.init(document.querySelectorAll('.modal'),opcionesModalg);
 });
 
 document.addEventListener('DOMContentLoaded', function () {

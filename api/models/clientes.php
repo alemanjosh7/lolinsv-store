@@ -3,7 +3,7 @@
 *	Clase para manejar la tabla usuarios de la base de datos.
 *   Es clase hija de Validator.
 */
-class Cliente extends Validator
+class Clientes extends Validator
 {
     // Declaración de atributos (propiedades).
     private $id = null;//id de cliente
@@ -27,7 +27,7 @@ class Cliente extends Validator
         } else {
             return false;
         }
-    };
+    }
 
     public function setNombre($value)
     {
@@ -37,7 +37,7 @@ class Cliente extends Validator
         } else {
             return false;
         }
-    };
+    }
 
     public function setApellido($value)
     {
@@ -47,7 +47,7 @@ class Cliente extends Validator
         } else {
             return false;
         }
-    };
+    }
 
     public function setCorreo($value)
     {
@@ -57,7 +57,7 @@ class Cliente extends Validator
         } else {
             return false;
         }
-    };
+    }
 
     public function setDUI(){
         if ($this->validateDUI($value)) {
@@ -66,7 +66,7 @@ class Cliente extends Validator
         } else {
             return false;
         }
-    };
+    }
 
     public function setTelefono($value)
     {
@@ -76,7 +76,7 @@ class Cliente extends Validator
         } else {
             return false;
         }
-    };
+    }
 
     public function setDireccion($value)
     {
@@ -86,7 +86,7 @@ class Cliente extends Validator
         } else {
             return false;
         }
-    };
+    }
 
     public function setUsuario($value)
     {
@@ -96,7 +96,7 @@ class Cliente extends Validator
         } else {
             return false;
         }
-    };
+    }
 
     public function setContrasena($value)
     {
@@ -106,7 +106,7 @@ class Cliente extends Validator
         } else {
             return false;
         }
-    };
+    }
 
     /*
     *   Métodos para obtener valores de los atributos.
@@ -114,52 +114,52 @@ class Cliente extends Validator
     public function getId()
     {
         return $this->id;
-    };
+    }
 
     public function getNombre()
     {
         return $this->nombre;
-    };
+    }
 
     public function getApellido()
     {
         return $this->apellido;
-    };
+    }
 
     public function getNombreCl(){
         $ncl = $nombre+" "+$apellido;
         return $ncl;
-    };
+    }
 
     public function getCorreo()
     {
         return $this->correo;
-    };
+    }
 
     public function getDUI()
     {
         return $this->dui;
-    };
+    }
 
     public function getTelefono()
     {
         return $this->telefono;
-    };
+    }
 
     public function getDireccion()
     {
         return $this->direccion;
-    };
+    }
 
     public function getUsuario()
     {
         return $this->usuario;
-    };
+    }
 
     public function getContrasena()
     {
         return $this->contrasena;
-    };
+    }
 
     /*
     *   Métodos para gestionar la cuenta del usuario.
@@ -176,7 +176,7 @@ class Cliente extends Validator
         } else {
             return false;
         }
-    };
+    }
     //Comprobar la contraseña del usuario
     public function checkContrasenaCl($contrasena)
     {
@@ -189,14 +189,14 @@ class Cliente extends Validator
         } else {
             return false;
         }
-    };
+    }
     //Cambiar contraseña del cliente
     public function cambiarContrasenaCl()
     {
         $sql = 'UPDATE clientes SET contrasena = ? WHERE id_cliente = ?';
         $params = array($this->contrasena, $this->id);
         return Database::executeRow($sql, $params);
-    };
+    }
     //obtener el perfil del cliente
     public function obtenerPerfilCl($id)
     {
@@ -205,7 +205,7 @@ class Cliente extends Validator
                 WHERE id_cliente = ?';
         $params = array($id);
         return Database::getRow($sql, $params);
-    };
+    }
     //Editar o cambiar el perfil del cliente
     public function editarPerfilCl($idu, $nombre, $apellido, $correo,$DUI, $tel, $direc, $usu)
     {
@@ -215,7 +215,7 @@ class Cliente extends Validator
                 WHERE id_cliente = ?';
         $params = array($nombre, $apellido, $correo, $DUI, $telefono, $direc, $idu);
         return Database::executeRow($sql, $params);
-    };
+    }
 
     /*
     *   Métodos para realizar las operaciones SCRUD (search, create, read, update, delete).
@@ -230,7 +230,7 @@ class Cliente extends Validator
                 ORDER BY id_cliente';
         $params = array("%$value%", "%$value%");
         return Database::getRows($sql, $params);
-    };
+    }
     //Crear cliente
     public function crearCliente()
     {
@@ -276,5 +276,16 @@ class Cliente extends Validator
                 WHERE id_cliente = ?';
         $params = array($this->id);
         return Database::executeRow($sql, $params);
+    }
+    //Buscar Clientes por limite
+    public function obtenerClientesLimit($limit){
+        $sql = 'SELECT clt.id_cliente,clt.nombre_cliente,clt.apellido_cliente,clt.correo_cliente,clt.dui_cliente,clt.telefono_cliente,
+            clt.direccion_cliente,clt.usuario,est.estado
+            FROM clientes as clt 
+            INNER JOIN estados AS est ON clt.fk_id_estado = est.id_estados
+            WHERE id_cliente
+            NOT IN(SELECT id_cliente FROM clientes ORDER BY id_cliente LIMIT ?) ORDER BY id_cliente limit 8';
+        $params = array($limit);
+        return Database::getRows($sql, $params);
     }
 }
