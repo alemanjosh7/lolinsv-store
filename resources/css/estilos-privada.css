@@ -1798,3 +1798,81 @@ font-size: 15px;
 @media screen and (min-width: 600px) and (max-width: 992px) {
   
 }
+/*Login*/
+/*Estilo de los inputs al darles focus*/
+.login .inputs-estilizados:focus{
+  border-bottom: 2px solid #DF5333 !important;
+  box-shadow: 0 1px 0 0 #DF5333 !important;
+}
+
+.login .inputs-estilizados:focus+i {
+  color: #fa7479 !important;  
+}
+
+.login label {
+  color: black !important;  
+}
+
+.login .inputs-estilizados:focus+label {
+  color: black !important;  
+}
+
+/* icon prefix focus color */
+.login .input-field .prefix.active {
+  color: #000;
+}
+
+/*Inicio*/
+/*Banner del saludo*/
+#indexP #banner-saludo{
+  font-family: 'Pt Serif',serif;
+  background-color: #DF5333;
+  margin-top: 50px;
+  border-radius: 3px;
+  box-shadow: -10px -5px  black;
+  margin-bottom: 0px;
+}
+
+/*Clientes*/
+/*Preloader*/
+.clientes-J #preloader-cl{
+  display: none;
+  position: absolute;
+  z-index: 3;
+  left: 48%;
+  top: 45%;
+}
+
+/*Ajustes responsive*/
+@media (max-width:600px) {
+  /*Preloader*/
+  .clientes-J #preloader-cl{
+    position: absolute;
+    z-index: 3;
+    left: 40%;
+    top: 50%;
+  }
+  /*Logo*/
+  #logo-navbarJ{
+    left: 43%;
+  }
+}
+
+/*Tablets*/
+@media screen and (min-width: 600px) and (max-width: 992px) {
+  .clientes-J #preloader-cl{
+    position: absolute;
+    z-index: 3;
+    left: 45%;
+    top: 60%;
+  }
+  /*Logo*/
+  #logo-navbarJ{
+    left: 45%;
+  }
+}
+
+/*Boton de hasta arriba*/
+#hasta_arriba{
+  display: none;
+}
