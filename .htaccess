@@ -2,8 +2,8 @@
 # | Custom error messages/pages                                        |
 # ----------------------------------------------------------------------
 
-ErrorDocument 403 /coffeeshop/resources/error/403.html
-ErrorDocument 404 /coffeeshop/resources/error/404.html
+ErrorDocument 403 /lolinsv-store/resources/error/403.html
+ErrorDocument 404 /lolinsv-store/resources/error/404.html
 
 # ----------------------------------------------------------------------
 # | Character encodings                                                |

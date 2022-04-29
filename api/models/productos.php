@@ -155,14 +155,13 @@ class Productos extends Validator
     /*  
     *   Buscar productos por su nombre
     */
-    public function searchProducts($nombre)
+    public function searchProduct($nombre)
     {
-        $sql = 'SELECT p.id_producto, p.nombre_producto, p.nombre_producto, p.precio_producto, p.cantidad, p.nombre_categoria, cate.nombre_categoria, val.valoraciones
+        $sql = 'SELECT p.id_producto, p.nombre_producto, p.nombre_producto, p.precio_producto, p.cantidad, cate.nombre_categoria, val.valoraciones
                 FROM productos AS p 
-                INNER JOIN categorias AS cat ON cate.id_categoria = p.fk_id_categoria
+                INNER JOIN categorias AS cate ON cate.id_categoria = p.fk_id_categoria
                 INNER JOIN valoraciones AS val ON val.id_valoraciones = p.fk_id_valoraciones
-                WHERE nombre_producto ILIKE ? 
-                ORDER BY nombre_producto';
+                WHERE nombre_producto ILIKE ?';
         $params = array("%$nombre%");
         return Database::getRows($sql, $params);
     }
@@ -177,11 +176,12 @@ class Productos extends Validator
 
     public function readAllProducts()
     {
-        $sql = 'SELECT p.id_producto, p.nombre_producto, p.nombre_producto, p.precio_producto, p.cantidad, p.nombre_categoria, cate.nombre_categoria, val.valoraciones
+        $sql = 'SELECT p.id_producto, p.nombre_producto, p.nombre_producto, p.precio_producto, p.cantidad, cate.nombre_categoria, val.valoraciones, p.imagen_producto
                 FROM productos AS p 
-                INNER JOIN categorias AS cat ON cate.id_categoria = p.fk_id_categoria
+                INNER JOIN categorias AS cate ON cate.id_categoria = p.fk_id_categoria
                 INNER JOIN valoraciones AS val ON val.id_valoraciones = p.fk_id_valoraciones
-                ORDER BY nombre_producto';
+                ORDER BY nombre_producto	
+                ';
         $params = null;
         return Database::getRows($sql, $params);
     }

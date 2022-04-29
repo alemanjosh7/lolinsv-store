@@ -16,7 +16,7 @@ if (isset($_GET['action'])) {
         // Se compara la acción a realizar cuando un administrador ha iniciado sesión.
         switch ($_GET['action']) {
             case 'readAll':
-                if ($result['dataset'] = $producto->readAll()) {
+                if ($result['dataset'] = $producto->readAllProducts()) {
                     $result['status'] = 1;
                 } elseif (Database::getException()) {
                     $result['exception'] = Database::getException();
@@ -28,7 +28,7 @@ if (isset($_GET['action'])) {
                 $_POST = $producto->validateForm($_POST);
                 if ($_POST['search'] == '') {
                     $result['exception'] = 'Ingrese un valor para buscar';
-                } elseif ($result['dataset'] = $producto->searchRows($_POST['search'])) {
+                } elseif ($result['dataset'] = $producto->searchProduct($_POST['search'])) {
                     $result['status'] = 1;
                     $result['message'] = 'Valor encontrado';
                 } elseif (Database::getException()) {
@@ -129,15 +129,8 @@ if (isset($_GET['action'])) {
                     $result['exception'] = Database::getException();
                 }
                 break;
-            case 'cantidadProductosCategoria':
+            case 'updateProductPrice':
                 if ($result['dataset'] = $producto->cantidadProductosCategoria()) {
-                    $result['status'] = 1;
-                } else {
-                    $result['exception'] = 'No hay datos disponibles';
-                }
-                break;
-            case 'porcentajeProductosCategoria':
-                if ($result['dataset'] = $producto->porcentajeProductosCategoria()) {
                     $result['status'] = 1;
                 } else {
                     $result['exception'] = 'No hay datos disponibles';

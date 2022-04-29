@@ -75,11 +75,14 @@
 
 
       <div class="row">
-        <div class="input-field col s4 m6 l2">
-          <input id="icon_prefix" type="text" class="validate">
-          <label for="icon_prefix">Buscar</label>
-          <i class="material-icons prefix ">search</i>
-        </div>
+        <form method="post" id="search-form">
+          <div class="input-field col s6 m4">
+            <i class="material-icons prefix">search</i>
+            <input id="search" type="text" name="search" required>
+            <label for="search">Buscador</label>
+          </div>
+        </form>
+        
         <div class="col offset-m6 m6 s12 right-align">
           <a class="btn-floating btn-medium waves-effect waves-light green" id="add_icon"><i
               class="material-icons">add</i></a>
@@ -89,110 +92,8 @@
 
       <form class="col s12" id="col1">
         <div class="row" id="columna1">
-          <div class="input-field col s12 " id="perfil-usuario">
-            <div id="boton-producto" class="right-align">
-              <a class="btn-floating btn-small waves-effect waves-light red"><i class="material-icons">cancel</i></a>
-              <a class="btn-floating btn-small waves-effect waves-light black"><i class="material-icons">edit</i></a>
-            </div>
-            <div class="imagen-perfil center-align col s12 m12 s12">
-              <img class="responsive-image" src="../../resources/img/icons/amigurumi3-carrito.png" id="amigurumi-img">
-            </div>
-            <div class="col s12 center-align" id="div-botoncambiarcontra">
-              <h6>Brown dude</h6>
-              <h8>$9.99</h8>
-            </div>
-          </div>
-          <div class="input-field col s12 " id="perfil-usuario">
-            <div id="boton-producto" class="right-align">
-              <a class="btn-floating btn-small waves-effect waves-light red"><i class="material-icons">cancel</i></a>
-              <a class="btn-floating btn-small waves-effect waves-light black"><i class="material-icons">edit</i></a>
-            </div>
-            <div class="imagen-perfil center-align col s12 m12 s12">
-              <img class="responsive-image" src="../../resources/img/icons/amigurumi4-carrito.png" id="amigurumi-img">
-            </div>
-            <div class="col s12 center-align" id="div-botoncambiarcontra">
-              <h6>Brown dude</h6>
-              <h8>$9.99</h8>
-            </div>
-          </div>
-          <div class="input-field col s12 " id="perfil-usuario">
-            <div id="boton-producto" class="right-align">
-              <a class="btn-floating btn-small waves-effect waves-light red"><i class="material-icons">cancel</i></a>
-              <a class="btn-floating btn-small waves-effect waves-light black"><i class="material-icons">edit</i></a>
-            </div>
-            <div class="imagen-perfil center-align col s12 m12 s12">
-              <img class="responsive-image" src="../../resources/img/icons/amigurumi3-carrito.png" id="amigurumi-img">
-            </div>
-            <div class="col s12 center-align" id="div-botoncambiarcontra">
-              <h6>Pollito</h6>
-              <h8>$9.99</h8>
-            </div>
-          </div>
-          <div class="input-field col s12 " id="perfil-usuario">
-            <div id="boton-producto" class="right-align">
-              <a class="btn-floating btn-small waves-effect waves-light red"><i class="material-icons">cancel</i></a>
-              <a class="btn-floating btn-small waves-effect waves-light black"><i class="material-icons">edit</i></a>
-            </div>
-            <div class="imagen-perfil center-align col s12 m12 s12">
-              <img class="responsive-image" src="../../resources/img/icons/amigurumi1-carrito.png" id="amigurumi-img">
-            </div>
-            <div class="col s12 center-align" id="div-botoncambiarcontra">
-              <h6>Harry potter</h6>
-              <h8>$9.99</h8>
-            </div>
-          </div>
-          <div class="input-field col s12 " id="perfil-usuario">
-            <div id="boton-producto" class="right-align">
-              <a class="btn-floating btn-small waves-effect waves-light red"><i class="material-icons">cancel</i></a>
-              <a class="btn-floating btn-small waves-effect waves-light black"><i class="material-icons">edit</i></a>
-            </div>
-            <div class="imagen-perfil center-align col s12 m12 s12">
-              <img class="responsive-image" src="../../resources/img/icons/amigurumi5-carrito.png" id="amigurumi-img">
-            </div>
-            <div class="col s12 center-align" id="div-botoncambiarcontra">
-              <h6>Aveja</h6>
-              <h8>$9.99</h8>
-            </div>
-          </div>
-          <div class="input-field col s12 " id="perfil-usuario">
-            <div id="boton-producto" class="right-align">
-              <a class="btn-floating btn-small waves-effect waves-light red"><i class="material-icons">cancel</i></a>
-              <a class="btn-floating btn-small waves-effect waves-light black"><i class="material-icons">edit</i></a>
-            </div>
-            <div class="imagen-perfil center-align col s12 m12 s12">
-              <img class="responsive-image" src="../../resources/img/icons/amegu4.jpg" id="amigurumi-img">
-            </div>
-            <div class="col s12 center-align" id="div-botoncambiarcontra">
-              <h6>hipo</h6>
-              <h8>$9.99</h8>
-            </div>
-          </div>
-          <div class="input-field col s12 " id="perfil-usuario">
-            <div id="boton-producto" class="right-align">
-              <a class="btn-floating btn-small waves-effect waves-light red"><i class="material-icons">cancel</i></a>
-              <a class="btn-floating btn-small waves-effect waves-light black"><i class="material-icons">edit</i></a>
-            </div>
-            <div class="imagen-perfil center-align col s12 m12 s12">
-              <img class="responsive-image" src="../../resources/img/icons/amigurumi3-carrito.png" id="amigurumi-img">
-            </div>
-            <div class="col s12 center-align" id="div-botoncambiarcontra">
-              <h6>Brown dude</h6>
-              <h8>$9.99</h8>
-            </div>
-          </div>
-          <div class="input-field col s12 " id="perfil-usuario">
-            <div id="boton-producto" class="right-align">
-              <a class="btn-floating btn-small waves-effect waves-light red"><i class="material-icons">cancel</i></a>
-              <a class="btn-floating btn-small waves-effect waves-light black"><i class="material-icons">edit</i></a>
-            </div>
-            <div class="imagen-perfil center-align col s12 m12 s12">
-              <img class="responsive-image" src="../../resources/img/icons/amigurumi3-carrito.png" id="amigurumi-img">
-            </div>
-            <div class="col s12 center-align" id="div-botoncambiarcontra">
-              <h6>Brown dude</h6>
-              <h8>$9.99</h8>
-            </div>
-          </div>
+          <!-- Productos -->
+
 
         </div>
       </form>
@@ -323,6 +224,7 @@
   </footer>
   <!--JavaScript at end of body for optimized loading-->
   <script type="text/javascript" src="../../resources/js/materialize.min.js"></script>
+  <script src="../../controllers/components.js"></script>
   <script type="text/javascript" src="../../controllers/dashboard/productos-priv.js"></script>
 
 </body>
