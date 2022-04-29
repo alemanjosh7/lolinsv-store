@@ -45,8 +45,14 @@ function readRows(api) {
 *
 *   Retorno: ninguno.
 */
-function searchRows(api, form) {
-    var x = false;
+
+const noDatos = () => {
+    var h = document.createElement("h5");
+    h.innerHTML = '0 resultados';
+    document.getElementById('columna1').innerHTML = h.outerHTML;
+}
+
+function dynamicSearcher(api, form) {
     fetch(api + 'search', {
         method: 'post',
         body: new FormData(document.getElementById(form))
@@ -59,9 +65,11 @@ function searchRows(api, form) {
                 if (response.status) {
                     // Se envían los datos a la función del controlador para que llene la tabla en la vista y se muestra un mensaje de éxito.
                     fillTable(response.dataset);
-                    sweetAlert(1, response.message, null);
+
                 } else {
-                    sweetAlert(2, response.exception, null);
+                    // sweetAlert(1, response.message, null);
+                    noDatos();
+                    // sweetAlert(2, response.exception, null);
                 }
             });
         } else {
@@ -150,46 +158,13 @@ function confirmDelete(api, data) {
     });
 }
 
-function confirmDeleteL(api, data) {
-    Swal.fire({
-        title: 'Advertencia',
-        text: '¿Desea eliminar el registro?',
-        icon: 'warning',
-        showDenyButton: true,
-        confirmButtonText: 'Si',
-        denyButtonText: 'Cancelar',
-        allowEscapeKey: false,
-        allowOutsideClick: false,
-        background: '#F7F0E9',
-        confirmButtonColor: 'green',
-    }).then(function (value) {
-        // Se comprueba si fue cliqueado el botón Sí para hacer la petición de borrado, de lo contrario no se hace nada.
-        if (value) {
-            fetch(api + 'delete', {
-                method: 'post',
-                body: data
-            }).then(function (request) {
-                // Se verifica si la petición es correcta, de lo contrario se muestra un mensaje en la consola indicando el problema.
-                if (request.ok) {
-                    // Se obtiene la respuesta en formato JSON.
-                    request.json().then(function (response) {
-                        // Se comprueba si la respuesta es satisfactoria, de lo contrario se muestra un mensaje con la excepción.
-                        if (response.status) {
-                            // Se cargan nuevamente las filas en la tabla de la vista después de borrar un registro y se muestra un mensaje de éxito.
-                            readRows(api);
-                            sweetAlert(1, response.message, null);
-                        } else {
-                            sweetAlert(2, response.exception, null);
-                        }
-                    });
-                } else {
-                    console.log(request.status + ' ' + request.statusText);
-                }
-            });
-        }
-    });
-}
-
+/*
+*   Función para eliminar un registro seleccionado en los mantenimientos de tablas (operación delete). Requiere el archivo sweetalert.min.js para funcionar.
+*
+*   Parámetros: api (ruta del servidor para enviar los datos) y data (objeto con los datos del registro a eliminar).
+*
+*   Retorno: ninguno.
+*/
 /*
 *   Función para manejar los mensajes de notificación al usuario. Requiere el archivo sweetalert.min.js para funcionar.
 *

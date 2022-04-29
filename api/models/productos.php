@@ -99,6 +99,8 @@ class Productos extends Validator
         }
     }
 
+
+
     /*
     *   Métodos para obtener valores de los atributos.
     */
@@ -220,11 +222,10 @@ class Productos extends Validator
 
     public function deleteProduct()
     {
+
         $sql = 'DELETE FROM productos
                 WHERE id_producto = ?';
         $params = array($this->id_producto);
         return Database::executeRow($sql, $params);
     }
-
-    
 }

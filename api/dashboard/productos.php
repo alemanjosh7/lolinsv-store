@@ -39,31 +39,29 @@ if (isset($_GET['action'])) {
                 break;
             case 'create':
                 $_POST = $producto->validateForm($_POST);
-                if (!$producto->setNombre($_POST['nombre'])) {
+                if (!$producto->setName($_POST['nombre'])) {
                     $result['exception'] = 'Nombre incorrecto';
-                } elseif (!$producto->setDescripcion($_POST['descripcion'])) {
-                    $result['exception'] = 'Descripción incorrecta';
-                } elseif (!$producto->setPrecio($_POST['precio'])) {
+                } elseif (!$producto->setPrice($_POST['precio'])) {
                     $result['exception'] = 'Precio incorrecto';
                 } elseif (!isset($_POST['categoria'])) {
                     $result['exception'] = 'Seleccione una categoría';
-                } elseif (!$producto->setCategoria($_POST['categoria'])) {
+                } elseif (!$producto->setCategory($_POST['categoria'])) {
                     $result['exception'] = 'Categoría incorrecta';
-                } elseif (!$producto->setEstado(isset($_POST['estado']) ? 1 : 0)) {
+                } elseif (!$producto->setQuantity(isset($_POST['estado']) ? 1 : 0)) {
                     $result['exception'] = 'Estado incorrecto';
                 } elseif (!is_uploaded_file($_FILES['archivo']['tmp_name'])) {
                     $result['exception'] = 'Seleccione una imagen';
-                } elseif (!$producto->setImagen($_FILES['archivo'])) {
+                } elseif (!$producto->setImage($_FILES['archivo'])) {
                     $result['exception'] = $producto->getFileError();
-                } elseif ($producto->createRow()) {
+                } elseif ($producto->createProduct()) {
                     $result['status'] = 1;
-                    if ($producto->saveFile($_FILES['archivo'], $producto->getRuta(), $producto->getImagen())) {
+                    if ($producto->saveFile($_FILES['archivo'], $producto->getRoute(), $producto->getImage())) {
                         $result['message'] = 'Producto creado correctamente';
                     } else {
                         $result['message'] = 'Producto creado pero no se guardó la imagen';
                     }
                 } else {
-                    $result['exception'] = Database::getException();;
+                    $result['exception'] = Database::getException();
                 }
                 break;
             case 'readOne':
@@ -120,6 +118,7 @@ if (isset($_GET['action'])) {
                     $result['exception'] = 'Producto inexistente';
                 } elseif ($producto->deleteProduct()) {
                     $result['status'] = 1;
+                    $data['imagen_producto'] = $producto->getImage();
                     if ($producto->deleteFile($producto->getRoute(), $data['imagen_producto'])) {
                         $result['message'] = 'Producto eliminado correctamente';
                     } else {

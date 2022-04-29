@@ -82,7 +82,7 @@
             <label for="search">Buscador</label>
           </div>
         </form>
-        
+
         <div class="col offset-m6 m6 s12 right-align">
           <a class="btn-floating btn-medium waves-effect waves-light green" id="add_icon"><i
               class="material-icons">add</i></a>
@@ -93,8 +93,6 @@
       <form class="col s12" id="col1">
         <div class="row" id="columna1">
           <!-- Productos -->
-
-
         </div>
       </form>
     </div>
@@ -104,13 +102,13 @@
         <div class="center-align">
           <div class="row">
             <div class="col offset-s3 s6 center-align" id="banner-confirmacion">
-              <h5>Productos</h5>
+              <h5>Añadir productos</h5>
             </div>
           </div>
           <div class="col s12" id="decoracion-modal"></div>
           <div class="col l1 m2 s10 left-align" id="div-regresarboton">
             <a href="javascript: history.go(-1)" id="regresar-boton-popup">
-              < Volver a cateorias</a>
+              < Volver a productos</a>
           </div>
 
         </div>
@@ -133,15 +131,149 @@
         <!--Pie del modal-->
         <div class="modal-footer center-align" id="fondomodal-footer">
           <div class="col s12">
+            <form class="row" method="post" id="save-form" enctype="multipart/form-data">
+              <!-- Campo oculto para asignar el id del registro al momento de modificar -->
+              <input class="hide" type="number" id="id" name="id">
+
+              <div class="input-field col s12 m6 l4">
+                <input id="nombre" type="text" name="id" class="validate" required>
+                <label for="nombre">Codigo del producto</label>
+              </div>
+              <div class="input-field col s12 m6 l4">
+                <input id="nombre" type="text" name="nombre" class="validate" required>
+                <label for="nombre">Nombre del producto</label>
+              </div>
+              <div class="input-field col s12 m6 l4">
+                <input id="precio" type="number" name="precio" step="0.01" class="validate" required>
+                <label for="precio">Precio (US$)</label>
+              </div>
+              <div class="input-field col s12 m6 l4">
+                <input id="cantidad" type="number" name="precio" step="1" class="validate" required>
+                <label for="cantidad">Cantidad</label>
+              </div>
+              <div class="input-field col s12 m6 l6">
+                <select id="categoria" name="categoria">
+                </select>
+                <label>Categoría</label>
+              </div>
+              <div class="file-field input-field col s12 m6 l6">
+                <div class="btn red lighten-3 tooltipped" data-tooltip="Elegir imagen de al menos 500x500 px">
+                  <i class="material-icons">image</i>
+                  <input id="archivo" type="file" name="archivo" accept=".jpg, .png">
+                </div>
+                <div class="file-path-wrapper">
+                  <input type="text" class="file-path validate" placeholder="Formatos válidos: jpg y png">
+                </div>
+              </div>
+              <div class="col s12 center-align">
+              </div>
+            </form>
             <div class="col m6 s12">
-              <a href="#!" class="modal-close waves-effect waves-light btn "
-                id="cancelactdatoscontra_boton">Registrar</a>
+              <button type="reset" class="btn-floating waves-effect green tooltipped" data-tooltip="Reiniciar">
+                <i class="material-icons">autorenew</i>
+              </button>
+              <button href="#!" class="modal-close waves-effect waves-light btn "
+                id="cancelactdatoscontra_boton">Registrar</button>
+              <button href="#!" class="modal-close waves-effect waves-light btn "
+                id="cancelactdatoscontra_boton">Cancelar</button>
+            </div>
+          </div>
+          <div class="col s12" id="decoracion-modal"></div>
+        </div>
+
+      </div>
+    </div>
+    <!--boton editar-->
+    <div id="modal-Editar" class="modal">
+      <div class="fondo-modaldatosE modal-content">
+        <div class="center-align">
+          <div class="row">
+            <div class="col offset-s3 s6 center-align" id="banner-confirmacion">
+              <h5>Editar productos</h5>
+            </div>
+          </div>
+          <div class="col s12" id="decoracion-modal"></div>
+          <div class="col l1 m2 s10 left-align" id="div-regresarboton">
+            <a href="javascript: history.go(-1)" id="regresar-boton-popup">
+              < Volver a productos</a>
+          </div>
+
+        </div>
+
+        <div class="preloader-wrapper active" id="actdatoscontra_preloader">
+          <div class="spinner-layer spinner-red-only">
+            <div class="circle-clipper left">
+              <div class="circle"></div>
+            </div>
+            <div class="gap-patch">
+              <div class="circle"></div>
+            </div>
+            <div class="circle-clipper right">
+              <div class="circle"></div>
+            </div>
+          </div>
+        </div>
+        <!--Campos o contenido importante del modal de actualizar contraseña-->
+
+        <!--Pie del modal-->
+        <div class="modal-footer center-align" id="fondomodal-footer">
+          <div class="col s12">
+            <form class="row" method="post" id="save-form" enctype="multipart/form-data">
+              <!-- Campo oculto para asignar el id del registro al momento de modificar -->
+              <input class="hide" type="number" id="id" name="id">
+              <div class="input-field col s12 m6 l4">
+                <input id="nombre" type="text" name="id" class="validate" required>
+                <label for="nombre">Codigo del producto</label>
+              </div>
+              <div class="input-field col s12 m6 l4">
+                <input id="nombre" type="text" name="nombre" class="validate" required>
+                <label for="nombre">Nombre del producto</label>
+              </div>
+              <div class="input-field col s12 m6 l4">
+                <input id="precio" type="number" name="precio" step="0.01" class="validate" required>
+                <label for="precio">Precio (US$)</label>
+              </div>
+              <div class="input-field col s12 m6 l4">
+                <input id="cantidad" type="number" name="cantidad" step="1" class="validate" required>
+                <label for="cantidad">Cantidad</label>
+              </div>
+              <div class="input-field col s12 m6 l6">
+                <select id="categoria" name="categoria">
+                </select>
+                <label>Categoría</label>
+              </div>
+              <div class="file-field input-field col s12 m6 l6">
+                <div class="btn red lighten-3 tooltipped" data-tooltip="Elegir imagen de al menos 500x500 px">
+                  <i class="material-icons">image</i>
+                  <input id="archivo" type="file" name="archivo" accept=".jpg, .png">
+                </div>
+                <div class="file-path-wrapper">
+                  <input type="text" class="file-path validate" placeholder="Formatos válidos: jpg y png">
+                </div>
+              </div>
+              <div class="input-field col s12 m6 l6">
+                <input disabled value="4" id="disabled" type="text" name="nombre" class="validate" required>
+                <label for="nombre">Calificación publica (no editable)</label>
+              </div>
+              <div class="col s12 center-align">
+              </div>
+            </form>
+            <div class="col m6 s12">
+              <button type="reset" class="btn-floating waves-effect green tooltipped" data-tooltip="Reiniciar">
+                <i class="material-icons">autorenew</i>
+              </button>
+              <button href="#!" class="modal-close waves-effect waves-light btn "
+                id="cancelactdatoscontra_boton">Guardar
+                datos</button>
+              <button href="#!" class="modal-close waves-effect waves-light btn "
+                id="cancelactdatoscontra_boton">Cancelar</button>
             </div>
           </div>
           <div class="col s12" id="decoracion-modal"></div>
         </div>
       </div>
     </div>
+
     <!--Contenedor del menu para la páginación-->
     <div class="container">
       <div class="row">
@@ -175,6 +307,8 @@
       </div>
     </div>
   </main>
+
+
 
   <footer class="page-footer">
     <div class="container">
@@ -224,6 +358,7 @@
   </footer>
   <!--JavaScript at end of body for optimized loading-->
   <script type="text/javascript" src="../../resources/js/materialize.min.js"></script>
+  <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
   <script src="../../controllers/components.js"></script>
   <script type="text/javascript" src="../../controllers/dashboard/productos-priv.js"></script>
 

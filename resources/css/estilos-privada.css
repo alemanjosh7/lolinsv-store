@@ -1,200 +1,90 @@
-*{
-    margin: 0;
-    padding: 0;
-  }
-  
-  
-  /*Logo de la página*/
-  .nav-wrapper img{
+* {
+  margin: 0;
+  padding: 0;
+}
+
+/*Logo de la página*/
+.nav-wrapper img {
   height: 60px;
   float: left;
   padding-left: 60px;
-  }
-  
-  
-  
-  /*Logo de perfil*/
-  .nav-wrapper .user img{
+}
+
+/*Logo de perfil*/
+.nav-wrapper .user img {
   float: right;
   padding-left: 40px;
   padding-top: 13px;
   height: 50px;
-  }
-  
-  
-  /*Menú para movile*/
-  .sidenav{
+}
+
+/*Menú para movile*/
+.sidenav {
   align-items: center;
-  background: #DF5333;
-  }
-  
-  
-  /*Menú*/
-  .nav-wrapper {
+  background: #df5333;
+}
+
+/*Menú*/
+.nav-wrapper {
   align-items: center;
-  background: #DF5333;
-  }
-  
-  
-  /*Botones del menú*/
-  .boton-menu{
-    background: linear-gradient(99.82deg, #FFBD81 42.62%, #FB1515 198.11%);
-    border-radius: 17.5px;
-    height: 40px;
-    width: auto;
-    font-weight: bold;
-    margin-top: 0px;
-    margin-bottom: 5px;
-    border-top: 4.5px solid black;
-    border-left: 4.5px solid black;
-  }
-  body {
-    display: flex;
-    min-height: 100vh;
-    flex-direction: column;
-    background-color: #F7F0E9;
-    font-family: 'Poppins',sans-serif;
-  }
-  
-  
-  main {
-    flex: 1 0 auto;
-  }
-  
-  
-  .container-1{
-    display: flex;
-    align-items: center;
-    justify-content: auto;
-  }
-  
-  
-  .buscador{
-    display: flex;
-    align-items: center;
-    justify-content: space-evenly;
-    width: 230px;
-  }
-  
-  .añadir{
-    display: flex;
-    align-items: center;
-    justify-content: space-evenly;
-    width: 230px;
-    float: right;
-    }
-    
-    
-    .imagen-añadir img{
-    height: 40px;
-    }
-    
-    
-    .boton-añadir{
-    float:right;
-    background:linear-gradient(90deg, #DF5333 50%, rgba(255, 158, 134, 0) 102.37%);
-    color: #000;
-    border-radius: 15px;
-    height: 40px;
-    width: 130px;
-    font-weight: bold;
-    margin-top: 0px;
-    margin-bottom: 5px;
-    border-top: 4.5px solid black;
-    border-left: 4.5px solid black;
-    }
-    
-  .entregado{
-    float:right;
-    background:linear-gradient(90deg, #DF5333 50%, rgba(255, 158, 134, 0) 102.37%);
-    border-radius: 15px;
-    color: #000;
-    height: 40px;
-    width: auto;
-    font-weight: bold;
-    margin-top: 0px;
-    margin-bottom: 5px;
-    border-top: 4.5px solid black;
-    border-left: 4.5px solid black;
-  }
-  .pendiente{
-    float:right;
-    background:linear-gradient(90deg, #DF5333 50%, rgba(255, 158, 134, 0) 102.37%);
-    border-radius: 15px;
-    color: #000;
-    height: 40px;
-    width: auto;
-    font-weight: bold;
-    margin-top: 0px;
-    margin-bottom: 5px;
-    border-top: 4.5px solid black;
-    border-left: 4.5px solid black;
-  }
-  
-  
-  
-  /*Estilos de las cards en general*/
-  #tarjetas-privado{
-    width: 180px;
-    background: linear-gradient(145.17deg, rgba(235, 158, 158, 0) 49.29%, rgba(235, 158, 158, 0.703125) 61.08%, #EB9E9E 61.08%);
-    border: 2px solid #000000;     
-  }
-   .imagen-pedidos img{
-    height: 130px;
-      border: 2px solid #000000; 
-      padding: 8px;
-  }
-  
-  
-  .botones{
+  background: #df5333;
+}
+
+/*Botones del menú*/
+.boton-menu {
+  background: linear-gradient(99.82deg, #ffbd81 42.62%, #fb1515 198.11%);
+  border-radius: 17.5px;
+  height: 40px;
+  width: auto;
+  font-weight: bold;
+  margin-top: 0px;
+  margin-bottom: 5px;
+  border-top: 4.5px solid black;
+  border-left: 4.5px solid black;
+}
+
+body {
+  display: flex;
+  min-height: 100vh;
+  flex-direction: column;
+  background-color: #f7f0e9;
+  font-family: "Poppins", sans-serif;
+}
+
+main {
+  flex: 1 0 auto;
+}
+
+.container-1 {
+  display: flex;
+  align-items: center;
+  justify-content: auto;
+}
+
+.buscador {
+  display: flex;
+  align-items: center;
+  justify-content: space-evenly;
+  width: 230px;
+}
+
+.añadir {
+  display: flex;
+  align-items: center;
+  justify-content: space-evenly;
+  width: 230px;
   float: right;
-  }
-  .card-content{
-    font-weight: bold;
-    text-align: center;
-  }
-  .card-title{
-    text-align: center;
-  }
-  
-  #usuario-row {
-    padding-left: 40px;
-  }
-  
-  #usuario-row2 {
-  padding-left: 40px;
-  }
-  
-  #pedidos-row {
-  padding-left: 40px;
-  }
-  
-  #pedidos-row2 {
-  padding-left: 40px;
-  }
-  #clientes-row {
-    padding-left: 40px;
-    }
-    
-    #clientes-row2 {
-    padding-left: 40px;
-    }
-  
-    .imagen-cliente img{
-      border: 2px solid #000000; 
-      padding: 8px;
-      }
-      
-      .imagen-usuario img{
-        border: 2px solid #000000; 
-        padding: 8px;
-    }
-        
-  
-  /*Modal eliminar*/
-  .boton-siborrar{
-  float:right;
-  background:linear-gradient(90deg, #DF5333 50%, rgba(255, 158, 134, 0) 102.37%);
+}
+
+.imagen-añadir img {
+  height: 40px;
+}
+
+.boton-añadir {
+  float: right;
+  background: linear-gradient(90deg,
+      #df5333 50%,
+      rgba(255, 158, 134, 0) 102.37%);
   color: #000;
   border-radius: 15px;
   height: 40px;
@@ -204,331 +94,439 @@
   margin-bottom: 5px;
   border-top: 4.5px solid black;
   border-left: 4.5px solid black;
-  }
-  
-  .boton-noborrar{
-  float:right;
-  background:linear-gradient(90deg, #DF5333 50%, rgba(255, 158, 134, 0) 102.37%);
-  color: #000;
+}
+
+.entregado {
+  float: right;
+  background: linear-gradient(90deg,
+      #df5333 50%,
+      rgba(255, 158, 134, 0) 102.37%);
   border-radius: 15px;
+  color: #000;
   height: 40px;
-  width: 130px;
+  width: auto;
   font-weight: bold;
   margin-top: 0px;
   margin-bottom: 5px;
   border-top: 4.5px solid black;
   border-left: 4.5px solid black;
-  }
-  
-  
-  /*Estilos de los modals*/
-  #borrar-pedido{
-  margin-top: 7%;
-  border: 2px solid #000000; 
-  border-radius: 10px;
-  background: linear-gradient(145.17deg, #EB9E9E 36.74%, rgba(235, 158, 158, 0.703125) 43.08%, rgba(255, 228, 174, 0.37) 61.08%);
-  font-family: 'Poppins', sans-serif;
-  }
-  
-  
-  .modal-content{
+}
+
+.pendiente {
+  float: right;
+  background: linear-gradient(90deg,
+      #df5333 50%,
+      rgba(255, 158, 134, 0) 102.37%);
+  border-radius: 15px;
+  color: #000;
+  height: 40px;
+  width: auto;
+  font-weight: bold;
+  margin-top: 0px;
+  margin-bottom: 5px;
+  border-top: 4.5px solid black;
+  border-left: 4.5px solid black;
+}
+
+/*Estilos de las cards en general*/
+#tarjetas-privado {
+  width: 180px;
+  background: linear-gradient(145.17deg,
+      rgba(235, 158, 158, 0) 49.29%,
+      rgba(235, 158, 158, 0.703125) 61.08%,
+      #eb9e9e 61.08%);
+  border: 2px solid #000000;
+}
+
+.imagen-pedidos img {
+  height: 130px;
+  border: 2px solid #000000;
+  padding: 8px;
+}
+
+.botones {
+  float: right;
+}
+
+.card-content {
   font-weight: bold;
   text-align: center;
+}
+
+.card-title {
+  text-align: center;
+}
+
+#usuario-row {
+  padding-left: 40px;
+}
+
+#usuario-row2 {
+  padding-left: 40px;
+}
+
+#pedidos-row {
+  padding-left: 40px;
+}
+
+#pedidos-row2 {
+  padding-left: 40px;
+}
+
+#clientes-row {
+  padding-left: 40px;
+}
+
+#clientes-row2 {
+  padding-left: 40px;
+}
+
+.imagen-cliente img {
+  border: 2px solid #000000;
+  padding: 8px;
+}
+
+.imagen-usuario img {
+  border: 2px solid #000000;
+  padding: 8px;
+}
+
+/*Modal eliminar*/
+.boton-siborrar {
+  float: right;
+  background: linear-gradient(90deg,
+      #df5333 50%,
+      rgba(255, 158, 134, 0) 102.37%);
+  color: #000;
+  border-radius: 15px;
+  height: 40px;
+  width: 130px;
+  font-weight: bold;
+  margin-top: 0px;
+  margin-bottom: 5px;
+  border-top: 4.5px solid black;
+  border-left: 4.5px solid black;
+}
+
+.boton-noborrar {
+  float: right;
+  background: linear-gradient(90deg,
+      #df5333 50%,
+      rgba(255, 158, 134, 0) 102.37%);
+  color: #000;
+  border-radius: 15px;
+  height: 40px;
+  width: 130px;
+  font-weight: bold;
+  margin-top: 0px;
+  margin-bottom: 5px;
+  border-top: 4.5px solid black;
+  border-left: 4.5px solid black;
+}
+
+/*Estilos de los modals*/
+#borrar-pedido {
+  margin-top: 7%;
+  border: 2px solid #000000;
+  border-radius: 10px;
+  background: linear-gradient(145.17deg,
+      #eb9e9e 36.74%,
+      rgba(235, 158, 158, 0.703125) 43.08%,
+      rgba(255, 228, 174, 0.37) 61.08%);
+  font-family: "Poppins", sans-serif;
+}
+
+.modal-content {
+  font-weight: bold;
+  text-align: center;
+}
+
+/*Estilos del footer*/
+/*Estilo del footer en general*/
+.page-footer {
+  background-color: #ff9e86;
+  padding-bottom: 0%;
+  padding-top: 1%;
+  color: black;
+  font-family: "Poppins", sans-serif;
+  border-top: 2px solid black;
+  padding-bottom: 0;
+}
+
+/*Estilos del las redes sociales*/
+#facebook-container {
+  padding: 0;
+  position: relative;
+  right: 5px;
+}
+
+#facebook {
+  margin: 0;
+  padding-top: 5px;
+  background-color: black;
+  border-radius: 5px;
+  width: 47px;
+}
+
+#whatsapp-container {
+  padding: 0;
+  margin: 0;
+  position: relative;
+  right: 20px;
+}
+
+#whatsapp {
+  padding-top: 2px;
+  align-items: center;
+  background-color: black;
+  border-radius: 5px;
+  width: 45px;
+  height: 42px;
+}
+
+#whatsappcopied {
+  background: 0;
+  border: 0;
+  outline: none;
+}
+
+#instagram-container {
+  padding: 0;
+  margin: 0;
+  position: relative;
+  right: 40px;
+}
+
+#instagram {
+  align-items: center;
+  padding-top: 5px;
+  background-color: black;
+  border-radius: 5px;
+  width: 45px;
+  height: 42px;
+}
+
+/*Estilo de los links*/
+#preguntasfrec {
+  color: black;
+  align-items: center;
+}
+
+#terminos-footer {
+  color: black;
+}
+
+/*Estilo del copyrigth*/
+#Anexo {
+  padding-top: 0%;
+  margin: 0%;
+}
+
+#copyrigth {
+  padding-top: 1.5px;
+}
+
+/*Estilos de los tooltipped*/
+.tooltip {
+  font-weight: normal;
+  color: gray;
+  position: relative;
+}
+
+.tooltip-box {
+  display: none;
+  position: absolute;
+  background-color: #df5333;
+  line-height: 20px;
+  z-index: 500;
+  text-align: center;
+  color: white;
+  font-size: 14px;
+  padding: 9px 10px;
+  border-radius: 5px;
+  left: 0;
+  bottom: 50px;
+}
+
+.tooltip:hover .tooltip-box {
+  display: inline-block;
+}
+
+.tooltip-box::after {
+  content: "";
+  display: block;
+  border-top: 20px solid #df5333;
+  border-left: 20px solid transparent;
+  border-right: 20px solid transparent;
+  position: absolute;
+  bottom: -7px;
+}
+
+#copywhat {
+  display: none;
+}
+
+@media (max-width: 600px) {
+  #usuario-row {
+    padding-left: 70px;
   }
-  
-  
-  /*Estilos del footer*/
-  /*Estilo del footer en general*/
-  .page-footer{
-    background-color: #FF9E86;
-    padding-bottom: 0%;
-    padding-top: 1%;
-    color: black;
-    font-family: 'Poppins', sans-serif;
-    border-top: 2px solid black;
-    padding-bottom: 0;
+
+  #usuario-row2 {
+    padding-left: 70px;
   }
-  
-  /*Estilos del las redes sociales*/
-  #facebook-container{
-    padding: 0;
+
+  #clientes-row {
+    padding-left: 70px;
+  }
+
+  #clientes-row2 {
+    padding-left: 70px;
+  }
+
+  #pedidos-row {
+    padding-left: 70px;
+  }
+
+  #pedidos-row2 {
+    padding-left: 70px;
+  }
+
+  #actdatoscontra_preloader {
     position: relative;
-    right: 5px;
+    left: 70px;
+    top: 230px;
+    margin: 20px;
+    display: none;
   }
-  
-  #facebook{
-    margin: 0;
-    padding-top: 5px;
-    background-color: black;
-    border-radius: 5px;
-    width: 47px;
-  }
-  
-  #whatsapp-container{
-    padding: 0;
-    margin: 0;
+
+  #facebook-container {
     position: relative;
     right: 20px;
   }
-  
-  #whatsapp{
-    padding-top: 2px;
-    align-items: center;
-    background-color: black;
-    border-radius: 5px;
-    width: 45px;
-    height: 42px;
-  }
-  
-  #whatsappcopied{
-    background:0;
-    border: 0;
-    outline: none;
-  }
-  
-  #instagram-container{
+
+  #whatsapp-container {
     padding: 0;
     margin: 0;
     position: relative;
-    right: 40px;
+    right: 17px;
   }
-  
-  #instagram{
-    align-items: center;
-    padding-top: 5px;
-    background-color: black;
-    border-radius: 5px;
-    width: 45px;
-    height: 42px;
-    }
-  /*Estilo de los links*/
-  #preguntasfrec{
-    color: black;
-    align-items: center;
-  }
-  #terminos-footer{
-    color: black;
-  }
-  
-  /*Estilo del copyrigth*/
-  #Anexo{
-    padding-top: 0%;
-    margin: 0%;
-  }
-  #copyrigth{
-    padding-top: 1.5px;
-  }
-  
-  /*Estilos de los tooltipped*/
-  .tooltip{
-    font-weight: normal;
-    color: gray;
-    position: relative;
-  }
-  
-  .tooltip-box{
-    display: none;
-    position: absolute;
-    background-color: #DF5333;
-    line-height: 20px;
-    z-index: 500;
-    text-align: center;
-    color: white;
-    font-size: 14px;
-    padding: 9px 10px;
-    border-radius: 5px;
-    left: 0;
-    bottom: 50px;
-  }
-  
-  .tooltip:hover .tooltip-box{
-    display: inline-block;
-  }
-  
-  .tooltip-box::after{
-    content: "";
-    display: block;
-    border-top: 20px solid #DF5333;
-    border-left: 20px solid transparent;
-    border-right: 20px solid transparent;
-    position: absolute;
-    bottom: -7px;
-  }
-  
-  #copywhat{
-    display: none;
-  }
-  
-  
-  
-  @media (max-width:600px){
-  
-    #usuario-row{
-      padding-left: 70px;
-      }
-  
-      #usuario-row2{
-      padding-left: 70px;
-      }
-  
-    #clientes-row{
-      padding-left: 70px;
-      }
-    
-    
-      #clientes-row2{
-      padding-left: 70px;
-      }
-  
-    #pedidos-row{
-    padding-left: 70px;
-    }
-  
-  
-    #pedidos-row2{
-    padding-left: 70px;
-    }
-  
-  
-    #actdatoscontra_preloader{
-      position: relative;
-      left: 70px;
-      top: 230px;
-      margin: 20px;
-      display: none;
-    }
-  
-  
-    #facebook-container{
-        position: relative;
-        right: 20px;
-    }
-  
-  
-    #whatsapp-container{
-        padding: 0;
-        margin: 0;
-        position: relative;
-        right: 17px;
-    }
-  
-  
-    #instagram-container{
-        padding: 0;
-        margin: 0;
-        position: relative;
-        right: 15px;
-    }
-  }
-  /*Tablets*/
-  @media screen and (min-width: 600px) and (max-width: 992px) {
-  
-    #usuario-row{
-      padding-left: 80px;
-      }
-    
-    
-      #usuario-row2{
-      padding-left: 80px;
-      }
-  
-    #clientes-row{
-      padding-left: 80px;
-      }
-    
-    
-      #clientes-row2{
-      padding-left: 80px;
-      }
-    
-  
-    #pedidos-row{
-    padding-left: 80px;
-    }
-  
-  
-    #pedidos-row2{
-    padding-left: 80px;
-    }
-  
-  
-    #facebook-container{
-    position: relative;
-    right: 26px;
-    }
-  
-  
-    #whatsapp-container{
+
+  #instagram-container {
     padding: 0;
     margin: 0;
     position: relative;
     right: 15px;
-    }
-  
-  
-    #instagram-container{
+  }
+}
+
+/*Tablets*/
+@media screen and (min-width: 600px) and (max-width: 992px) {
+  #usuario-row {
+    padding-left: 80px;
+  }
+
+  #usuario-row2 {
+    padding-left: 80px;
+  }
+
+  #clientes-row {
+    padding-left: 80px;
+  }
+
+  #clientes-row2 {
+    padding-left: 80px;
+  }
+
+  #pedidos-row {
+    padding-left: 80px;
+  }
+
+  #pedidos-row2 {
+    padding-left: 80px;
+  }
+
+  #facebook-container {
+    position: relative;
+    right: 26px;
+  }
+
+  #whatsapp-container {
+    padding: 0;
+    margin: 0;
+    position: relative;
+    right: 15px;
+  }
+
+  #instagram-container {
     padding: 0;
     margin: 0;
     position: relative;
     right: 5px;
-    }
   }
-  #inicio{
-      color: black;
-  }
-  #color-icononav{
-    color: #000;
-  }
+}
+
+#inicio {
+  color: black;
+}
+
+#color-icononav {
+  color: #000;
+}
+
 /*Parte de Jonathan*/
 /*productos*/
-  /*Fin de estilos del footer*/
+/*Fin de estilos del footer*/
 /*Inicio de estilos de la confirmación de compra*/
 /*Estilos la para información de envio*/
 /*Estilo del banner o Titulo de la página*/
-#ProductosP #banner-confirmacion{
-  font-family: 'Pt Serif',serif;
-  background-color: #F48080;
+#ProductosP #banner-confirmacion {
+  font-family: "Pt Serif", serif;
+  background-color: #f48080;
   margin-top: 50px;
   border-radius: 3px;
-  box-shadow: -10px -5px  black;
- margin-bottom: 20px;
-  }
+  box-shadow: -10px -5px black;
+  margin-bottom: 20px;
+}
+
 /*Estilo para diseñar un SELECT personalizado*/
 /*Contenedor del select*/
-#ProductosP .selectbox{
+#ProductosP .selectbox {
   width: 100%;
   margin: auto;
   position: relative;
 }
+
 /*Caja del select*/
-#ProductosP .select{
+#ProductosP .select {
   color: black;
-  font-family: 'Poppins',sans-serif;
+  font-family: "Poppins", sans-serif;
   height: 43px;
   background: white;
-  box-shadow: 0px 0px 0px rgba(0, 0, 0, .16);
+  box-shadow: 0px 0px 0px rgba(0, 0, 0, 0.16);
   cursor: pointer;
   display: flex;
   justify-content: space-between;
   align-items: center;
-  transition: .2s ease all;
+  transition: 0.2s ease all;
   position: relative;
   z-index: 200;
   border: 2px solid transparent;
 }
+
 /*Estilos para cuando este activo o se le esta apuntando con el mouse*/
 #ProductosP .select.active,
-#ProductosP .select:hover{
-box-shadow: 0px 5px 10px rgba(0, 0, 0, .16);  
-border: 2px solid #DF5333;
+#ProductosP .select:hover {
+  box-shadow: 0px 5px 10px rgba(0, 0, 0, 0.16);
+  border: 2px solid #df5333;
 }
+
 /*Decoración de una flecha debajo del select*/
-#ProductosP .select.active:before{
+#ProductosP .select.active:before {
   content: "";
   display: flex;
   height: 0;
   width: 0;
-  border-top: 15px solid #DF5333;
+  border-top: 15px solid #df5333;
   border-right: 15px solid transparent;
   border-bottom: 15px solid transparent;
   border-left: 15px solid transparent;
@@ -536,78 +534,91 @@ border: 2px solid #DF5333;
   bottom: -30px;
   left: calc(50% - 15px);
 }
+
 /*Estilo del icono del seletc*/
-#ProductosP .icono-select{
+#ProductosP .icono-select {
   margin-right: 5px;
 }
+
 /*Estilo del texto del select*/
-#ProductosP .titulo{
+#ProductosP .titulo {
   font-weight: bold;
 }
+
 /*Estilo de las opciones del select*/
 /*Estilo del texto*/
-#ProductosP .opcion-select{
+#ProductosP .opcion-select {
   color: black;
 }
+
 /*Estilo del contenedor de las opciones*/
-#ProductosP .opciones-select{
+#ProductosP .opciones-select {
   margin-top: 15px;
   border-radius: 5px;
   background-color: white;
-  box-shadow: 0px 5px 10px rgba(0, 0, 0, .16);
+  box-shadow: 0px 5px 10px rgba(0, 0, 0, 0.16);
   max-height: 200px;
   overflow: auto;
   z-index: 100;
   width: 100%;
   display: none;
 }
+
 /*Estilo para cuando las opciones esten activas*/
-#ProductosP .opciones-select.active{
+#ProductosP .opciones-select.active {
   display: block;
 }
+
 /*Estilo del contenedor de las opciones*/
-#ProductosP .contenido-opcion{
+#ProductosP .contenido-opcion {
   width: 100%;
   display: flex;
   align-items: center;
   border-bottom: 2px solid black;
-  transition: .2s ease all;
+  transition: 0.2s ease all;
   padding: 5px;
 }
+
 /*Estilo de la imagen de la opcion*/
-#ProductosP .contenido-opcion img{
+#ProductosP .contenido-opcion img {
   position: relative;
   left: 25%;
 }
+
 /*Estilo del texto del contenedor*/
-#ProductosP .contenido-opcion p{
+#ProductosP .contenido-opcion p {
   position: relative;
   left: 145%;
 }
+
 /*Estilo de las opciones cuando este el mouse por */
-#ProductosP .opciones-select .contenido-opcion:hover{
-  background: #F48080;
+#ProductosP .opciones-select .contenido-opcion:hover {
+  background: #f48080;
 }
+
 /*Inicio Estilos para el apartado de la Orden*/
 /*Estilo del contenedor del apartado de la orden*/
-#ProductosP #apartado-orden{
+#ProductosP #apartado-orden {
   margin-top: 25px;
 }
+
 /*Estilo del apartado de la orden*/
-#ProductosP #parte-orden{
+#ProductosP #parte-orden {
   border: 2px solid grey;
   margin-top: 5px;
-  font-family: 'Poppins', sans-serif;
+  font-family: "Poppins", sans-serif;
   background-color: white;
 }
+
 /*Estilo del titulo*/
-#ProductosP #titulo-orden{
+#ProductosP #titulo-orden {
   padding: 0;
-  background-color: #DF5333;
+  background-color: #df5333;
   margin: 0;
 }
+
 /*Estilo de las compras*/
-#ProductosP #contenedor-compras{
+#ProductosP #contenedor-compras {
   height: 200px;
   background-color: white;
   overflow: auto;
@@ -615,20 +626,23 @@ border: 2px solid #DF5333;
   margin-bottom: 0;
   margin-top: 0;
 }
+
 /*Estilo de los elementos de las compras*/
-#ProductosP .compra{
+#ProductosP .compra {
   padding: 0;
   margin: 10px;
 }
+
 /*Estilo de los totales*/
-#ProductosP #totales-orden{
+#ProductosP #totales-orden {
   background-color: white;
-  color: #5E5959;
+  color: #5e5959;
 }
+
 /*Estilo del boton pagar*/
-#ProductosP #pagar_btn{
-  font-family: 'Poppins', sans-serif;
-  background: linear-gradient(99.82deg, #FFBD81 42.62%, #FB1515 198.11%);
+#ProductosP #pagar_btn {
+  font-family: "Poppins", sans-serif;
+  background: linear-gradient(99.82deg, #ffbd81 42.62%, #fb1515 198.11%);
   box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
   border-radius: 15px;
   color: black;
@@ -638,746 +652,160 @@ border: 2px solid #DF5333;
   font-weight: bold;
   margin-top: -100px;
 }
+
 /*Estilos del modal de confirmación de compra*/
-#ProductosP .modal{
-  font-family: 'Poppins', sans-serif;
+#ProductosP .modal {
+  font-family: "Poppins", sans-serif;
 }
-#ProductosP #decoracion-modal{
+
+#ProductosP #decoracion-modal {
   border: 1px solid black;
   margin-top: 13px;
   background-color: black;
 }
-#ProductosP .fondo-modaldatos{
+
+#ProductosP .fondo-modaldatos {
   margin: 10px;
-  background-color: #F7F0E9;
+  padding-bottom: 400px;
+  background-color: #f7f0e9;
   box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
-  font-family: 'Poppins', sans-serif;
+  font-family: "Poppins", sans-serif;
 }
-#ProductosP #fondomodal-footer{
-  background-color: #F7F0E9;
-  font-family: 'Poppins', sans-serif;
+
+#ProductosP .fondo-modaldatosE {
+  margin: 10px;
+  padding-bottom: 420px;
+  background-color: #f7f0e9;
+  box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+  font-family: "Poppins", sans-serif;
 }
-  #ProductosP #regresar-boton{
-    font-size: large;
-    color: black;
-    justify-items: left;
-  }
-  #ProductosP #perfil-datos{
-margin-top: 45px;
-/*border-top: 2px solid black;
+
+#modal-Editar #decoracion-modal {
+  margin-top: 100px;
+}
+
+#ProductosP #fondomodal-footer {
+  background-color: #f7f0e9;
+  font-family: "Poppins", sans-serif;
+}
+
+#ProductosP #regresar-boton {
+  font-size: large;
+  color: black;
+  justify-items: left;
+}
+
+#ProductosP #perfil-datos {
+  margin-top: 45px;
+  /*border-top: 2px solid black;
 border-right: 2px solid black;   
 border-left: 2px solid black;
 border-bottom: 2px solid black;*/
-padding-left: 40px;
-padding-right: 40px;
-padding-top: 0;
-padding-bottom: 0;
+  padding-left: 40px;
+  padding-right: 40px;
+  padding-top: 0;
+  padding-bottom: 0;
 }
-#ProductosP #containerdatos-perfil{
-background: linear-gradient(145.17deg, #EB9E9E 36.74%, rgba(235, 158, 158, 0.703125) 43.08%, rgba(255, 228, 174, 0.37) 61.08%);
-border-top: 2px solid black;
-border-right: 2px solid black;   
-border-left: 2px solid black;
-border-bottom: 2px solid black;
-position: relative;
-top: 0;
-margin-top: 0;
-margin-right: 0px;
+
+#ProductosP #containerdatos-perfil {
+  background: linear-gradient(145.17deg,
+      #eb9e9e 36.74%,
+      rgba(235, 158, 158, 0.703125) 43.08%,
+      rgba(255, 228, 174, 0.37) 61.08%);
+  border-top: 2px solid black;
+  border-right: 2px solid black;
+  border-left: 2px solid black;
+  border-bottom: 2px solid black;
+  position: relative;
+  top: 0;
+  margin-top: 0;
+  margin-right: 0px;
 }
+
 /*Boton del guardar datos del perfil*/
-#ProductosP #boton_guardadoperfil{
-margin-bottom: 10px;
+#ProductosP #boton_guardadoperfil {
+  margin-bottom: 10px;
 }
+
 /*Ocultar y mostrar */
-#ProductosP #ocultarmostrar_contra{
-cursor: pointer;
-}
-#ProductosP #ocultarmostrar_contra:hover{
-opacity: 0.8;
-}
-#ProductosP #regresar-boton-popup{
-font-size: 13px;
-color: black;
-    justify-items: left;
-}
-#ProductosP #add_icon{
-margin-top: -100px;
-}
-#ProductosP #perfil-usuario{
-background: linear-gradient(145.17deg, #EB9E9E 36.74%, rgba(235, 158, 158, 0.703125) 43.97%, rgba(235, 158, 158, 0) 61.08%);
-margin-top: 45px;
-border-top: 2px solid black;
-border-right: 2px solid black;   
-border-left: 2px solid black;
-border-bottom: 2px solid black;  
-width: 280px;
-height: 320px;
-margin-left: 15px;
-}
-#ProductosP .imagen-perfil{
-margin-top: 75px;
-}
-#ProductosP #boton-producto{
-margin-top: 10px;
-margin-bottom: -40px;
-}
-#ProductosP #amigurumi-img{
-height: 180px;
-width: 170px;
-margin-top: -20px;
-}
-#ProductosP #actdatoscontra_preloader{
-position: relative;
-left: 350px;
-top: 85px;
-margin: 20px;
-display: none;
-}
-#ProductosP #modal-cambiarcontra{
-margin-top: 7%;
-border-radius: 10px;
-background: linear-gradient(121.84deg, #FF8686 30.85%, #D5CA68 101.86%);  
-font-family: 'Poppins', sans-serif;
-}
-#ProductosP #aceptaractcontra_boton{
-font-family: 'Poppins', sans-serif;
-background: linear-gradient(99.82deg, #FFBD81 42.62%, #FB1515 198.11%);
-border-radius: 15px;
-color: black;
-border-top: 6px solid black;
-border-left: 5px solid black;
-margin-bottom: 7px;
-padding: 0 25px 35px 25px;
-margin-top: 35px;
-}
-#ProductosP #cancelactdatoscontra_boton{
-font-family: 'Poppins', sans-serif;
-background: linear-gradient(99.82deg, #FFBD81 42.62%, #FB1515 198.11%);
-box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
-border-radius: 15px;
-color: black;
-border-top: 6px solid black;
-border-left: 5px solid black;
-margin-bottom: 4px;
-padding: 0 25px 35px 25px;
-}
-#ProductosP #cambiocontra{
-margin-top: 25px;
-font-family: 'Poppins', sans-serif;
-}
-#ProductosP #mensajecontra{
-font-family: 'Poppins', sans-serif;
-color: #DF5333;
-display: none;
-}
-#ProductosP #ocultarmostrar_contraseñas{
-cursor: pointer;
-}
-#ProductosP #modal-Añadir{
-margin-top: 7%;
-border-radius: 10px;
-background: linear-gradient(121.84deg, #FF8686 30.85%, #D5CA68 101.86%);  
-font-family: 'Poppins', sans-serif;
-}
-  @media screen and (min-width: 600px) and (max-width: 992px) {
-      #ProductosP #columna1{
-      padding-left: 100px;
-      }
-  }
-  @media screen and (min-width: 300px) and (max-width: 599px) {
-      #ProductosP #columna1{
-      padding-left: -40px;
-      }
-      #ProductosP #pagar_btn{
-        width: 120px;
-        padding-right: 80px;   
-        padding-left: -300px; 
-        align-content: left;      
-  }
-}
-/*perfil*/
-/*Fin de estilos del footer*/
-/*Inicio de estilos de la confirmación de compra*/
-/*Estilos la para información de envio*/
-/*Estilo del banner o Titulo de la página*/
-#PerfileP #banner-confirmacion{
-  font-family: 'Pt Serif',serif;
-  background-color: #F48080;
-  margin-top: 50px;
-  border-radius: 3px;
-  box-shadow: -10px -5px  black;
- margin-bottom: 20px;
-  }
-/*Estilos para la columa de la información para el envio*/
-#PerfileP #columna-info{
-  font-family: 'Poppins', sans-serif;
-  background: linear-gradient(145.17deg, rgba(235, 158, 158, 0.54) 36.74%, rgba(235, 158, 158, 0.703125) 43.97%, rgba(235, 158, 158, 0.22) 61.08%);
-  border: 1px solid gray;
-}
-/*Estilo para los inputs*/
-/*Estilo del input del correo del usuario*/
-#PerfileP #correo{
-  box-shadow: inset 515px 5px white;
-  margin-bottom: 15px;
-  color: #807B7B;
-  font-family: 'Poppins', sans-serif;
-}
-/*Estilo del input del nobre el usuario*/
-#PerfileP #nombre_usuario{
-  box-shadow: inset 515px 5px white;
-  margin-top: 15px;
-  color: #807B7B;
-  font-family: 'Poppins', sans-serif;
-}
-/*Estilo del Input del apellido del usuario*/
-#PerfileP #apellido_usuario{
-  box-shadow: inset 515px 5px white;
-  margin-top: 15px;
-  color: #807B7B;
-  font-family: 'Poppins', sans-serif;
-}
-/*Estilo de la direccion de usuario*/
-#PerfileP #direccion_usuario{
-  background-color: white;
-  height: 50px;
-  color: #807B7B;
-  resize: none;
-  font-family: 'Poppins', sans-serif;
-}
-/*Estiro del Punto de referencia respecto a la direccion del usuairo*/
-#PerfileP #preferencia_usuario{
-  background-color: white;
-  font-family: 'Poppins',sans-serif;
-}
-/*Estilo para diseñar un SELECT personalizado*/
-/*Contenedor del select*/
-#PerfileP .selectbox{
-  width: 100%;
-  margin: auto;
-  position: relative;
-}
-/*Caja del select*/
-#PerfileP.select{
-  color: black;
-  font-family: 'Poppins',sans-serif;
-  height: 43px;
-  background: white;
-  box-shadow: 0px 0px 0px rgba(0, 0, 0, .16);
+#ProductosP #ocultarmostrar_contra {
   cursor: pointer;
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  transition: .2s ease all;
-  position: relative;
-  z-index: 200;
-  border: 2px solid transparent;
 }
-/*Estilos para cuando este activo o se le esta apuntando con el mouse*/
-#PerfileP .select.active,
-#PerfileP .select:hover{
-box-shadow: 0px 5px 10px rgba(0, 0, 0, .16);  
-border: 2px solid #DF5333;
+
+#ProductosP #ocultarmostrar_contra:hover {
+  opacity: 0.8;
 }
-/*Decoración de una flecha debajo del select*/
-#PerfileP .select.active:before{
-  content: "";
-  display: flex;
-  height: 0;
-  width: 0;
-  border-top: 15px solid #DF5333;
-  border-right: 15px solid transparent;
-  border-bottom: 15px solid transparent;
-  border-left: 15px solid transparent;
-  position: absolute;
-  bottom: -30px;
-  left: calc(50% - 15px);
-}
-/*Estilo del icono del seletc*/
-#PerfileP .icono-select{
-  margin-right: 5px;
-}
-/*Estilo del texto del select*/
-#PerfileP .titulo{
-  font-weight: bold;
-}
-/*Estilo de las opciones del select*/
-/*Estilo del texto*/
-#PerfileP .opcion-select{
+
+#ProductosP #regresar-boton-popup {
+  font-size: 13px;
   color: black;
+  justify-items: left;
 }
-/*Estilo del contenedor de las opciones*/
-#PerfileP .opciones-select{
-  margin-top: 15px;
-  border-radius: 5px;
-  background-color: white;
-  box-shadow: 0px 5px 10px rgba(0, 0, 0, .16);
-  max-height: 200px;
-  overflow: auto;
-  z-index: 100;
-  width: 100%;
+
+#ProductosP #add_icon {
+  margin-top: -100px;
+}
+
+#ProductosP #perfil-usuario {
+  background: linear-gradient(145.17deg,
+      #eb9e9e 36.74%,
+      rgba(235, 158, 158, 0.703125) 43.97%,
+      rgba(235, 158, 158, 0) 61.08%);
+  margin-top: 45px;
+  border-top: 2px solid black;
+  border-right: 2px solid black;
+  border-left: 2px solid black;
+  border-bottom: 2px solid black;
+  width: 280px;
+  height: 320px;
+  margin-left: 15px;
+}
+
+#ProductosP .imagen-perfil {
+  margin-top: 75px;
+}
+
+#ProductosP #boton-producto {
+  margin-top: 10px;
+  margin-bottom: -40px;
+}
+
+#ProductosP #amigurumi-img {
+  height: 180px;
+  width: 170px;
+  margin-top: -20px;
+}
+
+#ProductosP #actdatoscontra_preloader {
+  position: relative;
+  left: 350px;
+  top: 85px;
+  margin: 20px;
   display: none;
 }
-/*Estilo para cuando las opciones esten activas*/
-#PerfileP .opciones-select.active{
-  display: block;
+
+#ProductosP #modal-cambiarcontra {
+  margin-top: 7%;
+  border-radius: 10px;
+  background: linear-gradient(121.84deg, #ff8686 30.85%, #d5ca68 101.86%);
+  font-family: "Poppins", sans-serif;
 }
-/*Estilo del contenedor de las opciones*/
-#PerfileP .contenido-opcion{
-  width: 100%;
-  display: flex;
-  align-items: center;
-  border-bottom: 2px solid black;
-  transition: .2s ease all;
-  padding: 5px;
-}
-/*Estilo de la imagen de la opcion*/
-#PerfileP .contenido-opcion img{
-  position: relative;
-  left: 25%;
-}
-/*Estilo del texto del contenedor*/
-#PerfileP .contenido-opcion p{
-  position: relative;
-  left: 145%;
-}
-/*Estilo de las opciones cuando este el mouse por */
-#PerfileP .opciones-select .contenido-opcion:hover{
-  background: #F48080;
-}
-/*Inicio Estilos para el apartado de la Orden*/
-/*Estilo del contenedor del apartado de la orden*/
-#PerfileP #apartado-orden{
-  margin-top: 25px;
-}
-/*Estilo del apartado de la orden*/
-#PerfileP #parte-orden{
-  border: 2px solid grey;
-  margin-top: 5px;
-  font-family: 'Poppins', sans-serif;
-  background-color: white;
-}
-/*Estilo del titulo*/
-#PerfileP #titulo-orden{
-  padding: 0;
-  background-color: #DF5333;
-  margin: 0;
-}
-/*Estilo de las compras*/
-#PerfileP #contenedor-compras{
-  height: 200px;
-  background-color: white;
-  overflow: auto;
-  border-bottom: 2px solid gray;
-  margin-bottom: 0;
-  margin-top: 0;
-}
-/*Estilo de los elementos de las compras*/
-#PerfileP .compra{
-  padding: 0;
-  margin: 10px;
-}
-/*Estilo de los totales*/
-#PerfileP #totales-orden{
-  background-color: white;
-  color: #5E5959;
-}
-/*Estilo del boton pagar*/
-#PerfileP #pagar_btn{
-  font-family: 'Poppins', sans-serif;
-  background: linear-gradient(99.82deg, #FFBD81 42.62%, #FB1515 198.11%);
-  box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+
+#ProductosP #aceptaractcontra_boton {
+  font-family: "Poppins", sans-serif;
+  background: linear-gradient(99.82deg, #ffbd81 42.62%, #fb1515 198.11%);
   border-radius: 15px;
   color: black;
   border-top: 6px solid black;
   border-left: 5px solid black;
-  padding: 0 50px 35px 50px;
-  font-weight: bold;
-  margin-top: 15px;
-}
-/*Estilos del modal de confirmación de compra*/
-#PerfileP .modal{
-  font-family: 'Poppins', sans-serif;
-}
-#PerfileP #confirmar-compra_modal{
-  margin-top: 7%;
-  border-radius: 10px;
-  background: linear-gradient(121.84deg, #FF8686 30.85%, #D5CA68 101.86%);  
-  width: 350px;
-  font-family: 'Poppins', sans-serif;
-}
-#PerfileP #decoracion-modal{
-  border: 1px solid black;
-  margin-top: 13px;
-  background-color: black;
-}
-#PerfileP .fondo-modaldatos{
-  margin: 10px;
-  background-color: #F7F0E9;
-  box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
-  font-family: 'Poppins', sans-serif;
-}
-#PerfileP #fondomodal-footer{
-  background-color: #F7F0E9;
-  font-family: 'Poppins', sans-serif;
-}
-  #PerfileP #regresar-boton{
-    font-size: large;
-    color: black;
-    justify-items: left;
-  }
-  #PerfileP #perfil-datos{
-margin-top: 45px;
-/*border-top: 2px solid black;
-border-right: 2px solid black;   
-border-left: 2px solid black;
-border-bottom: 2px solid black;*/
-padding-left: 40px;
-padding-right: 40px;
-padding-top: 0;
-padding-bottom: 0;
-}
-#PerfileP #containerdatos-perfil{
-background: linear-gradient(145.17deg, #EB9E9E 36.74%, rgba(235, 158, 158, 0.703125) 43.08%, rgba(255, 228, 174, 0.37) 61.08%);
-border-top: 2px solid black;
-border-right: 2px solid black;   
-border-left: 2px solid black;
-border-bottom: 2px solid black;
-position: relative;
-top: 0;
-margin-top: 0;
-margin-right: 0px;
-}
-/*Boton del guardar datos del perfil*/
-#PerfileP #boton_guardadoperfil{
-margin-bottom: 10px;
-}
-/*Ocultar y mostrar */
-#PerfileP #ocultarmostrar_contra{
-cursor: pointer;
-}
-#PerfileP #ocultarmostrar_contra:hover{
-opacity: 0.8;
-}
-#PerfileP #cancelactdatosperfil_boton{
-font-family: 'Poppins', sans-serif;
-background: linear-gradient(99.82deg, #FFBD81 42.62%, #FB1515 198.11%);
-box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
-border-radius: 15px;
-color: black;
-border-top: 6px solid black;
-border-left: 5px solid black;
-margin-bottom: 4px;
-padding: 0 25px 35px 25px;
-}
-#PerfileP .modal{
-font-family: 'Poppins', sans-serif;
-}
-#PerfileP #confirmardatosact_modal{
-margin-top: 7%;
-border-radius: 10px;
-background: linear-gradient(121.84deg, #FF8686 30.85%, #D5CA68 101.86%);  
-width: 350px;
-font-family: 'Poppins', sans-serif;
-}
-#PerfileP #decoracion-modal{
-border: 1px solid black;
-margin-top: 13px;
-background-color: black;
-}
-#PerfileP .fondo-modaldatos{
-margin: 10px;
-background-color: #F7F0E9;
-box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
-font-family: 'Poppins', sans-serif;
-}
-#PerfileP #fondomodal-footer{
-background-color: #F7F0E9;
-font-family: 'Poppins', sans-serif;
-}
-#PerfileP #aceptaractdatosperfil_boton{
-font-family: 'Poppins', sans-serif;
-background: linear-gradient(99.82deg, #FFBD81 42.62%, #FB1515 198.11%);
-border-radius: 15px;
-color: black;
-border-top: 6px solid black;
-border-left: 5px solid black;
-margin-bottom: 7px;
-padding: 0 25px 35px 25px;
-margin-top: 15px;
-}
-#PerfileP #actdatosperfil_preloader{
-position: relative;
-left: 100px;
-margin: 20px;
-display: none;
-}
-#PerfileP #actdatoscontra_preloader{
-position: relative;
-left: 350px;
-top: 85px;
-margin: 20px;
-display: none;
-}
-#PerfileP #inputs-datos{
-margin-bottom: 7px;
-margin-top: 0;
-padding-top: 0;
-padding-bottom: 0;
-padding-left: 50px;
-padding-right: 50px;
-}
-#PerfileP #input-username{
-padding: 25px;
-margin-top: 35px;
-margin-bottom: 0px;
-}
-#PerfileP #label-inputsdatos{
-margin: 0;
-padding: 0;
-}
-#PerfileP #span-datosperfil{
-margin: 0;
-padding: 0;
-}
-#PerfileP.input-field label{
-color: black;
-}
-#PerfileP .input-field input[type=text]:focus {
-border-bottom: 1px solid #000;
-box-shadow: 0 1px 0 0 #000;
-justify-items: center;
-}
-#PerfileP .input-field input[type=text]:focus + label {
-color: #000;
-}
-#PerfileP .input-field input{
-font-weight: bold;
-}
-#PerfileP #perfil-datos .input-field input{
-font-size: 15px;
-}
- @media (max-width:600px){
-#PerfileP #facebook-container{
-    position: relative;
-    right: 20px;
-}
-#PerfileP #whatsapp-container{
-    padding: 0;
-    margin: 0;
-    position: relative;
-    right: 17px;
-}
- #PerfileP #instagram-container{
-    padding: 0;
-    margin: 0;
-    position: relative;
-    right: 15px;
-}
-}
-/*Tablets*/
-@media screen and (min-width: 600px) and (max-width: 992px) {
-#PerfileP #facebook-container{
-    position: relative;
-    right: 26px;
-}
-#PerfileP #whatsapp-container{
-    padding: 0;
-    margin: 0;
-    position: relative;
-    right: 15px;
-}
- #PerfileP #instagram-container{
-    padding: 0;
-    margin: 0;
-    position: relative;
-    right: 5px;
-}
-}
-/*index*/
-#indexP #banner-confirmacion{
-  font-family: 'Pt Serif',serif;
-  background-color: #F48080;
-  margin-top: 50px;
-  border-radius: 3px;
-  box-shadow: -10px -5px  black;
- margin-bottom: 20px;
-  }
-  #indexP #regresar-boton{
-    font-size: large;
-    color: black;
-    justify-items: left;
-  }
-/*categorias*/
-  /*categorias*/
-#categoriaP #banner-confirmacion{
-  font-family: 'Pt Serif',serif;
-  background-color: #F48080;
-  margin-top: 50px;
-  border-radius: 3px;
-  box-shadow: -10px -5px black;
-  margin-bottom: 20px;
-  }
-  
-  
-  #categoriaP #regresar-boton{
-  font-size: large;
-  color: black;
-  justify-items: left;
-  }
-  
-   #categoriaP #ah{
-  margin-top: -10px;
-  margin-bottom: -10px;
-  }
-  
-   #categoriaP #pagar_btn_{
-    font-family: 'Poppins', sans-serif;
-    background: linear-gradient(99.82deg, #FFBD81 42.62%, #FB1515 198.11%);
-    box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
-    border-radius: 15px;
-    color: black;
-    border-top: 6px solid black;
-    border-left: 5px solid black;
-    padding: 0 50px 35px 50px;
-    font-weight: bold;
-    margin-top: 15px;
-  }
-/*Parte del Login*/
-/*Parte del Log In*/
-#fondo{
-  background-color: #FBE9E8;
-  margin-top: 50px;
-  padding: 0;
-  border-top: 2px solid black;
-  border-right: 2px solid black;   
-  border-left: 2px solid black;
-}
-#parte-login{
-    font-family: 'Poppins',sans-serif;
-    background: linear-gradient(145.17deg, #EB9E9E 36.74%, rgba(235, 158, 158, 0.703125) 43.97%, rgba(235, 158, 158, 0) 61.08%);;
-    border: 2px solid black;
-    margin-top: 30px;
-    margin-right: 30px;
-    margin-bottom: 0;
-    padding-bottom: 0;
-    margin-left: 25px;
-}
-#imagen-decoracion{
-    margin-left: 30px;
-}
-#imagen-decoracion img{
-  margin-top: 65px;
-  margin-bottom: 0;
-}
-#decoracion-img{
-  width: 75%;
-  margin-left: 140px;
-  background-color: #FFDDDD;
-  border-top: 2px solid black;
-  padding: 0;
-  position: relative;
-  height: 10px;
+  margin-bottom: 7px;
+  padding: 0 25px 35px 25px;
+  margin-top: 35px;
 }
 
-#parte-login img{
-    margin-top: 20px;
-}
-/* label color */
-#parte-login .input-field label {
-  color: #000;
-  font-family: 'Poppins',sans-serif;  
-}
-/* valid color */
-#parte-login .input-field input[type=text].valid {
-  border-bottom: 1px solid green;
-  box-shadow: 0 1px 0 0 green;
-}
-/* invalid color */
-#parte-login .input-field input[type=text].invalid {
-  border-bottom: 1px solid red;
-  box-shadow: 0 1px 0 0 red;
-}
-
-#iniciar-sesion{
-  margin-top: 15px;
-}
-
-#iniciarsesion_boton{
-  background:linear-gradient(90deg, #DF5333 50%, rgba(255, 158, 134, 0) 102.37%);
-  color: #000;
-  font-weight: bold;
-  margin-top: 0px;
-  margin-bottom: 5px;
-  border-top: 4.5px solid black;
-  border-left: 4.5px solid black;
-  width: 100%; 
-}
-
-#olvidarcontra_boton{
-    color: #000;
-    cursor: pointer;
-}
-
-#decoracion-olvidarctr{
-  width: 93%;
-  margin-left: 38px;
-  margin-top: 15px;
-  background-color: #FFDDDD;
-  border-top: 2px solid black;
-  padding: 0;
-}
-
-#contenedor-olvidarctr{
-    margin-top: 10px;
-    padding: 0;
-    margin-bottom: 0;
-}
-
-#registrarse_boton{
-  cursor: pointer;
-}
-
-#parte-crearcuenta{
-  margin-top: 5px;
-  padding: 0;
-  width: auto;
-  font-family: 'Poppins', sans-serif;
-}
-
-#parte-crearcuenta div{
-  margin: 0;
-  padding: 0;
-}
-#parte-crearcuenta a{
-  margin-left: 10px;
-  cursor: pointer;
-}
-/*Estilos del modal de recuperar contra PIN*/
-.modal{
-  margin-top: 7%;
-  border-radius: 10px;
-  background: linear-gradient(121.84deg, #FF8686 30.85%, #D5CA68 101.86%);  
-  font-family: 'Poppins', sans-serif;
-}
-
-.modal-content{
-  margin: 10px;
-  background-color: #F7F0E9;
-  box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
-  font-family: 'Poppins', sans-serif;
-}
-
-#pinfooter-modal{
-    background-color: #F7F0E9;
-    font-family: 'Poppins', sans-serif;
-}
-#mensaje-PIN{
-    display: none;
-    color: #DF5333;
-}
-#cancelarPIN{
-  font-family: 'Poppins', sans-serif;
-  background: linear-gradient(99.82deg, #FFBD81 42.62%, #FB1515 198.11%);
+#ProductosP #cancelactdatoscontra_boton {
+  font-family: "Poppins", sans-serif;
+  background: linear-gradient(99.82deg, #ffbd81 42.62%, #fb1515 198.11%);
   box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
   border-radius: 15px;
   color: black;
@@ -1387,7 +815,763 @@ font-size: 15px;
   padding: 0 25px 35px 25px;
 }
 
-#decoracion-modal{
+#ProductosP #cambiocontra {
+  margin-top: 25px;
+  font-family: "Poppins", sans-serif;
+}
+
+#ProductosP #mensajecontra {
+  font-family: "Poppins", sans-serif;
+  color: #df5333;
+  display: none;
+}
+
+#ProductosP #ocultarmostrar_contraseñas {
+  cursor: pointer;
+}
+
+#ProductosP #modal-Añadir {
+  margin-top: 7%;
+  border-radius: 10px;
+  background: linear-gradient(121.84deg, #ff8686 30.85%, #d5ca68 101.86%);
+  font-family: "Poppins", sans-serif;
+}
+
+@media screen and (min-width: 600px) and (max-width: 992px) {
+  #ProductosP #columna1 {
+    padding-left: 100px;
+  }
+}
+
+@media screen and (min-width: 300px) and (max-width: 599px) {
+  #ProductosP #columna1 {
+    padding-left: -40px;
+  }
+
+  #ProductosP #pagar_btn {
+    width: 120px;
+    padding-right: 80px;
+    padding-left: -300px;
+    align-content: left;
+  }
+
+  #ProductosP .fondo-modaldatos {
+    margin: 10px;
+    background-color: #f7f0e9;
+    padding-bottom: 600px;
+    box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+    font-family: "Poppins", sans-serif;
+  }
+
+  #ProductosP .fondo-modaldatosE {
+    margin: 10px;
+    padding-bottom: 850px;
+    background-color: #f7f0e9;
+    box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+    font-family: "Poppins", sans-serif;
+  }
+
+}
+
+/*perfil*/
+/*Fin de estilos del footer*/
+/*Inicio de estilos de la confirmación de compra*/
+/*Estilos la para información de envio*/
+/*Estilo del banner o Titulo de la página*/
+#PerfileP #banner-confirmacion {
+  font-family: "Pt Serif", serif;
+  background-color: #f48080;
+  margin-top: 50px;
+  border-radius: 3px;
+  box-shadow: -10px -5px black;
+  margin-bottom: 20px;
+}
+
+/*Estilos para la columa de la información para el envio*/
+#PerfileP #columna-info {
+  font-family: "Poppins", sans-serif;
+  background: linear-gradient(145.17deg,
+      rgba(235, 158, 158, 0.54) 36.74%,
+      rgba(235, 158, 158, 0.703125) 43.97%,
+      rgba(235, 158, 158, 0.22) 61.08%);
+  border: 1px solid gray;
+}
+
+/*Estilo para los inputs*/
+/*Estilo del input del correo del usuario*/
+#PerfileP #correo {
+  box-shadow: inset 515px 5px white;
+  margin-bottom: 15px;
+  color: #807b7b;
+  font-family: "Poppins", sans-serif;
+}
+
+/*Estilo del input del nobre el usuario*/
+#PerfileP #nombre_usuario {
+  box-shadow: inset 515px 5px white;
+  margin-top: 15px;
+  color: #807b7b;
+  font-family: "Poppins", sans-serif;
+}
+
+/*Estilo del Input del apellido del usuario*/
+#PerfileP #apellido_usuario {
+  box-shadow: inset 515px 5px white;
+  margin-top: 15px;
+  color: #807b7b;
+  font-family: "Poppins", sans-serif;
+}
+
+/*Estilo de la direccion de usuario*/
+#PerfileP #direccion_usuario {
+  background-color: white;
+  height: 50px;
+  color: #807b7b;
+  resize: none;
+  font-family: "Poppins", sans-serif;
+}
+
+/*Estiro del Punto de referencia respecto a la direccion del usuairo*/
+#PerfileP #preferencia_usuario {
+  background-color: white;
+  font-family: "Poppins", sans-serif;
+}
+
+/*Estilo para diseñar un SELECT personalizado*/
+/*Contenedor del select*/
+#PerfileP .selectbox {
+  width: 100%;
+  margin: auto;
+  position: relative;
+}
+
+/*Caja del select*/
+#PerfileP.select {
+  color: black;
+  font-family: "Poppins", sans-serif;
+  height: 43px;
+  background: white;
+  box-shadow: 0px 0px 0px rgba(0, 0, 0, 0.16);
+  cursor: pointer;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  transition: 0.2s ease all;
+  position: relative;
+  z-index: 200;
+  border: 2px solid transparent;
+}
+
+/*Estilos para cuando este activo o se le esta apuntando con el mouse*/
+#PerfileP .select.active,
+#PerfileP .select:hover {
+  box-shadow: 0px 5px 10px rgba(0, 0, 0, 0.16);
+  border: 2px solid #df5333;
+}
+
+/*Decoración de una flecha debajo del select*/
+#PerfileP .select.active:before {
+  content: "";
+  display: flex;
+  height: 0;
+  width: 0;
+  border-top: 15px solid #df5333;
+  border-right: 15px solid transparent;
+  border-bottom: 15px solid transparent;
+  border-left: 15px solid transparent;
+  position: absolute;
+  bottom: -30px;
+  left: calc(50% - 15px);
+}
+
+/*Estilo del icono del seletc*/
+#PerfileP .icono-select {
+  margin-right: 5px;
+}
+
+/*Estilo del texto del select*/
+#PerfileP .titulo {
+  font-weight: bold;
+}
+
+/*Estilo de las opciones del select*/
+/*Estilo del texto*/
+#PerfileP .opcion-select {
+  color: black;
+}
+
+/*Estilo del contenedor de las opciones*/
+#PerfileP .opciones-select {
+  margin-top: 15px;
+  border-radius: 5px;
+  background-color: white;
+  box-shadow: 0px 5px 10px rgba(0, 0, 0, 0.16);
+  max-height: 200px;
+  overflow: auto;
+  z-index: 100;
+  width: 100%;
+  display: none;
+}
+
+/*Estilo para cuando las opciones esten activas*/
+#PerfileP .opciones-select.active {
+  display: block;
+}
+
+/*Estilo del contenedor de las opciones*/
+#PerfileP .contenido-opcion {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  border-bottom: 2px solid black;
+  transition: 0.2s ease all;
+  padding: 5px;
+}
+
+/*Estilo de la imagen de la opcion*/
+#PerfileP .contenido-opcion img {
+  position: relative;
+  left: 25%;
+}
+
+/*Estilo del texto del contenedor*/
+#PerfileP .contenido-opcion p {
+  position: relative;
+  left: 145%;
+}
+
+/*Estilo de las opciones cuando este el mouse por */
+#PerfileP .opciones-select .contenido-opcion:hover {
+  background: #f48080;
+}
+
+/*Inicio Estilos para el apartado de la Orden*/
+/*Estilo del contenedor del apartado de la orden*/
+#PerfileP #apartado-orden {
+  margin-top: 25px;
+}
+
+/*Estilo del apartado de la orden*/
+#PerfileP #parte-orden {
+  border: 2px solid grey;
+  margin-top: 5px;
+  font-family: "Poppins", sans-serif;
+  background-color: white;
+}
+
+/*Estilo del titulo*/
+#PerfileP #titulo-orden {
+  padding: 0;
+  background-color: #df5333;
+  margin: 0;
+}
+
+/*Estilo de las compras*/
+#PerfileP #contenedor-compras {
+  height: 200px;
+  background-color: white;
+  overflow: auto;
+  border-bottom: 2px solid gray;
+  margin-bottom: 0;
+  margin-top: 0;
+}
+
+/*Estilo de los elementos de las compras*/
+#PerfileP .compra {
+  padding: 0;
+  margin: 10px;
+}
+
+/*Estilo de los totales*/
+#PerfileP #totales-orden {
+  background-color: white;
+  color: #5e5959;
+}
+
+/*Estilo del boton pagar*/
+#PerfileP #pagar_btn {
+  font-family: "Poppins", sans-serif;
+  background: linear-gradient(99.82deg, #ffbd81 42.62%, #fb1515 198.11%);
+  box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+  border-radius: 15px;
+  color: black;
+  border-top: 6px solid black;
+  border-left: 5px solid black;
+  padding: 0 50px 35px 50px;
+  font-weight: bold;
+  margin-top: 15px;
+}
+
+/*Estilos del modal de confirmación de compra*/
+#PerfileP .modal {
+  font-family: "Poppins", sans-serif;
+}
+
+#PerfileP #confirmar-compra_modal {
+  margin-top: 7%;
+  border-radius: 10px;
+  background: linear-gradient(121.84deg, #ff8686 30.85%, #d5ca68 101.86%);
+  width: 350px;
+  font-family: "Poppins", sans-serif;
+}
+
+#PerfileP #decoracion-modal {
+  border: 1px solid black;
+  margin-top: 13px;
+  background-color: black;
+}
+
+#fondomodal-footer #decoracion-modal {
+  margin-top: 25px;
+}
+
+#PerfileP .fondo-modaldatos {
+  margin: 10px;
+  background-color: #f7f0e9;
+  box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+  font-family: "Poppins", sans-serif;
+}
+
+#PerfileP #fondomodal-footer {
+  background-color: #f7f0e9;
+  font-family: "Poppins", sans-serif;
+}
+
+#PerfileP #regresar-boton {
+  font-size: large;
+  color: black;
+  justify-items: left;
+}
+
+#PerfileP #perfil-datos {
+  margin-top: 45px;
+  /*border-top: 2px solid black;
+border-right: 2px solid black;   
+border-left: 2px solid black;
+border-bottom: 2px solid black;*/
+  padding-left: 40px;
+  padding-right: 40px;
+  padding-top: 0;
+  padding-bottom: 0;
+}
+
+#PerfileP #containerdatos-perfil {
+  background: linear-gradient(145.17deg,
+      #eb9e9e 36.74%,
+      rgba(235, 158, 158, 0.703125) 43.08%,
+      rgba(255, 228, 174, 0.37) 61.08%);
+  border-top: 2px solid black;
+  border-right: 2px solid black;
+  border-left: 2px solid black;
+  border-bottom: 2px solid black;
+  position: relative;
+  top: 0;
+  margin-top: 0;
+  margin-right: 0px;
+}
+
+/*Boton del guardar datos del perfil*/
+#PerfileP #boton_guardadoperfil {
+  margin-bottom: 10px;
+}
+
+/*Ocultar y mostrar */
+#PerfileP #ocultarmostrar_contra {
+  cursor: pointer;
+}
+
+#PerfileP #ocultarmostrar_contra:hover {
+  opacity: 0.8;
+}
+
+#PerfileP #cancelactdatosperfil_boton {
+  font-family: "Poppins", sans-serif;
+  background: linear-gradient(99.82deg, #ffbd81 42.62%, #fb1515 198.11%);
+  box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+  border-radius: 15px;
+  color: black;
+  border-top: 6px solid black;
+  border-left: 5px solid black;
+  margin-bottom: 4px;
+  padding: 0 25px 35px 25px;
+}
+
+#PerfileP .modal {
+  font-family: "Poppins", sans-serif;
+}
+
+#PerfileP #confirmardatosact_modal {
+  margin-top: 7%;
+  border-radius: 10px;
+  background: linear-gradient(121.84deg, #ff8686 30.85%, #d5ca68 101.86%);
+  width: 350px;
+  font-family: "Poppins", sans-serif;
+}
+
+#PerfileP #decoracion-modal {
+  border: 1px solid black;
+  margin-top: 13px;
+  background-color: black;
+}
+
+#PerfileP .fondo-modaldatos {
+  margin: 10px;
+  background-color: #f7f0e9;
+  box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+  font-family: "Poppins", sans-serif;
+}
+
+#PerfileP #fondomodal-footer {
+  background-color: #f7f0e9;
+  font-family: "Poppins", sans-serif;
+}
+
+#PerfileP #aceptaractdatosperfil_boton {
+  font-family: "Poppins", sans-serif;
+  background: linear-gradient(99.82deg, #ffbd81 42.62%, #fb1515 198.11%);
+  border-radius: 15px;
+  color: black;
+  border-top: 6px solid black;
+  border-left: 5px solid black;
+  margin-bottom: 7px;
+  padding: 0 25px 35px 25px;
+  margin-top: 15px;
+}
+
+#PerfileP #actdatosperfil_preloader {
+  position: relative;
+  left: 100px;
+  margin: 20px;
+  display: none;
+}
+
+#PerfileP #actdatoscontra_preloader {
+  position: relative;
+  left: 350px;
+  top: 85px;
+  margin: 20px;
+  display: none;
+}
+
+#PerfileP #inputs-datos {
+  margin-bottom: 7px;
+  margin-top: 0;
+  padding-top: 0;
+  padding-bottom: 0;
+  padding-left: 50px;
+  padding-right: 50px;
+}
+
+#PerfileP #input-username {
+  padding: 25px;
+  margin-top: 35px;
+  margin-bottom: 0px;
+}
+
+#PerfileP #label-inputsdatos {
+  margin: 0;
+  padding: 0;
+}
+
+#PerfileP #span-datosperfil {
+  margin: 0;
+  padding: 0;
+}
+
+#fondomodal-footer .input-field {
+  margin-top: 30px;
+}
+
+#PerfileP.input-field label {
+  color: black;
+}
+
+#PerfileP .input-field input[type="text"]:focus {
+  border-bottom: 1px solid #000;
+  box-shadow: 0 1px 0 0 #000;
+  justify-items: center;
+}
+
+#PerfileP .input-field input[type="text"]:focus+label {
+  color: #000;
+}
+
+#PerfileP .input-field input {
+  font-weight: bold;
+}
+
+#PerfileP #perfil-datos .input-field input {
+  font-size: 15px;
+}
+
+@media (max-width: 600px) {
+  #PerfileP #facebook-container {
+    position: relative;
+    right: 20px;
+  }
+
+  #PerfileP #whatsapp-container {
+    padding: 0;
+    margin: 0;
+    position: relative;
+    right: 17px;
+  }
+
+  #PerfileP #instagram-container {
+    padding: 0;
+    margin: 0;
+    position: relative;
+    right: 15px;
+  }
+}
+
+/*Tablets*/
+@media screen and (min-width: 600px) and (max-width: 992px) {
+  #PerfileP #facebook-container {
+    position: relative;
+    right: 26px;
+  }
+
+  #PerfileP #whatsapp-container {
+    padding: 0;
+    margin: 0;
+    position: relative;
+    right: 15px;
+  }
+
+  #PerfileP #instagram-container {
+    padding: 0;
+    margin: 0;
+    position: relative;
+    right: 5px;
+  }
+}
+
+/*index*/
+#indexP #banner-confirmacion {
+  font-family: "Pt Serif", serif;
+  background-color: #f48080;
+  margin-top: 50px;
+  border-radius: 3px;
+  box-shadow: -10px -5px black;
+  margin-bottom: 20px;
+}
+
+#indexP #regresar-boton {
+  font-size: large;
+  color: black;
+  justify-items: left;
+}
+
+/*categorias*/
+/*categorias*/
+#categoriaP #banner-confirmacion {
+  font-family: "Pt Serif", serif;
+  background-color: #f48080;
+  margin-top: 50px;
+  border-radius: 3px;
+  box-shadow: -10px -5px black;
+  margin-bottom: 20px;
+}
+
+#categoriaP #añadir-categoriab {
+  font-family: "Poppins", sans-serif;
+  background: linear-gradient(99.82deg, #ffbd81 42.62%, #fb1515 198.11%);
+  box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+  border-radius: 15px;
+  color: black;
+  border-top: 6px solid black;
+  border-left: 5px solid black;
+  margin-bottom: 4px;
+  padding: 0 25px 35px 25px;
+}
+
+#categoriaP #regresar-boton {
+  font-size: large;
+  color: black;
+  justify-items: left;
+}
+
+#categoriaP #ah {
+  margin-top: -10px;
+  margin-bottom: -10px;
+}
+
+#categoriaP #pagar_btn_ {
+  font-family: "Poppins", sans-serif;
+  background: linear-gradient(99.82deg, #ffbd81 42.62%, #fb1515 198.11%);
+  box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+  border-radius: 15px;
+  color: black;
+  border-top: 6px solid black;
+  border-left: 5px solid black;
+  padding: 0 50px 35px 50px;
+  font-weight: bold;
+  margin-top: 15px;
+}
+
+/*Parte del Login*/
+/*Parte del Log In*/
+#fondo {
+  background-color: #fbe9e8;
+  margin-top: 50px;
+  padding: 0;
+  border-top: 2px solid black;
+  border-right: 2px solid black;
+  border-left: 2px solid black;
+}
+
+#parte-login {
+  font-family: "Poppins", sans-serif;
+  background: linear-gradient(145.17deg,
+      #eb9e9e 36.74%,
+      rgba(235, 158, 158, 0.703125) 43.97%,
+      rgba(235, 158, 158, 0) 61.08%);
+  border: 2px solid black;
+  margin-top: 30px;
+  margin-right: 30px;
+  margin-bottom: 0;
+  padding-bottom: 0;
+  margin-left: 25px;
+}
+
+#imagen-decoracion {
+  margin-left: 30px;
+}
+
+#imagen-decoracion img {
+  margin-top: 65px;
+  margin-bottom: 0;
+}
+
+#decoracion-img {
+  width: 75%;
+  margin-left: 140px;
+  background-color: #ffdddd;
+  border-top: 2px solid black;
+  padding: 0;
+  position: relative;
+  height: 10px;
+}
+
+#parte-login img {
+  margin-top: 20px;
+}
+
+/* label color */
+#parte-login .input-field label {
+  color: #000;
+  font-family: "Poppins", sans-serif;
+}
+
+/* valid color */
+#parte-login .input-field input[type="text"].valid {
+  border-bottom: 1px solid green;
+  box-shadow: 0 1px 0 0 green;
+}
+
+/* invalid color */
+#parte-login .input-field input[type="text"].invalid {
+  border-bottom: 1px solid red;
+  box-shadow: 0 1px 0 0 red;
+}
+
+#iniciar-sesion {
+  margin-top: 15px;
+}
+
+#iniciarsesion_boton {
+  background: linear-gradient(90deg,
+      #df5333 50%,
+      rgba(255, 158, 134, 0) 102.37%);
+  color: #000;
+  font-weight: bold;
+  margin-top: 0px;
+  margin-bottom: 5px;
+  border-top: 4.5px solid black;
+  border-left: 4.5px solid black;
+  width: 100%;
+}
+
+#olvidarcontra_boton {
+  color: #000;
+  cursor: pointer;
+}
+
+#decoracion-olvidarctr {
+  width: 93%;
+  margin-left: 38px;
+  margin-top: 15px;
+  background-color: #ffdddd;
+  border-top: 2px solid black;
+  padding: 0;
+}
+
+#contenedor-olvidarctr {
+  margin-top: 10px;
+  padding: 0;
+  margin-bottom: 0;
+}
+
+#registrarse_boton {
+  cursor: pointer;
+}
+
+#parte-crearcuenta {
+  margin-top: 5px;
+  padding: 0;
+  width: auto;
+  font-family: "Poppins", sans-serif;
+}
+
+#parte-crearcuenta div {
+  margin: 0;
+  padding: 0;
+}
+
+#parte-crearcuenta a {
+  margin-left: 10px;
+  cursor: pointer;
+}
+
+/*Estilos del modal de recuperar contra PIN*/
+.modal {
+  margin-top: 7%;
+  border-radius: 10px;
+  background: linear-gradient(121.84deg, #ff8686 30.85%, #d5ca68 101.86%);
+  font-family: "Poppins", sans-serif;
+}
+
+.modal-content {
+  margin: 10px;
+  background-color: #f7f0e9;
+  box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+  font-family: "Poppins", sans-serif;
+}
+
+#pinfooter-modal {
+  background-color: #f7f0e9;
+  font-family: "Poppins", sans-serif;
+}
+
+#mensaje-PIN {
+  display: none;
+  color: #df5333;
+}
+
+#cancelarPIN {
+  font-family: "Poppins", sans-serif;
+  background: linear-gradient(99.82deg, #ffbd81 42.62%, #fb1515 198.11%);
+  box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+  border-radius: 15px;
+  color: black;
+  border-top: 6px solid black;
+  border-left: 5px solid black;
+  margin-bottom: 4px;
+  padding: 0 25px 35px 25px;
+}
+
+#decoracion-modal {
   margin-top: 10px;
   width: 100%;
   margin-left: 0px;
@@ -1396,13 +1580,14 @@ font-size: 15px;
   height: 1.5px;
 }
 
-#comprobarPIN{
+#comprobarPIN {
   margin-top: 25px;
-  font-family: 'Poppins', sans-serif;
+  font-family: "Poppins", sans-serif;
 }
-#recuperarPIN{
-  font-family: 'Poppins', sans-serif;
-  background: linear-gradient(99.82deg, #FFBD81 42.62%, #FB1515 198.11%);
+
+#recuperarPIN {
+  font-family: "Poppins", sans-serif;
+  background: linear-gradient(99.82deg, #ffbd81 42.62%, #fb1515 198.11%);
   border-radius: 15px;
   color: black;
   border-top: 6px solid black;
@@ -1412,31 +1597,32 @@ font-size: 15px;
   margin-top: 0px;
 }
 
-#inputPIN{
+#inputPIN {
   padding-left: 50px;
 }
 
 /*Estilo de OJOS para ocultar y mostrar contraseñas*/
-#cronometro{
+#cronometro {
   display: none;
-  color: #DF5333;
+  color: #df5333;
   margin-left: 15px;
 }
-#reenviarPIN{
-  cursor: pointer;
-}
-#ocultarmostrar_contraseña{
+
+#reenviarPIN {
   cursor: pointer;
 }
 
-#ocultarmostrar_contraseñas{
+#ocultarmostrar_contraseña {
   cursor: pointer;
 }
 
+#ocultarmostrar_contraseñas {
+  cursor: pointer;
+}
 
 /*Diseño del modal de restablecer contraseña*/
 /*Decoración del modal*/
-#decoracionr-modal{
+#decoracionr-modal {
   margin-top: 10px;
   width: 100%;
   margin-left: 0px;
@@ -1444,10 +1630,11 @@ font-size: 15px;
   background-color: #000;
   height: 1.9px;
 }
+
 /*Boton de restablecer contraseña*/
-#restablecerContraseña{
-  font-family: 'Poppins', sans-serif;
-  background: linear-gradient(99.82deg, #FFBD81 42.62%, #FB1515 198.11%);
+#restablecerContraseña {
+  font-family: "Poppins", sans-serif;
+  background: linear-gradient(99.82deg, #ffbd81 42.62%, #fb1515 198.11%);
   border-radius: 15px;
   color: black;
   border-top: 6px solid black;
@@ -1456,15 +1643,17 @@ font-size: 15px;
   padding: 0 25px 0px 25px;
   margin-top: 0px;
 }
+
 /*Mensaje de restablecer contraseñ*/
-#mensaje-restablecer{
+#mensaje-restablecer {
   display: none;
-  color: #DF5333;
+  color: #df5333;
 }
+
 /*Boton de cancelar*/
-#cancelar_restablecer{
-  font-family: 'Poppins', sans-serif;
-  background: linear-gradient(99.82deg, #FFBD81 42.62%, #FB1515 198.11%);
+#cancelar_restablecer {
+  font-family: "Poppins", sans-serif;
+  background: linear-gradient(99.82deg, #ffbd81 42.62%, #fb1515 198.11%);
   box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
   border-radius: 15px;
   color: black;
@@ -1475,245 +1664,276 @@ font-size: 15px;
 }
 
 /*Cargador*/
-#actdatoscontra_preloader{
+#actdatoscontra_preloader {
   position: absolute;
   left: 100px;
   display: none;
 }
+
 /*NavBar*/
-.primary-bg-color{
-  background-color: #DF5333;
-}
-/*Telefonos*/
-@media (max-width:600px){
-  #facebook-container{
-    position: relative;
-    right: 20px;
+.primary-bg-color {
+  background-color: #df5333;
 }
 
-#whatsapp-container{
+/*Telefonos*/
+@media (max-width: 600px) {
+  #facebook-container {
+    position: relative;
+    right: 20px;
+  }
+
+  #whatsapp-container {
     padding: 0;
     margin: 0;
     position: relative;
     right: 17px;
-}
+  }
 
-#instagram-container{
+  #instagram-container {
     padding: 0;
     margin: 0;
     position: relative;
     right: 15px;
-}
-    #imagen-decoracion{
-        display: none;
-    }
+  }
 
-    #parte-crearcuenta{
-      margin-left: 15px;
-    }
+  #imagen-decoracion {
+    display: none;
+  }
 
-    #inputPIN{
-      padding-left: 0;
-    }
-    
-    #cronometro{
-      margin-left: 0px;
-      position: relative;
-      left: 0px;
-    }
+  #parte-crearcuenta {
+    margin-left: 15px;
+  }
 
-    #actdatoscontra_preloader{
-      margin-top: 13px;
-    }
-    /*Estilo del sidenav*/
-  #carrito{
-    font-family: 'Poppins',sans-serif;
+  #inputPIN {
+    padding-left: 0;
+  }
+
+  #cronometro {
+    margin-left: 0px;
+    position: relative;
+    left: 0px;
+  }
+
+  #actdatoscontra_preloader {
+    margin-top: 13px;
+  }
+
+  /*Estilo del sidenav*/
+  #carrito {
+    font-family: "Poppins", sans-serif;
     width: 325px;
-}
-/*Edicion del backgroun del header del carrito*/
-.background{
+  }
+
+  /*Edicion del backgroun del header del carrito*/
+  .background {
     height: 93px;
-}
-/*Edicion de la parte de la informacion del carrito*/
-#parte-infocarrito{
+  }
+
+  /*Edicion de la parte de la informacion del carrito*/
+  #parte-infocarrito {
     height: 60%;
-    background-color: #F7F0E9;
+    background-color: #f7f0e9;
     margin-top: 0;
     overflow: auto;
-}  
-/*Estilo de los carritos*/
-#comprar_carrito{
-    font-family: 'Poppins', sans-serif;
-    background: linear-gradient(99.82deg, #FFBD81 42.62%, #FB1515 198.11%);
+  }
+
+  /*Estilo de los carritos*/
+  #comprar_carrito {
+    font-family: "Poppins", sans-serif;
+    background: linear-gradient(99.82deg, #ffbd81 42.62%, #fb1515 198.11%);
     box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
     border-radius: 15px;
     color: black;
     border-top: 6px solid black;
     border-left: 5px solid black;
     padding: 0 25px 35px 25px;
-}
-/*Estilo de la imagen o icono*/
-.elimardel-carrito img{
+  }
+
+  /*Estilo de la imagen o icono*/
+  .elimardel-carrito img {
     cursor: pointer;
     position: relative;
     bottom: 15px;
     left: 96%;
     margin: 0;
     padding: 0;
-}
-}
-/*Tablets*/
-@media screen and (min-width: 600px) and (max-width: 992px) {
-  #facebook-container{
-    position: relative;
-    right: 26px;
+  }
 }
 
-#whatsapp-container{
+/*Tablets*/
+@media screen and (min-width: 600px) and (max-width: 992px) {
+  #facebook-container {
+    position: relative;
+    right: 26px;
+  }
+
+  #whatsapp-container {
     padding: 0;
     margin: 0;
     position: relative;
     right: 15px;
-}
+  }
 
-#instagram-container{
+  #instagram-container {
     padding: 0;
     margin: 0;
     position: relative;
     right: 5px;
-}
-  #imagen-decoracion {
-      display: none;
   }
-  #parte-crearcuenta{
-      margin-left: 125px;
-    }
-    /*Estilo del sidenav*/
-  #carrito{
-    font-family: 'Poppins',sans-serif;
+
+  #imagen-decoracion {
+    display: none;
+  }
+
+  #parte-crearcuenta {
+    margin-left: 125px;
+  }
+
+  /*Estilo del sidenav*/
+  #carrito {
+    font-family: "Poppins", sans-serif;
     overflow: scroll;
-}
-/*Edicion del footer del carrito*/
-#footer-carrito{
+  }
+
+  /*Edicion del footer del carrito*/
+  #footer-carrito {
     overflow: auto;
     margin: 0;
     padding: 0;
-}
-/*Edicion de los botones del carrito*/
-#comprar_carrito{
+  }
+
+  /*Edicion de los botones del carrito*/
+  #comprar_carrito {
     margin-bottom: 25px;
-}
-/*Edicion del boton del carrito de seguir viendo*/
-#seguirv_carrito{
+  }
+
+  /*Edicion del boton del carrito de seguir viendo*/
+  #seguirv_carrito {
     margin-bottom: 25px;
-}
-/*Estilo de la imagen o icono*/
-.elimardel-carrito img{
+  }
+
+  /*Estilo de la imagen o icono*/
+  .elimardel-carrito img {
     cursor: pointer;
     position: relative;
     bottom: 15px;
     left: 98%;
     margin: 0;
     padding: 0;
-}
-#parte-infocarrito{
+  }
+
+  #parte-infocarrito {
     height: 62%;
-    background-color: #F7F0E9;
+    background-color: #f7f0e9;
     margin-top: 0;
     overflow: auto;
-} 
-.background{
+  }
+
+  .background {
     margin-bottom: 0;
     padding: 0;
     height: 109px;
+  }
 }
-}
+
 /*Estilos de los botones de navegación*/
 /*Inicio de estilos del footer*/
 /*Contenedor de los botones de navegación footer*/
-#contenedor-botonnavg{
+#contenedor-botonnavg {
   padding: 0;
   position: relative;
   right: 25px;
 }
-#contenedor-botonnavg:hover{
+
+#contenedor-botonnavg:hover {
   transform: scale(1.2);
 }
+
 /*boton de navegación del footer*/
-.botonnavg-footer{
+.botonnavg-footer {
   margin: 5px;
-  background-color: #DF5333;
+  background-color: #df5333;
   width: 50px;
   color: white;
   height: 50px;
   border-radius: 5px;
   cursor: pointer;
 }
+
 /*Icono dentro del contenedor del menu de navegación del footer*/
-.botonnavg-footer i{
+.botonnavg-footer i {
   position: relative;
   right: 5px;
   bottom: 5px;
   color: white;
 }
+
 /*Span dentro del contenedor del menu de navegación del footer*/
-.botonnavg-footer span{
+.botonnavg-footer span {
   font-size: 30px;
   color: white;
 }
+
 /*Fin de inicios de estilos del footer*/
 /*Jesús*/
 /*Primer Uso*/
 /*Logo del navbar*/
-.primeruso .logoprimer-us{
+.primeruso .logoprimer-us {
   left: 45% !important;
 }
-.logoprimer-us{
+
+.logoprimer-us {
   left: 45% !important;
 }
+
 /*Contenedor del formulario*/
-.primeruso .fondo{
-  background-color: #FBE9E8;
+.primeruso .fondo {
+  background-color: #fbe9e8;
   margin-top: 7%;
   padding: 0;
   border-top: 2px solid black;
-  border-right: 2px solid black;   
+  border-right: 2px solid black;
   border-left: 2px solid black;
   margin-bottom: 5px;
 }
-.primeruso .form-container{
-  margin:25px 5% 0 5%;
+
+.primeruso .form-container {
+  margin: 25px 5% 0 5%;
 }
+
 /*Estilo de los inputs*/
-.primeruso .inputs-estilizados{
+.primeruso .inputs-estilizados {
   box-shadow: inset 700px 5px white !important;
   color: black !important;
-  font-family: 'Poppins', sans-serif !important;
+  font-family: "Poppins", sans-serif !important;
   border-bottom: none !important;
   margin-top: 10px !important;
 }
 
-.primeruso .inputs-estilizados:focus{
-  box-shadow: 0px 0px 5px 3px #DF5333!important;
+.primeruso .inputs-estilizados:focus {
+  box-shadow: 0px 0px 5px 3px #df5333 !important;
   background-color: white;
-  transition: .1s ease all !important;
+  transition: 0.1s ease all !important;
 }
+
 /*Estilo de los labels*/
-.primeruso .labels-estilizados{
+.primeruso .labels-estilizados {
   color: black !important;
   font-weight: bold;
 }
+
 /*Estilos del contenedor de los botones*/
-.primeruso .botones-container{
+.primeruso .botones-container {
   margin-bottom: 25px;
 }
+
 /*Estilo del boton de estilizar*/
 /*Boton de crear administrador*/
-.primeruso .boton-estilizado{
+.primeruso .boton-estilizado {
   color: black;
   font-weight: bold;
-  font-family: 'Poppins', sans-serif !important;
-  background: linear-gradient(99.82deg, #FFBD81 42.62%, #FB1515 198.11%);
+  font-family: "Poppins", sans-serif !important;
+  background: linear-gradient(99.82deg, #ffbd81 42.62%, #fb1515 198.11%);
   box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
   border-radius: 15px;
   color: black;
@@ -1722,13 +1942,14 @@ font-size: 15px;
   padding: 0 15px 35px 15px;
   margin-left: 5%;
 }
+
 /*Estilo del modal para confirmar el registro*/
-.primeruso #confirmar-primeruso{
+.primeruso #confirmar-primeruso {
   margin-top: 7%;
   border-radius: 10px;
-  background: linear-gradient(121.84deg, #FF8686 30.85%, #D5CA68 101.86%);
+  background: linear-gradient(121.84deg, #ff8686 30.85%, #d5ca68 101.86%);
   width: 350px;
-  font-family: 'Poppins', sans-serif;
+  font-family: "Poppins", sans-serif;
 }
 
 .primeruso #confirmar-primeruso #decoracion-modal {
@@ -1739,19 +1960,19 @@ font-size: 15px;
 
 .primeruso #confirmar-primeruso .fondo-modaldatos {
   margin: 10px;
-  background-color: #F7F0E9;
+  background-color: #f7f0e9;
   box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
-  font-family: 'Poppins', sans-serif;
+  font-family: "Poppins", sans-serif;
 }
 
 .primeruso #confirmar-primeruso #fondomodal-footer {
-  background-color: #F7F0E9;
-  font-family: 'Poppins', sans-serif;
+  background-color: #f7f0e9;
+  font-family: "Poppins", sans-serif;
 }
 
 .primeruso #confirmar-primeruso #confirmar-primerbtn {
-  font-family: 'Poppins', sans-serif;
-  background: linear-gradient(99.82deg, #FFBD81 42.62%, #FB1515 198.11%);
+  font-family: "Poppins", sans-serif;
+  background: linear-gradient(99.82deg, #ffbd81 42.62%, #fb1515 198.11%);
   border-radius: 15px;
   color: black;
   border-top: 6px solid black;
@@ -1769,8 +1990,8 @@ font-size: 15px;
 }
 
 .primeruso #confirmar-primeruso #cancelaprimer_boton {
-  font-family: 'Poppins', sans-serif;
-  background: linear-gradient(99.82deg, #FFBD81 42.62%, #FB1515 198.11%);
+  font-family: "Poppins", sans-serif;
+  background: linear-gradient(99.82deg, #ffbd81 42.62%, #fb1515 198.11%);
   box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
   border-radius: 15px;
   color: black;
@@ -1779,8 +2000,9 @@ font-size: 15px;
   margin-bottom: 4px;
   padding: 0 25px 35px 25px;
 }
+
 /*Mensaje de indicacion*/
-.primeruso .indicacion{
+.primeruso .indicacion {
   color: red;
   margin-top: 5px;
   margin-bottom: 10px;
@@ -1788,91 +2010,11 @@ font-size: 15px;
 }
 
 /*Ajustes responsive*/
-@media (max-width:600px) {
-  .primeruso .logoprimer-us{
+@media (max-width: 600px) {
+  .primeruso .logoprimer-us {
     left: 43% !important;
   }
 }
 
 /*Tablets*/
-@media screen and (min-width: 600px) and (max-width: 992px) {
-  
-}
-/*Login*/
-/*Estilo de los inputs al darles focus*/
-.login .inputs-estilizados:focus{
-  border-bottom: 2px solid #DF5333 !important;
-  box-shadow: 0 1px 0 0 #DF5333 !important;
-}
-
-.login .inputs-estilizados:focus+i {
-  color: #fa7479 !important;  
-}
-
-.login label {
-  color: black !important;  
-}
-
-.login .inputs-estilizados:focus+label {
-  color: black !important;  
-}
-
-/* icon prefix focus color */
-.login .input-field .prefix.active {
-  color: #000;
-}
-
-/*Inicio*/
-/*Banner del saludo*/
-#indexP #banner-saludo{
-  font-family: 'Pt Serif',serif;
-  background-color: #DF5333;
-  margin-top: 50px;
-  border-radius: 3px;
-  box-shadow: -10px -5px  black;
-  margin-bottom: 0px;
-}
-
-/*Clientes*/
-/*Preloader*/
-.clientes-J #preloader-cl{
-  display: none;
-  position: absolute;
-  z-index: 3;
-  left: 48%;
-  top: 45%;
-}
-
-/*Ajustes responsive*/
-@media (max-width:600px) {
-  /*Preloader*/
-  .clientes-J #preloader-cl{
-    position: absolute;
-    z-index: 3;
-    left: 40%;
-    top: 50%;
-  }
-  /*Logo*/
-  #logo-navbarJ{
-    left: 43%;
-  }
-}
-
-/*Tablets*/
-@media screen and (min-width: 600px) and (max-width: 992px) {
-  .clientes-J #preloader-cl{
-    position: absolute;
-    z-index: 3;
-    left: 45%;
-    top: 60%;
-  }
-  /*Logo*/
-  #logo-navbarJ{
-    left: 45%;
-  }
-}
-
-/*Boton de hasta arriba*/
-#hasta_arriba{
-  display: none;
-}
+@media screen and (min-width: 600px) and (max-width: 992px) {}

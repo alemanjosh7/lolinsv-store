@@ -38,10 +38,12 @@ function fillTable(dataset) {
             <div class="input-field col s12 " id="perfil-usuario">
                 <div id="boton-producto" class="right-align">
                     <a onclick="openDelete(${row.id_producto})" class="btn-floating btn-small waves-effect waves-light red"><i class="material-icons">cancel</i></a>
-                    <a onclick="openUpdate(${row.id_producto})" class="btn-floating btn-small waves-effect waves-light black"><i class="material-icons">edit</i></a>
+                    <button onclick="openUpdate(${row.id_producto})" href="#modal-Editar"
+                    class="modal-trigger btn-floating btn-small waves-effect waves-light black"><i
+                    class="material-icons">edit</i></button>
                 </div>
                 <div class="imagen-perfil center-align col s12 m12 s12">
-                    <img class="responsive-image" src="${SERVER}images/productos/${row.imagen_producto}.png" id="amigurumi-img">
+                    <img class="responsive-image" src="${SERVER}images/productos/${row.imagen_producto}" id="amigurumi-img">
                 </div>
                 <div class="col s12 center-align" id="div-botoncambiarcontra">
                     <h6>${row.nombre_producto}</h6>
@@ -81,18 +83,11 @@ function fillTable(dataset) {
 document.getElementById('search').addEventListener('keyup', (event) => {
     // Se evita recargar la página web después de enviar el formulario.
     // Se llama a la función que realiza la búsqueda. Se encuentra en el archivo components.js
-    const key = event.keyCode;
-    if (key === 8 || key == 46) {
-        console.log(document.getElementById('search-form'));
-        if (document.getElementById('search').value === "") {
-            readRows(API_PRODUCTOS);
-        }
-        else {
-            searchRows(API_PRODUCTOS, 'search-form');
-        }
+    if (document.getElementById('search').value === "") {
+        readRows(API_PRODUCTOS);
     }
     else {
-        searchRows(API_PRODUCTOS, 'search-form');
+        dynamicSearcher(API_PRODUCTOS, 'search-form');
     }
 
 });
@@ -170,5 +165,5 @@ function openDelete(id) {
     const data = new FormData();
     data.append('id', id);
     // Se llama a la función que elimina un registro. Se encuentra en el archivo components.js
-    confirmDeleteL(API_PRODUCTOS, data);
+    confirmDelete(API_PRODUCTOS, data);
 }
