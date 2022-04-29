@@ -37,8 +37,8 @@ function fillTable(dataset) {
         content += `
             <div class="input-field col s12 " id="perfil-usuario">
                 <div id="boton-producto" class="right-align">
-                    <a class="btn-floating btn-small waves-effect waves-light red"><i class="material-icons">cancel</i></a>
-                    <a class="btn-floating btn-small waves-effect waves-light black"><i class="material-icons">edit</i></a>
+                    <a onclick="openDelete(${row.id_producto})" class="btn-floating btn-small waves-effect waves-light red"><i class="material-icons">cancel</i></a>
+                    <a onclick="openUpdate(${row.id_producto})" class="btn-floating btn-small waves-effect waves-light black"><i class="material-icons">edit</i></a>
                 </div>
                 <div class="imagen-perfil center-align col s12 m12 s12">
                     <img class="responsive-image" src="${SERVER}images/productos/${row.imagen_producto}.png" id="amigurumi-img">
@@ -84,11 +84,10 @@ document.getElementById('search').addEventListener('keyup', (event) => {
     const key = event.keyCode;
     if (key === 8 || key == 46) {
         console.log(document.getElementById('search-form'));
-        if(document.getElementById('search').value === ""){
+        if (document.getElementById('search').value === "") {
             readRows(API_PRODUCTOS);
         }
-        else{
-            readRows(API_PRODUCTOS);
+        else {
             searchRows(API_PRODUCTOS, 'search-form');
         }
     }
@@ -166,3 +165,10 @@ not in(select id_producto from productos order by id_producto limit 4) order by 
 
 donde el limit dentro del not in sería la variable de pagNavegm
 */
+function openDelete(id) {
+    // Se define un objeto con los datos del registro seleccionado.
+    const data = new FormData();
+    data.append('id', id);
+    // Se llama a la función que elimina un registro. Se encuentra en el archivo components.js
+    confirmDeleteL(API_PRODUCTOS, data);
+}

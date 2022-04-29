@@ -150,7 +150,7 @@ function confirmDelete(api, data) {
     });
 }
 
-function confirmDeleteL(api, data,limit) {
+function confirmDeleteL(api, data) {
     Swal.fire({
         title: 'Advertencia',
         text: '¿Desea eliminar el registro?',
@@ -164,7 +164,7 @@ function confirmDeleteL(api, data,limit) {
         confirmButtonColor: 'green',
     }).then(function (value) {
         // Se comprueba si fue cliqueado el botón Sí para hacer la petición de borrado, de lo contrario no se hace nada.
-        if (value.isConfirmed) {
+        if (value) {
             fetch(api + 'delete', {
                 method: 'post',
                 body: data
@@ -176,7 +176,7 @@ function confirmDeleteL(api, data,limit) {
                         // Se comprueba si la respuesta es satisfactoria, de lo contrario se muestra un mensaje con la excepción.
                         if (response.status) {
                             // Se cargan nuevamente las filas en la tabla de la vista después de borrar un registro y se muestra un mensaje de éxito.
-                            readRowsLimit(api,limit);
+                            readRows(api);
                             sweetAlert(1, response.message, null);
                         } else {
                             sweetAlert(2, response.exception, null);
@@ -430,9 +430,9 @@ function logOut() {
 *   El limite es necesario para poder usar la páginación
 *   Retorno: ninguno.
 */
-function readRowsLimit(api,limit) {
+function readRowsLimit(api, limit) {
     let form = new FormData();
-    form.append('limit',limit);
+    form.append('limit', limit);
     fetch(api + 'readAllLimit', {
         method: 'post',
         body: form
@@ -464,9 +464,9 @@ function readRowsLimit(api,limit) {
 *   El limite es necesario para poder usar la páginación
 *   Retorno: ninguno.
 */
-function predictLImit(api,limit) {
+function predictLImit(api, limit) {
     let form = new FormData();
-    form.append('limit',limit);
+    form.append('limit', limit);
     fetch(api + 'readAllLimit', {
         method: 'post',
         body: form

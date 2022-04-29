@@ -116,11 +116,11 @@ if (isset($_GET['action'])) {
             case 'delete':
                 if (!$producto->setId($_POST['id'])) {
                     $result['exception'] = 'Producto incorrecto';
-                } elseif (!$data = $producto->readOne()) {
+                } elseif (!$data = $producto->deleteProduct()) {
                     $result['exception'] = 'Producto inexistente';
-                } elseif ($producto->deleteRow()) {
+                } elseif ($producto->deleteProduct()) {
                     $result['status'] = 1;
-                    if ($producto->deleteFile($producto->getRuta(), $data['imagen_producto'])) {
+                    if ($producto->deleteFile($producto->getRoute(), $data['imagen_producto'])) {
                         $result['message'] = 'Producto eliminado correctamente';
                     } else {
                         $result['message'] = 'Producto eliminado pero no se borró la imagen';
