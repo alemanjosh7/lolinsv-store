@@ -115,6 +115,18 @@ CREATE TABLE valoraciones_clientes(
 	CONSTRAINT valoraciones_clientes_productos_fk FOREIGN KEY (fk_id_productos) REFERENCES productos(id_producto) ON UPDATE CASCADE ON DELETE CASCADE,
 	CONSTRAINT valoraciones_clientes_valoraciones_fk FOREIGN KEY (fk_id_valoraciones) REFERENCES valoraciones(id_valoraciones) ON UPDATE CASCADE ON DELETE CASCADE
 );
+create table inventario(
+	id_inventario serial not null,
+	cantidada int not null,
+	cantidadn int not null,
+	modificado boolean not null,
+	fecha date default current_date,
+	fk_id_admin int not null,
+	fk_id_producto int not null,
+	constraint inventario_pk primary key (id_inventario),
+	constraint inventario_admins_fk foreign key (fk_id_admin) references admins(id_admin) on update cascade on delete cascade,
+	constraint inventario_productos_fk foreign key (fk_id_producto) references productos(id_producto) on update cascade on delete cascade
+);
 --Fin por el momento--
 --Insert de las tablas--
 --Administradores--
