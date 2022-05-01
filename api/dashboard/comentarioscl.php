@@ -1,14 +1,14 @@
 <?php
 require_once('../helpers/database.php');
 require_once('../helpers/validator.php');
-require_once('../models/clientes.php');
+require_once('../models/valoracionesCliente.php');
 
 // Se comprueba si existe una acción a realizar, de lo contrario se finaliza el script con un mensaje de error.
 if (isset($_GET['action'])) {
     // Se crea una sesión o se reanuda la actual para poder utilizar variables de sesión en el script.
     session_start();
     // Se instancia la clase correspondiente.
-    $clientes = new Clientes;
+    $valoracionescl = new ValoracionesCliente;
     // Se declara e inicializa un arreglo para guardar el resultado que retorna la API.
     $result = array('status' => 0, 'session' => 0, 'message' => null, 'exception' => null, 'dataset' => null, 'username' => null);
     // Se verifica si existe una sesión iniciada como administrador, de lo contrario se finaliza el script con un mensaje de error.
@@ -33,7 +33,7 @@ if (isset($_GET['action'])) {
                 }
                 break;
             case 'readProfile':
-                if ($result['dataset'] = $clientes->readProfile()) {
+                if ($result['dataset'] = $valoracionescl->readProfile()) {
                     $result['status'] = 1;
                 } elseif (Database::getException()) {
                     $result['exception'] = Database::getException();
@@ -42,14 +42,14 @@ if (isset($_GET['action'])) {
                 }
                 break;
             case 'editProfile':
-                $_POST = $clientes->validateForm($_POST);
-                if (!$clientes->setNombres($_POST['nombres'])) {
+                $_POST = $valoracionescl->validateForm($_POST);
+                if (!$valoracionescl->setNombres($_POST['nombres'])) {
                     $result['exception'] = 'Nombres incorrectos';
-                } elseif (!$clientes->setApellidos($_POST['apellidos'])) {
+                } elseif (!$valoracionescl->setApellidos($_POST['apellidos'])) {
                     $result['exception'] = 'Apellidos incorrectos';
-                } elseif (!$clientes->setCorreo($_POST['correo'])) {
+                } elseif (!$valoracionescl->setCorreo($_POST['correo'])) {
                     $result['exception'] = 'Correo incorrecto';
-                } elseif ($clientes->editProfile()) {
+                } elseif ($valoracionescl->editProfile()) {
                     $result['status'] = 1;
                     $result['message'] = 'Perfil modificado correctamente';
                 } else {
@@ -57,16 +57,16 @@ if (isset($_GET['action'])) {
                 }
                 break;
             case 'changePassword':
-                $_POST = $clientes->validateForm($_POST);
-                if (!$clientes->setId($_SESSION['id_admins'])) {
+                $_POST = $valoracionescl->validateForm($_POST);
+                if (!$valoracionescl->setId($_SESSION['id_admins'])) {
                     $result['exception'] = 'admins incorrecto';
-                } elseif (!$clientes->checkPassword($_POST['actual'])) {
+                } elseif (!$valoracionescl->checkPassword($_POST['actual'])) {
                     $result['exception'] = 'Clave actual incorrecta';
                 } elseif ($_POST['nueva'] != $_POST['confirmar']) {
                     $result['exception'] = 'Claves nuevas diferentes';
-                } elseif (!$clientes->setClave($_POST['nueva'])) {
-                    $result['exception'] = $clientes->getPasswordError();
-                } elseif ($clientes->changePassword()) {
+                } elseif (!$valoracionescl->setClave($_POST['nueva'])) {
+                    $result['exception'] = $valoracionescl->getPasswordError();
+                } elseif ($valoracionescl->changePassword()) {
                     $result['status'] = 1;
                     $result['message'] = 'Contraseña cambiada correctamente';
                 } else {
@@ -74,7 +74,7 @@ if (isset($_GET['action'])) {
                 }
                 break;
             case 'readAll':
-                if ($result['dataset'] = $clientes->readAll()) {
+                if ($result['dataset'] = $valoracionescl->readAll()) {
                     $result['status'] = 1;
                 } elseif (Database::getException()) {
                     $result['exception'] = Database::getException();
@@ -83,10 +83,10 @@ if (isset($_GET['action'])) {
                 }
                 break;
             case 'search':
-                $_POST = $clientes->validateForm($_POST);
+                $_POST = $valoracionescl->validateForm($_POST);
                 if ($_POST['search'] == '') {
                     $result['exception'] = 'Ingrese un valor para buscar';
-                } elseif ($result['dataset'] = $clientes->buscarClientes($_POST['search'])) {
+                } elseif ($result['dataset'] = $valoracionescl->buscarValoracionG($_POST['search'])) {
                     $result['status'] = 1;
                     $result['message'] = 'Valor encontrado';
                 } elseif (Database::getException()) {
@@ -96,30 +96,30 @@ if (isset($_GET['action'])) {
                 }
                 break;
             case 'readAllLimit':
-                if ($result['dataset'] = $clientes->obtenerClientesLimit($_POST['limit'])){
+                if ($result['dataset'] = $valoracionescl->obtenerValoracionesCL($_POST['limit'])){
                     $result['status'] = 1;
-                    $result['message'] = 'Clientes encontrados';
+                    $result['message'] = 'Comentarios encontrados';
                 } elseif (Database::getException()){
                     $result['exception'] = Database::getException();
                 } else{
-                    $result['exception'] = '¡Lo sentimos! No hay clientes registrados';
+                    $result['exception'] = '¡Lo sentimos! No hay comentarios registrados';
                 }
                 break;
             case 'create':
-                $_POST = $clientes->validateForm($_POST);
-                if (!$clientes->setNombres($_POST['nombres'])) {
+                $_POST = $valoracionescl->validateForm($_POST);
+                if (!$valoracionescl->setNombres($_POST['nombres'])) {
                     $result['exception'] = 'Nombres incorrectos';
-                } elseif (!$clientes->setApellidos($_POST['apellidos'])) {
+                } elseif (!$valoracionescl->setApellidos($_POST['apellidos'])) {
                     $result['exception'] = 'Apellidos incorrectos';
-                } elseif (!$clientes->setCorreo($_POST['correo'])) {
+                } elseif (!$valoracionescl->setCorreo($_POST['correo'])) {
                     $result['exception'] = 'Correo incorrecto';
-                } elseif (!$clientes->setAlias($_POST['alias'])) {
+                } elseif (!$valoracionescl->setAlias($_POST['alias'])) {
                     $result['exception'] = 'Alias incorrecto';
                 } elseif ($_POST['clave'] != $_POST['confirmar']) {
                     $result['exception'] = 'Claves diferentes';
-                } elseif (!$clientes->setClave($_POST['clave'])) {
-                    $result['exception'] = $clientes->getPasswordError();
-                } elseif ($clientes->createRow()) {
+                } elseif (!$valoracionescl->setClave($_POST['clave'])) {
+                    $result['exception'] = $valoracionescl->getPasswordError();
+                } elseif ($valoracionescl->createRow()) {
                     $result['status'] = 1;
                     $result['message'] = 'Administrador creado correctamente';
                 } else {
@@ -127,9 +127,9 @@ if (isset($_GET['action'])) {
                 }
                 break;
             case 'readOne':
-                if (!$clientes->setId($_POST['id'])) {
+                if (!$valoracionescl->setId($_POST['id'])) {
                     $result['exception'] = 'Cliente incorrecto';
-                } elseif ($result['dataset'] = $clientes->obtenerCliente()) {
+                } elseif ($result['dataset'] = $valoracionescl->obtenerCliente()) {
                     $result['status'] = 1;
                 } elseif (Database::getException()) {
                     $result['exception'] = Database::getException();
@@ -138,28 +138,28 @@ if (isset($_GET['action'])) {
                 }
                 break;
             case 'update':
-                $_POST = $clientes->validateForm($_POST);
-                if (!$clientes->setId($_POST['id'])) {
+                $_POST = $valoracionescl->validateForm($_POST);
+                if (!$valoracionescl->setId($_POST['id'])) {
                     $result['exception'] = 'Cliente incorrecto';
-                } elseif (!$clientes->obtenerCliente()) {
+                } elseif (!$valoracionescl->obtenerCliente()) {
                     $result['exception'] = 'Cliente inexistente';
-                } elseif (!$clientes->setNombre($_POST['nombre'])) {
+                } elseif (!$valoracionescl->setNombre($_POST['nombre'])) {
                     $result['exception'] = 'Nombres invalido';
-                } elseif (!$clientes->setApellido($_POST['apellido'])) {
+                } elseif (!$valoracionescl->setApellido($_POST['apellido'])) {
                     $result['exception'] = 'Apellidos invalido';
-                } elseif (!$clientes->setCorreo($_POST['correo'])) {
+                } elseif (!$valoracionescl->setCorreo($_POST['correo'])) {
                     $result['exception'] = 'Correo invalido';
-                } elseif (!$clientes->setDUI($_POST['dui'])) {
+                } elseif (!$valoracionescl->setDUI($_POST['dui'])) {
                     $result['exception'] = 'DUI invalido';
-                } elseif (!$clientes->setTelefono($_POST['telefono'])) {
+                } elseif (!$valoracionescl->setTelefono($_POST['telefono'])) {
                     $result['exception'] = 'Telefono invalido';
-                } elseif (!$clientes->setUsuario($_POST['usuario'])) {
+                } elseif (!$valoracionescl->setUsuario($_POST['usuario'])) {
                     $result['exception'] = 'Usuario invalido';
-                } elseif (!$clientes->setDireccion($_POST['direccion'])) {
+                } elseif (!$valoracionescl->setDireccion($_POST['direccion'])) {
                     $result['exception'] = 'Direccion invalida';
-                } elseif (!$clientes->setEstado(isset($_POST['estado']) ? 8 : 9)) {
+                } elseif (!$valoracionescl->setEstado(isset($_POST['estado']) ? 8 : 9)) {
                     $result['exception'] = 'DUI invalido';
-                } elseif ($clientes->actualizarCliente()) {
+                } elseif ($valoracionescl->actualizarCliente()) {
                     $result['status'] = 1;
                     $result['message'] = 'Cliente modificado correctamente';
                 } else {
@@ -167,24 +167,24 @@ if (isset($_GET['action'])) {
                 }
                 break;
             case 'delete':
-                if (!$clientes->setId($_POST['id'])) {
-                    $result['exception'] = 'administrador incorrecto';
-                } elseif (!$clientes->obtenerCliente()) {
-                    $result['exception'] = 'Cliente inexistente';
-                } elseif ($clientes->eliminarCliente()) {
+                if (!$valoracionescl->setId($_POST['id'])) {
+                    $result['exception'] = 'Comentario invalido';
+                } elseif (!$valoracionescl->buscarValoracion($_POST['id'])) {
+                    $result['exception'] = 'Comentario inexistente';
+                } elseif ($valoracionescl->eliminarValoracionCli()) {
                     $result['status'] = 1;
-                    $result['message'] = 'administrador eliminado correctamente';
+                    $result['message'] = 'Comentario/Valoración eliminada';
                 } else {
                     $result['exception'] = Database::getException();
                 }
                 break;
             case 'actualizarContraCli':
-                $_POST = $clientes->validateForm($_POST);
-                if (!$clientes->setId($_POST['id'])) {
+                $_POST = $valoracionescl->validateForm($_POST);
+                if (!$valoracionescl->setId($_POST['id'])) {
                     $result['exception'] = 'Cliente invalido';
-                } elseif (!$clientes->setContrasena($_POST['contrasena'])) {
-                    $result['exception'] = $clientes->getPasswordError();
-                }elseif ($clientes->cambiarContrasenaCl()) {
+                } elseif (!$valoracionescl->setContrasena($_POST['contrasena'])) {
+                    $result['exception'] = $valoracionescl->getPasswordError();
+                }elseif ($valoracionescl->cambiarContrasenaCl()) {
                     $result['status'] = 1;
                     $result['message'] = 'Contraseña de cliente actualizada';
                 } else {
@@ -192,7 +192,7 @@ if (isset($_GET['action'])) {
                 }
                 break;
             case 'nombreApellido':
-                if ($result['dataset'] = $clientes->nombreApellidoAdminL()) {
+                if ($result['dataset'] = $valoracionescl->nombreApellidoAdminL()) {
                     $result['status'] = 1;
                 } elseif (Database::getException()) {
                     $result['exception'] = Database::getException();
@@ -208,7 +208,7 @@ if (isset($_GET['action'])) {
         // Se compara la acción a realizar cuando el administrador no ha iniciado sesión.
         switch ($_GET['action']) {
             case 'readUsers':
-                if ($clientes->obtenerAdmins()){
+                if ($valoracionescl->obtenerAdmins()){
                     $result['status'] = 1;
                     $result['message'] = 'Existe al menos un administrador registrado';
                 } else {
@@ -216,16 +216,16 @@ if (isset($_GET['action'])) {
                 }
                 break;
             case 'register':
-                $_POST = $clientes->validateForm($_POST);
-                if (!$clientes->setNombre_admin($_POST['nombre'])) {
+                $_POST = $valoracionescl->validateForm($_POST);
+                if (!$valoracionescl->setNombre_admin($_POST['nombre'])) {
                     $result['exception'] = 'Nombres invalido';
-                } elseif (!$clientes->setApellido_admin($_POST['apellido'])) {
+                } elseif (!$valoracionescl->setApellido_admin($_POST['apellido'])) {
                     $result['exception'] = 'Apellidos invalido';
-                } elseif (!$clientes->setUsuario($_POST['usuario'])) {
+                } elseif (!$valoracionescl->setUsuario($_POST['usuario'])) {
                     $result['exception'] = 'Usuario invalido';
-                } elseif (!$clientes->setContrasena($_POST['contrasena'])) {
-                    $result['exception'] = $clientes->getPasswordError();
-                } elseif ($clientes->crearAdmin()) {
+                } elseif (!$valoracionescl->setContrasena($_POST['contrasena'])) {
+                    $result['exception'] = $valoracionescl->getPasswordError();
+                } elseif ($valoracionescl->crearAdmin()) {
                     $result['status'] = 1;
                     $result['message'] = 'Administrador registrado correctamente';
                 } else {
@@ -233,27 +233,27 @@ if (isset($_GET['action'])) {
                 }
                 break;
             case 'logIn':
-                $_POST = $clientes->validateForm($_POST);
-                if (!$clientes->checkAdmin($_POST['usuario'])) {
+                $_POST = $valoracionescl->validateForm($_POST);
+                if (!$valoracionescl->checkAdmin($_POST['usuario'])) {
                     $result['exception'] = 'Nombre de usuario incorrecto';
-                } elseif ($clientes->checkContrasenaADM($_POST['contrasena'])) {
+                } elseif ($valoracionescl->checkContrasenaADM($_POST['contrasena'])) {
                     $result['status'] = 1;
                     $result['message'] = 'Autenticación correcta';
-                    $_SESSION['id_usuario'] = $clientes->getId_admin();
-                    $_SESSION['usuario'] = $clientes->getUsuario();
+                    $_SESSION['id_usuario'] = $valoracionescl->getId_admin();
+                    $_SESSION['usuario'] = $valoracionescl->getUsuario();
                     $_SESSION['saludoI'] = false;
-                    $clientes->nombreApellidoAdminL();
+                    $valoracionescl->nombreApellidoAdminL();
                 }else {
                     $result['exception'] = 'Contraseña incorrecta';
                 }
                 break;
             case 'actualizarContraLog':
-                $_POST = $clientes->validateForm($_POST);
-                if (!$clientes->checkAdmin($_POST['usuario'])) {
+                $_POST = $valoracionescl->validateForm($_POST);
+                if (!$valoracionescl->checkAdmin($_POST['usuario'])) {
                     $result['exception'] = 'Usuario inexistente';
-                } elseif (!$clientes->setContrasena($_POST['contrasena'])) {
-                    $result['exception'] = $clientes->getPasswordError();
-                } elseif ($clientes->cambiarContrasenaCli()) {
+                } elseif (!$valoracionescl->setContrasena($_POST['contrasena'])) {
+                    $result['exception'] = $valoracionescl->getPasswordError();
+                } elseif ($valoracionescl->cambiarContrasenaCli()) {
                     $result['status'] = 1;
                     $result['message'] = 'Contraseña cambiada correctamente';
                 } else {
