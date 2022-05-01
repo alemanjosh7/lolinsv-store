@@ -83,6 +83,7 @@ CREATE table productos(
 	imagen_producto varchar(500)  NOT NULL,
 	precio_producto numeric(6,2) NOT NULL,
 	cantidad integer NOT NULL,
+	descripcion varchar(150) NOT NULL,
 	fk_id_categoria integer NOT NULL,
 	fk_id_valoraciones integer NOT NULL,
 	fk_id_admin integer NOT NULL,
@@ -767,3 +768,137 @@ select * from productos where id_producto
 not in(select id_producto from productos order by id_producto limit 0) order by id_producto limit 6
 
 select * from productos order by id_producto
+
+SELECT vcl.id_valoracionescli,vcl.comentario,vcl.fk_id_cliente,clt.nombre_cliente,clt.apellido_cliente,prd.nombre_producto,
+val.valoraciones 
+FROM valoraciones_clientes as vcl 
+INNER JOIN clientes AS clt ON  vcl.fk_id_cliente = clt.id_cliente
+INNER JOIN productos AS prd ON vcl.fk_id_productos = prd.id_producto
+INNER JOIN valoraciones	AS val ON vcl.fk_id_valoraciones = val.id_valoraciones 
+WHERE vcl.fk_id_productos = 1
+ORDER BY vcl.id_valoracionescli
+
+select * from clientes
+
+SELECT id_cliente, nombre_cliente, apellido_cliente, correo_cliente, dui_cliente, telefono_cliente, direccion_cliente, usuario
+FROM clientes WHERE id_cliente=1 ORDER BY id_cliente 
+
+select * from pedidos_establecidos
+delete from pedidos_establecidos where id_pedidos_establecidos=11;
+select * from detallepedidos_establecidos
+
+--Insertando datos en la columna de estados
+select * from estados;
+
+insert into estados(estado) values('Comprando'),('Activo'),('Bloqueado');
+
+--Alterando la tabla de clientes para añadir la columna de estados
+select * from clientes;
+
+alter table clientes add column fk_id_estado int;--Añadiendo el campo 
+alter table clientes alter column fk_id_estado set default 8;--Añadiendo el default a la tabla
+alter table clientes add constraint clientes_fk foreign key (fk_id_estado) references estados(id_estados) on update cascade on delete cascade;
+
+update clientes set fk_id_estado = 8--Actualizamos los registros que teniamos
+
+--Hacemos inserción sin especificar el estado para demostrar que siempre sera 8 = Activo, a menos que este se cambie
+INSERT INTO clientes (nombre_cliente, apellido_cliente, correo_cliente, dui_cliente, 
+telefono_cliente, direccion_cliente, usuario, contrasena)values
+('Carlos', 'Fuentes', 'CarlosFfu@gmaisssl.com', '09452334-3', '7327-8323', 'DOMICILIO 
+CONOCIDO', 'Fuentes682', '876120');
+
+select * from admins
+select * from clientes
+select * from estados
+update clientes set fk_id_estado=9 where id_cliente=10;
+select * from productos where id_producto
+not in(select id_producto from productos order by id_producto limit 4) order by id_producto limit 4;
+
+SELECT clt.id_cliente,clt.nombre_cliente,clt.apellido_cliente,clt.correo_cliente,clt.dui_cliente,clt.telefono_cliente,
+clt.direccion_cliente,clt.usuario,est.estado
+FROM clientes as clt 
+INNER JOIN estados AS est ON clt.fk_id_estado = est.id_estados
+WHERE id_cliente
+NOT IN(SELECT id_cliente FROM clientes ORDER BY id_cliente LIMIT 0) ORDER BY id_cliente limit 8
+
+SELECT id_cliente, nombre_cliente, apellido_cliente, correo_cliente, dui_cliente, telefono_cliente, direccion_cliente, usuario
+            FROM clientes 
+            WHERE id_cliente = 1
+            ORDER BY id_cliente
+
+select * from valoraciones_clientes order by id_valoracionescli
+
+SELECT vcl.id_valoracionescli, vcl.comentario, clt.usuario, prd.nombre_producto, vcl.fk_id_valoraciones 
+FROM valoraciones_clientes AS vcl
+INNER JOIN clientes AS clt ON vcl.fk_id_cliente = clt.id_cliente 
+INNER JOIN productos AS prd ON vcl.fk_id_productos = prd.id_producto 
+WHERE vcl.id_valoracionescli
+NOT IN (SELECT id_valoracionescli FROM valoraciones_clientes ORDER BY id_valoracionescli LIMIT 0) ORDER BY vcl.id_valoracionescli limit 8
+
+SELECT vcl.id_valoracionescli,vcl.comentario,vcl.fk_id_cliente,clt.nombre_cliente,clt.apellido_cliente,prd.nombre_producto,
+                val.valoraciones 
+                FROM valoraciones_clientes as vcl 
+                INNER JOIN clientes AS clt ON  vcl.fk_id_cliente = clt.id_cliente
+                INNER JOIN productos AS prd ON vcl.fk_id_productos = prd.id_producto
+                INNER JOIN valoraciones	AS val ON vcl.fk_id_valoraciones = val.id_valoraciones 
+                WHERE vcl.id_valoracionescli = 1
+                ORDER BY vcl.id_valoracionescli
+
+create table inventario(
+	id_inventario serial not null,
+	cantidada int not null,
+	cantidadn int not null,
+	modificado boolean not null,
+	fecha date default current_date,
+	fk_id_admin int not null,
+	fk_id_producto int not null,
+	constraint inventario_pk primary key (id_inventario),
+	constraint inventario_admins_fk foreign key (fk_id_admin) references admins(id_admin) on update cascade on delete cascade,
+	constraint inventario_productos_fk foreign key (fk_id_producto) references productos(id_producto) on update cascade on delete cascade
+);
+
+--Trigger para actualizar la cantidad del producto luego de insertar en la tabla de inventario
+CREATE FUNCTION actualizarcantidadprdi() RETURNS TRIGGER
+AS
+$$
+DECLARE 
+--Declaramos las variables
+idmax int:=(SELECT MAX(id_inventario) FROM inventario);
+idprd int:=(SELECT fk_id_producto FROM inventario 
+			   WHERE id_inventario=idmax);
+cantprd int:=(SELECT cantidadn FROM inventario 
+		  WHERE id_inventario = idmax);
+BEGIN
+--Indicamos el procedimiento a realizar
+UPDATE productos SET cantidad=cantidad+cantprd 
+WHERE id_producto=idprd;
+RETURN NEW;
+END
+$$
+LANGUAGE plpgsql;--Final del la función del trigger
+
+--Inicio del trigger
+CREATE TRIGGER tr_actualizarCPI AFTER INSERT ON inventario
+FOR EACH ROW
+EXECUTE PROCEDURE actualizarcantidadprdi();--Final del Trigger
+
+select * from productos
+select * from inventario
+insert into inventario(cantidada,cantidadn,modificado,fk_id_admin,fk_id_producto) 
+values(34,1,false,1,1);
+
+--Funciono el trigger
+
+SELECT inv.id_inventario, inv.cantidada, inv.cantidadn, inv.modificado, inv.fecha,  inv.fk_id_producto, adm.nombre_admin, adm.apellido_admin, prd.nombre_producto
+FROM inventario AS inv
+INNER JOIN admins AS adm ON inv.fk_id_admin = adm.id_admin
+INNER JOIN productos AS prd ON inv.fk_id_producto = prd.id_producto
+WHERE inv.id_inventario 
+NOT IN (SELECT id_inventario FROM inventario ORDER BY id_inventario LIMIT 0) ORDER BY inv.id_inventario desc LIMIT 5;
+
+select * from productos
+
+update productos set descripcion_producto = 'hello kitty' where id_producto = 1
+
+alter table productos add column descripcion_producto varchar(150);
+
