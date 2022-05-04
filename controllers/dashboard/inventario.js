@@ -33,8 +33,6 @@ document.addEventListener('DOMContentLoaded', function () {
     //Ejecutamos la función para predecir si habrá un boton de adelante
     predecirAdelante();
     readRowsLimit(API_INVENTARIO, 0);//Enviamos el metodo a buscar los datos y como limite 0 por ser el inicio
-    //Ocultamos el boton de atras para la páginación
-    BOTONATRAS.style.display = 'none';
 });
 
 //Declarando algunos componentes
@@ -59,6 +57,7 @@ const CANTIDADAH = document.getElementById("cantidada");
 const ACTPRELOADER = document.getElementById("actdatoscontra_preloader");
 const MENSAJE = document.getElementById("mensaje-restablecer");
 const ENCABEZADO = document.getElementById('encabezado-modal');
+const BUSCADOR = document.getElementById('icon_prefix');
 /*Funciónes del boton de ir hacia arriba*/
 window.onscroll = function () {
     if (document.documentElement.scrollTop > 100) {
@@ -374,4 +373,22 @@ function cargarImgAct(id) {
             NOMBREPROD.value = '';
         }
     });
+}
+
+BUSCADOR.addEventListener('keyup',function(e){
+    if(BUSCADOR.value == ''){
+        readRowsLimit(API_INVENTARIO, 0);//Enviamos el metodo a buscar los datos y como limite 0 por ser el inicio
+    }else{
+        console.log(BUSCADOR.value)
+        // Se llama a la función que realiza la búsqueda. Se encuentra en el archivo components.js
+    dynamicSearcher2(API_INVENTARIO, 'buscador-form');
+    }
+});
+
+function noDatos(){
+    let h = document.createElement("h3");
+    let text = document.createTextNode("0 resultados"); 
+    h.appendChild(text);
+    COMCONT.innerHTML = "";
+    COMCONT.append(h);
 }
