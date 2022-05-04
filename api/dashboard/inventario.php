@@ -86,7 +86,7 @@ if (isset($_GET['action'])) {
                 $_POST = $inventario->validateForm($_POST);
                 if ($_POST['search'] == '') {
                     $result['exception'] = 'Ingrese un valor para buscar';
-                } elseif ($result['dataset'] = $inventario->buscarValoracionG($_POST['search'])) {
+                } elseif ($result['dataset'] = $inventario->buscarInv($_POST['search'])) {
                     $result['status'] = 1;
                     $result['message'] = 'Valor encontrado';
                 } elseif (Database::getException()) {

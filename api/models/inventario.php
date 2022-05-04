@@ -183,5 +183,15 @@ class Inventario extends Validator
         $params = array($this->cantidada, $this->fk_id_producto);
         return Database::executeRow($sql, $params);
     }
+    //Metodo para buscar
+    public function buscarInv($value){
+        $sql = 'SELECT inv.id_inventario, inv.cantidada, inv.cantidadn, inv.modificado, inv.fecha,  inv.fk_id_producto, adm.nombre_admin, adm.apellido_admin, prd.nombre_producto
+                FROM inventario AS inv
+                INNER JOIN admins AS adm ON inv.fk_id_admin = adm.id_admin
+                INNER JOIN productos AS prd ON inv.fk_id_producto = prd.id_producto
+                WHERE cast(inv.cantidada as varchar) ILIKE ? OR cast(inv.cantidadn as varchar) ILIKE ? OR cast(inv.fecha as varchar) ILIKE ? OR adm.nombre_admin ILIKE ? OR adm.apellido_admin ILIKE ? OR prd.nombre_producto ILIKE ?
+                 ORDER BY inv.id_inventario DESC';
+        $params = array("%$value%","%$value%","%$value%","%$value%","%$value%","%$value%");
+        return Database::getRows($sql, $params);
+    }
 }
- 
