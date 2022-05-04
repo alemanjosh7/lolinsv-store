@@ -73,7 +73,7 @@ create table categorias(
 --Valoracion--
 create table valoraciones(
 	id_valoraciones serial NOT NULL,
-	valoraciones varchar(50) not null unique,
+	valoraciones integer not null unique,
 	CONSTRAINT valoraciones_pk PRIMARY KEY (id_valoraciones)
 );
 --Productos--
@@ -83,6 +83,7 @@ CREATE table productos(
 	imagen_producto varchar(500)  NOT NULL,
 	precio_producto numeric(6,2) NOT NULL,
 	cantidad integer NOT NULL,
+	descripcion VARCHAR(150) NOT NUll,
 	fk_id_categoria integer NOT NULL,
 	fk_id_valoraciones integer NOT NULL,
 	fk_id_admin integer NOT NULL,
@@ -155,7 +156,12 @@ values (1),
 (5);
 
 select * from valoraciones;--comprobación
---Tamaños--
+--Tamaños--Insert into valoraciones (valoraciones)
+values (1),
+(2),
+(3),
+(4),
+(5);
 truncate table tamanos RESTART IDENTITY cascade;--Reiniciando id en caso sea necesario--
 
 Insert into tamanos(tamano)
@@ -207,44 +213,62 @@ select * from clientes;--comprobación
 truncate table productos RESTART IDENTITY cascade;--Reiniciando id en caso sea necesario--
 
 insert into productos(nombre_producto, imagen_producto, precio_producto,--1-- 
-					 cantidad, fk_id_categoria, fk_id_valoraciones,fk_id_admin)
-					 VALUES ('Hello Kitty', 'imagen/hellokitty', 25.00, 35, 2, 5,1);
+					 cantidad, descripcion, fk_id_categoria, fk_id_valoraciones,fk_id_admin)
+					 VALUES ('Hello Kitty', 'hellokitty.png', 25.00, 35, 'Peluche hecho 100% de algodón', 2, 5,1);
+insert into productos
+	(nombre_producto, imagen_producto, precio_producto,--1-- 
+	cantidad, descripcion, fk_id_categoria, fk_id_valoraciones,fk_id_admin)
+VALUES
+	('Ratones', 'ratones.png', 'Peluche hecho 100% de algodón', 25.00, 35, 2, 5, 1);
 
-insert into productos(nombre_producto, imagen_producto, precio_producto,--2-- 
-					 cantidad, fk_id_categoria, fk_id_valoraciones,fk_id_admin)
-					 VALUES ('Ratones', 'imagen/ratones', 10.00, 25,  1, 3,1);
+insert into productos
+	(nombre_producto, imagen_producto, precio_producto,--1-- 
+	cantidad, descripcion, fk_id_categoria, fk_id_valoraciones,fk_id_admin)
+VALUES
+	('Cerdita', 'cerdita.png', 'Peluche hecho 100% de algodón', 25.00, 35, 2, 5, 1);
 
-insert into productos(nombre_producto, imagen_producto, precio_producto, --3--
-					 cantidad, fk_id_categoria, fk_id_valoraciones,fk_id_admin)
-					 VALUES ('Cerdita', 'imagen/cerdita', 15.00,  32, 1, 4,2);
+insert into productos
+	(nombre_producto, imagen_producto, precio_producto,--1-- 
+	cantidad, descripcion, fk_id_categoria, fk_id_valoraciones,fk_id_admin)
+VALUES
+	('Snoopy', 'snoopy.png', 'Peluche hecho 100% de algodón', 25.00, 35, 2, 5, 1);
 
-insert into productos(nombre_producto, imagen_producto, precio_producto, --4--
-					 cantidad, fk_id_categoria, fk_id_valoraciones,fk_id_admin)
-					 VALUES ('Snoopy', 'imagen/snoopy', 15.00, 15, 3, 5,2);
 
-insert into productos(nombre_producto, imagen_producto, precio_producto, --5--
-					 cantidad, fk_id_categoria, fk_id_valoraciones,fk_id_admin)
-					 VALUES ('Mario Bros', 'imagen/mariobros', 15.00, 0,  4, 4,3);
+insert into productos
+	(nombre_producto, imagen_producto, precio_producto,--1-- 
+	cantidad, descripcion, fk_id_categoria, fk_id_valoraciones,fk_id_admin)
+VALUES
+	('Mario Bros', 'mariobros.png', 'Peluche hecho 100% de algodón', 25.00, 35, 2, 5, 1);
 
-insert into productos(nombre_producto, imagen_producto, precio_producto, --6--
-					 cantidad, fk_id_categoria, fk_id_valoraciones,fk_id_admin)
-					 VALUES ('Cactus', 'imagen/cactus',6.00, 40, 5, 3,3);
+insert into productos
+	(nombre_producto, imagen_producto, precio_producto,--1-- 
+	cantidad, descripcion, fk_id_categoria, fk_id_valoraciones,fk_id_admin)
+VALUES
+	('Cactus', 'cactus.png', 'Peluche hecho 100% de algodón', 25.00, 35, 2, 5, 1);
 
-insert into productos(nombre_producto, imagen_producto, precio_producto, --7--
-					 cantidad, fk_id_categoria, fk_id_valoraciones,fk_id_admin)
-					 VALUES ('Patito', 'imagen/Patito', 15.00,  18, 1, 4,4);
+insert into productos
+	(nombre_producto, imagen_producto, precio_producto,--1-- 
+	cantidad, descripcion, fk_id_categoria, fk_id_valoraciones,fk_id_admin)
+VALUES
+	('Patito', 'patito.png', 'Peluche hecho 100% de algodón', 25.00, 35, 2, 5, 1);
 
-insert into productos(nombre_producto, imagen_producto, precio_producto, --8--
-					 cantidad, fk_id_categoria, fk_id_valoraciones,fk_id_admin)
-					 VALUES ('Mafalda', 'imagen/mafalda', 15.00,  0, 3, 5,4);
+insert into productos
+	(nombre_producto, imagen_producto, precio_producto,--1-- 
+	cantidad, descripcion, fk_id_categoria, fk_id_valoraciones,fk_id_admin)
+VALUES
+	('Mafalda', 'mafalda.png', 'Peluche hecho 100% de algodón', 25.00, 35, 2, 5, 1);
 
-insert into productos(nombre_producto, imagen_producto, precio_producto, --9--
-					 cantidad, fk_id_categoria, fk_id_valoraciones,fk_id_admin)
-					 VALUES ('Harry Potter', 'imagen/harrypotter', 15.00, 21, 2, 5,5);
+insert into productos
+	(nombre_producto, imagen_producto, precio_producto,--1-- 
+	cantidad, descripcion, fk_id_categoria, fk_id_valoraciones,fk_id_admin)
+VALUES
+	('Harry Potter', 'harrypotter.png', 'Peluche hecho 100% de algodón', 25.00, 35, 2, 5, 1);
 
-insert into productos(nombre_producto, imagen_producto, precio_producto, --10--
-					 cantidad, fk_id_categoria, fk_id_valoraciones,fk_id_admin)
-					 VALUES ('Jirafas con Rosa', 'imagen/jirafarosa', 35.00, 27, 1, 4,5);
+insert into productos
+	(nombre_producto, imagen_producto, precio_producto,--1-- 
+	cantidad, descripcion, fk_id_categoria, fk_id_valoraciones,fk_id_admin)
+VALUES
+	('Jirafas con Rosa', 'jirafarosa.png', 'Peluche hecho 100% de algodón', 25.00, 35, 2, 5, 1);
 
 select * from productos;--comprobación
 --Pedido establecido--
