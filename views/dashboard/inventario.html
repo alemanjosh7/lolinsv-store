@@ -85,11 +85,13 @@
                 <div class="divider" id="divider-1"></div>
             </div>
             <div class="row">
-                <div class="input-field col s12 m6 l4">
-                    <input id="icon_prefix" type="text" class="inputs-estilizados">
-                    <label for="icon_prefix">Buscar</label>
-                    <i class="material-icons prefix inputs-estilizados">search</i>
-                </div>
+                <form id="buscador-form">
+                    <div class="input-field col s12 m6 l4">
+                        <input id="icon_prefix" type="text" class="inputs-estilizados" name="search">
+                        <label for="icon_prefix">Buscar</label>
+                        <i class="material-icons prefix inputs-estilizados">search</i>
+                    </div>
+                </form>
                 <div class="col offset-m6 m6 s12 right-align menu-botones">
                     <a onclick="anadirinv()" class="btn-floating btn-medium waves-effect waves-light green"
                         id="add_icon"><i class="material-icons">add</i></a>
