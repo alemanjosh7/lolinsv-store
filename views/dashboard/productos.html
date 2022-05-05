@@ -90,6 +90,11 @@
             id="pagar_btn">Añadir</a>
         </div>
       </div>
+      <div class="row fila-inv">
+        <div class="col offset-m6 m6 s12 right-align">
+          <a href="inventario.html" class="waves-effect waves-light btn " id="pagar_btn">Inventario</a>
+        </div>
+      </div>
 
       <form class="col s12" id="col1">
         <div class="row" id="columna1">
@@ -193,39 +198,46 @@
         </div>
       </div>
     </div>
-
+    <!--Boton de hasta arriba-->
+    <div class="fixed-action-btn">
+      <a class="btn-floating btn-large red" id="hasta_arriba">
+        <i class="large material-icons">arrow_upward</i>
+      </a>
+      <ul>
+    </div>
+    <!--Contenedor del menu para la páginación-->
     <!--Contenedor del menu para la páginación-->
     <div class="container">
       <div class="row">
-        <div class="col s2 offset-s2 m2 offset-m2 l1 offset-l4 center" id="contenedor-botonnavg">
-          <div class="botonnavg-footer center" id="pagnavg-atr">
-            <a class="tooltipped" data-position="left" data-tooltip="Regresar página anterior"><i
-                class="material-icons medium">chevron_left</i></a>
+          <div class="col s2 offset-s2 m2 offset-m2 l1 offset-l4 center" id="contenedor-botonnavg">
+              <div class="botonnavg-footer center" id="pagnavg-atr">
+                  <a class="tooltipped" data-position="left" data-tooltip="Regresar página anterior"><i
+                          class="material-icons medium">chevron_left</i></a>
+              </div>
           </div>
-        </div>
-        <div class="col s2 m2 l1 center" id="contenedor-botonnavg">
-          <div class="botonnavg-footer center">
-            <a><span class="pagnavg" id="pagnumeroi">1</span></a>
+          <div class="col s2 m2 l1 center" id="contenedor-botonnavg">
+              <div class="botonnavg-footer center contnpag">
+                  <a><span class="pagnavg" id="pagnumeroi">1</span></a>
+              </div>
           </div>
-        </div>
-        <div class="col s2  m2 l1 center" id="contenedor-botonnavg">
-          <div class="botonnavg-footer center">
-            <a><span class="pagnavg" id="pagnumerof">2</span></a>
+          <div class="col s2  m2 l1 center" id="contenedor-botonnavg">
+              <div class="botonnavg-footer center contnpag">
+                  <a><span class="pagnavg" id="pagnumerof">2</span></a>
+              </div>
           </div>
-        </div>
-        <div class="col s2 m2 l1 center" id="contenedor-botonnavg">
-          <div class="botonnavg-footer center">
-            <a><span>...</span></a>
+          <div class="col s2 m2 l1 center" id="contenedor-botonnavg">
+              <div class="botonnavg-footer center tooltipped" data-position="top" data-tooltip="¡Más muy pronto!">
+                  <a><span>...</span></a>
+              </div>
           </div>
-        </div>
-        <div class="col s2 m2 l1 center" id="contenedor-botonnavg">
-          <div class="botonnavg-footer center" id="pagnavg-adl">
-            <a class="tooltipped" data-position="right" data-tooltip="Página siguiente"><i
-                class="material-icons medium">chevron_right</i></a>
+          <div class="col s2 m2 l1 center" id="contenedor-botonnavg">
+              <div class="botonnavg-footer center" id="pagnavg-adl">
+                  <a class="tooltipped" data-position="right" data-tooltip="Página siguiente"><i
+                          class="material-icons medium">chevron_right</i></a>
+              </div>
           </div>
-        </div>
       </div>
-    </div>
+  </div>
   </main>
 
 
