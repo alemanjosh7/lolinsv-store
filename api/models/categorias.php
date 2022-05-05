@@ -22,7 +22,7 @@ class Categorias extends Validator
         }
     }
 
-    public function setName($value)
+    public function setNombre($value)
     {
         if ($this->validateAlphanumeric($value, 1, 50)) {
             $this->nombre_categoria = $value;
@@ -50,8 +50,11 @@ class Categorias extends Validator
     */
     public function searchCategory($value)
     {
-        $sql = '';
-        $params = array("%$value%", "%$value%");
+        $sql = 'SELECT id_categoria, nombre_categoria
+                FROM categorias
+                WHERE nombre_categoria ILIKE ? 
+                ORDER BY id_categoria';
+        $params = array("%$value%");
         return Database::getRows($sql, $params);
     }
 
@@ -81,11 +84,21 @@ class Categorias extends Validator
         return Database::getRow($sql, $params);
     }
 
+    public function readAllCategorys()
+    {
+        $sql = 'SELECT id_categoria, nombre_categoria
+                FROM categorias
+                ORDER BY nombre_categoria';
+        $params = null;
+        return Database::getRows($sql, $params);
+    }
+
     public function updateCategory()
     {
         $sql = 'UPDATE categorias
-                SET nombre_categoria = ?';
-        $params = array($this->nombre_categoria);
+                SET nombre_categoria = ?
+                WHERE id_categoria = ?';
+        $params = array($this->nombre_categoria, $this->id_categoria);
         return Database::executeRow($sql, $params);
     }
 
@@ -93,7 +106,17 @@ class Categorias extends Validator
     {
         $sql = 'DELETE FROM categorias
                 WHERE id_categoria = ?';
-        $params = array($this->id);
+        $params = array($this->id_categoria);
         return Database::executeRow($sql, $params);
+    }
+
+    public function limit($limit)
+    {
+        $sql = 'SELECT id_categoria, nombre_categoria
+                FROM categorias
+                WHERE id_categoria
+                NOT IN (SELECT id_categoria FROM categorias ORDER BY id_categoria LIMIT ?) ORDER BY id_categoria LIMIT 12';
+        $params = array($limit);
+        return Database::getRows($sql, $params);
     }
 }

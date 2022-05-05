@@ -58,7 +58,7 @@ class Admins extends Validator
     public function setContrasena($value)
     {
         if ($this->validatePassword($value)) {
-            $this->clave = password_hash($value, PASSWORD_DEFAULT);
+            $this->contrasena = password_hash($value, PASSWORD_DEFAULT);
             return true;
         } else {
             return false;
@@ -102,8 +102,8 @@ class Admins extends Validator
         $sql = 'SELECT id_admin FROM admins WHERE usuario = ?';
         $params = array($alias);
         if ($data = Database::getRow($sql, $params)) {
-            $this->id = $data['id_admin'];
-            $this->alias = $alias;
+            $this->id_admin = $data['id_admin'];
+            $this->usuario = $alias;
             return true;
         } else {
             return false;
@@ -113,8 +113,8 @@ class Admins extends Validator
      //Comprobar la contraseña del admin
     public function checkContrasenaADM($contrasena)
     {
-        $sql = 'SELECT contrasena FROM admins WHERE id_usuario = ?';
-        $params = array($this->id);
+        $sql = 'SELECT contrasena FROM admins WHERE id_admin = ?';
+        $params = array($this->id_admin);
         $data = Database::getRow($sql, $params);
         // Se verifica si la contraseña coincide con el hash almacenado en la base de datos.
         if (password_verify($contrasena, $data['contrasena'])) {
@@ -127,7 +127,7 @@ class Admins extends Validator
     public function cambiarContrasenaADM()
     {
         $sql = 'UPDATE admins SET contrasena = ? WHERE id_admin = ?';
-        $params = array($this->contrasena, $this->id);
+        $params = array($this->contrasena, $this->id_admin);
         return Database::executeRow($sql, $params);
     }
     //obtener el perfil del admin
@@ -166,7 +166,7 @@ class Admins extends Validator
     //Crear Admin
     public function crearAdmin()
     {
-        $sql = 'INSERT INTO Admins(nombre_admin, apellido_admin, usuario, contrasena)
+        $sql = 'INSERT INTO admins(nombre_admin, apellido_admin, usuario, contrasena)
                 VALUES(?, ?, ?, ?)';
         $params = array($this->nombre_admin, $this->apellido_admin, $this->usuario, $this->contrasena);
         return Database::executeRow($sql, $params);
@@ -187,7 +187,7 @@ class Admins extends Validator
                 FROM admins 
                 WHERE id_admin = ?
                 ORDER BY id_admin';
-        $params = array($this->id);
+        $params = array($this->id_admin);
         return Database::getRow($sql, $params);
     }
     //Actualizar Admin
@@ -204,8 +204,20 @@ class Admins extends Validator
     {
         $sql = 'DELETE FROM admins
                 WHERE id_admin = ?';
-        $params = array($this->id);
+        $params = array($this->id_admin);
         return Database::executeRow($sql, $params);
+    }
+    //Colocamos las variables de sesión del nombre del usuario y su apellido
+    public function nombreApellidoAdminL(){
+        $sql = 'SELECT nombre_admin, apellido_admin FROM admins WHERE id_admin= ?';
+        $params = array($_SESSION['id_usuario']);
+        if ($data = Database::getRow($sql, $params)) {
+            $_SESSION['nombreUsuario']= $data['nombre_admin'];
+            $_SESSION['apellidoUsuario']= $data['apellido_admin'];
+            return true;
+        } else {
+            return false;
+        }
     }
 }
  
