@@ -5,6 +5,7 @@ var opcionesCarrito = {
 var navbarmobile = {
     edge: 'left'
 }
+
 document.addEventListener('DOMContentLoaded', function () {
     M.Sidenav.init(document.querySelectorAll('.sidenav'));
     M.Sidenav.init(document.querySelectorAll('#mobile-demo'), navbarmobile);
@@ -13,6 +14,9 @@ document.addEventListener('DOMContentLoaded', function () {
     M.Carousel.init(document.querySelectorAll('.carousel'));
     M.Tooltip.init(document.querySelectorAll('.tooltipped'));
     M.Modal.init(document.querySelectorAll('.modal'));
+
+    readAdmin(API_ADMINS);
+
 });
 
 document.addEventListener('DOMContentLoaded', function () {

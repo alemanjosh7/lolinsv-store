@@ -41,15 +41,15 @@ if (isset($_GET['action'])) {
                     $result['exception'] = 'Administrador inexistente';
                 }
                 break;
-            case 'editProfile':
+            case 'readProfile':
                 $_POST = $admins->validateForm($_POST);
-                if (!$admins->setNombres($_POST['nombres'])) {
+                if (!$admins->setNombre_admin($_POST['nombre'])) {
                     $result['exception'] = 'Nombres incorrectos';
-                } elseif (!$admins->setApellidos($_POST['apellidos'])) {
+                } elseif (!$admins->setApellido_admin($_POST['apellido'])) {
                     $result['exception'] = 'Apellidos incorrectos';
-                } elseif (!$admins->setCorreo($_POST['correo'])) {
+                } elseif (!$admins->setUsuario($_POST['usuario'])) {
                     $result['exception'] = 'Correo incorrecto';
-                } elseif ($admins->editProfile()) {
+                } elseif ($admins-> obtenerPerfil($_SESSION['id_usuario'])) {
                     $result['status'] = 1;
                     $result['message'] = 'Perfil modificado correctamente';
                 } else {

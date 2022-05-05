@@ -131,7 +131,7 @@ class Admins extends Validator
         return Database::executeRow($sql, $params);
     }
     //obtener el perfil del admin
-    public function obtenerPerfilADM($id)
+    public function obtenerPerfil($id)
     {
         $sql = 'SELECT id_admin, nombre_admin, apellido_admin, usuario
                 FROM admins

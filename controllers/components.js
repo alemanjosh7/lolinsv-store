@@ -5,7 +5,7 @@
 /*
 *   Constante para establecer la ruta del servidor.
 */
-const SERVER = 'http://localhost/lolinsv/api/';
+const SERVER = 'http://localhost/lolinsv-store/api/';
 
 
 /*
@@ -408,6 +408,39 @@ function readRowsLimit(api,limit) {
                     fillTable(response.dataset);
                 } else {
                     sweetAlert(4, response.exception, null);
+                }
+            });
+        } else {
+            console.log(request.status + ' ' + request.statusText);
+        }
+    });
+}
+
+function readAdmin(id, form) {
+    // Se abre la caja de diálogo (modal) que contiene el formulario.
+    // Se establece el campo de archivo como opcional.
+    // Se define un objeto con los datos del registro seleccionado.
+    const data = new FormData();
+    data.append('id', id);
+    // Petición para obtener los datos del registro solicitado.
+    fetch(API_ADMINS + 'readProfile', {
+        method: 'post',
+        body: data
+    }).then(function (request) {
+        // Se verifica si la petición es correcta, de lo contrario se muestra un mensaje en la consola indicando el problema.
+        if (request.ok) {
+            // Se obtiene la respuesta en formato JSON.
+            request.json().then(function (response) {
+                // Se comprueba si la respuesta es satisfactoria, de lo contrario se muestra un mensaje con la excepción.
+                if (response.status) {
+                    // Se inicializan los campos del formulario con los datos del registro seleccionado.
+                    document.getElementById('usuario').value = response.dataset.id_admin;
+                    document.getElementById('nombre').value = response.dataset.nombre_admin;
+                    document.getElementById('apellido').value = response.dataset.apellido_admin;
+                    // Se actualizan los campos para que las etiquetas (labels) no queden sobre los datos.
+                    M.updateTextFields();
+                } else {
+                    sweetAlert(2, response.exception, null);
                 }
             });
         } else {
