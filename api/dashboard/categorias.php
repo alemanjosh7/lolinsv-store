@@ -16,6 +16,15 @@ if (isset($_GET['action'])) {
         $result['session'] = 1;
         // Se compara la acción a realizar cuando un administrador ha iniciado sesión.
         switch ($_GET['action']) {
+                case 'readAll':
+                    if ($result['dataset'] = $categorias->readCategories()) {
+                        $result['status'] = 1;
+                    } elseif (Database::getException()) {
+                        $result['exception'] = Database::getException();
+                    } else {
+                        $result['exception'] = 'No hay datos registrados';
+                    }
+                break;
                 case 'readAllLimit':
                     if ($result['dataset'] = $categorias->limit($_POST['limit'])){
                         $result['status'] = 1;
@@ -44,7 +53,7 @@ if (isset($_GET['action'])) {
                             $result['exception'] = 'Nombres incorrectos';
                         } elseif ($categorias->createCategory()) {
                             $result['status'] = 1;
-                            $result['message'] = ' creado correctamente';
+                            $result['message'] = 'Categoría creada correctamente';
                         } else {
                             $result['exception'] = Database::getException();
                         }
@@ -59,7 +68,7 @@ if (isset($_GET['action'])) {
                                 $result['exception'] = 'Nombres invalido';
                             } elseif ($categorias->updateCategory()) {
                                 $result['status'] = 1;
-                                $result['message'] = 'Categoria modificado correctamente';
+                                $result['message'] = 'Categoría modificado correctamente';
                             } else {
                                 $result['exception'] = Database::getException();
                             }
@@ -82,6 +91,7 @@ if (isset($_GET['action'])) {
                                 $result['exception'] = 'Categoría inexistente';
                             } elseif ($categorias->deleteCategory()) {
                                 $result['status'] = 1;
+                                $result['message'] = 'Categoría eliminada correctamente';
                             } else {
                                 $result['exception'] = Database::getException();
                             }
