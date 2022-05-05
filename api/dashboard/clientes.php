@@ -86,7 +86,7 @@ if (isset($_GET['action'])) {
                 $_POST = $clientes->validateForm($_POST);
                 if ($_POST['search'] == '') {
                     $result['exception'] = 'Ingrese un valor para buscar';
-                } elseif ($result['dataset'] = $clientes->searchRows($_POST['search'])) {
+                } elseif ($result['dataset'] = $clientes->buscarClientes($_POST['search'])) {
                     $result['status'] = 1;
                     $result['message'] = 'Valor encontrado';
                 } elseif (Database::getException()) {
@@ -128,46 +128,67 @@ if (isset($_GET['action'])) {
                 break;
             case 'readOne':
                 if (!$clientes->setId($_POST['id'])) {
-                    $result['exception'] = 'Administrador incorrecto';
-                } elseif ($result['dataset'] = $clientes->readOne()) {
+                    $result['exception'] = 'Cliente incorrecto';
+                } elseif ($result['dataset'] = $clientes->obtenerCliente()) {
                     $result['status'] = 1;
                 } elseif (Database::getException()) {
                     $result['exception'] = Database::getException();
                 } else {
-                    $result['exception'] = 'admins inexistente';
+                    $result['exception'] = 'Cliente inexistente';
                 }
                 break;
             case 'update':
                 $_POST = $clientes->validateForm($_POST);
                 if (!$clientes->setId($_POST['id'])) {
-                    $result['exception'] = 'administrador incorrecto';
-                } elseif (!$clientes->readOne()) {
-                    $result['exception'] = 'administrador inexistente';
-                } elseif (!$clientes->setNombres($_POST['nombres'])) {
-                    $result['exception'] = 'Nombres incorrectos';
-                } elseif (!$clientes->setApellidos($_POST['apellidos'])) {
-                    $result['exception'] = 'Apellidos incorrectos';
+                    $result['exception'] = 'Cliente incorrecto';
+                } elseif (!$clientes->obtenerCliente()) {
+                    $result['exception'] = 'Cliente inexistente';
+                } elseif (!$clientes->setNombre($_POST['nombre'])) {
+                    $result['exception'] = 'Nombres invalido';
+                } elseif (!$clientes->setApellido($_POST['apellido'])) {
+                    $result['exception'] = 'Apellidos invalido';
                 } elseif (!$clientes->setCorreo($_POST['correo'])) {
-                    $result['exception'] = 'Correo incorrecto';
-                } elseif ($clientes->updateRow()) {
+                    $result['exception'] = 'Correo invalido';
+                } elseif (!$clientes->setDUI($_POST['dui'])) {
+                    $result['exception'] = 'DUI invalido';
+                } elseif (!$clientes->setTelefono($_POST['telefono'])) {
+                    $result['exception'] = 'Telefono invalido';
+                } elseif (!$clientes->setUsuario($_POST['usuario'])) {
+                    $result['exception'] = 'Usuario invalido';
+                } elseif (!$clientes->setDireccion($_POST['direccion'])) {
+                    $result['exception'] = 'Direccion invalida';
+                } elseif (!$clientes->setEstado(isset($_POST['estado']) ? 8 : 9)) {
+                    $result['exception'] = 'DUI invalido';
+                } elseif ($clientes->actualizarCliente()) {
                     $result['status'] = 1;
-                    $result['message'] = 'administrador modificado correctamente';
+                    $result['message'] = 'Cliente modificado correctamente';
                 } else {
                     $result['exception'] = Database::getException();
                 }
                 break;
             case 'delete':
-                if ($_POST['id'] == $_SESSION['id_admins']) {
-                    $result['exception'] = 'No se puede eliminar a sí mismo';
-                } elseif (!$clientes->setId($_POST['id'])) {
+                if (!$clientes->setId($_POST['id'])) {
                     $result['exception'] = 'administrador incorrecto';
-                } elseif (!$clientes->readOne()) {
-                    $result['exception'] = 'administrador inexistente';
-                } elseif ($clientes->deleteRow()) {
+                } elseif (!$clientes->obtenerCliente()) {
+                    $result['exception'] = 'Cliente inexistente';
+                } elseif ($clientes->eliminarCliente()) {
                     $result['status'] = 1;
                     $result['message'] = 'administrador eliminado correctamente';
                 } else {
                     $result['exception'] = Database::getException();
+                }
+                break;
+            case 'actualizarContraCli':
+                $_POST = $clientes->validateForm($_POST);
+                if (!$clientes->setId($_POST['id'])) {
+                    $result['exception'] = 'Cliente invalido';
+                } elseif (!$clientes->setContrasena($_POST['contrasena'])) {
+                    $result['exception'] = $clientes->getPasswordError();
+                }elseif ($clientes->cambiarContrasenaCl()) {
+                    $result['status'] = 1;
+                    $result['message'] = 'Contraseña de cliente actualizada';
+                } else {
+                    $result['exception'] = 'La contraseña no se pudo actualizar';
                 }
                 break;
             case 'nombreApellido':
@@ -179,6 +200,7 @@ if (isset($_GET['action'])) {
                     $result['exception'] = 'No se pudo obtener la información necesaria para el saludo';
                 }
                 break;
+            
             default:
                 $result['exception'] = 'Acción no disponible dentro de la sesión';
         }
@@ -231,7 +253,7 @@ if (isset($_GET['action'])) {
                     $result['exception'] = 'Usuario inexistente';
                 } elseif (!$clientes->setContrasena($_POST['contrasena'])) {
                     $result['exception'] = $clientes->getPasswordError();
-                } elseif ($clientes->cambiarContrasenaADM()) {
+                } elseif ($clientes->cambiarContrasenaCli()) {
                     $result['status'] = 1;
                     $result['message'] = 'Contraseña cambiada correctamente';
                 } else {

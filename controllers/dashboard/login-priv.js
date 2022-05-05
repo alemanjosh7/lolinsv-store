@@ -21,6 +21,7 @@ const CONTRAN = document.getElementById('contraseña_nueva');//input de la contr
 const CONTRAC = document.getElementById('contraseña_confirma');//input de la confirmación de la contraseña en restablecer contraseña
 const preloader = document.getElementById('actdatoscontra_preloader');//preloader de la actualización de contraseña
 const RESTABLECERCTR = document.getElementById('restablecerContraseña');//boton de restablecer contraseña
+const OJO2 = document.getElementById('ocultarmostrar_contraseñas');
 /*Copiar número de Whatsaap en el Footer*/
 function copiarWhat() {
     var content = document.getElementById('copywhat').innerHTML;
@@ -79,18 +80,17 @@ ojo.addEventListener('click', function () {
 });
 
 //Mostrar-Ocultar restablecer contraseñas
-var ojo2 = document.getElementById('ocultarmostrar_contraseñas');
-ojo2.addEventListener('click', function () {
+OJO2.addEventListener('click', function () {
     let CONTRAINPUT = document.getElementById('contraseña_nueva');
     let CONTRAC = document.getElementById('contraseña_confirma');
     if (CONTRAINPUT.type == "password") {
         CONTRAINPUT.type = "text";
         CONTRAC.type = "text";
-        ojo2.innerText = "visibility_off";
+        OJO2.innerText = "visibility_off";
     } else {
         CONTRAINPUT.type = "password";
         CONTRAC.type = "password"
-        ojo2.innerText = "visibility";
+        OJO2.innerText = "visibility";
     }
 });
 
@@ -217,3 +217,5 @@ CONTRAN.addEventListener('keyup', function () {
 CONTRAC.addEventListener('keyup', function () {
     contrasenasIguales();
 });
+
+//Función para buscar

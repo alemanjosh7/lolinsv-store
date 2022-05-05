@@ -8,9 +8,9 @@ class ValoracionesCliente extends Validator
     // Declaración de atributos (propiedades).
     private $id = null;//Id de la valoración
     private $comentario = null;//comentario 
-    private $id_cliente = null;//id del cliente llave foranea
-    private $id_producto = null;//id del proyecto llave foranea
-    private $id_valoracion = null;//id de valoracion llave foranea
+    private $fk_id_cliente = null;//id del cliente llave foranea
+    private $fk_id_producto = null;//id del proyecto llave foranea
+    private $fk_id_valoracion = null;//id de valoracion llave foranea
 
     /*
     *   Métodos para validar y asignar valores de los atributos.
@@ -28,7 +28,7 @@ class ValoracionesCliente extends Validator
     public function setComentario($value)
     {
         if ($this->validateString($value, 1, 500)) {
-            $this->id_valoracion = $value;
+            $this->comentario = $value;
             return true;
         } else {
             return false;
@@ -37,7 +37,7 @@ class ValoracionesCliente extends Validator
 
     public function setIdCliente($value){
         if ($this->validateNaturalNumber($value)) {
-            $this->id_cliente = $value;
+            $this->fk_id_cliente = $value;
             return true;
         } else {
             return false;
@@ -46,7 +46,7 @@ class ValoracionesCliente extends Validator
 
     public function setIdProducto($value){
         if ($this->validateNaturalNumber($value)) {
-            $this->id_producto = $value;
+            $this->fk_id_producto = $value;
             return true;
         } else {
             return false;
@@ -55,7 +55,7 @@ class ValoracionesCliente extends Validator
 
     public function setIdValoracion($value){
         if ($this->validateNaturalNumber($value)) {
-            $this->id_valoracion = $value;
+            $this->fk_id_valoracion = $value;
             return true;
         } else {
             return false;
@@ -77,17 +77,17 @@ class ValoracionesCliente extends Validator
 
     public function getIdCliente()
     {
-        return $this->id_cliente;
+        return $this->fk_id_cliente;
     }
 
     public function getIdProducto()
     {
-        return $this->id_producto;
+        return $this->fk_id_producto;
     }
 
     public function getIdValoracion()
     {
-        return $this->id_valoracion;
+        return $this->fk_id_valoracion;
     }
 
     /*
@@ -132,7 +132,7 @@ class ValoracionesCliente extends Validator
                 INNER JOIN valoraciones	AS val ON vcl.fk_id_valoraciones = val.id_valoraciones 
                 WHERE vcl.id_valoracionescli = ?
                 ORDER BY vcl.id_valoracionescli';
-        $params = $value;
+        $params = array($value);
         return Database::getRow($sql, $params);
     }
     //Buscar valoración de x producto de x cliente
@@ -147,21 +147,45 @@ class ValoracionesCliente extends Validator
                 INNER JOIN valoraciones	AS val ON vcl.fk_id_valoraciones = val.id_valoraciones 
                 WHERE vcl.fk_id_productos = ? and WHERE vcl.fk_cliente = ?
                 ORDER BY vcl.id_valoracionescli';
-        $params = array($prod%, $cli);
+        $params = array("$prod%", "$cli");
         return Database::getRows($sql, $params);
     }
     //Crear una valoracion del cliente
-    public crearValoracionCli($com,$cli,$prd,$val){
+    public function crearValoracionCli($com,$cli,$prd,$val){
         $sql = 'INSERT INTO valoraciones_clientes(comentario, fk_id_cliente, fk_id_productos, fk_id_valoraciones)
         VALUES(?, ?, ?, ?)';
         $params = array($com, $cli, $prd, $val);
         return Database::executeRow($sql, $params);
     }
     //Eliminar valoracion del cliente
-    public eliminarValoracionCli(){
+    public function eliminarValoracionCli(){
         $sql = 'DELETE FROM valoraciones_clientes
                 WHERE id_valoracionescli = ?';
         $params = array($this->id);
         return Database::executeRow($sql, $params);
+    }
+    //Obtener las valoraciones con limite
+    public function obtenerValoracionesCL($limit){
+        $sql = 'SELECT vcl.id_valoracionescli, vcl.comentario, clt.usuario, prd.nombre_producto, vcl.fk_id_valoraciones 
+        FROM valoraciones_clientes AS vcl
+        INNER JOIN clientes AS clt ON vcl.fk_id_cliente = clt.id_cliente 
+        INNER JOIN productos AS prd ON vcl.fk_id_productos = prd.id_producto 
+        WHERE vcl.id_valoracionescli
+        NOT IN (SELECT id_valoracionescli FROM valoraciones_clientes ORDER BY id_valoracionescli LIMIT ?) ORDER BY vcl.id_valoracionescli limit 5';
+        $params = array($limit);
+        return Database::getRows($sql, $params);
+    }
+
+    //Buscar valoración generalizada
+    public function buscarValoracionG($value)
+    {
+        $sql = 'SELECT vcl.id_valoracionescli, vcl.comentario, clt.usuario, prd.nombre_producto, vcl.fk_id_valoraciones 
+        FROM valoraciones_clientes AS vcl
+        INNER JOIN clientes AS clt ON vcl.fk_id_cliente = clt.id_cliente 
+        INNER JOIN productos AS prd ON vcl.fk_id_productos = prd.id_producto 
+        WHERE vcl.comentario ILIKE ? OR clt.usuario ILIKE ? OR prd.nombre_producto ILIKE ? 
+        ORDER BY vcl.id_valoracionescli';
+        $params = array("%$value%", "%$value%", "%$value%");
+        return Database::getRows($sql, $params);
     }
 }
