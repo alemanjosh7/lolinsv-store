@@ -239,6 +239,18 @@ class Productos extends Validator
         return Database::getRows($sql, $params);
     }
 
+    public function readAllProductsL($limit)
+    {
+        $sql = 'SELECT p.id_producto, p.nombre_producto, p.nombre_producto, p.precio_producto, p.cantidad, cate.nombre_categoria, val.valoraciones, p.imagen_producto
+                FROM productos AS p 
+                INNER JOIN categorias AS cate ON cate.id_categoria = p.fk_id_categoria
+                INNER JOIN valoraciones AS val ON val.id_valoraciones = p.fk_id_valoraciones
+                WHERE p.id_producto NOT IN (select id_producto from productos order by id_producto limit ?) order by p.cantidad DESC limit 12
+                ';
+        $params = array($limit);
+        return Database::getRows($sql, $params);
+    }
+
     public function readOneProduct()
     {
         $sql = 'SELECT id_producto, nombre_producto, descripcion, precio_producto, 

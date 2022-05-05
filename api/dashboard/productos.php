@@ -24,6 +24,15 @@ if (isset($_GET['action'])) {
                     $result['exception'] = 'No hay datos registrados';
                 }
                 break;
+            case 'readAllLimit':
+                if ($result['dataset'] = $producto->readAllProductsL($_POST['limit'])) {
+                    $result['status'] = 1;
+                } elseif (Database::getException()) {
+                    $result['exception'] = Database::getException();
+                } else {
+                    $result['exception'] = 'No hay datos registrados';
+                }
+                break;
             case 'search':
                 $_POST = $producto->validateForm($_POST);
                 if ($_POST['search'] == '') {

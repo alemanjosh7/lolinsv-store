@@ -18,7 +18,7 @@ class Database
         $server = 'localhost';
         $database = 'dbLolin';
         $username = 'postgres';
-        $password = 'itr2022';
+        $password = '1303';
 
         // Se crea la conexión mediante la extensión PDO y el controlador para PostgreSQL.
         self::$connection = new PDO('pgsql:host=' . $server . ';dbname=' . $database . ';port=5432', $username, $password);
