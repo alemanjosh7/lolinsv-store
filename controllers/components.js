@@ -5,7 +5,8 @@
 /*
 *   Constante para establecer la ruta del servidor.
 */
-const SERVER = 'http://localhost/lolinsv-store/api/';
+const SERVER = 'http://localhost/lolinsv/api/';
+
 
 /*
 *   Función para obtener todos los registros disponibles en los mantenimientos de tablas (operación read).
@@ -45,14 +46,7 @@ function readRows(api) {
 *
 *   Retorno: ninguno.
 */
-
-const noDatos1 = () => {
-    var h = document.createElement("h5");
-    h.innerHTML = '0 resultados';
-    document.getElementById('columna1').innerHTML = h.outerHTML;
-}
-
-function dynamicSearcher(api, form) {
+function searchRows(api, form) {
     fetch(api + 'search', {
         method: 'post',
         body: new FormData(document.getElementById(form))
@@ -65,81 +59,9 @@ function dynamicSearcher(api, form) {
                 if (response.status) {
                     // Se envían los datos a la función del controlador para que llene la tabla en la vista y se muestra un mensaje de éxito.
                     fillTable(response.dataset);
-
-                } else {
-                    // sweetAlert(1, response.message, null);
-                    noDatos1();
-                    // sweetAlert(2, response.exception, null);
-                }
-            });
-        } else {
-            console.log(request.status + ' ' + request.statusText);
-        }
-    });
-}
-
-function saveNumberOfValuations(api, data) {
-    fetch(api + 'obtainingValuations', {
-        method: 'post',
-        body: data
-    }).then(function (request) {
-        // Se verifica si la petición es correcta, de lo contrario se muestra un mensaje en la consola indicando el problema.
-        if (request.ok) {
-            // Se obtiene la respuesta en formato JSON.
-            request.json().then(function (response) {
-                // Se comprueba si la respuesta es satisfactoria, de lo contrario se muestra un mensaje con la excepción.
-                if (response.status) {
                     sweetAlert(1, response.message, null);
                 } else {
                     sweetAlert(2, response.exception, null);
-                }
-            });
-        } else {
-            console.log(request.status + ' ' + request.statusText);
-        }
-    });
-}
-
-function saveValuationsSummed(api, data) {
-    fetch(api + 'obtainingSum', {
-        method: 'post',
-        body: data
-    }).then(function (request) {
-        // Se verifica si la petición es correcta, de lo contrario se muestra un mensaje en la consola indicando el problema.
-        if (request.ok) {
-            // Se obtiene la respuesta en formato JSON.
-            request.json().then(function (response) {
-                // Se comprueba si la respuesta es satisfactoria, de lo contrario se muestra un mensaje con la excepción.
-                if (response.status) {
-                    sweetAlert(1, response.message, null);
-                } else {
-                    sweetAlert(2, response.exception, null);
-                }
-            });
-        } else {
-            console.log(request.status + ' ' + request.statusText);
-        }
-    });
-}
-
-function dynamicSearcher(api, form) {
-    fetch(api + 'search', {
-        method: 'post',
-        body: new FormData(document.getElementById(form))
-    }).then(function (request) {
-        // Se verifica si la petición es correcta, de lo contrario se muestra un mensaje en la consola indicando el problema.
-        if (request.ok) {
-            // Se obtiene la respuesta en formato JSON.
-            request.json().then(function (response) {
-                // Se comprueba si la respuesta es satisfactoria, de lo contrario se muestra un mensaje con la excepción.
-                if (response.status) {
-                    // Se envían los datos a la función del controlador para que llene la tabla en la vista y se muestra un mensaje de éxito.
-                    fillTable(response.dataset);
-
-                } else {
-                    // sweetAlert(1, response.message, null);
-                    noDatos1();
-                    // sweetAlert(2, response.exception, null);
                 }
             });
         } else {
@@ -205,7 +127,7 @@ function confirmDelete(api, data) {
         if (value.isConfirmed) {
             fetch(api + 'delete', {
                 method: 'post',
-                body: data,
+                body: data
             }).then(function (request) {
                 // Se verifica si la petición es correcta, de lo contrario se muestra un mensaje en la consola indicando el problema.
                 if (request.ok) {
@@ -228,13 +150,6 @@ function confirmDelete(api, data) {
     });
 }
 
-/*
-*   Función para eliminar un registro seleccionado en los mantenimientos de tablas (operación delete). Requiere el archivo sweetalert.min.js para funcionar.
-*
-*   Parámetros: api (ruta del servidor para enviar los datos) y data (objeto con los datos del registro a eliminar).
-*
-*   Retorno: ninguno.
-*/
 /*
 *   Función para manejar los mensajes de notificación al usuario. Requiere el archivo sweetalert.min.js para funcionar.
 *
@@ -475,9 +390,9 @@ function logOut() {
 *   El limite es necesario para poder usar la páginación
 *   Retorno: ninguno.
 */
-function readRowsLimit(api, limit) {
+function readRowsLimit(api,limit) {
     let form = new FormData();
-    form.append('limit', limit);
+    form.append('limit',limit);
     fetch(api + 'readAllLimit', {
         method: 'post',
         body: form
@@ -509,9 +424,9 @@ function readRowsLimit(api, limit) {
 *   El limite es necesario para poder usar la páginación
 *   Retorno: ninguno.
 */
-function predictLImit(api, limit) {
+function predictLImit(api,limit) {
     let form = new FormData();
-    form.append('limit', limit);
+    form.append('limit',limit);
     fetch(api + 'readAllLimit', {
         method: 'post',
         body: form
@@ -542,7 +457,7 @@ function predictLImit(api, limit) {
 *
 *   Retorno: ninguno.
 */
-function confirmDeleteL(api, data, limit) {
+function confirmDeleteL(api, data,limit) {
     Swal.fire({
         title: 'Advertencia',
         text: '¿Desea eliminar el registro?',
@@ -568,7 +483,7 @@ function confirmDeleteL(api, data, limit) {
                         // Se comprueba si la respuesta es satisfactoria, de lo contrario se muestra un mensaje con la excepción.
                         if (response.status) {
                             // Se cargan nuevamente las filas en la tabla de la vista después de borrar un registro y se muestra un mensaje de éxito.
-                            readRowsLimit(api, limit);
+                            readRowsLimit(api,limit);
                             sweetAlert(1, response.message, null);
                         } else {
                             sweetAlert(2, response.exception, null);
@@ -589,7 +504,7 @@ function confirmDeleteL(api, data, limit) {
 *
 *   Retorno: ninguno.
 */
-function saveRowL(api, action, form, modal, limit) {
+function saveRowL(api, action, form, modal,limit) {
     fetch(api + action, {
         method: 'post',
         body: new FormData(document.getElementById(form))
@@ -603,7 +518,7 @@ function saveRowL(api, action, form, modal, limit) {
                     // Se cierra la caja de dialogo (modal) del formulario.
                     M.Modal.getInstance(document.getElementById(modal)).close();
                     // Se cargan nuevamente las filas en la tabla de la vista después de guardar un registro y se muestra un mensaje de éxito.
-                    readRowsLimit(api, limit);
+                    readRowsLimit(api,limit);
                     sweetAlert(1, response.message, null);
                 } else {
                     sweetAlert(2, response.exception, null);
@@ -636,7 +551,91 @@ function dynamicSearcher2(api, form) {
                     // Se envían los datos a la función del controlador para que llene la tabla en la vista y se muestra un mensaje de éxito.
                     fillTable(response.dataset);
                 } else {
+                    noDatos();
+                }
+            });
+        } else {
+            console.log(request.status + ' ' + request.statusText);
+        }
+    });
+}
+
+/*
+*   Función para obtener los resultados de una búsqueda en los mantenimientos de tablas (operación search).
+*
+*   Parámetros: api (ruta del servidor para obtener los datos) y form (identificador del formulario de búsqueda).
+*
+*   Retorno: ninguno.
+*/
+
+const noDatos1 = () => {
+    var h = document.createElement("h5");
+    h.innerHTML = '0 resultados';
+    document.getElementById('columna1').innerHTML = h.outerHTML;
+}
+
+function dynamicSearcher(api, form) {
+    fetch(api + 'search', {
+        method: 'post',
+        body: new FormData(document.getElementById(form))
+    }).then(function (request) {
+        // Se verifica si la petición es correcta, de lo contrario se muestra un mensaje en la consola indicando el problema.
+        if (request.ok) {
+            // Se obtiene la respuesta en formato JSON.
+            request.json().then(function (response) {
+                // Se comprueba si la respuesta es satisfactoria, de lo contrario se muestra un mensaje con la excepción.
+                if (response.status) {
+                    // Se envían los datos a la función del controlador para que llene la tabla en la vista y se muestra un mensaje de éxito.
+                    fillTable(response.dataset);
+
+                } else {
+                    // sweetAlert(1, response.message, null);
                     noDatos1();
+                    // sweetAlert(2, response.exception, null);
+                }
+            });
+        } else {
+            console.log(request.status + ' ' + request.statusText);
+        }
+    });
+}
+
+function saveNumberOfValuations(api, data) {
+    fetch(api + 'obtainingValuations', {
+        method: 'post',
+        body: data
+    }).then(function (request) {
+        // Se verifica si la petición es correcta, de lo contrario se muestra un mensaje en la consola indicando el problema.
+        if (request.ok) {
+            // Se obtiene la respuesta en formato JSON.
+            request.json().then(function (response) {
+                // Se comprueba si la respuesta es satisfactoria, de lo contrario se muestra un mensaje con la excepción.
+                if (response.status) {
+                    sweetAlert(1, response.message, null);
+                } else {
+                    sweetAlert(2, response.exception, null);
+                }
+            });
+        } else {
+            console.log(request.status + ' ' + request.statusText);
+        }
+    });
+}
+
+function saveValuationsSummed(api, data) {
+    fetch(api + 'obtainingSum', {
+        method: 'post',
+        body: data
+    }).then(function (request) {
+        // Se verifica si la petición es correcta, de lo contrario se muestra un mensaje en la consola indicando el problema.
+        if (request.ok) {
+            // Se obtiene la respuesta en formato JSON.
+            request.json().then(function (response) {
+                // Se comprueba si la respuesta es satisfactoria, de lo contrario se muestra un mensaje con la excepción.
+                if (response.status) {
+                    sweetAlert(1, response.message, null);
+                } else {
+                    sweetAlert(2, response.exception, null);
                 }
             });
         } else {

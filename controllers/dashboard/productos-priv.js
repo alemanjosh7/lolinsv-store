@@ -1,17 +1,19 @@
 // Constantes para establecer las rutas y parámetros de comunicación con la API.
 const API_PRODUCTOS = SERVER + 'dashboard/productos.php?action=';
 const ENDPOINT_CATEGORIAS = SERVER + 'dashboard/categorias.php?action=readAll';
+const API_ADMINS = SERVER + 'dashboard/admins.php?action=';
 
 //Inicializando componentes de Materialize
 document.addEventListener('DOMContentLoaded', function () {
+    comprobarAdmins()
     M.Sidenav.init(document.querySelectorAll('.sidenav'));
     M.Slider.init(document.querySelectorAll('.slider'));
     M.Carousel.init(document.querySelectorAll('.carousel'));
     M.Tooltip.init(document.querySelectorAll('.tooltipped'));
     M.FormSelect.init(document.querySelectorAll('select'));
-    botonAdelante.style.display = 'block';
     // Se inicializa el componente Select del formulario para que muestre las opciones.
-    readRows(API_PRODUCTOS);
+    readRowsLimit(API_PRODUCTOS,0);
+    BOTONATRAS.style.display = 'none';
     // Se define una variable para establecer las opciones del componente Modal.
     let options = {
         dismissible: false,
@@ -26,6 +28,52 @@ document.addEventListener('DOMContentLoaded', function () {
     }
     // Se inicializa el componente Modal para que funcionen las cajas de diálogo.
     M.Modal.init(document.querySelectorAll('.modal'), options);
+    predecirAdelante();
+});
+//Declaramos algunos componentes
+const HASTATOP = document.getElementById('hasta_arriba');//Boton de hasta arriba
+const BOTONATRAS = document.getElementById("pagnavg-atr");//Boton de navegacion de atras
+const BOTONNUMEROPAGI = document.getElementById("pagnumeroi");//Boton de navegacion paginai
+const BOTONNUMEROPAGF = document.getElementById("pagnumerof");//Boton de navegacion paginaf
+const BOTONADELANTE = document.getElementById("pagnavg-adl");//Boton de navegacion de adelante
+
+//Función para confirmar si hay admins
+// Petición para consultar si existen usuarios registrados.
+function comprobarAdmins() {
+    fetch(API_ADMINS + 'readUsers', {
+        method: 'get'
+    }).then(function (request) {
+        // Se verifica si la petición es correcta, de lo contrario se muestra un mensaje en la consola indicando el problema.
+        if (request.ok) {
+            request.json().then(function (response) {
+                // Se comprueba si existe una sesión, de lo contrario se revisa si la respuesta es satisfactoria.
+                if (response.session) {
+                } else if (response.status) {
+                    location.href = 'index.html';
+                } else {
+                    location.href = 'primeruso.html';
+                }
+            });
+        } else {
+            console.log(request.status + ' ' + request.statusText);
+        }
+    });
+}
+
+/*Funciónes del boton de ir hacia arriba*/
+window.onscroll = function () {
+    if (document.documentElement.scrollTop > 100) {
+        HASTATOP.style.display = "block";
+    } else {
+        HASTATOP.style.display = "none";
+    }
+};
+
+HASTATOP.addEventListener('click', function () {
+    window.scrollTo({
+        top: 0,
+        behavior: "smooth"
+    })
 });
 
 // Función para llenar la tabla con los datos de los registros. Se manda a llamar en la función readRows().
@@ -100,62 +148,6 @@ function copiarWhat() {
     navigator.clipboard.writeText(content)
 }
 
-
-document.querySelectorAll(".pagnavg").forEach(el => {
-    el.addEventListener("click", e => {
-        //Se obtiene el numero dentro del span
-        let number = Number(el.textContent);
-        //Se hace la operación para calcular cuanto será el top de elementos a no mostrarse en la consulta
-        let topAct = (number * 4) - 4;
-        console.log("Se ha clickeado el id " + number + " " + topAct);
-        //Se ejecuta la recarga de datos enviando la variable de topAct
-    });
-});
-
-//Evento cuando se precione el boton de ir atras y adelante en la páginación
-var botonAtras = document.getElementById("pagnavg-atr");
-var botonNumeroPagI = document.getElementById("pagnumeroi");
-var botonNumeroPagF = document.getElementById("pagnumerof");
-var botonAdelante = document.getElementById("pagnavg-adl");
-
-//Boton de atras
-botonAtras.addEventListener('click', function () {
-    let paginaActual = Number(botonNumeroPagI.textContent);
-    if (paginaActual != 1) {
-        botonNumeroPagI.innerHTML = Number(botonNumeroPagI.innerHTML) - 2;
-        botonNumeroPagF.innerHTML = Number(botonNumeroPagI.innerHTML) + 1;
-        if ((Number(botonNumeroPagI.innerHTML) - 1) == 0) {
-            botonAtras.style.display = 'none';
-        }
-    } else {
-    }
-});
-
-//Boton de adelante
-botonAdelante.addEventListener('click', function () {
-    botonAtras.style.display = 'block';
-    let paginaFinal = (Number(botonNumeroPagF.innerHTML)) + 1;
-    console.log("pagina maxima " + paginaFinal);
-    /*Aqui se debe obtener si hay más datos o no, pueden usar una función que puede devolver un valor booleano
-    deben realizar una operación sumando a la pagina final mostrada la cantidad de elementos que muestran y enviarlos para comprobar
-    si hay datos entonces la variable será true, si no hay más datos entonces no se mostrará nada
-    */
-    let topAct = (paginaFinal * 4) - 4;
-    console.log("el top a no mostrar sería " + paginaFinal)
-    masDatos = true;
-
-    if (botonAdelante.style.display != 'none') {
-        console.log('no se esta mostrando')
-    }
-
-    /*if(botonAdelante.style.display != 'block'){
-        botonNumeroPagI.innerHTML=Number(botonNumeroPagI.innerHTML)+2;
-        botonNumeroPagF.innerHTML=Number(botonNumeroPagI.innerHTML)+1;
-    }else{
-
-    }*/
-});
-
 /*Ejemplo de la consulta para la navegación
 select * from productos where id_producto
 not in(select id_producto from productos order by id_producto limit 4) order by id_producto limit 4;
@@ -167,7 +159,7 @@ function openDelete(id) {
     const data = new FormData();
     data.append('id', id);
     // Se llama a la función que elimina un registro. Se encuentra en el archivo components.js
-    confirmDelete(API_PRODUCTOS, data);
+    confirmDeleteL(API_PRODUCTOS, data,0);
 }
 
 function openCreate() {
@@ -242,6 +234,78 @@ document.getElementById('save-form').addEventListener('submit', function (event)
     let action = '';
     // Se comprueba si el campo oculto del formulario esta seteado para actualizar, de lo contrario será para crear.
     (document.getElementById('id').value) ? action = 'update' : action = 'create';
+    console.log(action);
     // Se llama a la función para guardar el registro. Se encuentra en el archivo components.js
-    saveRow(API_PRODUCTOS, action, 'save-form', 'modal-Editar');
+    saveRowL(API_PRODUCTOS, action, 'save-form', 'modal-Editar',0);
+});
+
+//Función para saber si hay otra página
+function predecirAdelante() {
+    //Colocamos el boton con un display block para futuras operaciones
+    BOTONADELANTE.style.display = 'block';
+    //Obtenemos el número de página que seguiría al actual
+    let paginaFinal = (Number(BOTONNUMEROPAGF.innerHTML)) + 2;
+    console.log("pagina maxima " + paginaFinal);
+    //Calculamos el limite que tendria el filtro de la consulta dependiendo de la cantidad de Clientes a mostrar
+    let limit = (paginaFinal * 12) - 12;
+    console.log("El limite sería: " + limit);
+    //Ejecutamos el metodo de la API para saber si hay productos y esta ejecutará una función que oculte o muestre el boton de adelante
+    predictLImit(API_PRODUCTOS, limit);
+}
+
+function ocultarMostrarAdl(result) {
+    if (result != true) {
+        console.log('Se oculta el boton');
+        BOTONADELANTE.style.display = 'none';
+    } else {
+        //Colocamos el boton con un display block para futuras operaciones
+        console.log('Se muestra el boton');
+        BOTONADELANTE.style.display = 'block';
+    }
+}
+
+//Boton de atras
+BOTONATRAS.addEventListener('click', function () {
+    //Volvemos a mostrár el boton de página adelante
+    BOTONADELANTE.style.display = 'block';
+    //Obtenemos el número de la página inicial
+    let paginaActual = Number(BOTONNUMEROPAGI.textContent);
+    //Comprobamos que el número de página no sea igual a 1
+    if (paginaActual != 1) {
+        //Restamos la cantidad de páginas que queramos que se retroceda en este caso decidi 2 para el botoni y 1 para el botonf
+        BOTONNUMEROPAGI.innerHTML = Number(BOTONNUMEROPAGI.innerHTML) - 2;
+        BOTONNUMEROPAGF.innerHTML = Number(BOTONNUMEROPAGI.innerHTML) + 1;
+        //Verificamos si el número del boton ahora es 1, en caso lo sea se ocultará el boton
+        if ((Number(BOTONNUMEROPAGI.innerHTML) - 1) == 0) {
+            BOTONATRAS.style.display = 'none';
+        }
+    }
+});
+
+//Boton de adelante
+BOTONADELANTE.addEventListener('click', function () {
+    //Volvemos a mostrár el boton de página anterior
+    BOTONATRAS.style.display = 'block';
+    //Ejecutamos la función para predecir si hay más páginas
+    predecirAdelante();
+    //Luego verificamos si el boton de adelante aun continua mostrandose
+    if (BOTONADELANTE.style.display = 'block') {
+        //Sumamos la cantidad de página que queramos que avance, en este caso decidi 2 para el botoni y 3 para el botonf
+        BOTONNUMEROPAGI.innerHTML = Number(BOTONNUMEROPAGI.innerHTML) + 2;
+        BOTONNUMEROPAGF.innerHTML = Number(BOTONNUMEROPAGI.innerHTML) + 1;
+    }
+});
+
+//Función que realizará los botones con numero de la páginacion
+document.querySelectorAll(".contnpag").forEach(el => {
+    el.addEventListener("click", e => {
+        //Se obtiene el numero dentro del span
+        let number = Number(el.lastElementChild.textContent);
+        console.log('numero seleccionado ' + number);
+        //Se hace la operación para calcular cuanto será el top de elementos a no mostrarse en la consulta en este caso seran 8
+        let limit = (number * 12) - 12;
+        //Se ejecuta la recarga de datos enviando la variable de topAct
+        //Ejecutamos la función para predecir si habrá un boton de adelante
+        readRowsLimit(API_PRODUCTOS, limit);//Enviamos el metodo a buscar los datos y como limite 0 por ser el inicio
+    });
 });
