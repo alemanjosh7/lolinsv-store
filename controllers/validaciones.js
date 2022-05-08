@@ -40,7 +40,7 @@ function soloNumeros(e,caso){
             patron = /[0-9,-]/;
             tecla_final = String.fromCharCode(tecla);
             return patron.test(tecla_final);
-            break;
+        break;
     }
 }
 //Validación que ponga un guión en el número de telefono
@@ -95,3 +95,15 @@ function sinEspaciosAD(cadena){
     console.log(cadena.trim());
     return cadena.trim();
 };
+//Validación que ponga el guión en el DUI
+function guionDUI(e,componente){
+    tecla = (document.all) ? e.keyCode : e.which;
+    let numero = componente.value;
+    let numeroi = numero;
+    let ncaracteres = 0;
+    ncaracteres = numero.length;
+    if(ncaracteres==8 && tecla!=8){
+        componente.value='';
+        componente.value = numeroi+'-';
+    }
+}

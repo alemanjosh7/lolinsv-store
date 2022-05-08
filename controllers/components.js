@@ -7,6 +7,7 @@
 */
 const SERVER = 'http://localhost/lolinsv/api/';
 
+
 /*
 *   Función para obtener todos los registros disponibles en los mantenimientos de tablas (operación read).
 *
@@ -378,6 +379,183 @@ function logOut() {
             });
         } else {
             sweetAlert(4, 'Puede continuar con la sesión', null);
+        }
+    });
+}
+
+/*
+*   Función para obtener todos los registros con limites en los mantenimientos de tablas (operación read).
+*
+*   Parámetros: api (ruta del servidor para obtener los datos) y limit (limite que no estará dentro de la consulta).
+*   El limite es necesario para poder usar la páginación
+*   Retorno: ninguno.
+*/
+function readRowsLimit(api,limit) {
+    let form = new FormData();
+    form.append('limit',limit);
+    fetch(api + 'readAllLimit', {
+        method: 'post',
+        body: form
+    }).then(function (request) {
+        // Se verifica si la petición es correcta, de lo contrario se muestra un mensaje en la consola indicando el problema.
+        if (request.ok) {
+            // Se obtiene la respuesta en formato JSON.
+            request.json().then(function (response) {
+                let data = [];
+                // Se comprueba si la respuesta es satisfactoria para obtener los datos, de lo contrario se muestra un mensaje con la excepción.
+                if (response.status) {
+                    //Se ejecuta el metodo de llenado
+                    fillTable(response.dataset);
+                } else {
+                    sweetAlert(4, response.exception, null);
+                }
+            });
+        } else {
+            console.log(request.status + ' ' + request.statusText);
+        }
+    });
+}
+
+/*
+*   Función para obtener todos los registros con limites en los mantenimientos de tablas (operación read) y lográr predecir si
+*    habra otra página para la páginación.
+*
+*   Parámetros: api (ruta del servidor para obtener los datos) y limit (limite que no estará dentro de la consulta).
+*   El limite es necesario para poder usar la páginación
+*   Retorno: ninguno.
+*/
+function predictLImit(api,limit) {
+    let form = new FormData();
+    form.append('limit',limit);
+    fetch(api + 'readAllLimit', {
+        method: 'post',
+        body: form
+    }).then(function (request) {
+        // Se verifica si la petición es correcta, de lo contrario se muestra un mensaje en la consola indicando el problema.
+        if (request.ok) {
+            // Se obtiene la respuesta en formato JSON.
+            request.json().then(function (response) {
+                // Se comprueba si la respuesta es satisfactoria para obtener los datos, de lo contrario se muestra un mensaje con la excepción.
+                if (response.status) {
+                    console.log('hay más datos');
+                    ocultarMostrarAdl(true);
+                } else {
+                    console.log('No hay más datos')
+                    ocultarMostrarAdl(false);
+                }
+            });
+        } else {
+            console.log(request.status + ' ' + request.statusText);
+        }
+    });
+}
+
+/*
+*   Función para eliminar un registro seleccionado en los mantenimientos de tablas (operación delete). Requiere el archivo sweetalert.min.js para funcionar.
+*
+*   Parámetros: api (ruta del servidor para enviar los datos) y data (objeto con los datos del registro a eliminar) y Limit(Limite para la recarga de la API).
+*
+*   Retorno: ninguno.
+*/
+function confirmDeleteL(api, data,limit) {
+    Swal.fire({
+        title: 'Advertencia',
+        text: '¿Desea eliminar el registro?',
+        icon: 'warning',
+        showDenyButton: true,
+        confirmButtonText: 'Si',
+        denyButtonText: 'Cancelar',
+        allowEscapeKey: false,
+        allowOutsideClick: false,
+        background: '#F7F0E9',
+        confirmButtonColor: 'green',
+    }).then(function (value) {
+        // Se comprueba si fue cliqueado el botón Sí para hacer la petición de borrado, de lo contrario no se hace nada.
+        if (value.isConfirmed) {
+            fetch(api + 'delete', {
+                method: 'post',
+                body: data
+            }).then(function (request) {
+                // Se verifica si la petición es correcta, de lo contrario se muestra un mensaje en la consola indicando el problema.
+                if (request.ok) {
+                    // Se obtiene la respuesta en formato JSON.
+                    request.json().then(function (response) {
+                        // Se comprueba si la respuesta es satisfactoria, de lo contrario se muestra un mensaje con la excepción.
+                        if (response.status) {
+                            // Se cargan nuevamente las filas en la tabla de la vista después de borrar un registro y se muestra un mensaje de éxito.
+                            readRowsLimit(api,limit);
+                            sweetAlert(1, response.message, null);
+                        } else {
+                            sweetAlert(2, response.exception, null);
+                        }
+                    });
+                } else {
+                    console.log(request.status + ' ' + request.statusText);
+                }
+            });
+        }
+    });
+}
+
+/*
+*   Función para crear o actualizar un registro en los mantenimientos de tablas (operación create y update) pero con limit.
+*
+*   Parámetros: api (ruta del servidor para enviar los datos), form (identificador del formulario) y modal (identificador de la caja de dialogo).
+*
+*   Retorno: ninguno.
+*/
+function saveRowL(api, action, form, modal,limit) {
+    fetch(api + action, {
+        method: 'post',
+        body: new FormData(document.getElementById(form))
+    }).then(function (request) {
+        // Se verifica si la petición es correcta, de lo contrario se muestra un mensaje en la consola indicando el problema.
+        if (request.ok) {
+            // Se obtiene la respuesta en formato JSON.
+            request.json().then(function (response) {
+                // Se comprueba si la respuesta es satisfactoria, de lo contrario se muestra un mensaje con la excepción.
+                if (response.status) {
+                    // Se cierra la caja de dialogo (modal) del formulario.
+                    M.Modal.getInstance(document.getElementById(modal)).close();
+                    // Se cargan nuevamente las filas en la tabla de la vista después de guardar un registro y se muestra un mensaje de éxito.
+                    readRowsLimit(api,limit);
+                    sweetAlert(1, response.message, null);
+                } else {
+                    sweetAlert(2, response.exception, null);
+                }
+            });
+        } else {
+            console.log(request.status + ' ' + request.statusText);
+        }
+    });
+}
+
+/*
+*   Función para obtener los resultados de una búsqueda en los mantenimientos de tablas (operación search).
+*
+*   Parámetros: api (ruta del servidor para obtener los datos) y form (identificador del formulario de búsqueda).
+*
+*   Retorno: ninguno.
+*/
+function dynamicSearcher2(api, form) {
+    fetch(api + 'search', {
+        method: 'post',
+        body: new FormData(document.getElementById(form))
+    }).then(function (request) {
+        // Se verifica si la petición es correcta, de lo contrario se muestra un mensaje en la consola indicando el problema.
+        if (request.ok) {
+            // Se obtiene la respuesta en formato JSON.
+            request.json().then(function (response) {
+                // Se comprueba si la respuesta es satisfactoria, de lo contrario se muestra un mensaje con la excepción.
+                if (response.status) {
+                    // Se envían los datos a la función del controlador para que llene la tabla en la vista y se muestra un mensaje de éxito.
+                    fillTable(response.dataset);
+                } else {
+                    noDatos();
+                }
+            });
+        } else {
+            console.log(request.status + ' ' + request.statusText);
         }
     });
 }

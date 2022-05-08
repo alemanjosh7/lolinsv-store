@@ -3,7 +3,7 @@
 *	Clase para manejar la tabla Valoraciones de la base de datos.
 *   Es clase hija de Validator.
 */
-class Pedidos_personalizados extends Validator
+class Pedidos_establecidos extends Validator
 {
     // Declaración de atributos (propiedades).
     private $id = null;//Id del tamaño
@@ -109,75 +109,86 @@ class Pedidos_personalizados extends Validator
     /*
     *   Métodos para realizar las operaciones SCRUD (search, create, read, update, delete).
     */
-    //Buscar pedido por x cliente
-    public function buscarPedidoEstC($value)
+    //Buscar Pedido
+    public function searchPedido($value)
     {
-        $sql = 'SELECT pp.id_pedidos_establecidos,pp.fecha_pedidopersonal,pp.fk_id_cliente,clt.nombre_cliente,clt.apellido_cliente,
-                pp.fk_id_estado,std.estado
-                FROM pedidos_personalizados as pp 
-                INNER JOIN clientes AS clt ON  vcl.fk_id_cliente = clt.id_cliente
-                INNER JOIN estado	AS std ON vcl.fk_id_estado = std.id_estados
-                WHERE pp.fk_id_cliente = ?
-                ORDER BY pp.id_pedidos_establecidos';
-        $params = $value;
+        $sql = 'SELECT pes.id_pedidos_establecidos, pes.fecha_pedidoesta, pes.descripcionlugar_entrega, pes.montototal_pedidoesta, clt.nombre_cliente, clt.apellido_cliente
+        FROM pedidos_establecidos as pes
+        INNER JOIN clientes AS clt ON pes.fk_id_cliente = clt.id_cliente
+        WHERE clt.nombre_cliente ILIKE ? OR clt.apellido_cliente ILIKE ? OR cast(pes.id_pedidos_establecidos as varchar)ILIKE ? OR cast(pes.montototal_pedidoesta as varchar) ILIKE ? OR cast(pes.fecha_pedidoesta as varchar) ILIKE ? and pes.fk_id_estado=1
+        ORDER BY pes.id_pedidos_establecidos DESC';
+        $params = array("%$value%", "%$value%", "%$value%", "%$value%", "%$value%");
         return Database::getRows($sql, $params);
     }
 
-    //Buscar pedido 
-    public function buscarPedidoPer($value)
+    public function searchPedidoEnt($value)
     {
-        $sql = 'SELECT pp.id_pedidos_establecidos,pp.fecha_pedidopersonal,pp.fk_id_cliente,clt.nombre_cliente,clt.apellido_cliente,
-                pp.fk_id_estado,std.estado
-                FROM pedidos_personalizados as pp 
-                INNER JOIN clientes AS clt ON  vcl.fk_id_cliente = clt.id_cliente
-                INNER JOIN estado	AS std ON vcl.fk_id_estado = std.id_estados
-                WHERE pp.id_pedidos_establecidos = ?
-                ORDER BY pp.id_pedidos_establecidos';
-        $params = $value;
+        $sql = 'SELECT pes.id_pedidos_establecidos, pes.fecha_pedidoesta, pes.descripcionlugar_entrega, pes.montototal_pedidoesta, clt.nombre_cliente, clt.apellido_cliente
+        FROM pedidos_establecidos as pes
+        INNER JOIN clientes AS clt ON pes.fk_id_cliente = clt.id_cliente
+        WHERE clt.nombre_cliente ILIKE ? OR clt.apellido_cliente ILIKE ? OR cast(pes.id_pedidos_establecidos as varchar)ILIKE ? OR cast(pes.montototal_pedidoesta as varchar) ILIKE ? OR cast(pes.fecha_pedidoesta as varchar) ILIKE ? and pes.fk_id_estado=?
+        ORDER BY pes.id_pedidos_establecidos DESC';
+        $params = array("%$value%", "%$value%", "%$value%", "%$value%", "%$value%",2);
         return Database::getRows($sql, $params);
     }
 
-    //mostrar todas las columnas de pedidos
-
-    public function obtenerPedidoE()
+    //Mostrar los pedidos
+    public function readPedido()
     {
-        $sql = 'SELECT id_pedidos_establecidos, fecha_pedidopersonal, descripcionlugar_entrega, montototal_pedidoesta,
-                fk_id_cliente, fk_id_estado
-                FROM pedidos_establecidos';
-        $params = null;
-        return Database::getRows($sql, $params);
+        $sql = 'SELECT pes.id_pedidos_establecidos, pes.fecha_pedidoesta, pes.descripcionlugar_entrega, pes.montototal_pedidoesta, clt.nombre_cliente, clt.apellido_cliente
+        FROM pedidos_establecidos as pes
+        INNER JOIN clientes AS clt ON pes.fk_id_cliente = clt.id_cliente
+        WHERE pes.id_pedidos_establecidos = ?';
+        $params = array($this->id);
+        return Database::getRow($sql, $params);
     }
 
-    //obtener columna de tamaño por id
-
-    public function obtenerPedidoP()
+    //Cambiar estado a enviado
+    public function cambiarEstado()
     {
-        $sql = 'SELECT id_pedidos_establecidos, fecha_pedidopersonal, descripcionlugar_entrega, montototal_pedidoesta,
-                fk_id_cliente, fk_id_estado
-                FROM pedidos_establecidos
-                WHERE id_pedidos_establecidos = ?';
+        $sql='update pedidos_establecidos set fk_id_estado=2 where id_pedidos_establecidos=?';
+        $params = array($this->id);
+        return Database::executeRow($sql, $params);
+    }
+
+    //Obteniendo detalle del pedido
+    public function ObtenerDetalle()
+    {
+        $sql ='SELECT det.id_detalle_pedidos,det.cantidad_detallep, det.subtotal_detallep, prd.nombre_producto, prd.precio_producto
+        FROM detallepedidos_establecidos AS det
+        INNER JOIN productos AS prd ON det.fk_id_producto = prd.id_producto
+        WHERE det.fk_id_pedidos_establecidos = ?';
         $params = array($this->id);
         return Database::getRows($sql, $params);
     }
 
-    //Crear columna de pedido
-
-    public function crearPedidoP()
-    {
-        $sql = 'INSERT INTO pedidos_establecidos(fecha_pedidopersonal, descripcionlugar_entrega, montototal_pedidoesta,
-        fk_id_cliente, fk_id_estado)
-                VALUES(?, ?, ?, ?, ?)';
-        $params = array($this->fecha_pedidopersonal, $this->descripcionlugar_entrega, $this->montototal_pedidoesta, 
-        $this->id_cliente, $this->id_estado);
-        return Database::executeRow($sql, $params);
-    }
-
-    //Eliminar valoracion del pedido
-
-    public eliminarPedidoP(){
+    //Eliminar Pedido
+    public function deletePedido(){
         $sql = 'DELETE FROM pedidos_establecidos
                 WHERE id_pedidos_establecidos = ?';
         $params = array($this->id);
         return Database::executeRow($sql, $params);
+    }
+
+    public function limitPendiente($limit)
+    {
+        $sql = 'SELECT pes.id_pedidos_establecidos, pes.fecha_pedidoesta, pes.descripcionlugar_entrega, pes.montototal_pedidoesta, clt.nombre_cliente, clt.apellido_cliente
+        FROM pedidos_establecidos as pes
+        INNER JOIN clientes AS clt ON pes.fk_id_cliente = clt.id_cliente
+        WHERE pes.id_pedidos_establecidos NOT IN(SELECT id_pedidos_establecidos FROM pedidos_establecidos LIMIT ?) AND pes.fk_id_estado = 1
+        ORDER BY pes.id_pedidos_establecidos DESC LIMIT 8;';
+        $params = array($limit);
+        return Database::getRows($sql, $params);
+    }
+
+    public function limitEntregado($limit)
+    {
+        $sql = 'SELECT pes.id_pedidos_establecidos, pes.fecha_pedidoesta, pes.descripcionlugar_entrega, pes.montototal_pedidoesta, clt.nombre_cliente, clt.apellido_cliente
+        FROM pedidos_establecidos as pes
+        INNER JOIN clientes AS clt ON pes.fk_id_cliente = clt.id_cliente
+        WHERE pes.id_pedidos_establecidos NOT IN(SELECT id_pedidos_establecidos FROM pedidos_establecidos LIMIT ?) AND pes.fk_id_estado = 2
+        ORDER BY pes.id_pedidos_establecidos DESC LIMIT 8;';
+        $params = array($limit);
+        return Database::getRows($sql, $params);
     }
 }
