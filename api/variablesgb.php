@@ -59,6 +59,14 @@ if (isset($_GET['action'])) {
                 $result['apellido'] = $_SESSION['apellidoUsuario']; 
             }
             break;
+        case 'verificarCLLog':
+            if(isset($_SESSION['id_cliente'])){
+                $result['status'] = 1;
+                $result['usuario'] = $_SESSION['usuario'];
+            }else{
+                $result['exception'] = 'El cliente no ha iniciado session';
+            }
+            break;
         default:
             $result['exception'] = 'Acción no disponible dentro de la sesión';
     }

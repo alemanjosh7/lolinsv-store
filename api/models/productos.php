@@ -213,7 +213,7 @@ class Productos extends Validator
                 FROM productos AS p 
                 INNER JOIN categorias AS cate ON cate.id_categoria = p.fk_id_categoria
                 INNER JOIN valoraciones AS val ON val.id_valoraciones = p.fk_id_valoraciones
-                WHERE nombre_producto ILIKE ?';
+                WHERE nombre_producto ILIKE ? AND p.cantidad >=0';
         $params = array("%$nombre%");
         return Database::getRows($sql, $params);
     }
@@ -233,6 +233,7 @@ class Productos extends Validator
                 FROM productos AS p 
                 INNER JOIN categorias AS cate ON cate.id_categoria = p.fk_id_categoria
                 INNER JOIN valoraciones AS val ON val.id_valoraciones = p.fk_id_valoraciones
+                WHERE p.cantidad >=0
                 ORDER BY nombre_producto	
                 ';
         $params = null;
@@ -245,7 +246,7 @@ class Productos extends Validator
                 FROM productos AS p 
                 INNER JOIN categorias AS cate ON cate.id_categoria = p.fk_id_categoria
                 INNER JOIN valoraciones AS val ON val.id_valoraciones = p.fk_id_valoraciones
-                WHERE p.id_producto NOT IN (select id_producto from productos order by id_producto limit ?) order by p.cantidad DESC limit 12
+                WHERE p.id_producto NOT IN (select id_producto from productos order by id_producto limit ?) AND p.cantidad >=0 order by p.cantidad DESC limit 12
                 ';
         $params = array($limit);
         return Database::getRows($sql, $params);
@@ -317,6 +318,13 @@ class Productos extends Validator
 
         $sql = 'update productos set fk_id_valoraciones = ? where p.id_producto = ?';
         $params = array(intval(round(($this->valoraciones_sumados) / ($this->valoraciones_acumulados))), $this->id_producto);
+        return Database::executeRow($sql, $params);
+    }
+
+    //Actualizar la cantidad del producto para eliminarla
+    public function deleteUpdatePrd(){
+        $sql = 'UPDATE productos set cantidad = -1 WHERE id_producto = ?';
+        $params = array($this->id_producto);
         return Database::executeRow($sql, $params);
     }
 }

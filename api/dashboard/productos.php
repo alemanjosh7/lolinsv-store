@@ -163,7 +163,7 @@ if (isset($_GET['action'])) {
                     $result['exception'] = Database::getException();
                 }
                 break;
-            case 'delete':
+            /*case 'delete': Metodo original de eliminar
                 if (!$producto->setId($_POST['id'])) {
                     $result['exception'] = 'Producto incorrecto';
                 } elseif (!$data = $producto->readOneProduct()) {
@@ -176,6 +176,18 @@ if (isset($_GET['action'])) {
                     } else {
                         $result['message'] = 'Producto eliminado pero no se borró la imagen';
                     }
+                } else {
+                    $result['exception'] = Database::getException();
+                }
+                break;*/
+            case 'delete':
+                if (!$producto->setId($_POST['id'])) {
+                    $result['exception'] = 'Producto incorrecto';
+                } elseif (!$data = $producto->readOneProduct()) {
+                    $result['exception'] = 'Producto inexistente';
+                } elseif ($producto->deleteProduct()) {
+                    $result['status'] = 1;
+                    $result['message'] = 'Producto eliminado correctamente';
                 } else {
                     $result['exception'] = Database::getException();
                 }
