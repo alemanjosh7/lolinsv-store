@@ -6,7 +6,7 @@
 *   Constante para establecer la ruta del servidor.
 */
 const SERVER = 'http://localhost/lolinsv-store/api/';
-
+const API = SERVER + 'dashboard/admins.php?action=';
 
 /*
 *   Función para obtener todos los registros disponibles en los mantenimientos de tablas (operación read).
@@ -390,9 +390,9 @@ function logOut() {
 *   El limite es necesario para poder usar la páginación
 *   Retorno: ninguno.
 */
-function readRowsLimit(api,limit) {
+function readRowsLimit(api, limit) {
     let form = new FormData();
-    form.append('limit',limit);
+    form.append('limit', limit);
     fetch(api + 'readAllLimit', {
         method: 'post',
         body: form
@@ -457,9 +457,9 @@ function readAdmin(id, form) {
 *   El limite es necesario para poder usar la páginación
 *   Retorno: ninguno.
 */
-function predictLImit(api,limit) {
+function predictLImit(api, limit) {
     let form = new FormData();
-    form.append('limit',limit);
+    form.append('limit', limit);
     fetch(api + 'readAllLimit', {
         method: 'post',
         body: form
@@ -490,7 +490,7 @@ function predictLImit(api,limit) {
 *
 *   Retorno: ninguno.
 */
-function confirmDeleteL(api, data,limit) {
+function confirmDeleteL(api, data, limit) {
     Swal.fire({
         title: 'Advertencia',
         text: '¿Desea eliminar el registro?',
@@ -516,7 +516,7 @@ function confirmDeleteL(api, data,limit) {
                         // Se comprueba si la respuesta es satisfactoria, de lo contrario se muestra un mensaje con la excepción.
                         if (response.status) {
                             // Se cargan nuevamente las filas en la tabla de la vista después de borrar un registro y se muestra un mensaje de éxito.
-                            readRowsLimit(api,limit);
+                            readRowsLimit(api, limit);
                             sweetAlert(1, response.message, null);
                         } else {
                             sweetAlert(2, response.exception, null);
@@ -537,7 +537,7 @@ function confirmDeleteL(api, data,limit) {
 *
 *   Retorno: ninguno.
 */
-function saveRowL(api, action, form, modal,limit) {
+function saveRowL(api, action, form, modal, limit) {
     fetch(api + action, {
         method: 'post',
         body: new FormData(document.getElementById(form))
@@ -551,7 +551,7 @@ function saveRowL(api, action, form, modal,limit) {
                     // Se cierra la caja de dialogo (modal) del formulario.
                     M.Modal.getInstance(document.getElementById(modal)).close();
                     // Se cargan nuevamente las filas en la tabla de la vista después de guardar un registro y se muestra un mensaje de éxito.
-                    readRowsLimit(api,limit);
+                    readRowsLimit(api, limit);
                     sweetAlert(1, response.message, null);
                 } else {
                     sweetAlert(2, response.exception, null);
@@ -673,6 +673,45 @@ function saveValuationsSummed(api, data) {
             });
         } else {
             console.log(request.status + ' ' + request.statusText);
+        }
+    });
+}
+
+function logOut() {
+    Swal.fire({
+        title: 'Advertencia',
+        text: '¿Está seguro de cerrar la sesión?',
+        icon: 'warning',
+        showDenyButton: true,
+        confirmButtonText: 'Si',
+        denyButtonText: 'Cancelar',
+        allowEscapeKey: false,
+        allowOutsideClick: false,
+        background: '#F7F0E9',
+        confirmButtonColor: 'green',
+    }).then(function (value) {
+        // Se verifica si fue cliqueado el botón Sí para hacer la petición de cerrar sesión, de lo contrario se muestra un mensaje.
+        if (value) {
+            fetch(API + 'logOut', {
+                method: 'get'
+            }).then(function (request) {
+                // Se verifica si la petición es correcta, de lo contrario se muestra un mensaje en la consola indicando el problema.
+                if (request.ok) {
+                    // Se obtiene la respuesta en formato JSON.
+                    request.json().then(function (response) {
+                        // Se comprueba si la respuesta es satisfactoria, de lo contrario se muestra un mensaje con la excepción.
+                        if (response.status) {
+                            sweetAlert(1, response.message, 'index.html');
+                        } else {
+                            sweetAlert(2, response.exception, null);
+                        }
+                    });
+                } else {
+                    console.log(request.status + ' ' + request.statusText);
+                }
+            });
+        } else {
+            sweetAlert(4, 'Puede continuar con la sesión', null);
         }
     });
 }

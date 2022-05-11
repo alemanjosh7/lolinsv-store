@@ -2025,26 +2025,25 @@ border-bottom: 2px solid black;*/
 }
 
 /*Tablets*/
-@media screen and (min-width: 600px) and (max-width: 992px) {
-  
-}
+@media screen and (min-width: 600px) and (max-width: 992px) {}
+
 /*Login*/
 /*Estilo de los inputs al darles focus*/
-.login .inputs-estilizados:focus{
+.login .inputs-estilizados:focus {
   border-bottom: 2px solid #DF5333 !important;
   box-shadow: 0 1px 0 0 #DF5333 !important;
 }
 
 .login .inputs-estilizados:focus+i {
-  color: #fa7479 !important;  
+  color: #fa7479 !important;
 }
 
 .login label {
-  color: black !important;  
+  color: black !important;
 }
 
 .login .inputs-estilizados:focus+label {
-  color: black !important;  
+  color: black !important;
 }
 
 /* icon prefix focus color */
@@ -2054,18 +2053,18 @@ border-bottom: 2px solid black;*/
 
 /*Inicio*/
 /*Banner del saludo*/
-#indexP #banner-saludo{
-  font-family: 'Pt Serif',serif;
+#indexP #banner-saludo {
+  font-family: 'Pt Serif', serif;
   background-color: #DF5333;
   margin-top: 50px;
   border-radius: 3px;
-  box-shadow: -10px -5px  black;
+  box-shadow: -10px -5px black;
   margin-bottom: 0px;
 }
 
 /*Clientes*/
 /*Preloader*/
-.clientes-J #preloader-cl{
+.clientes-J #preloader-cl {
   display: none;
   position: absolute;
   z-index: 3;
@@ -2075,39 +2074,43 @@ border-bottom: 2px solid black;*/
 
 /*Ajustes responsive*/
 @media (max-width:600px) {
+
   /*Preloader*/
-  .clientes-J #preloader-cl{
+  .clientes-J #preloader-cl {
     position: absolute;
     z-index: 3;
     left: 40%;
     top: 50%;
   }
+
   /*Logo*/
-  #logo-navbarJ{
+  #logo-navbarJ {
     left: 43%;
   }
 }
 
 /*Tablets*/
 @media screen and (min-width: 600px) and (max-width: 992px) {
-  .clientes-J #preloader-cl{
+  .clientes-J #preloader-cl {
     position: absolute;
     z-index: 3;
     left: 45%;
     top: 60%;
   }
+
   /*Logo*/
-  #logo-navbarJ{
+  #logo-navbarJ {
     left: 45%;
   }
 }
 
 /*Boton de hasta arriba*/
-#hasta_arriba{
+#hasta_arriba {
   display: none;
 }
+
 /*Modal de actualizar Cliente*/
-.clientes-J #modalact{
+.clientes-J #modalact {
   margin-top: 4%;
   border-radius: 10px;
   background: linear-gradient(121.84deg, #FF8686 30.85%, #D5CA68 101.86%);
@@ -2147,7 +2150,7 @@ border-bottom: 2px solid black;*/
   display: none;
 }
 
-.clientes-J #modalact .modal-content{
+.clientes-J #modalact .modal-content {
   padding-bottom: 0;
   padding-top: 10px;
 }
@@ -2163,57 +2166,61 @@ border-bottom: 2px solid black;*/
   padding: 0 25px 35px 25px;
   margin-top: 0;
 }
+
 /*Mensaje de indicacion*/
-.clientes-J #modalact .mensaje{
+.clientes-J #modalact .mensaje {
   color: red;
   margin-top: 5px;
   margin-bottom: 10px;
   display: none;
 }
 
-.clientes-J #modalact .encabezado{
+.clientes-J #modalact .encabezado {
   margin-bottom: 15px;
 }
 
 /*Inputs del modal*/
 /*Estilo de los inputs al darles focus*/
-.clientes-J .inputs-estilizados:focus{
+.clientes-J .inputs-estilizados:focus {
   box-shadow: 0 3px 0 0 #DF5333 !important;
   border-bottom: .01 !important;
 }
+
 .clientes-J .inputs-estilizados:focus+i {
-  color: #fa7479 !important;  
+  color: #fa7479 !important;
 }
 
 .clientes-J label {
-  color: black !important;  
+  color: black !important;
 }
 
 .clientes-J .inputs-estilizados:focus+label {
-  color: black !important;  
+  color: black !important;
 }
 
-.clientes-J #modalact textarea{
+.clientes-J #modalact textarea {
   resize: none;
 }
 
-.clientes-J .switch-container{
+.clientes-J .switch-container {
   margin-top: 25px;
 }
 
 .clientes-J .switch.redd label input[type=checkbox]:checked+.lever {
   background-color: green;
 }
+
 .clientes-J .switch.redd label input[type=checkbox]:checked+.lever:after {
   background-color: whitesmoke;
 }
 
-.clientes-J .fila-botones{
+.clientes-J .fila-botones {
   margin-top: 0 !important;
   position: relative;
   bottom: 20px !important;
 }
-.clientes-J .fila-botones2{
+
+.clientes-J .fila-botones2 {
   margin-top: 0 !important;
   position: relative;
   bottom: 15px !important;
@@ -2238,39 +2245,39 @@ border-bottom: 2px solid black;*/
 }
 
 /*Buscador de clientes*/
-.clientes-J #buscador-btn{
+.clientes-J #buscador-btn {
   cursor: pointer;
 }
 
-.clientes-J #banner-confirmacion{
-  font-family: 'Pt Serif',serif;
+.clientes-J #banner-confirmacion {
+  font-family: 'Pt Serif', serif;
   background-color: #F48080;
   margin-top: 50px;
   border-radius: 3px;
-  box-shadow: -10px -5px  black;
+  box-shadow: -10px -5px black;
   margin-bottom: 20px;
 }
 
 /*Comentarios del cliente*/
 /*Estilo del banner o Titulo de la página*/
-.clientesC-J #banner-confirmacion{
-  font-family: 'Pt Serif',serif;
+.clientesC-J #banner-confirmacion {
+  font-family: 'Pt Serif', serif;
   background-color: #F48080;
   margin-top: 50px;
   border-radius: 3px;
-  box-shadow: -10px -5px  black;
+  box-shadow: -10px -5px black;
   margin-bottom: 20px;
 }
 
 /*Estilo del boton de regresar*/
-.clientesC-J #regresar-boton{
+.clientesC-J #regresar-boton {
   color: #000000;
   font-size: medium;
   font-weight: bolder;
   cursor: pointer;
 }
 
-.clientesC-J #preloader-cl{
+.clientesC-J #preloader-cl {
   display: none;
   position: absolute;
   z-index: 3;
@@ -2280,80 +2287,85 @@ border-bottom: 2px solid black;*/
 
 /*Ajustes responsive*/
 @media (max-width:600px) {
+
   /*Preloader*/
-  .clientesC-J #preloader-cl{
+  .clientesC-J #preloader-cl {
     position: absolute;
     z-index: 3;
     left: 40%;
     top: 50%;
   }
+
   /*Logo*/
-  #logo-navbarJ{
+  #logo-navbarJ {
     left: 43%;
   }
 }
 
 /*Tablets*/
 @media screen and (min-width: 600px) and (max-width: 992px) {
-  .clientesC-J #preloader-cl{
+  .clientesC-J #preloader-cl {
     position: absolute;
     z-index: 3;
     left: 45%;
     top: 60%;
   }
+
   /*Logo*/
-  #logo-navbarJ{
+  #logo-navbarJ {
     left: 45%;
   }
 }
 
-.clientesC-J #buscador-btn{
+.clientesC-J #buscador-btn {
   cursor: pointer;
 }
 
-.clientesC-J .margen{
+.clientesC-J .margen {
   border: 2px solid black !important;
   background-color: #FBE9E8 !important;
 }
 
-.clientesC-J .margen:hover{
+.clientesC-J .margen:hover {
   border: 0 !important;
   background-color: #EDA4A0 !important;
 }
 
 /*Ajustes responsive*/
 @media (max-width:600px) {
-  .clientesC-J p{
+  .clientesC-J p {
     font-size: smaller !important;
   }
 }
 
 /*Tablets*/
 @media screen and (min-width: 600px) and (max-width: 992px) {
-  .clientesC-J p{
+  .clientesC-J p {
     font-size: smaller !important;
   }
 }
 
 /*Estilo de los inputs al darles focus*/
-.clientesC-J .inputs-estilizados:focus{
+.clientesC-J .inputs-estilizados:focus {
   box-shadow: 0 3px 0 0 #DF5333 !important;
   border-bottom: .01 !important;
 }
+
 .clientesC-J .inputs-estilizados:focus+i {
-  color: #fa7479 !important;  
+  color: #fa7479 !important;
 }
 
 .clientesC-J label {
-  color: black !important;  
+  color: black !important;
 }
 
 .clientesC-J .inputs-estilizados:focus+label {
-  color: black !important;  
+  color: black !important;
 }
+
 /*Diseño del inventario*/
 /*DIseño del preloader*/
-#inventario-J  #preloader-cl{
+#inventario-J #preloader-cl {
   display: none;
   position: absolute;
   z-index: 3;
@@ -2361,60 +2373,61 @@ border-bottom: 2px solid black;*/
   top: 45%;
 }
 
-#inventario-J a{
-  color:  black;
+#inventario-J a {
+  color: black;
 }
 
 /*Estilo de los inputs al darles focus*/
-#inventario-J  .inputs-estilizados:focus{
+#inventario-J .inputs-estilizados:focus {
   box-shadow: 0 3px 0 0 #DF5333 !important;
   border-bottom: .01 !important;
 }
-#inventario-J  .inputs-estilizados:focus+i {
-  color: #fa7479 !important;  
+
+#inventario-J .inputs-estilizados:focus+i {
+  color: #fa7479 !important;
 }
 
-#inventario-J  label {
-  color: black !important; 
-  font-weight: bold; 
+#inventario-J label {
+  color: black !important;
+  font-weight: bold;
 }
 
-#inventario-J  .inputs-estilizados:focus+label {
-  color: black !important;  
+#inventario-J .inputs-estilizados:focus+label {
+  color: black !important;
 }
 
-#inventario-J  .input-field .prefix.active {
-  color: #fa7479 !important; 
+#inventario-J .input-field .prefix.active {
+  color: #fa7479 !important;
 }
 
-#inventario-J  .margen{
+#inventario-J .margen {
   border: 2px solid black !important;
   background-color: #FBE9E8 !important;
 }
 
-#inventario-J  .margen:hover{
+#inventario-J .margen:hover {
   border: 0 !important;
   background-color: #EDA4A0 !important;
 }
 
-#inventario-J #modalam{
+#inventario-J #modalam {
   margin-top: 4% !important;
   border-radius: 10px !important;
   background: linear-gradient(121.84deg, #FF8686 30.85%, #D5CA68 101.86%) !important;
   font-family: 'Poppins', sans-serif !important;
 }
 
-#inventario-J #banner-confirmacion{
-  font-family: 'Pt Serif',serif;
+#inventario-J #banner-confirmacion {
+  font-family: 'Pt Serif', serif;
   background-color: #F48080;
   margin-top: 50px;
   border-radius: 3px;
-  box-shadow: -10px -5px  black;
- margin-bottom: 20px;
+  box-shadow: -10px -5px black;
+  margin-bottom: 20px;
 }
 
 /*Estilo del boton pagar*/
-#inventario-J #pagar_btn{
+#inventario-J #pagar_btn {
   font-family: 'Poppins', sans-serif;
   background: linear-gradient(99.82deg, #FFBD81 42.62%, #FB1515 198.11%);
   box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
@@ -2427,20 +2440,20 @@ border-bottom: 2px solid black;*/
   margin-top: -100px;
 }
 
-#inventario-J #add_icon{
+#inventario-J #add_icon {
   margin-top: -100px;
 }
 
-#inventario-J .encabezado{
+#inventario-J .encabezado {
   margin-bottom: 15px;
 }
 
-#inventario-J .contenedor-imgpr img{
+#inventario-J .contenedor-imgpr img {
   border: 2px solid black;
   margin: auto;
 }
 
-#inventario-J #guardarReg{
+#inventario-J #guardarReg {
   font-family: 'Poppins', sans-serif;
   background: linear-gradient(99.82deg, #FFBD81 42.62%, #FB1515 198.11%);
   border-radius: 15px;
@@ -2451,28 +2464,28 @@ border-bottom: 2px solid black;*/
   margin-bottom: 0;
 }
 
-#inventario-J .col-cancel{
+#inventario-J .col-cancel {
   margin-bottom: 0 !important;
 }
 
-#inventario-J .fila-inputs{
+#inventario-J .fila-inputs {
   margin-bottom: 0 !important;
 }
 
 /*Ajustes responsive*/
 @media (max-width:600px) {
-  #inventario-J .menu-botones{
+  #inventario-J .menu-botones {
     position: relative;
     top: 50px;
     right: 15%;
   }
 }
 
-.fila-inv a{
+.fila-inv a {
   margin-top: 0px !important;
 }
 
-.botonpf-cambiar{
+.botonpf-cambiar {
   font-family: 'Poppins', sans-serif;
   background: linear-gradient(99.82deg, #FFBD81 42.62%, #FB1515 198.11%);
   border-radius: 15px;
@@ -2480,5 +2493,9 @@ border-bottom: 2px solid black;*/
   border-top: 6px solid black;
   border-left: 5px solid black;
   padding: 0 25px 35px 25px;
-  
+
+}
+
+#modalrestablecer .input-field {
+  margin-top: 40px;
 }

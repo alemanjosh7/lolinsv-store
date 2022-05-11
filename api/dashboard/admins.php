@@ -32,41 +32,18 @@ if (isset($_GET['action'])) {
                     $result['exception'] = 'Ocurrió un problema al cerrar la sesión';
                 }
                 break;
-            case 'readProfile':
-                if ($result['dataset'] = $admins->readProfile()) {
-                    $result['status'] = 1;
-                } elseif (Database::getException()) {
-                    $result['exception'] = Database::getException();
-                } else {
-                    $result['exception'] = 'Administrador inexistente';
-                }
-                break;
-            case 'readProfile':
-                $_POST = $admins->validateForm($_POST);
-                if (!$admins->setNombre_admin($_POST['nombre'])) {
-                    $result['exception'] = 'Nombres incorrectos';
-                } elseif (!$admins->setApellido_admin($_POST['apellido'])) {
-                    $result['exception'] = 'Apellidos incorrectos';
-                } elseif (!$admins->setUsuario($_POST['usuario'])) {
-                    $result['exception'] = 'Correo incorrecto';
-                } elseif ($admins-> obtenerPerfil($_SESSION['id_usuario'])) {
-                    $result['status'] = 1;
-                    $result['message'] = 'Perfil modificado correctamente';
-                } else {
-                    $result['exception'] = Database::getException();
-                }
-                break;
             case 'changePassword':
                 $_POST = $admins->validateForm($_POST);
-                if (!$admins->setId($_SESSION['id_admins'])) {
-                    $result['exception'] = 'admins incorrecto';
-                } elseif (!$admins->checkPassword($_POST['actual'])) {
+                if (!$admins->setId_admin($_SESSION['id_usuario'])) {
+                    $result['exception'] = 'Admin incorrecto';
+                } elseif (!$admins->checkContrasenaADM($_POST['contrasena_actual'])) {
                     $result['exception'] = 'Clave actual incorrecta';
-                } elseif ($_POST['nueva'] != $_POST['confirmar']) {
+                    $result['message'] = $_POST['contrasena_actual'];
+                } elseif ($_POST['contrasena_nueva'] != $_POST['contrasena_confirma']) {
                     $result['exception'] = 'Claves nuevas diferentes';
-                } elseif (!$admins->setClave($_POST['nueva'])) {
+                } elseif (!$admins->setContrasena($_POST['contrasena_nueva'])) {
                     $result['exception'] = $admins->getPasswordError();
-                } elseif ($admins->changePassword()) {
+                } elseif ($admins->cambiarContrasenaADM()) {
                     $result['status'] = 1;
                     $result['message'] = 'Contraseña cambiada correctamente';
                 } else {
@@ -169,6 +146,29 @@ if (isset($_GET['action'])) {
                     $result['exception'] = 'No se pudo obtener la información necesaria para el saludo';
                 }
                 break;
+            case 'readProfile':
+                if ($result['dataset'] = $admins->getProfile()) {
+                    $result['status'] = 1;
+                } elseif (Database::getException()) {
+                    $result['exception'] = Database::getException();
+                } else {
+                    $result['exception'] = 'Usuario inexistente';
+                }
+                break;
+            case 'editProfile':
+                $_POST = $admins->validateForm($_POST);
+                if (!$admins->setNombre_admin($_POST['nombre'])) {
+                    $result['exception'] = 'Nombres incorrectos';
+                    $result['message'] = $_POST['nombre'];
+                } elseif (!$admins->setApellido_admin($_POST['apellido'])) {
+                    $result['exception'] = 'Apellidos incorrectos';
+                } elseif ($admins->updateProfile()) {
+                    $result['status'] = 1;
+                    $result['message'] = 'Perfil modificado correctamente';
+                } else {
+                    $result['exception'] = Database::getException();
+                }
+                break;
             default:
                 $result['exception'] = 'Acción no disponible dentro de la sesión';
         }
@@ -176,7 +176,7 @@ if (isset($_GET['action'])) {
         // Se compara la acción a realizar cuando el administrador no ha iniciado sesión.
         switch ($_GET['action']) {
             case 'readUsers':
-                if ($admins->obtenerAdmins()){
+                if ($admins->obtenerAdmins()) {
                     $result['status'] = 1;
                     $result['message'] = 'Existe al menos un administrador registrado';
                 } else {
@@ -211,7 +211,7 @@ if (isset($_GET['action'])) {
                     $_SESSION['usuario'] = $admins->getUsuario();
                     $_SESSION['saludoI'] = false;
                     $admins->nombreApellidoAdminL();
-                }else {
+                } else {
                     $result['exception'] = 'Contraseña incorrecta';
                 }
                 break;

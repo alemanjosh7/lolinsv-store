@@ -47,7 +47,7 @@ class Admins extends Validator
 
     public function setUsuario($value)
     {
-        if ($this->validateAlphanumeric($value, 1,50)) {
+        if ($this->validateAlphanumeric($value, 1, 50)) {
             $this->usuario = $value;
             return true;
         } else {
@@ -94,7 +94,7 @@ class Admins extends Validator
     }
 
 
-     /*
+    /*
     *   Métodos para gestionar la cuenta del admin
     */
     public function checkAdmin($alias)
@@ -110,7 +110,7 @@ class Admins extends Validator
         }
     }
 
-     //Comprobar la contraseña del admin
+    //Comprobar la contraseña del admin
     public function checkContrasenaADM($contrasena)
     {
         $sql = 'SELECT contrasena FROM admins WHERE id_admin = ?';
@@ -127,7 +127,7 @@ class Admins extends Validator
     public function cambiarContrasenaADM()
     {
         $sql = 'UPDATE admins SET contrasena = ? WHERE id_admin = ?';
-        $params = array($this->contrasena, $this->id_admin);
+        $params = array($this->contrasena, $_SESSION['id_usuario']);
         return Database::executeRow($sql, $params);
     }
     //obtener el perfil del admin
@@ -150,19 +150,11 @@ class Admins extends Validator
     }
 
 
-       /*
+    /*
     *   Métodos para realizar las operaciones SCRUD (search, create, read, update, delete).
     */
     //Buscar Admins
-    public function buscarAdmins($value)
-    {
-        $sql = 'SELECT id_admin, nombre_admin, apellido_admin, usuario
-                FROM admins
-                WHERE apellido_admin ILIKE ? OR nombre_admin ILIKE ?
-                ORDER BY id_cliente';
-        $params = array("%$value%", "%$value%");
-        return Database::getRows($sql, $params);
-    }
+
     //Crear Admin
     public function crearAdmin()
     {
@@ -183,7 +175,7 @@ class Admins extends Validator
     //Obntener un admine en especifico
     public function obtenerAdmin()
     {
-             $sql = 'SELECT id_admin, nombre_admin, apellido_admin, usuario
+        $sql = 'SELECT id_admin, nombre_admin, apellido_admin, usuario
                 FROM admins 
                 WHERE id_admin = ?
                 ORDER BY id_admin';
@@ -208,16 +200,34 @@ class Admins extends Validator
         return Database::executeRow($sql, $params);
     }
     //Colocamos las variables de sesión del nombre del usuario y su apellido
-    public function nombreApellidoAdminL(){
+    public function nombreApellidoAdminL()
+    {
         $sql = 'SELECT nombre_admin, apellido_admin FROM admins WHERE id_admin= ?';
         $params = array($_SESSION['id_usuario']);
         if ($data = Database::getRow($sql, $params)) {
-            $_SESSION['nombreUsuario']= $data['nombre_admin'];
-            $_SESSION['apellidoUsuario']= $data['apellido_admin'];
+            $_SESSION['nombreUsuario'] = $data['nombre_admin'];
+            $_SESSION['apellidoUsuario'] = $data['apellido_admin'];
             return true;
         } else {
             return false;
         }
     }
+
+    public function getProfile()
+    {
+        $sql = 'SELECT nombre_admin, apellido_admin, usuario
+                FROM admins
+                WHERE id_admin = ?';
+        $params = array($_SESSION['id_usuario']);
+        return Database::getRows($sql, $params);
+    }
+
+    public function updateProfile()
+    {
+        $sql = 'UPDATE admins
+                SET nombre_admin = ?, apellido_admin = ?
+                WHERE id_admin = ?';
+        $params = array($this->nombre_admin, $this->apellido_admin, $_SESSION['id_usuario']);
+        return Database::executeRow($sql, $params);
+    }
 }
- 

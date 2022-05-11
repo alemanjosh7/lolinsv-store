@@ -6,6 +6,8 @@ var navbarmobile = {
     edge: 'left'
 }
 
+const API_USUARIOS = SERVER + 'dashboard/admins.php?action=';
+
 document.addEventListener('DOMContentLoaded', function () {
     M.Sidenav.init(document.querySelectorAll('.sidenav'));
     M.Sidenav.init(document.querySelectorAll('#mobile-demo'), navbarmobile);
@@ -15,9 +17,83 @@ document.addEventListener('DOMContentLoaded', function () {
     M.Tooltip.init(document.querySelectorAll('.tooltipped'));
     M.Modal.init(document.querySelectorAll('.modal'));
 
-    readAdmin(API_ADMINS);
+    fetch(API_USUARIOS + 'readProfile', {
+        method: 'get'
+    }).then(function (request) {
+        // Se verifica si la petición es correcta, de lo contrario se muestra un mensaje en la consola indicando el problema.
+        if (request.ok) {
+            // Se obtiene la respuesta en formato JSON.
+            request.json().then(function (response) {
+                // Se comprueba si la respuesta es satisfactoria, de lo contrario se muestra un mensaje con la excepción.
+                if (response.status) {
+                    // Se inicializan los campos del formulario con los datos del usuario que ha iniciado sesión.
+                    document.getElementById('nombre').value = response.dataset[0].nombre_admin;
+                    document.getElementById('apellido').value = response.dataset[0].apellido_admin;
+                    document.getElementById('usuario').value = response.dataset[0].usuario;
+                    // Se actualizan los campos para que las etiquetas (labels) no queden sobre los datos.
+                    M.updateTextFields();
+                } else {
+                    sweetAlert(2, response.exception, null);
+                }
+            });
+        } else {
+            console.log(request.status + ' ' + request.statusText);
+        }
+    });
+    // Se inicializa el componente Tooltip para que funcionen las sugerencias textuales.
+    M.Tooltip.init(document.querySelectorAll('.tooltipped'));
 
 });
+
+var botonActualizar = document.getElementById('aceptaractdatosperfil_boton');
+botonActualizar.addEventListener('click', function () {
+    // Petición para actualizar los datos personales del usuario.
+    // event.preventDefault();
+    fetch(API_USUARIOS + 'editProfile', {
+        method: 'post',
+        body: new FormData(document.getElementById('profile-form'))
+    }).then(function (request) {
+        // Se verifica si la petición es correcta, de lo contrario se muestra un mensaje en la consola indicando el problema.
+        if (request.ok) {
+            // Se obtiene la respuesta en formato JSON.
+            request.json().then(function (response) {
+                // Se comprueba si la respuesta es satisfactoria, de lo contrario se muestra un mensaje con la excepción.
+                if (response.status) {
+                    // Se muestra un mensaje de éxito.
+                    sweetAlert(1, response.message, 'index.html');
+                } else {
+                    sweetAlert(2, response.exception, null);
+                }
+            });
+        } else {
+            console.log(request.status + ' ' + request.statusText);
+        }
+    });
+});
+
+var botonRestablecer = document.getElementById('restablecerContraseña');
+botonRestablecer.addEventListener('click', () => {
+    fetch(API_USUARIOS + 'changePassword', {
+        method: 'post',
+        body: new FormData(document.getElementById('renovarcontr-form'))
+    }).then(function (request) {
+        // Se verifica si la petición es correcta, de lo contrario se muestra un mensaje en la consola indicando el problema.
+        if (request.ok) {
+            // Se obtiene la respuesta en formato JSON.
+            request.json().then(function (response) {
+                // Se comprueba si la respuesta es satisfactoria, de lo contrario se muestra un mensaje con la excepción.
+                if (response.status) {
+                    // Se muestra un mensaje de éxito.
+                    sweetAlert(1, response.message, 'index.html');
+                } else {
+                    sweetAlert(2, response.exception, null);
+                }
+            });
+        } else {
+            console.log(request.status + ' ' + request.statusText);
+        }
+    });
+})
 
 document.addEventListener('DOMContentLoaded', function () {
     var elems = document.querySelectorAll('.tooltipped');
