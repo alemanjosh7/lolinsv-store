@@ -60,7 +60,7 @@
                     </div>
                     <div class="input-field col s12 m6 l4">
                         <input class="inputs-estilizados center-align" placeholder="Usuario de administrador"
-                            id="usuario-admin" name="nombre" type="text">
+                            id="usuario-admin" name="usuario" type="text">
                         <label for="usuario-admin" class="labels-estilizados">Usuario Administrador</label>
                     </div>
                     <div class="input-field col s12 m6 l6">
@@ -109,12 +109,12 @@
                 </div>
                 <!--Contenido importante del modal-Boton de actualizar-->
                 <div class="center-align">
-                    <a href="#!" class="waves-effect waves-light btn center-align"
+                    <a class="waves-effect waves-light btn center-align"
                         id="confirmar-primerbtn">Confirmar</a>
                 </div>
                 <!--Pie del modal-->
                 <div class="center-align" id="fondomodal-footer">
-                    <a href="#!" class="modal-close waves-effect waves-light btn " id="cancelaprimer_boton">Cancelar</a>
+                    <a class="modal-close waves-effect waves-light btn " id="cancelaprimer_boton">Cancelar</a>
                     <div class="col s12" id="decoracion-modal"></div>
                 </div>
             </div>
@@ -167,8 +167,12 @@
     </footer>
     <!--Javascripts-->
     <script type="text/javascript" src="../../resources/js/materialize.min.js"></script>
-    <script type="text/javascript" src="../../controllers/dashboard/primeruso.js"></script>
+    <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    <script src="../../controllers/components.js"></script>
+    <script src="../../controllers/validaciones.js"></script>
     <script type="text/javascript" src="../../controllers/validaciones.js"></script>
+    <script type="text/javascript" src="../../controllers/dashboard/primeruso.js"></script>
+    
 </body>
 
 </html>

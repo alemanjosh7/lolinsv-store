@@ -16,14 +16,15 @@
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=PT+Serif&family=Poppins&display=swap" rel="stylesheet">
+    <title>Lolin.sv-Clientes</title>
 </head>
 
-<body>
+<body class="clientes-J">
     <header>
         <div class="navbar-fixed">
             <nav>
                 <div class="nav-wrapper">
-                    <a href="#!" class="brand-logo"><img src="../../resources/img/icons/Logo.png"></a>
+                    <a class="brand-logo" id="logo-navbarJ"><img src="../../resources/img/icons/Logo.png"></a>
                     <a href="#" data-target="mobile-demo" class="sidenav-trigger"><i class="material-icons">menu</i></a>
                     <ul class="center-align hide-on-med-and-down">
                         <a class="boton-menu waves-effect waves-teal btn-flat center-align"
@@ -70,22 +71,21 @@
         <div class="encabezado">
             <!--Botón añadir e imagen de añadir-->
             <div class="añadir">
-                <div class="imagen-añadir">
-                    <img src="../../resources/img/icons/añadir.png">
-                </div>
-                <a class="boton-añadir waves-effect waves-teal btn-flat center-align">Añadir</a>
+                <a class="boton-añadir waves-effect waves-teal btn-flat center-align" href="comentarioscl.html">Comentarios</a>
             </div>
             <!--Buscador e icono del buscador-->
             <span class="icon"><i class="fa fa-search"></i></span>
             <div class="buscador">
-                <div class="imagen-lupa">
+                <div class="imagen-lupa" id="buscador-btn">
                     <img src="../../resources/img/icons/lupa.png">
                 </div>
-                <input type="search" id="search" placeholder="Buscar..." />
+                <form id="buscador-form">
+                    <input type="search" id="search" placeholder="Buscar clientes..." class="inputs-estilizados" name="search"/>
+                </form>
             </div>
         </div>
         <div class="container-main">
-            <!--Primer fila de clientes-->
+            <!-- fila de clientes-->
             <div class="row" id="clientes-row">
                 <div class="col l3 s12 m6">
                     <!--Tarjeta clientes-->
@@ -93,23 +93,13 @@
                         <!--Botones  de la tarjeta-->
                         <div class="botones">
                             <!--Boton borrar-->
-                            <a class="modal-trigger btn-floating waves-effect waves-light red" href="#borrar-cliente"
-                                id=""><i class="material-icons">delete</i></a>
-                            <!--Modal de eliminar-->
-                            <div id="borrar-cliente" class="modal">
-                                <div class="fondo-modaldatos modal-content">
-                                    <div class="center-align">
-                                        <h4>Eliminar</h4>
-                                        <p>¿Está seguro que quiere eliminarlo?</p>
-                                        <a class="boton-noborrar waves-effect waves-teal btn-flat center-align"
-                                            href="../private-pages/clientes.html">No</a>
-                                        <a class="boton-siborrar waves-effect waves-teal btn-flat center-align">Si</a>
-                                    </div>
-                                </div>
-                            </div>
+                            <a class="modal-trigger btn-floating waves-effect waves-light red"><i
+                                    class="material-icons tooltipped" data-position="left"
+                                    data-tooltip="Eliminar CLiente">delete</i></a>
                             <!--Boton editar-->
                             <a class="btn-floating waves-effect waves-grey lighten-1"><i
-                                    class="material-icons">edit</i></a>
+                                    class="material-icons tooltipped" data-position="right"
+                                    data-tooltip="Modificar CLiente">edit</i></a>
                         </div>
                         <!--Imagen de la tarjeta-->
                         <div class="imagen-cliente center-align col s12 m12 s12">
@@ -117,157 +107,230 @@
                             <!--Contenido de la tarjeta-->
                             <span class="card-title">
                                 <h6>Jesús Esquivel</h6>
-                        </div>
-                        <div class="card-content">
-                            <p>VIP</p>
-                        </div>
-                    </div>
-                </div>
-                <div class="col l3 s12 m6">
-                    <!--Tarjeta cliente-->
-                    <div class="card" id="tarjetas-privado">
-                        <!--Boton es-->
-                        <div class="botones">
-                            <!--Boton eliminar-->
-                            <a class="modal-trigger btn-floating waves-effect waves-light red" href="#borrar-cliente"
-                                id=""><i class="material-icons">delete</i></a>
-                            <!--Modal de eliminar-->
-                            <div id="borrar-cliente" class="modal">
-                                <div class="fondo-modaldatos modal-content">
-                                    <div class="center-align">
-                                        <h4>Eliminar</h4>
-                                        <p>¿Está seguro que quiere eliminarlo?</p>
-                                        <a class="boton-siborrar waves-effect waves-teal btn-flat center-align">No</a>
-                                        <a class="boton-noborrar waves-effect waves-teal btn-flat center-align">Si</a>
-                                    </div>
-                                </div>
-                            </div>
-                            <!--Boton editar-->
-                            <a class="btn-floating waves-effect waves-grey lighten-1"><i
-                                    class="material-icons">edit</i></a>
-                        </div>
-                        <!--Imagen de la tarjeta-->
-                        <div class="imagen-cliente center-align col s12 m12 s12">
-                            <img src="../../resources/img/icons/UserIcon-Perfil.png">
-                            <!--Contenido tarjeta -->
-                            <span class="card-title">
-                                <h6>Isabel Martínez</h6>
                             </span>
                         </div>
                         <div class="card-content">
-                            <p>Frecuente</p>
-                        </div>
-                    </div>
-                </div>
-                <div class="col l3 s12 m6">
-                    <!--Tarjeta cliente-->
-                    <div class="card" id="tarjetas-privado">
-                        <!--Botones-->
-                        <div class="botones">
-                            <!--Boton eliminar-->
-                            <a class="modal-trigger btn-floating waves-effect waves-light red" href="#borrar-cliente"
-                                id=""><i class="material-icons">delete</i></a>
-                            <!--Modal eliminar-->
-                            <div id="borrar-cliente" class="modal">
-                                <div class="fondo-modaldatos modal-content">
-                                    <div class="center-align">
-                                        <h4>Eliminar</h4>
-                                        <p>¿Está seguro que quiere eliminarlo?</p>
-                                        <a class="boton-borrar waves-effect waves-teal btn-flat center-align">No</a>
-                                        <a class="boton-borrar waves-effect waves-teal btn-flat center-align">Si</a>
-                                    </div>
-                                </div>
-                            </div>
-                            <!--Boton editar-->
-                            <a class="btn-floating waves-effect waves-grey lighten-1"><i
-                                    class="material-icons">edit</i></a>
-                        </div>
-                        <!--Imagen-->
-                        <div class="imagen-cliente center-align col s12 m12 s12">
-                            <img src="../../resources/img/icons/UserIcon-Perfil.png">
-                            <!--Contenido tarjeta-->
-                            <span class="card-title">
-                                <h6>Josué Alemán</h6>
-                            </span>
-                        </div>
-                        <div class="card-content">
-                            <p>VIP</p>
-                        </div>
-                    </div>
-                </div>
-                <div class="col l3 s12 m6">
-                    <!--Tarjeta cliente-->
-                    <div class="card" id="tarjetas-privado">
-                        <!--Botones-->
-                        <div class="botones">
-                            <!--Boton eliminar-->
-                            <a class="modal-trigger btn-floating waves-effect waves-light red" href="#borrar-cliente"
-                                id=""><i class="material-icons">delete</i></a>
-                            <!--Modal eliminar-->
-                            <div id="borrar-cliente" class="modal">
-                                <div class="fondo-modaldatos modal-content">
-                                    <div class="center-align">
-                                        <h4>Eliminar</h4>
-                                        <p>¿Está seguro que quiere eliminarlo?</p>
-                                        <a class="boton-borrar waves-effect waves-teal btn-flat center-align">No</a>
-                                        <a class="boton-borrar waves-effect waves-teal btn-flat center-align">Si</a>
-                                    </div>
-                                </div>
-                            </div>
-                            <!--Boton editar-->
-                            <a class="btn-floating waves-effect waves-grey lighten-1"><i
-                                    class="material-icons">edit</i></a>
-                        </div>
-                        <!--Imagen-->
-                        <div class="imagen-cliente center-align col s12 m12 s12">
-                            <img src="../../resources/img/icons/UserIcon-Perfil.png">
-                            <!--Contenido tarjeta-->
-                            <span class="card-title">
-                                <h6>Jona Grande</h6>
-                            </span>
-                        </div>
-                        <div class="card-content">
-                            <p>Frecuente</p>
+                            <p class="estado-cl">Activo</p>
                         </div>
                     </div>
                 </div>
             </div>
-            <!--Segunda fila de clientes-->
-            <div class="row" id="clientes-row2">
-                <div class="col l4 s6 m6">
-                    <!--Tarjeta clientes-->
-                    <div class="card" id="tarjetas-privado">
-                        <!--Botones-->
-                        <div class="botones">
-                            <!--Boton eliminar-->
-                            <a class="modal-trigger btn-floating waves-effect waves-light red" href="#borrar-cliente"
-                                id=""><i class="material-icons">delete</i></a>
-                            <!--Modal eliminar-->
-                            <div id="borrar-cliente" class="modal">
-                                <div class="fondo-modaldatos modal-content">
-                                    <div class="center-align">
-                                        <h4>Eliminar</h4>
-                                        <p>¿Está seguro que quiere eliminarlo?</p>
-                                        <a class="boton-borrar waves-effect waves-teal btn-flat center-align">No</a>
-                                        <a class="boton-borrar waves-effect waves-teal btn-flat center-align">Si</a>
+            <!--Preloader de carga-->
+            <div class="preloader-wrapper big active" id="preloader-cl">
+                <div class="spinner-layer spinner-red-only">
+                    <div class="circle-clipper left">
+                        <div class="circle"></div>
+                    </div>
+                    <div class="gap-patch">
+                        <div class="circle"></div>
+                    </div>
+                    <div class="circle-clipper right">
+                        <div class="circle"></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!--Boton de hasta arriba-->
+        <div class="fixed-action-btn">
+            <a class="btn-floating btn-large red" id="hasta_arriba">
+                <i class="large material-icons">arrow_upward</i>
+            </a>
+            <ul>
+        </div>
+        <!--Contenedor del menu para la páginación-->
+        <div class="container">
+            <div class="row">
+                <div class="col s2 offset-s2 m2 offset-m2 l1 offset-l4 center" id="contenedor-botonnavg">
+                    <div class="botonnavg-footer center" id="pagnavg-atr">
+                        <a class="tooltipped" data-position="left" data-tooltip="Regresar página anterior"><i
+                                class="material-icons medium">chevron_left</i></a>
+                    </div>
+                </div>
+                <div class="col s2 m2 l1 center" id="contenedor-botonnavg">
+                    <div class="botonnavg-footer center contnpag">
+                        <a><span class="pagnavg" id="pagnumeroi">1</span></a>
+                    </div>
+                </div>
+                <div class="col s2  m2 l1 center" id="contenedor-botonnavg">
+                    <div class="botonnavg-footer center contnpag">
+                        <a><span class="pagnavg" id="pagnumerof">2</span></a>
+                    </div>
+                </div>
+                <div class="col s2 m2 l1 center" id="contenedor-botonnavg">
+                    <div class="botonnavg-footer center tooltipped" data-position="top" data-tooltip="¡Más muy pronto!">
+                        <a><span>...</span></a>
+                    </div>
+                </div>
+                <div class="col s2 m2 l1 center" id="contenedor-botonnavg">
+                    <div class="botonnavg-footer center" id="pagnavg-adl">
+                        <a class="tooltipped" data-position="right" data-tooltip="Página siguiente"><i
+                                class="material-icons medium">chevron_right</i></a>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!--Modal de actualización-->
+        <!--Inicio del diseño del Modal de Restablecer contraseña-->
+        <div id="modalact" class="modal">
+            <div class="modal-content">
+                <div class="center-align encabezado">
+                    <h4>Actualizar cliente</h4>
+                    <p>Visualice o actualize los datos del cliente</p>
+                </div>
+                <form class="col s12" id="actcliente-form">
+                    <div class="row">
+                        <!--Inputs para los datos del cliente-->
+                        <!--Nombre del cliente-->
+                        <div class="input-field col l4 m6 s12">
+                            <input placeholder="Nombre del Cliente" id="nombreCl" type="text"
+                                class="center-align inputs-estilizados" name="nombre">
+                            <label for="nombreCl">Nombre cliente:</label>
+                        </div>
+                        <!--Apellido del cliente-->
+                        <div class="input-field col l4 m6 s12">
+                            <input placeholder="Apellido del cliente" id="apellidoCl" type="text"
+                                class="center-align inputs-estilizados" name="apellido">
+                            <label for="apellidoCl">Apellido cliente:</label>
+                        </div>
+                        <!--Correo del cliente-->
+                        <div class="input-field col l4 m6 s12">
+                            <input placeholder="Correo del cliente" id="correoCl" type="email"
+                                class="center-align inputs-estilizados validate" name="correo">
+                            <label for="correoCl">Correo cliente:</label>
+                        </div>
+                        <!--DUI del cliente-->
+                        <div class="input-field col l4 m6 s12">
+                            <input placeholder="DUI del cliente" id="duiCl" type="tel"
+                                class="center-align inputs-estilizados" name="dui" maxlength="10">
+                            <label for="duiCL">DUI cliente:</label>
+                        </div>
+                        <!--Telefono del cliente-->
+                        <div class="input-field col l4 m6 s12">
+                            <input placeholder="Telefono del cliente" id="telefonoCl" type="tel"
+                                class="center-align inputs-estilizados" name="telefono">
+                            <label for="telefonoCl">Telefono cliente:</label>
+                        </div>
+                        <!--Usuario del cliente-->
+                        <div class="input-field col l4 m6 s12">
+                            <input placeholder="Usuario del cliente" id="usuarioCl" type="text"
+                                class="center-align inputs-estilizados" name="usuario">
+                            <label for="usuarioCl">Usuario cliente:</label>
+                        </div>
+                        <!--Id del cliente-->
+                        <div class="input-field col l4 m6 s12 hide">
+                            <input id="id_cliente" type="text" name="id">
+                        </div>
+                        <!--Dirección del cliente-->
+                        <div class="input-field col m5 s12">
+                            <textarea id="direccionCL" name="direccion"
+                                class="inputs-estilizados materialize-textarea">Hola</textarea>
+                            <label for="direccionCL" id="label-textarea">Dirección cliente</label>
+                        </div>
+                        <!--Estado del cliente-->
+                        <div class="switch col m7 s12 switch-container redd">
+                            <span>Estado:&nbsp&nbsp</span>
+                            <label>
+                                Bloqueado
+                                <input type="checkbox" name="estado" class="check-color lleno" id="estadoCl">
+                                <span class="lever"></span>
+                                Activo
+                            </label>
+                        </div>
+                    </div>
+                </form>
+                <div class="col s12">
+                    <div class="row fila-botones">
+                        <div class="col m6 s12 center-align">
+                            <a class="waves-effect waves-light btn center-align" id="confirmar-act">Modificar
+                                Cliente</a>
+                            <div class="preloader-wrapper active" id="actdatoscl_preloader">
+                                <div class="spinner-layer spinner-red-only">
+                                    <div class="circle-clipper left">
+                                        <div class="circle"></div>
+                                    </div>
+                                    <div class="gap-patch">
+                                        <div class="circle"></div>
+                                    </div>
+                                    <div class="circle-clipper right">
+                                        <div class="circle"></div>
                                     </div>
                                 </div>
                             </div>
-                            <!--Boton editar-->
-                            <a class="btn-floating waves-effect waves-grey lighten-1"><i
-                                    class="material-icons">edit</i></a>
                         </div>
-                        <!--Imagen-->
-                        <div class="imagen-cliente center-align col s12 m12 s12">
-                            <img src="../../resources/img/icons/UserIcon-Perfil.png">
-                            <!--Contenido tarjeta-->
-                            <span class="card-title">
-                                <h6>Stanley Carranza</h6>
-                        </div>
-                        <div class="card-content">
-                            <p>VIP</p>
+                        <div class="col m6 s12 center-align">
+                            <a class="waves-effect waves-light btn center-align" id="cambiarcontra">Cambiar
+                                Contra</a>
                         </div>
                     </div>
+                    <div class="col s12 fila-botones2">
+                        <div class="row">
+                            <div class="col m6 s12 left-align">
+                                <h6 class="mensaje" id="mensajeact">El PIN no es el correcto</h6>
+                            </div>
+                            <div class="col m6 s12 right-align">
+                                <a class="modal-close waves-effect waves-light btn " id="cancelarPIN">Cancelar</a>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col s12" id="decoracionr-modal"></div>
+                </div>
+            </div>
+        </div>
+        <!--Modal de renovar contraseña-->
+        <div id="modalrestablecer" class="modal">
+            <div class="modal-content">
+                <div class="center-align">
+                    <h4>Restablecer contraseña</h4>
+                    <p>Ingresa tu nueva contraseña y confirmala para poder iniciar sesión</p>
+                    <i class="tooltipped material-icons right-align" data-position="top" data-tooltip="Mostrar/Ocultar"
+                        id="ocultarmostrar_contraseñas">visibility</i>
+                </div>
+                <form class="col s12" id="renovarcontr-form">
+                    <div class="row">
+                        <!--Inputs para restablecer contraseña-->
+                        <div class="input-field col l6 m6 s12">
+                            <input placeholder="Contraseña actual" id="contraseña_nueva" type="password"
+                                class="center-align inputs-estilizados" name="contrasena">
+                            <label for="contraseña_nueva">Contraseña nueva</label>
+                        </div>
+                        <div class="input-field col l6 m6 s12">
+                            <input placeholder="Confirma tu contraseña" id="contraseña_confirma" type="password"
+                                class="center-align inputs-estilizados">
+                            <label for="contraseña_confirma">Confirmación</label>
+                        </div>
+                    </div>
+                </form>
+                <div class="col s12">
+                    <div class="row">
+                        <div class="col m12 ofsset-m8 s12 center-align">
+                            <a class="waves-effect waves-light btn center-align" id="restablecerContraseña">Restablecer
+                                contraseña</a>
+                            <div class="preloader-wrapper active" id="actdatoscontra_preloader">
+                                <div class="spinner-layer spinner-red-only">
+                                    <div class="circle-clipper left">
+                                        <div class="circle"></div>
+                                    </div>
+                                    <div class="gap-patch">
+                                        <div class="circle"></div>
+                                    </div>
+                                    <div class="circle-clipper right">
+                                        <div class="circle"></div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col s12">
+                        <div class="row">
+                            <div class="col m6 s12 left-align">
+                                <h6 id="mensaje-restablecer">El PIN no es el correcto</h6>
+                            </div>
+                            <div class="col m6 s12 right-align">
+                                <a class="modal-close waves-effect waves-light btn " id="cancelarPIN">Cancelar</a>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col s12" id="decoracionr-modal"></div>
                 </div>
             </div>
         </div>
@@ -320,6 +383,9 @@
     </footer>
     <!--JavaScript at end of body for optimized loading-->
     <script type="text/javascript" src="../../resources/js/materialize.min.js"></script>
+    <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    <script src="../../controllers/components.js"></script>
+    <script src="../../controllers/validaciones.js"></script>
     <script type="text/javascript" src="../../controllers/dashboard/clientes.js"></script>
 </body>
 
