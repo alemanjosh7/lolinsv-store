@@ -68,7 +68,7 @@ if (isset($_GET['action'])) {
                                 $result['exception'] = 'Nombres invalido';
                             } elseif ($categorias->updateCategory()) {
                                 $result['status'] = 1;
-                                $result['message'] = 'Categoría modificado correctamente';
+                                $result['message'] = 'Categoria modificado correctamente';
                             } else {
                                 $result['exception'] = Database::getException();
                             }
@@ -91,7 +91,6 @@ if (isset($_GET['action'])) {
                                 $result['exception'] = 'Categoría inexistente';
                             } elseif ($categorias->deleteCategory()) {
                                 $result['status'] = 1;
-                                $result['message'] = 'Categoría eliminada correctamente';
                             } else {
                                 $result['exception'] = Database::getException();
                             }
