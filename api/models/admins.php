@@ -158,9 +158,9 @@ class Admins extends Validator
     {
         $sql = 'SELECT id_admin, nombre_admin, apellido_admin, usuario
                 FROM admins
-                WHERE apellido_admin ILIKE ? OR nombre_admin ILIKE ?
-                ORDER BY id_cliente';
-        $params = array("%$value%", "%$value%");
+                WHERE apellido_admin ILIKE ? OR nombre_admin ILIKE ? OR usuario ILIKE ?
+                ORDER BY id_admin';
+        $params = array("%$value%", "%$value%", "%$value%");
         return Database::getRows($sql, $params);
     }
     //Crear Admin
@@ -218,6 +218,14 @@ class Admins extends Validator
         } else {
             return false;
         }
+    }
+
+    public function obtenerAdminsLimit($limit){
+        $sql = 'SELECT adm.id_admin, adm.nombre_admin, adm.apellido_admin, adm.usuario, adm.contrasena
+            FROM admins as adm 
+            WHERE adm.id_admin NOT IN (select id_admin from admins order by id_admin limit ?) order by adm.id_admin DESC limit 12';
+        $params = array($limit);
+        return Database::getRows($sql, $params);
     }
 }
  
