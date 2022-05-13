@@ -142,90 +142,84 @@ class Pedidos_personalizados extends Validator
     /*
     *   Métodos para realizar las operaciones SCRUD (search, create, read, update, delete).
     */
-    //Buscar pedido por x cliente
-    public function buscarPedidoPerC($value)
+    //Buscar pedido
+    public function searchPedido($value)
     {
-        $sql = 'SELECT pp.id_pedidos_personalizado,pp.fecha_pedidopersonal,pp.fk_id_cliente,clt.nombre_cliente,clt.apellido_cliente,pp.fk_id_tamano,tmn.tamano,
-                pp.fk_id_estado,std.estado
-                FROM pedidos_personalizados as pp 
-                INNER JOIN clientes AS clt ON  vcl.fk_id_cliente = clt.id_cliente
-                INNER JOIN tamano AS tmn ON vcl.fk_id_tamano = tmn.id_tamano
-                INNER JOIN estado	AS std ON vcl.fk_id_estado = std.id_estados
-                WHERE pp.fk_id_cliente = ?
-                ORDER BY pp.id_pedidos_personalizado';
-        $params = $value;
+        $sql = 'SELECT pes.id_pedidos_personalizado, pes.fecha_pedidopersonal, pes.descripcionlugar_entrega, clt.nombre_cliente, clt.apellido_cliente
+        FROM pedidos_personalizados as pes
+        INNER JOIN clientes AS clt ON pes.fk_id_cliente = clt.id_cliente
+        WHERE pes.fk_id_estado=1 and clt.nombre_cliente ILIKE ? OR clt.apellido_cliente ILIKE ? OR cast(pes.id_pedidos_personalizado as varchar)ILIKE ? OR cast(pes.fecha_pedidopersonal as varchar) ILIKE ?
+        ORDER BY pes.id_pedidos_personalizado DESC';
+        $params = array("%$value%", "%$value%", "%$value%", "%$value%");
         return Database::getRows($sql, $params);
     }
 
-    //Buscar pedido 
-    public function buscarPedidoPer($value)
+    public function searchPedidoEnt($value)
     {
-        $sql = 'SELECT pp.id_pedidos_personalizado,pp.fecha_pedidopersonal,pp.fk_id_cliente,clt.nombre_cliente,clt.apellido_cliente,pp.fk_id_tamano,tmn.tamano,
-                pp.fk_id_estado,std.estado
-                FROM pedidos_personalizados as pp 
-                INNER JOIN clientes AS clt ON  vcl.fk_id_cliente = clt.id_cliente
-                INNER JOIN tamano AS tmn ON vcl.fk_id_tamano = tmn.id_tamano
-                INNER JOIN estado	AS std ON vcl.fk_id_estado = std.id_estados
-                WHERE pp.id_pedidos_personalizado = ?
-                ORDER BY pp.id_pedidos_personalizado';
-        $params = $value;
+        $sql = 'SELECT pes.id_pedidos_personalizado, pes.fecha_pedidopersonal, pes.descripcionlugar_entrega, clt.nombre_cliente, clt.apellido_cliente
+        FROM pedidos_personalizados as pes
+        INNER JOIN clientes AS clt ON pes.fk_id_cliente = clt.id_cliente
+        WHERE pes.fk_id_estado=2 and clt.nombre_cliente ILIKE ? OR clt.apellido_cliente ILIKE ? OR cast(pes.id_pedidos_personalizado as varchar)ILIKE ? OR cast(pes.fecha_pedidopersonal as varchar) ILIKE ? 
+        ORDER BY pes.id_pedidos_personalizado DESC';
+        $params = array("%$value%", "%$value%", "%$value%", "%$value%");
         return Database::getRows($sql, $params);
     }
 
-    //Buscar pedido por x tamaño
-    public function buscarPedidoPerT($value)
+    //Mostrar pedido
+    public function readPedido()
     {
-        $sql = 'SELECT pp.id_pedidos_personalizado,pp.fecha_pedidopersonal,pp.fk_id_cliente,clt.nombre_cliente,clt.apellido_cliente,pp.fk_id_tamano,tmn.tamano,
-                pp.fk_id_estado,std.estado
-                FROM pedidos_personalizados as pp 
-                INNER JOIN clientes AS clt ON  vcl.fk_id_cliente = clt.id_cliente
-                INNER JOIN tamano AS tmn ON vcl.fk_id_tamano = tmn.id_tamano
-                INNER JOIN estado	AS std ON vcl.fk_id_estado = std.id_estados
-                WHERE pp.fk_id_tamano = ?
-                ORDER BY pp.id_pedidos_personalizado';
-        $params = $value;
-        return Database::getRows($sql, $params);
+        $sql = 'SELECT pes.id_pedidos_personalizado, pes.fecha_pedidopersonal, pes.descripcion_pedidopersonal, pes.imagenejemplo_pedidopersonal, pes.descripcionlugar_entrega,
+        clt.nombre_cliente, clt.apellido_cliente, clt.direccion_cliente
+        FROM pedidos_personalizados as pes
+        INNER JOIN clientes AS clt ON pes.fk_id_cliente = clt.id_cliente
+        WHERE pes.id_pedidos_personalizado = ?';
+        $params = array($this->id);
+        return Database::getRow($sql, $params);
     }
 
-    //mostrar todas las columnas de pedidos
-
-    public function obtenerPedidoP()
-    {
-        $sql = 'SELECT id_pedidos_personalizado, fecha_pedidopersonal, descripcion_pedidopersonal, imagenejemplo_pedidopersonal, descripcionlugar_entrega,
-                fk_id_cliente, fk_id_tamano, fk_id_estado
-                FROM pedidos_personalizados';
-        $params = null;
-        return Database::getRows($sql, $params);
-    }
-
-    //obtener columna de tamaño por id
-
-    public function obtenerPedidoP()
-    {
-        $sql = 'SELECT id_pedidos_personalizado, fecha_pedidopersonal, descripcion_pedidopersonal, imagenejemplo_pedidopersonal, descripcionlugar_entrega,
-                fk_id_cliente, fk_id_tamano, fk_id_estado
-                FROM pedidos_personalizados
+    public function deletePedido(){
+        $sql = 'DELETE FROM pedidos_personalizados
                 WHERE id_pedidos_personalizado = ?';
         $params = array($this->id);
-        return Database::getRows($sql, $params);
-    }
-
-    //Crear columna de pedido
-
-    public function crearPedidoP()
-    {
-        $sql = 'INSERT INTO pedidos_personalizados(fecha_pedidopersonal, descripcion_pedidopersonal, imagenejemplo_pedidopersonal, descripcionlugar_entrega, fk_id_cliente, fk_id_tamano, fk_id_estado)
-                VALUES(?, ?, ?, ?, ?, ?, ?)';
-        $params = array($this->fecha_pedidopersonal, $this->descripcion_pedidopersonal, $this->imagenejemplo_pedidopersonal, $this->descripcionlugar_entrega, 
-        $this->id_cliente, $this->id_tamano, $this->id_estado);
         return Database::executeRow($sql, $params);
     }
 
-    //Eliminar valoracion del pedido
+    public function limitPendiente($limit)
+    {
+        $sql = 'SELECT pes.id_pedidos_personalizado, pes.fecha_pedidopersonal, pes.descripcion_pedidopersonal, pes.imagenejemplo_pedidopersonal, 
+        clt.nombre_cliente, clt.apellido_cliente, tm.tamano
+        FROM pedidos_personalizados as pes
+        INNER JOIN clientes AS clt ON pes.fk_id_cliente = clt.id_cliente
+        INNER JOIN tamanos AS tm ON pes.fk_id_tamano = tm.id_tamanos
+        WHERE pes.id_pedidos_personalizado NOT IN(SELECT id_pedidos_personalizado FROM pedidos_personalizados LIMIT ?) AND pes.fk_id_estado = 1
+        ORDER BY pes.id_pedidos_personalizado DESC LIMIT 8;';
+        $params = array($limit);
+        return Database::getRows($sql, $params);
+    }
 
-    public eliminarPedidoP(){
-        $sql = 'DELETE FROM pedidos_personalizados
-                WHERE id_pedidos_personalizado = ?';
+    public function limitEntregado($limit)
+    {
+        $sql = 'SELECT pes.id_pedidos_personalizado, pes.fecha_pedidopersonal, pes.descripcion_pedidopersonal, pes.imagenejemplo_pedidopersonal, 
+        clt.nombre_cliente, clt.apellido_cliente, tm.tamano
+        FROM pedidos_personalizados as pes
+        INNER JOIN clientes AS clt ON pes.fk_id_cliente = clt.id_cliente
+        INNER JOIN tamanos AS tm ON pes.fk_id_tamano = tm.id_tamanos
+        WHERE pes.id_pedidos_personalizado NOT IN(SELECT id_pedidos_personalizado FROM pedidos_personalizados LIMIT ?) AND pes.fk_id_estado = 2
+        ORDER BY pes.id_pedidos_personalizado DESC LIMIT 8;';
+        $params = array($limit);
+        return Database::getRows($sql, $params);
+    }
+
+    public function cambiarEstadoAcep()
+    {
+        $sql='update pedidos_personalizados set fk_id_estado=6 where id_pedidos_personalizado=?';
+        $params = array($this->id);
+        return Database::executeRow($sql, $params);
+    }
+
+    public function cambiarEstadoNegar()
+    {
+        $sql='update pedidos_personalizados set fk_id_estado=5 where id_pedidos_personalizado=?';
         $params = array($this->id);
         return Database::executeRow($sql, $params);
     }

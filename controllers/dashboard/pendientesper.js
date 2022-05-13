@@ -1,15 +1,13 @@
 // Constante para establecer la ruta y parámetros de comunicación con la API.
 const API_ADMINS = SERVER + 'dashboard/admins.php?action=';
 const API_GLBVAR = SERVER + 'variablesgb.php?action=';
-const API_PEDIDOE = SERVER + 'dashboard/pedidosami.php?action=';
+const API_PEDIDOE = SERVER + 'dashboard/pendientesper.php?action=';
 
 var pedido_est = {dismissible: false,
 
     onCloseEnd: function () {
         // Se restauran los elementos del formulario.
         document.getElementById('form-pedidos').reset();
-        BOTONCONFIRMAR.classList.remove('disabled');//Activando el boton
-        TABLEPEDIDO.innerHTML = "";//Vacienado la tabla en caso esté llena
     }}
 
 // Método manejador de eventos que se ejecuta cuando el documento ha cargado.
@@ -46,15 +44,17 @@ const INPUTNOMBRE = document.getElementById("input-nombre");
 
 const INPUTAPELLIDO = document.getElementById("input-apellido");
 
-const INPUTNOMTO = document.getElementById("input-monto");
+const INPUTPEDIDO = document.getElementById("input-pedido");
 
 const INPUTFECHA = document.getElementById("input-fecha");
 
 const INPUTDESCRIP = document.getElementById("input-descripcion");
 
-const BOTONCONFIRMAR = document.getElementById("restablecerContraseña");
+const BOTONACEPTAR = document.getElementById("restablecerContraseña");
 
-const TABLEPEDIDO = document.getElementById("contenido-table");
+const BOTONNEGAR = document.getElementById('botonNegar');
+
+const IMAGENMODAL = document.getElementById("imagen-per");
 
 //Funciones para la páginación
 //Función para saber si hay otra página
@@ -131,10 +131,10 @@ document.querySelectorAll(".contnpag").forEach(el => {
 });
 
 //Función para eliminar un pedido
-function openDelete(id_pedidos_establecidos) {
+function openDelete(id_pedidos_personalizado) {
     // Se define un objeto con los datos del registro seleccionado.
     const data = new FormData();
-    data.append('id_pedidos_establecidos', id_pedidos_establecidos);
+    data.append('id_pedidos_personalizado', id_pedidos_personalizado);
     // Se llama a la función que elimina un registro. Se encuentra en el archivo components.js y paso el valor de 8 para recargar los clientes
     confirmDeleteL(API_PEDIDOE, data, 0);
 }
@@ -178,7 +178,6 @@ HASTATOP.addEventListener('click', function () {
     })
 });
 
-
 //Función para llenar el contenedor de clientes con los datos obtenidos del controlador de components
 function fillTable(dataset) {
     let content = '';
@@ -187,57 +186,50 @@ function fillTable(dataset) {
         // Se crean y concatenan las filas de la tabla con los datos de cada registro.
         content += ` 
         <div class="col l3 s12 m6">
-            <!--tarjeta-->
-            <div class="card" id="tarjetas-privado">
-                <div class="botones">
-                <!--Botón eliminar-->
-                    <a onclick= "deEntP(${row.id_pedidos_establecidos})" class="modal-trigger btn-floating waves-effect waves-light red"
-                    id=""><i class="material-icons">delete</i></a>
-                    <a onclick= "deEntPe(${row.id_pedidos_establecidos})" class="modal-trigger btn-floating waves-effect waves-light grey" href="#modalver"
-                    id=""><i class="material-icons">visibility</i></a>
+                    <!--Tarjeta-->
+                    <div class="card" id="tarjetas-privado">
+                        <!--Botón eliminar-->
+                        <div class="botones">
+                            <a onclick= "dePedP(${row.id_pedidos_personalizado})"  class="modal-trigger btn-floating waves-effect waves-light red" id=""><i
+                                    class="material-icons">delete</i></a>
+                            <!--Botón aceptado-->
+                            <a onclick= "dePediP(${row.id_pedidos_personalizado})"   class="waves-effect btn-floating waves-light btn modal-trigger green" href="#modalaceptar"><i
+                                    class="material-icons">check</i></a>
+                        </div>
+                        <!--Contenido de la tarjeta-->
+                        <div class="imagen-pedidos center-align col s12 m12 s12">
+                            <img src="../../resources/img/icons/personalizado.png">
+                            <span class="card-title">
+                                <h6>Pendiente</h6>
+                        </div>
+                        <div class="card-content">
+                            <p>${row.fecha_pedidopersonal}</p>
+                        </div>
+                    </div>
                 </div>
-                <!--Contenido-->
-                <div class="imagen-pedidos center-align col s12 m12 s12">
-                    <img src="../../resources/img/icons/pedidos.png">
-                    <span class="card-title">
-                        <h6>Entregado</h6>
-               </div>
-                <div class="card-content">
-                    <p>$${row.montototal_pedidoesta}</p>
-                </div>
-            </div>
-        </div>
         `;
     });
      // Se agregan las filas al cuerpo de la tabla mediante su id para mostrar los registros.
-     document.getElementById('pedido-row').innerHTML = content;
+     document.getElementById('pedidos-row').innerHTML = content;
      // Se inicializa el componente Material Box para que funcione el efecto Lightbox.
      M.Materialbox.init(document.querySelectorAll('.materialboxed'));
      // Se inicializa el componente Tooltip para que funcionen las sugerencias textuales.
      M.Tooltip.init(document.querySelectorAll('.tooltipped'));
  }
 
- BUSCADOR.addEventListener('keyup',function(e){
-    if(BUSCADOR.value == ''){
-        readRowsLimit(API_PEDIDOE, 0);//Enviamos el metodo a buscar los datos y como limite 0 por ser el inicio
-    }else{
-        // Se llama a la función que realiza la búsqueda. Se encuentra en el archivo components.js
-    dynamicSearcher2(API_PEDIDOE, 'search-form');
-    }
-});
 
 function noDatos(){
     let h = document.createElement("h3");
     let text = document.createTextNode("0 resultados");
     h.appendChild(text);
-    document.getElementById('pedido-row').innerHTML = '';
-    document.getElementById('pedido-row').append(h);
+    document.getElementById('pedidos-row').innerHTML = '';
+    document.getElementById('pedidos-row').append(h);
 }
 
-function deEntPe(id){
+function dePediP(id){
     // Se define un objeto con los datos del registro seleccionado.
     const form = new FormData(); 
-    form.append('id_pedidos_establecidos', id);
+    form.append('id_pedidos_personalizado', id);
     fetch(API_PEDIDOE + 'readPedido', {
         method: 'post',
         body: form
@@ -247,18 +239,20 @@ function deEntPe(id){
             request.json().then(function (response) {
                 // Se comprueba si existe una sesión, de lo contrario se revisa si la respuesta es satisfactoria.
                 if (response.status) {
+                    let url = SERVER+ 'images/pedidosper/'+response.dataset.imagenejemplo_pedidopersonal; 
                     //Se llenan los campos
+                    IMAGENMODAL.setAttribute('src',url)
                     INPUTDESCRIP.value=response.dataset.descripcionlugar_entrega;
                     INPUTAPELLIDO.value=response.dataset.apellido_cliente;
                     INPUTNOMBRE.value=response.dataset.nombre_cliente;
-                    INPUTFECHA.value=response.dataset.fecha_pedidoesta;
-                    INPUTNOMTO.value=response.dataset.montototal_pedidoesta;
-                    INPUTID.value=id;
+                    INPUTFECHA.value=response.dataset.fecha_pedidopersonal;
+                    INPUTPEDIDO.value=response.dataset.descripcion_pedidopersonal;
                     document.getElementById('direccion').value = response.dataset.direccion_cliente;
+                    INPUTID.value=id;
                     M.updateTextFields();
-                    M.textareaAutoResize(INPUTDESCRIP); 
-                    M.textareaAutoResize(document.getElementById('direccion')); 
-                    cargarTable(id);
+                    M.textareaAutoResize(INPUTDESCRIP);
+                    M.textareaAutoResize(INPUTPEDIDO);
+                    M.textareaAutoResize(document.getElementById('direccion'));
                     var instance = M.Modal.getInstance(MODALACEPTAR);
                     instance.open();
                 } else {
@@ -272,48 +266,11 @@ function deEntPe(id){
     });
 }
 
-function cargarTable(id){
-     // Se define un objeto con los datos del registro seleccionado.
-    let form = new FormData();
-    let content = '';
-    form.append('id_pedidos_establecidos', id);
-    fetch(API_PEDIDOE + 'obtenerDetalle', {
-        method: 'post',
-        body: form
-    }).then(function (request) {
-        // Se verifica si la petición es correcta, de lo contrario se muestra un mensaje en la consola indicando el problema.
-        if (request.ok) {
-            request.json().then(function (response) {
-                // Se comprueba si existe una sesión, de lo contrario se revisa si la respuesta es satisfactoria.
-                if (response.status) {
-                    //Se llenan los campos
-                    response.dataset.map(function (row){
-                        content += `
-                            <tr>
-                                <td>${row.nombre_producto}</td>
-                                <td>${row.cantidad_detallep}</td>
-                                <td>$${row.precio_producto}</td>
-                                <td>$${row.subtotal_detallep}</td>
-                            </tr>
-                        `;
-                    });
-                    TABLEPEDIDO.innerHTML=content;
-                } else {
-                    sweetAlert(2, response.exception, null);
-                }
-            });
-        } else {
-            console.log(request.status + ' ' + request.statusText);
-            NOMBREPROD.value = '';
-        }
-    });
-}
-
 //Función para eliminar un pedido
-function deEntP(id) {
+function dePedP(id) {
     // Se define un objeto con los datos del registro seleccionado.
     const data = new FormData();
-    data.append('id_pedidos_establecidos', id);
+    data.append('id_pedidos_personalizado', id);
     // Se llama a la función que elimina un registro. Se encuentra en el archivo components.js y paso el valor de 8 para recargar los clientes
     confirmDeleteL(API_PEDIDOE, data, 0);
 }
@@ -324,7 +281,15 @@ BUSCADOR_AMI.addEventListener('keyup',function(e){
     readRowsLimit(API_PEDIDOE, 0);//Enviamos el metodo a buscar los datos y como limite 0 por ser el inicio
     }else{
     // Se llama a la función que realiza la búsqueda. Se encuentra en el archivo components.js
-    dynamicSearcher2(API_PEDIDOE, 'buscador_pedidos');
+    dynamicSearcher2(API_PEDIDOE, 'buscador_pedido');
     }
+
 });
 
+BOTONACEPTAR.addEventListener('click',function(){
+    saveRowL(API_PEDIDOE, 'cambiarAceptado', 'form-pedidos', 'modalaceptar', 0);
+});
+
+BOTONNEGAR.addEventListener('click',function(){
+    saveRowL(API_PEDIDOE, 'cambiarNegar', 'form-pedidos', 'modalaceptar', 0);
+});

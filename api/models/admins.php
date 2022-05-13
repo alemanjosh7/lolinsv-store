@@ -154,13 +154,14 @@ class Admins extends Validator
     *   Métodos para realizar las operaciones SCRUD (search, create, read, update, delete).
     */
     //Buscar Admins
+    //Buscar Admins
     public function buscarAdmins($value)
     {
         $sql = 'SELECT id_admin, nombre_admin, apellido_admin, usuario
                 FROM admins
-                WHERE apellido_admin ILIKE ? OR nombre_admin ILIKE ?
-                ORDER BY id_cliente';
-        $params = array("%$value%", "%$value%");
+                WHERE apellido_admin ILIKE ? OR nombre_admin ILIKE ? OR usuario ILIKE ?
+                ORDER BY id_admin';
+        $params = array("%$value%", "%$value%", "%$value%");
         return Database::getRows($sql, $params);
     }
     //Crear Admin
@@ -218,6 +219,40 @@ class Admins extends Validator
         } else {
             return false;
         }
+    }
+    //Obtener el perfil
+    public function getProfile()
+    {
+        $sql = 'SELECT nombre_admin, apellido_admin, usuario
+                FROM admins
+                WHERE id_admin = ?';
+        $params = array($_SESSION['id_usuario']);
+        return Database::getRows($sql, $params);
+    }
+    //Actualizar la contraseña
+    public function updateProfile()
+    {
+        $sql = 'UPDATE admins
+                SET nombre_admin = ?, apellido_admin = ?, usuario = ?
+                WHERE id_admin = ?';
+        $params = array($this->nombre_admin, $this->apellido_admin, $this->usuario, $_SESSION['id_usuario']);
+        return Database::executeRow($sql, $params);
+    }
+    //Obtener admins limit
+    public function obtenerAdminsLimit($limit){
+        $sql = 'SELECT adm.id_admin, adm.nombre_admin, adm.apellido_admin, adm.usuario, adm.contrasena
+            FROM admins as adm 
+            WHERE fk_id_estado = 8 AND adm.id_admin NOT IN (select id_admin from admins order by id_admin limit ?) order by adm.id_admin DESC limit 12';
+        $params = array($limit);
+        return Database::getRows($sql, $params);
+    }
+    //Eliminar administrador teoricamente cambiando su estado
+    public function cambiarEstadoAdm()
+    {
+        $sql = 'UPDATE admins SET fk_id_estado = 10
+                WHERE id_admin = ?';
+        $params = array($this->id_admin);
+        return Database::executeRow($sql, $params);
     }
 }
  

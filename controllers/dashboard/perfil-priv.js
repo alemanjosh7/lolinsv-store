@@ -5,7 +5,12 @@ var opcionesCarrito = {
 var navbarmobile = {
     edge: 'left'
 }
+
+const API_USUARIOS = SERVER + 'dashboard/admins.php?action=';
+const API_ADMINS = SERVER + 'dashboard/admins.php?action=';
+
 document.addEventListener('DOMContentLoaded', function () {
+    comprobarAdmins();
     M.Sidenav.init(document.querySelectorAll('.sidenav'));
     M.Sidenav.init(document.querySelectorAll('#mobile-demo'), navbarmobile);
     M.Sidenav.init(document.querySelectorAll('#carrito'), opcionesCarrito);
@@ -13,7 +18,84 @@ document.addEventListener('DOMContentLoaded', function () {
     M.Carousel.init(document.querySelectorAll('.carousel'));
     M.Tooltip.init(document.querySelectorAll('.tooltipped'));
     M.Modal.init(document.querySelectorAll('.modal'));
+
+    fetch(API_USUARIOS + 'readProfile', {
+        method: 'get'
+    }).then(function (request) {
+        // Se verifica si la petición es correcta, de lo contrario se muestra un mensaje en la consola indicando el problema.
+        if (request.ok) {
+            // Se obtiene la respuesta en formato JSON.
+            request.json().then(function (response) {
+                // Se comprueba si la respuesta es satisfactoria, de lo contrario se muestra un mensaje con la excepción.
+                if (response.status) {
+                    // Se inicializan los campos del formulario con los datos del usuario que ha iniciado sesión.
+                    document.getElementById('nombre').value = response.dataset[0].nombre_admin;
+                    document.getElementById('apellido').value = response.dataset[0].apellido_admin;
+                    document.getElementById('usuario').value = response.dataset[0].usuario;
+                    // Se actualizan los campos para que las etiquetas (labels) no queden sobre los datos.
+                    M.updateTextFields();
+                } else {
+                    sweetAlert(2, response.exception, null);
+                }
+            });
+        } else {
+            console.log(request.status + ' ' + request.statusText);
+        }
+    });
+    // Se inicializa el componente Tooltip para que funcionen las sugerencias textuales.
+    M.Tooltip.init(document.querySelectorAll('.tooltipped'));
+
 });
+
+var botonActualizar = document.getElementById('aceptaractdatosperfil_boton');
+botonActualizar.addEventListener('click', function () {
+    // Petición para actualizar los datos personales del usuario.
+    // event.preventDefault();
+    fetch(API_USUARIOS + 'editProfile', {
+        method: 'post',
+        body: new FormData(document.getElementById('profile-form'))
+    }).then(function (request) {
+        // Se verifica si la petición es correcta, de lo contrario se muestra un mensaje en la consola indicando el problema.
+        if (request.ok) {
+            // Se obtiene la respuesta en formato JSON.
+            request.json().then(function (response) {
+                // Se comprueba si la respuesta es satisfactoria, de lo contrario se muestra un mensaje con la excepción.
+                if (response.status) {
+                    // Se muestra un mensaje de éxito.
+                    sweetAlert(1, response.message, 'perfilpriv.html');
+                } else {
+                    sweetAlert(2, response.exception, null);
+                }
+            });
+        } else {
+            console.log(request.status + ' ' + request.statusText);
+        }
+    });
+});
+
+var botonRestablecer = document.getElementById('restablecerContraseña');
+botonRestablecer.addEventListener('click', () => {
+    fetch(API_USUARIOS + 'changePassword', {
+        method: 'post',
+        body: new FormData(document.getElementById('renovarcontr-form'))
+    }).then(function (request) {
+        // Se verifica si la petición es correcta, de lo contrario se muestra un mensaje en la consola indicando el problema.
+        if (request.ok) {
+            // Se obtiene la respuesta en formato JSON.
+            request.json().then(function (response) {
+                // Se comprueba si la respuesta es satisfactoria, de lo contrario se muestra un mensaje con la excepción.
+                if (response.status) {
+                    // Se muestra un mensaje de éxito.
+                    sweetAlert(1, response.message, 'perfilpriv.html');
+                } else {
+                    sweetAlert(2, response.exception, null);
+                }
+            });
+        } else {
+            console.log(request.status + ' ' + request.statusText);
+        }
+    });
+})
 
 document.addEventListener('DOMContentLoaded', function () {
     var elems = document.querySelectorAll('.tooltipped');
@@ -29,29 +111,10 @@ function copiarWhat() {
 var ojo = document.getElementById('ocultarmostrar_duiuser');
 var dui = document.getElementById('dui_usuario');
 
-ojo.addEventListener("click", function () {
-    if (dui.type == "password") {
-        dui.type = "text"
-        ojo.innerText = "visibility_off"
-    } else {
-        dui.type = "password"
-        ojo.innerText = "visibility"
-    }
-});
-
 /*Telefono*/
 var ojo2 = document.getElementById('ocultarmostrar_teleuser');
 var telefono = document.getElementById('telefono_usuario');
 
-ojo2.addEventListener("click", function () {
-    if (telefono.type == "password") {
-        telefono.type = "text"
-        ojo2.innerText = "visibility_off"
-    } else {
-        telefono.type = "password"
-        ojo2.innerText = "visibility"
-    }
-});
 
 /*Mostrar-Ocultar preloader para la actualización de datos del perfil*/
 var btnactperfil = document.getElementById('aceptaractdatosperfil_boton');
@@ -71,63 +134,32 @@ btncancelperfil.addEventListener("click", function () {
 var btnactcontra = document.getElementById('aceptaractcontra_boton');
 var preloaderactcontra = document.getElementById('actdatoscontra_preloader');
 var btncancelcontra = document.getElementById('cancelactdatoscontra_boton');
-/* Actualizar contraseña */
-btnactcontra.addEventListener("click", function () {
-    let contra = document.getElementById('contraseña_actual');
-    let contran = document.getElementById('contraseña_nueva');
-    let contrac = document.getElementById('contraseña_confirma');
-    let mensaje = document.getElementById('mensajecontra');
-    if (contra.value.length != 0 && contran.value.length != 0 && contrac.value.length != 0) {
-        if (contran.value == contrac.value) {
-            preloaderactcontra.style.display = "block";
-            btnactcontra.classList.add("disabled");
-            mensaje.style.display = 'none';
-            contra.value = '';
-            contrac.value = '';
-            contran.value = '';
-        } else {
-            mensaje.innerText = 'Las contraseñas deben coincidir';
-            mensaje.style.display = 'block';
-        }
-    } else {
-        mensaje.style.display = 'block';
-        mensaje.innerText = 'No se permiten espacios vacios';
-    }
-});
 
-btncancelcontra.addEventListener("click", function () {
-    let mensaje = document.getElementById('mensajecontra');
-    preloaderactcontra.style.display = "none";
-    btnactcontra.classList.remove("disabled");
-    mensaje.style.display = 'none';
-});
 /* Mostrar/Ocultar contraseñas para la actualización*/
 let ojo3 = document.getElementById('ocultarmostrar_contraseñas');
-ojo3.addEventListener("click", function () {
-    let contraseña = document.getElementById('contraseña_actual');
-    let contraseñan = document.getElementById('contraseña_nueva');
-    let contraseñac = document.getElementById('contraseña_confirma');
-    if (contraseña.type == "password") {
-        contraseña.type = "text"
-        contraseñan.type = "text"
-        contraseñac.type = "text"
-        ojo3.innerText = "visibility_off"
-    } else {
-        contraseña.type = "password"
-        contraseñan.type = "password"
-        contraseñac.type = "password"
-        ojo3.innerText = "visibility"
-    }
-});
 /*Ocultar el NavBar si se aprieta en seguir viendo*/
 var btncontinuarv = document.getElementById('seguirv_carrito');
-btncontinuarv.addEventListener('click', function () {
-    let carrito = M.Sidenav.getInstance(document.querySelector('#carrito'));
-    carrito.close();
-});
 /*Ocultar navbar mobile tras aparecer carrito*/
 var btnabrircarrito = document.getElementById('abrircarrito-mobile');
-btnabrircarrito.addEventListener('click', function () {
-    let navmobile = M.Sidenav.getInstance(document.querySelector('#mobile-demo'));
-    navmobile.close();
-});
+
+// Petición para consultar si existen usuarios registrados.
+function comprobarAdmins() {
+    fetch(API_ADMINS + 'readUsers', {
+        method: 'get'
+    }).then(function (request) {
+        // Se verifica si la petición es correcta, de lo contrario se muestra un mensaje en la consola indicando el problema.
+        if (request.ok) {
+            request.json().then(function (response) {
+                // Se comprueba si existe una sesión, de lo contrario se revisa si la respuesta es satisfactoria.
+                if (response.session) {
+                } else if (response.status) {
+                    location.href = 'index.html';
+                } else {
+                    location.href = 'primeruso.html';
+                }
+            });
+        } else {
+            console.log(request.status + ' ' + request.statusText);
+        }
+    });
+}

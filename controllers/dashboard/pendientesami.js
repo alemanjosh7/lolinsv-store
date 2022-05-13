@@ -255,8 +255,10 @@ function dePediP(id){
                     INPUTFECHA.value=response.dataset.fecha_pedidoesta;
                     INPUTNOMTO.value=response.dataset.montototal_pedidoesta;
                     INPUTID.value=id;
+                    document.getElementById('direccion').value = response.dataset.direccion_cliente;
                     M.updateTextFields();
                     M.textareaAutoResize(INPUTDESCRIP);
+                    M.textareaAutoResize(document.getElementById('direccion'));
                     cargarTable(id);
                     var instance = M.Modal.getInstance(MODALACEPTAR);
                     instance.open();

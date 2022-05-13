@@ -6,7 +6,7 @@
 *   Constante para establecer la ruta del servidor.
 */
 const SERVER = 'http://localhost/lolinsv/api/';
-
+const API = SERVER + 'dashboard/admins.php?action=';
 
 /*
 *   Función para obtener todos los registros disponibles en los mantenimientos de tablas (operación read).
@@ -640,6 +640,46 @@ function saveValuationsSummed(api, data) {
             });
         } else {
             console.log(request.status + ' ' + request.statusText);
+        }
+    });
+}
+
+//Metodo de log out
+function logOut() {
+    Swal.fire({
+        title: 'Advertencia',
+        text: '¿Está seguro de cerrar la sesión?',
+        icon: 'warning',
+        showDenyButton: true,
+        confirmButtonText: 'Si',
+        denyButtonText: 'Cancelar',
+        allowEscapeKey: false,
+        allowOutsideClick: false,
+        background: '#F7F0E9',
+        confirmButtonColor: 'green',
+    }).then(function (value) {
+        // Se verifica si fue cliqueado el botón Sí para hacer la petición de cerrar sesión, de lo contrario se muestra un mensaje.
+        if (value) {
+            fetch(API + 'logOut', {
+                method: 'get'
+            }).then(function (request) {
+                // Se verifica si la petición es correcta, de lo contrario se muestra un mensaje en la consola indicando el problema.
+                if (request.ok) {
+                    // Se obtiene la respuesta en formato JSON.
+                    request.json().then(function (response) {
+                        // Se comprueba si la respuesta es satisfactoria, de lo contrario se muestra un mensaje con la excepción.
+                        if (response.status) {
+                            sweetAlert(1, response.message, 'index.html');
+                        } else {
+                            sweetAlert(2, response.exception, null);
+                        }
+                    });
+                } else {
+                    console.log(request.status + ' ' + request.statusText);
+                }
+            });
+        } else {
+            sweetAlert(4, 'Puede continuar con la sesión', null);
         }
     });
 }

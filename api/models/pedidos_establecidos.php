@@ -115,7 +115,7 @@ class Pedidos_establecidos extends Validator
         $sql = 'SELECT pes.id_pedidos_establecidos, pes.fecha_pedidoesta, pes.descripcionlugar_entrega, pes.montototal_pedidoesta, clt.nombre_cliente, clt.apellido_cliente
         FROM pedidos_establecidos as pes
         INNER JOIN clientes AS clt ON pes.fk_id_cliente = clt.id_cliente
-        WHERE clt.nombre_cliente ILIKE ? OR clt.apellido_cliente ILIKE ? OR cast(pes.id_pedidos_establecidos as varchar)ILIKE ? OR cast(pes.montototal_pedidoesta as varchar) ILIKE ? OR cast(pes.fecha_pedidoesta as varchar) ILIKE ? and pes.fk_id_estado=1
+        WHERE pes.fk_id_estado=1 and clt.nombre_cliente ILIKE ? OR clt.apellido_cliente ILIKE ? OR cast(pes.id_pedidos_establecidos as varchar)ILIKE ? OR cast(pes.montototal_pedidoesta as varchar) ILIKE ? OR cast(pes.fecha_pedidoesta as varchar) ILIKE ?
         ORDER BY pes.id_pedidos_establecidos DESC';
         $params = array("%$value%", "%$value%", "%$value%", "%$value%", "%$value%");
         return Database::getRows($sql, $params);
@@ -126,16 +126,16 @@ class Pedidos_establecidos extends Validator
         $sql = 'SELECT pes.id_pedidos_establecidos, pes.fecha_pedidoesta, pes.descripcionlugar_entrega, pes.montototal_pedidoesta, clt.nombre_cliente, clt.apellido_cliente
         FROM pedidos_establecidos as pes
         INNER JOIN clientes AS clt ON pes.fk_id_cliente = clt.id_cliente
-        WHERE clt.nombre_cliente ILIKE ? OR clt.apellido_cliente ILIKE ? OR cast(pes.id_pedidos_establecidos as varchar)ILIKE ? OR cast(pes.montototal_pedidoesta as varchar) ILIKE ? OR cast(pes.fecha_pedidoesta as varchar) ILIKE ? and pes.fk_id_estado=?
+        WHERE and pes.fk_id_estado=2 and clt.nombre_cliente ILIKE ? OR clt.apellido_cliente ILIKE ? OR cast(pes.id_pedidos_establecidos as varchar)ILIKE ? OR cast(pes.montototal_pedidoesta as varchar) ILIKE ? OR cast(pes.fecha_pedidoesta as varchar) ILIKE ?
         ORDER BY pes.id_pedidos_establecidos DESC';
-        $params = array("%$value%", "%$value%", "%$value%", "%$value%", "%$value%",2);
+        $params = array("%$value%", "%$value%", "%$value%", "%$value%", "%$value%");
         return Database::getRows($sql, $params);
     }
 
     //Mostrar los pedidos
     public function readPedido()
     {
-        $sql = 'SELECT pes.id_pedidos_establecidos, pes.fecha_pedidoesta, pes.descripcionlugar_entrega, pes.montototal_pedidoesta, clt.nombre_cliente, clt.apellido_cliente
+        $sql = 'SELECT pes.id_pedidos_establecidos, pes.fecha_pedidoesta, pes.descripcionlugar_entrega, pes.montototal_pedidoesta, clt.nombre_cliente, clt.apellido_cliente, clt.direccion_cliente
         FROM pedidos_establecidos as pes
         INNER JOIN clientes AS clt ON pes.fk_id_cliente = clt.id_cliente
         WHERE pes.id_pedidos_establecidos = ?';

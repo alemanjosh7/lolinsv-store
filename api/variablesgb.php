@@ -15,7 +15,7 @@ if (isset($_GET['action'])) {
     session_start();
     // Se declara e inicializa un arreglo para guardar el resultado que retorna la API.
     $result = array('status' => 0, 'session' => 0, 'message' => null, 'exception' => null, 'idusuario' => null, 'usuario' => null,
-    'nombre' => null, 'apellido' => null);
+    'nombre' => null, 'apellido' => null, 'id_pedidoEsta' => null, 'id_producto' => null);
     switch($_GET['action']){
         case 'getIdUsuario':
             $result['status'] = 1;
@@ -66,6 +66,18 @@ if (isset($_GET['action'])) {
             }else{
                 $result['exception'] = 'El cliente no ha iniciado session';
             }
+            break;
+        case 'getIdPedido':
+            $result['status'] = 1;
+            $result['id_pedidoEsta'] = $_SESSION['id_pedidoEsta'];
+            break;
+        case 'getIdProducto':
+            $result['status'] = 1;
+            $result['id_producto'] = $_SESSION['id_producto'];
+            break;
+        case 'setIdProducto':
+            $result['status'] = 1;
+            $result['id_producto'] = $_POST['id_producto'];
             break;
         default:
             $result['exception'] = 'Acción no disponible dentro de la sesión';

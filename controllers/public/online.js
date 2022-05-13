@@ -3,8 +3,8 @@
 *   Sirve para manejar las plantillas del encabezado y pie del documento.
 */
 
-// Constante para establecer la ruta y parámetros de comunicación con la API_GLBVAR.
-const API = SERVER + 'variablesgb.php?action=';//Colocar la direccion correcta aqui
+// Constante para establecer la ruta y parámetros de comunicación con la API_HEADER_GLBVAR.
+const API_HEADER = SERVER + 'variablesgb.php?action=';//Colocar la direccion correcta aqui
 
 /*Estilo de las opciones de los carritos y el navbar mobile*/
 var opcionesCarrito = {
@@ -17,7 +17,7 @@ var navbarmobile = {
 // Método manejador de eventos que se ejecuta cuando el documento ha cargado.
 document.addEventListener('DOMContentLoaded', function () {
     // Petición para obtener en nombre del usuario que ha iniciado sesión.
-    fetch(API + 'verificarCLLog', {
+    fetch(API_HEADER + 'verificarCLLog', {
         method: 'get'
     }).then(function (request) {
         // Se verifica si la petición es correcta, de lo contrario se muestra un mensaje en la consola indicando el problema.
@@ -46,7 +46,7 @@ document.addEventListener('DOMContentLoaded', function () {
                                             href="productos.html">Productos</a>
                                     </li>
                                     <li>
-                                    <li><a class="waves-effect waves-light btn second-bg-color boton" href="login.html">${response.usuario}<i class="material-icons left">person</i></a></li>
+                                    <li><a class="waves-effect waves-light btn second-bg-color boton" href="perfil.html">${response.usuario}<i class="material-icons left">person</i></a></li>
                                     </li>
                                     <li><a href="#carrito" data-target="carrito"
                                             class="sidenav-trigger show-on-large waves-effect waves-light btn second-bg-color boton"
@@ -65,7 +65,7 @@ document.addEventListener('DOMContentLoaded', function () {
                         <a class="waves-effect waves-light btn second-bg-color boton" href="productos.html">Productos</a>
                     </li>
                     <li>
-                    <li><a class="waves-effect waves-light btn second-bg-color boton" href="login.html">${response.usuario}<i
+                    <li><a class="waves-effect waves-light btn second-bg-color boton" href="perfil.html">${response.usuario}<i
                                 class="material-icons left">person</i></a></li>
                     </li>
                     <li><a href="#carrito" data-target="carrito"
