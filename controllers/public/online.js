@@ -9,9 +9,17 @@ const API_HEADER = SERVER + 'variablesgb.php?action=';//Colocar la direccion cor
 /*Estilo de las opciones de los carritos y el navbar mobile*/
 var opcionesCarrito = {
     edge: "right",
+    onOpenStart: function () {
+        console.log('debería');
+        hola();
+    }
 };
 var navbarmobile = {
     edge: "left",
+    onOpenStart: function () {
+        console.log('debería');
+        hola();
+    }
 };
 
 // Método manejador de eventos que se ejecuta cuando el documento ha cargado.
@@ -166,11 +174,11 @@ document.addEventListener('DOMContentLoaded', function () {
                             <div class="col s12">
                                 <div class="row carrito-opciones">
                                     <div class="col offset-s1 s5">
-                                        <a href="confirmacion-compra.html" class="modal-trigger waves-effect waves-light btn"
+                                        <a href="confirmacion-compra.html" class="waves-effect waves-light btn"
                                             id="comprar_carrito">Comprar</a>
                                     </div>
                                     <div class="col s5">
-                                        <a class="modal-trigger waves-effect waves-light btn"
+                                        <a class="waves-effect waves-light btn"
                                             id="seguirv_carrito">Seguir Viendo</a>
                                     </div>
                                 </div>
@@ -183,6 +191,19 @@ document.addEventListener('DOMContentLoaded', function () {
                     M.Sidenav.init(document.querySelectorAll(".sidenav"));
                     M.Sidenav.init(document.querySelectorAll("#mobile-demo"), navbarmobile);
                     M.Sidenav.init(document.querySelectorAll("#carrito"), opcionesCarrito);
+                    /*Ocultar navbar mobile tras aparecer carrito*/
+                    var btnabrircarrito = document.getElementById('abrircarrito-mobile');
+                    btnabrircarrito.addEventListener('click', function () {
+                        let navmobile = M.Sidenav.getInstance(document.querySelector('#mobile-demo'));
+                        navmobile.close();
+                    });
+                    /*Ocultar el NavBar si se aprieta en seguir viendo*/
+                    var btncontinuarv = document.getElementById('seguirv_carrito');
+                    btncontinuarv.addEventListener('click', function () {
+                        console.log('hola');
+                        let carrito = M.Sidenav.getInstance(document.querySelector('#carrito'));
+                        carrito.close();
+                    });
                 } else {
                     //Como no lo esta coloca el header normal
                     const header = `
