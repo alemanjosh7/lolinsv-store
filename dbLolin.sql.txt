@@ -12,6 +12,9 @@ CREATE TABLE admins(
 	contrasena varchar(500) NOT NULL,
 	constraint admins_pk primary key(id_admin)
 );
+alter table admins add column fk_id_estado int;--Añadiendo el campo 
+alter table admins alter column fk_id_estado set default 8;--Añadiendo el default a la tabla
+alter table admins add constraint admins_fk foreign key (fk_id_estado) references estados(id_estados) on update cascade on delete cascade;
 --Cliente--
 CREATE TABLE clientes(
 	id_cliente serial,
@@ -25,6 +28,10 @@ CREATE TABLE clientes(
 	contrasena varchar(500) NOT NULL,
 	constraint cliente_pk primary key(id_Cliente)
 );
+
+alter table clientes add column fk_id_estado int;--Añadiendo el campo 
+alter table clientes alter column fk_id_estado set default 8;--Añadiendo el default a la tabla
+alter table clientes add constraint clientes_fk foreign key (fk_id_estado) references estados(id_estados) on update cascade on delete cascade;
 --Tamaños--
 create table tamanos(
 	id_tamanos serial not null,
@@ -73,7 +80,7 @@ create table categorias(
 --Valoracion--
 create table valoraciones(
 	id_valoraciones serial NOT NULL,
-	valoraciones varchar(50) not null unique,
+	valoraciones int not null unique,
 	CONSTRAINT valoraciones_pk PRIMARY KEY (id_valoraciones)
 );
 --Productos--
@@ -83,6 +90,7 @@ CREATE table productos(
 	imagen_producto varchar(500)  NOT NULL,
 	precio_producto numeric(6,2) NOT NULL,
 	cantidad integer NOT NULL,
+	descripcion varchar(150) NOT NULL,
 	fk_id_categoria integer NOT NULL,
 	fk_id_valoraciones integer NOT NULL,
 	fk_id_admin integer NOT NULL,
@@ -113,6 +121,19 @@ CREATE TABLE valoraciones_clientes(
 	CONSTRAINT valoraciones_cliente_fk FOREIGN KEY (fk_id_cliente) REFERENCES clientes (id_cliente) ON UPDATE CASCADE ON DELETE CASCADE,
 	CONSTRAINT valoraciones_clientes_productos_fk FOREIGN KEY (fk_id_productos) REFERENCES productos(id_producto) ON UPDATE CASCADE ON DELETE CASCADE,
 	CONSTRAINT valoraciones_clientes_valoraciones_fk FOREIGN KEY (fk_id_valoraciones) REFERENCES valoraciones(id_valoraciones) ON UPDATE CASCADE ON DELETE CASCADE
+);
+--Inventario
+create table inventario(
+	id_inventario serial not null,
+	cantidada int not null,
+	cantidadn int not null,
+	modificado boolean not null,
+	fecha date default current_date,
+	fk_id_admin int not null,
+	fk_id_producto int not null,
+	constraint inventario_pk primary key (id_inventario),
+	constraint inventario_admins_fk foreign key (fk_id_admin) references admins(id_admin) on update cascade on delete cascade,
+	constraint inventario_productos_fk foreign key (fk_id_producto) references productos(id_producto) on update cascade on delete cascade
 );
 --Fin por el momento--
 --Insert de las tablas--
@@ -173,7 +194,8 @@ values ('Pendiente'),
 ('Agotado'),
 ('Disponible'),
 ('Negado'),
-('Aceptado');
+('Aceptado'),
+('Eliminado');
 
 select * from estados;--comprobación
 --Clientes--
@@ -767,3 +789,197 @@ select * from productos where id_producto
 not in(select id_producto from productos order by id_producto limit 0) order by id_producto limit 6
 
 select * from productos order by id_producto
+
+SELECT vcl.id_valoracionescli,vcl.comentario,vcl.fk_id_cliente,clt.nombre_cliente,clt.apellido_cliente,prd.nombre_producto,
+val.valoraciones 
+FROM valoraciones_clientes as vcl 
+INNER JOIN clientes AS clt ON  vcl.fk_id_cliente = clt.id_cliente
+INNER JOIN productos AS prd ON vcl.fk_id_productos = prd.id_producto
+INNER JOIN valoraciones	AS val ON vcl.fk_id_valoraciones = val.id_valoraciones 
+WHERE vcl.fk_id_productos = 1
+ORDER BY vcl.id_valoracionescli
+
+select * from clientes
+
+SELECT id_cliente, nombre_cliente, apellido_cliente, correo_cliente, dui_cliente, telefono_cliente, direccion_cliente, usuario
+FROM clientes WHERE id_cliente=1 ORDER BY id_cliente 
+
+select * from pedidos_establecidos
+delete from pedidos_establecidos where id_pedidos_establecidos=11;
+select * from detallepedidos_establecidos
+
+--Insertando datos en la columna de estados
+select * from estados;
+
+insert into estados(estado) values('Comprando'),('Activo'),('Bloqueado');
+
+--Alterando la tabla de clientes para añadir la columna de estados
+select * from clientes;
+
+alter table clientes add column fk_id_estado int;--Añadiendo el campo 
+alter table clientes alter column fk_id_estado set default 8;--Añadiendo el default a la tabla
+alter table clientes add constraint clientes_fk foreign key (fk_id_estado) references estados(id_estados) on update cascade on delete cascade;
+
+update clientes set fk_id_estado = 8--Actualizamos los registros que teniamos
+
+--Hacemos inserción sin especificar el estado para demostrar que siempre sera 8 = Activo, a menos que este se cambie
+INSERT INTO clientes (nombre_cliente, apellido_cliente, correo_cliente, dui_cliente, 
+telefono_cliente, direccion_cliente, usuario, contrasena)values
+('Carlos', 'Fuentes', 'CarlosFfu@gmaisssl.com', '09452334-3', '7327-8323', 'DOMICILIO 
+CONOCIDO', 'Fuentes682', '876120');
+
+select * from admins
+select * from clientes
+select * from estados
+update clientes set fk_id_estado=9 where id_cliente=10;
+select * from productos where id_producto
+not in(select id_producto from productos order by id_producto limit 4) order by id_producto limit 4;
+
+SELECT clt.id_cliente,clt.nombre_cliente,clt.apellido_cliente,clt.correo_cliente,clt.dui_cliente,clt.telefono_cliente,
+clt.direccion_cliente,clt.usuario,est.estado
+FROM clientes as clt 
+INNER JOIN estados AS est ON clt.fk_id_estado = est.id_estados
+WHERE id_cliente
+NOT IN(SELECT id_cliente FROM clientes ORDER BY id_cliente LIMIT 0) ORDER BY id_cliente limit 8
+
+SELECT id_cliente, nombre_cliente, apellido_cliente, correo_cliente, dui_cliente, telefono_cliente, direccion_cliente, usuario
+            FROM clientes 
+            WHERE id_cliente = 1
+            ORDER BY id_cliente
+
+select * from valoraciones_clientes order by id_valoracionescli
+
+SELECT vcl.id_valoracionescli, vcl.comentario, clt.usuario, prd.nombre_producto, vcl.fk_id_valoraciones 
+FROM valoraciones_clientes AS vcl
+INNER JOIN clientes AS clt ON vcl.fk_id_cliente = clt.id_cliente 
+INNER JOIN productos AS prd ON vcl.fk_id_productos = prd.id_producto 
+WHERE vcl.id_valoracionescli
+NOT IN (SELECT id_valoracionescli FROM valoraciones_clientes ORDER BY id_valoracionescli LIMIT 0) ORDER BY vcl.id_valoracionescli limit 8
+
+SELECT vcl.id_valoracionescli,vcl.comentario,vcl.fk_id_cliente,clt.nombre_cliente,clt.apellido_cliente,prd.nombre_producto,
+                val.valoraciones 
+                FROM valoraciones_clientes as vcl 
+                INNER JOIN clientes AS clt ON  vcl.fk_id_cliente = clt.id_cliente
+                INNER JOIN productos AS prd ON vcl.fk_id_productos = prd.id_producto
+                INNER JOIN valoraciones	AS val ON vcl.fk_id_valoraciones = val.id_valoraciones 
+                WHERE vcl.id_valoracionescli = 1
+                ORDER BY vcl.id_valoracionescli
+
+create table inventario(
+	id_inventario serial not null,
+	cantidada int not null,
+	cantidadn int not null,
+	modificado boolean not null,
+	fecha date default current_date,
+	fk_id_admin int not null,
+	fk_id_producto int not null,
+	constraint inventario_pk primary key (id_inventario),
+	constraint inventario_admins_fk foreign key (fk_id_admin) references admins(id_admin) on update cascade on delete cascade,
+	constraint inventario_productos_fk foreign key (fk_id_producto) references productos(id_producto) on update cascade on delete cascade
+);
+
+--Trigger para actualizar la cantidad del producto luego de insertar en la tabla de inventario
+CREATE FUNCTION actualizarcantidadprdi() RETURNS TRIGGER
+AS
+$$
+DECLARE 
+--Declaramos las variables
+idmax int:=(SELECT MAX(id_inventario) FROM inventario);
+idprd int:=(SELECT fk_id_producto FROM inventario 
+			   WHERE id_inventario=idmax);
+cantprd int:=(SELECT cantidadn FROM inventario 
+		  WHERE id_inventario = idmax);
+BEGIN
+--Indicamos el procedimiento a realizar
+UPDATE productos SET cantidad=cantidad+cantprd 
+WHERE id_producto=idprd;
+RETURN NEW;
+END
+$$
+LANGUAGE plpgsql;--Final del la función del trigger
+
+--Inicio del trigger
+CREATE TRIGGER tr_actualizarCPI AFTER INSERT ON inventario
+FOR EACH ROW
+EXECUTE PROCEDURE actualizarcantidadprdi();--Final del Trigger
+
+select * from productos
+select * from inventario
+insert into inventario(cantidada,cantidadn,modificado,fk_id_admin,fk_id_producto) 
+values(34,1,false,1,1);
+
+--Funciono el trigger
+
+SELECT inv.id_inventario, inv.cantidada, inv.cantidadn, inv.modificado, inv.fecha,  inv.fk_id_producto, adm.nombre_admin, adm.apellido_admin, prd.nombre_producto
+FROM inventario AS inv
+INNER JOIN admins AS adm ON inv.fk_id_admin = adm.id_admin
+INNER JOIN productos AS prd ON inv.fk_id_producto = prd.id_producto
+WHERE inv.id_inventario 
+NOT IN (SELECT id_inventario FROM inventario ORDER BY id_inventario LIMIT 0) ORDER BY inv.id_inventario desc LIMIT 5;
+
+select * from productos
+
+update productos set descripcion_producto = 'hello kitty' where id_producto = 1
+
+alter table productos add column descripcion_producto varchar(150);
+
+update admins set fk_id_estado = 8
+select * from estados
+select * from admins
+SELECT adm.id_admin, adm.nombre_admin, adm.apellido_admin, adm.usuario, adm.contrasena
+FROM admins as adm 
+WHERE fk_id_estado = 8 and adm.id_admin NOT IN (select id_admin from admins order by id_admin limit 0) order by adm.id_admin DESC limit 12
+
+select * from pedidos_personalizados
+select * from pedidos_establecidos;
+select * from detallepedidos_establecidos;
+select * from productos
+
+select * from clientes
+--Consulta del carrito
+SELECT pro.id_producto,pro.nombre_producto, dte.cantidad_detallep, dte.subtotal_detallep, 
+pes.id_pedidos_establecidos, pes.montototal_pedidoesta,(clt.nombre_cliente,clt.apellido_cliente)as cliente
+FROM productos AS pro
+INNER JOIN detallepedidos_establecidos AS dte ON pro.id_producto = dte.fk_id_producto
+INNER JOIN pedidos_establecidos AS pes ON dte.fk_id_pedidos_establecidos = pes.id_pedidos_establecidos
+INNER JOIN clientes AS clt ON pes.fk_id_cliente = clt.id_cliente;
+
+
+--TRIGGER DE ACTUALIZAR EL SUBTOTAL del detalle del producto de acuerdo a la cantidad del producto que se ingrese
+--TRIGGERS
+--Que actualice monto total del pedido luego de cada insert en el detalle de dicho 
+--pedido Se le sumará al monto total el subtotal nuevo
+--Primero se ejecuta la función que el trigger realizara
+CREATE FUNCTION actualizarSubtotal() RETURNS TRIGGER
+AS
+$$
+DECLARE 
+--Declaramos las variables
+idmax int:=(SELECT MAX(id_detalle_pedidos) FROM detallepedidos_establecidos);
+cant int:=(SELECT cantidad_detallep FROM detallepedidos_establecidos 
+			   WHERE id_detalle_pedidos=idmax);
+idprd int:= (SELECT fk_id_producto FROM detallepedidos_establecidos WHERE id_detalle_pedidos=idmax);
+preciop numeric(6,2):=(SELECT precio_producto FROM productos
+					  WHERE id_producto=idprd);
+BEGIN
+--Indicamos el procedimiento a realizar
+UPDATE detallepedidos_establecidos SET subtotal_detallep=cant*preciop 
+WHERE detallepedidos_establecidos=idmax;
+RETURN NEW;
+END
+$$
+LANGUAGE plpgsql;--Final del la función del trigger
+--Inicio del trigger
+CREATE TRIGGER tr_actualizarsubtotal AFTER INSERT ON detallepedidos_establecidos
+FOR EACH ROW
+EXECUTE PROCEDURE actualizarSubtotal();--Final del Trigger
+
+
+update pedidos_personalizados set imagenejemplo_pedidopersonal='harrypotter.png' where id_pedidos_personalizado=1;
+update pedidos_personalizados set imagenejemplo_pedidopersonal='amigurumi2.png' where id_pedidos_personalizado=2
+update pedidos_personalizados set imagenejemplo_pedidopersonal='amigurumi2.png' where id_pedidos_personalizado=3
+
+insert into pedidos_personalizados (fecha_pedidopersonal, descripcion_pedidopersonal, imagenejemplo_pedidopersonal, descripcionlugar_entrega, fk_id_cliente, fk_id_tamano, fk_id_estado)
+values ('16/03/2022', 'color naranja', 'amigurumi1.png', 'Tercer Parque, calle principar frente a unas champas', 5, 1, 2)
+
+select * from clientes
