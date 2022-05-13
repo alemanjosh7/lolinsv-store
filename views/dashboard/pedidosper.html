@@ -18,7 +18,7 @@
     <link rel="icon" href="../../resources/img/icons/icono-web.jpeg">
 </head>
 
-<body>
+<body class="pedidosY">
     <header>
         <div class="navbar-fixed">
             <nav>
@@ -63,7 +63,7 @@
         <!--Encabezado de la página-->
         <!--Título de la página-->
         <div class="titulo center-align">
-            <h4>Personalizados aceptados</h4>
+            <h4>Personalizados enviados</h4>
         </div>
         <div class="encabezado">
             <!--Botón pendientes-->
@@ -77,7 +77,8 @@
                 <div class="imagen-lupa">
                     <img src="../../resources/img/icons/lupa.png">
                 </div>
-                <input type="search" id="search" placeholder="Buscar..." />
+                <form id="buscador_pedido"> <input name="search" type="search" id="search" placeholder="Buscar..." />
+                </form>
             </div>
         </div>
         <div class="container-main">
@@ -88,126 +89,16 @@
                     <div class="card" id="tarjetas-privado">
                         <div class="botones">
                             <!--Botón eliminar-->
-                            <a class="modal-trigger btn-floating waves-effect waves-light red" href="#borrar-pedido"
+                            <a class="modal-trigger btn-floating waves-effect waves-light red"
                                 id=""><i class="material-icons">delete</i></a>
-                            <!--Modal de eliminar-->
-                            <div id="borrar-pedido" class="modal">
-                                <div class="fondo-modaldatos modal-content">
-                                    <div class="center-align">
-                                        <h4>Eliminar</h4>
-                                        <p>¿Está seguro que quiere eliminarlo?</p>
-                                        <a class="boton-noborrar waves-effect waves-teal btn-flat center-align"
-                                            href="pedidosper.html">No</a>
-                                        <a class="boton-siborrar waves-effect waves-teal btn-flat center-align">Si</a>
-                                    </div>
-                                </div>
-                            </div>
-
+                            <a class="modal-trigger btn-floating waves-effect waves-light grey" href="#modalver"
+                            id=""><i class="material-icons">visibility</i></a>
                         </div>
                         <!--Contenido-->
                         <div class="imagen-pedidos center-align col s12 m12 s12">
                             <img src="../../resources/img/icons/personalizado.png">
                             <span class="card-title">
-                                <h6>92837672-0</h6>
-                        </div>
-                        <div class="card-content">
-                            <p>Aceptado</p>
-                        </div>
-                    </div>
-                </div>
-                <div class="col l3 s12 m6">
-                    <!--Tarjeta-->
-                    <div class="card" id="tarjetas-privado">
-                        <div class="botones">
-                            <!--Botón eliminar-->
-                            <a class="modal-trigger btn-floating waves-effect waves-light red" href="#borrar-pedido"
-                                id=""><i class="material-icons">delete</i></a>
-                            <!--Modal de eliminar-->
-                            <div id="borrar-pedido" class="modal">
-                                <div class="fondo-modaldatos modal-content">
-                                    <div class="center-align">
-                                        <h4>Eliminar</h4>
-                                        <p>¿Está seguro que quiere eliminarlo?</p>
-                                        <a class="boton-noborrar waves-effect waves-teal btn-flat center-align"
-                                            href="pedidosper.html">No</a>
-                                        <a class="boton-siborrar waves-effect waves-teal btn-flat center-align">Si</a>
-                                    </div>
-                                </div>
-                            </div>
-
-                        </div>
-                        <!--Contenido-->
-                        <div class="imagen-pedidos center-align col s12 m12 s12">
-                            <img src="../../resources/img/icons/personalizado.png">
-                            <span class="card-title">
-                                <h6>82931568-2</h6>
-                            </span>
-                        </div>
-                        <div class="card-content">
-                            <p>Aceptado</p>
-                        </div>
-                    </div>
-                </div>
-                <div class="col l3 s12 m6">
-                    <!--Tarjeta-->
-                    <div class="card" id="tarjetas-privado">
-                        <div class="botones">
-                            <!--Botón eliminar-->
-                            <a class="modal-trigger btn-floating waves-effect waves-light red" href="#borrar-pedido"
-                                id=""><i class="material-icons">delete</i></a>
-                            <!--Modal de eliminar-->
-                            <div id="borrar-pedido" class="modal">
-                                <div class="fondo-modaldatos modal-content">
-                                    <div class="center-align">
-                                        <h4>Eliminar</h4>
-                                        <p>¿Está seguro que quiere eliminarlo?</p>
-                                        <a class="boton-noborrar waves-effect waves-teal btn-flat center-align"
-                                            href="pedidosper.html">No</a>
-                                        <a class="boton-siborrar waves-effect waves-teal btn-flat center-align">Si</a>
-                                    </div>
-                                </div>
-                            </div>
-
-                        </div>
-                        <!--Contenido-->
-                        <div class="imagen-pedidos center-align col s12 m12 s12">
-                            <img src="../../resources/img/icons/personalizado.png">
-                            <span class="card-title">
-                                <h6>92836472-1</h6>
-                            </span>
-                        </div>
-                        <div class="card-content">
-                            <p>Aceptado</p>
-                        </div>
-                    </div>
-                </div>
-                <div class="col l3 s12 m6">
-                    <!--Tarjeta-->
-                    <div class="card" id="tarjetas-privado">
-                        <div class="botones">
-                            <!--Botón eliminar-->
-                            <a class="modal-trigger btn-floating waves-effect waves-light red" href="#borrar-pedido"
-                                id=""><i class="material-icons">delete</i></a>
-                            <!--Modal de eliminar-->
-                            <div id="borrar-pedido" class="modal">
-                                <div class="fondo-modaldatos modal-content">
-                                    <div class="center-align">
-                                        <h4>Eliminar</h4>
-                                        <p>¿Está seguro que quiere eliminarlo?</p>
-                                        <a class="boton-noborrar waves-effect waves-teal btn-flat center-align"
-                                            href="pedidosper.html">No</a>
-                                        <a class="boton-siborrar waves-effect waves-teal btn-flat center-align">Si</a>
-                                    </div>
-                                </div>
-                            </div>
-
-                        </div>
-                        <!--Contenido-->
-                        <div class="imagen-pedidos center-align col s12 m12 s12">
-                            <img src="../../resources/img/icons/personalizado.png">
-                            <span class="card-title">
-                                <h6>83920157-6</h6>
-                            </span>
+                                <h6>Entregado</h6>
                         </div>
                         <div class="card-content">
                             <p>Aceptado</p>
@@ -215,40 +106,102 @@
                     </div>
                 </div>
             </div>
-            <!--Segunda fila de pedidos-->
-            <div class="row" id="pedidos-row2">
-                <div class="col l4 s12 m6">
-                    <!--Tarjeta-->
-                    <div class="card" id="tarjetas-privado">
-                        <div class="botones">
-                            <!--Botón eliminar-->
-                            <a class="modal-trigger btn-floating waves-effect waves-light red" href="#borrar-pedido"
-                                id=""><i class="material-icons">delete</i></a>
-                            <!--Modal de eliminar-->
-                            <div id="borrar-pedido" class="modal">
-                                <div class="fondo-modaldatos modal-content">
-                                    <div class="center-align">
-                                        <h4>Eliminar</h4>
-                                        <p>¿Está seguro que quiere eliminarlo?</p>
-                                        <a class="boton-noborrar waves-effect waves-teal btn-flat center-align"
-                                            href="pedidosper.html">No</a>
-                                        <a class="boton-siborrar waves-effect waves-teal btn-flat center-align">Si</a>
-                                    </div>
-                                </div>
-                            </div>
-
+        </div>
+        <div class="fixed-action-btn">
+            <a class="btn-floating btn-large red" id="hasta_arriba">
+                <i class="large material-icons">arrow_upward</i>
+            </a>
+            <ul>
+        </div>
+        <div class="container">
+            <div class="row">
+                <div class="col s2 offset-s2 m2 offset-m2 l1 offset-l4 center" id="contenedor-botonnavg">
+                    <div class="botonnavg-footer center" id="pagnavg-atr">
+                        <a class="tooltipped" data-position="left" data-tooltip="Regresar página anterior"><i
+                                class="material-icons medium">chevron_left</i></a>
+                    </div>
+                </div>
+                <div class="col s2 m2 l1 center" id="contenedor-botonnavg">
+                    <div class="botonnavg-footer center contnpag">
+                        <a><span class="pagnavg" id="pagnumeroi">1</span></a>
+                    </div>
+                </div>
+                <div class="col s2  m2 l1 center" id="contenedor-botonnavg">
+                    <div class="botonnavg-footer center contnpag">
+                        <a><span class="pagnavg" id="pagnumerof">2</span></a>
+                    </div>
+                </div>
+                <div class="col s2 m2 l1 center" id="contenedor-botonnavg">
+                    <div class="botonnavg-footer center tooltipped" data-position="top" data-tooltip="¡Más muy pronto!">
+                        <a><span>...</span></a>
+                    </div>
+                </div>
+                <div class="col s2 m2 l1 center" id="contenedor-botonnavg">
+                    <div class="botonnavg-footer center" id="pagnavg-adl">
+                        <a class="tooltipped" data-position="right" data-tooltip="Página siguiente"><i
+                                class="material-icons medium">chevron_right</i></a>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div id="modalaceptar" class="modal">
+            <div class="modal-content">
+                <div class="center-align">
+                    <h4>Confirmar Pedido</h4>
+                    <p>Visualice la información del pedido o confirme su entrega</p>
+                </div>
+                <form class="col s12" id="form-pedidos">
+                    <div class="row">
+                        <div class="input-field col l4 m6 s12 hide">
+                            <input placeholder="Nombres" id="id_pedido" type="text" name="id_pedido"
+                                class="center-align inputs-estilizados">
+                            <label for="id_pedido">Nombres Clientes</label>
                         </div>
-                        <!--Contenido-->
-                        <div class="imagen-pedidos center-align col s12 m12 s12">
-                            <img src="../../resources/img/icons/personalizado.png">
-                            <span class="card-title">
-                                <h6>39817349-2</h6>
+                        <div class="input-field col l4 m6 s12">
+                            <input disabled placeholder="Nombres" id="input-nombre" type="text" name="nombre"
+                                class="center-align inputs-estilizados">
+                            <label for="input-nombre">Nombres Clientes</label>
                         </div>
-                        <div class="card-content">
-                            <p>Aceptado</p>
+                        <div class="input-field col l4 m6 s12">
+                            <input disabled placeholder="Apellidos" id="input-apellido" type="text" name="apellido"
+                                class="center-align inputs-estilizados">
+                            <label for="input-apellido">Apellidos Cliente</label>
+                        </div>
+                        <div class="input-field col l4 m6 s12">
+                            <input disabled placeholder="Fecha" id="input-fecha" type="text" name="fecha"
+                                class="center-align inputs-estilizados">
+                            <label for="input-fecha">Fecha</label>
+                        </div>
+                        <div class="input-field col l6 m6 s12">
+                            <textarea disabled placeholder="Pedido" id="input-pedido" type="text" name="pedido"
+                                class="center-align inputs-estilizados materialize-textarea"></textarea>
+                            <label for="input-pedido">Descripción Pedido</label>
+                        </div>
+                        <div class="input-field col l6 m6 s12">
+                            <textarea disabled placeholder="Descripción" id="input-descripcion" type="text" name="descripcion"
+                                class="center-align inputs-estilizados materialize-textarea"></textarea>
+                            <label for="input-descripcion">Descripción Lugar Entrega</label>
+                        </div>
+                        <div class="input-field col s12">
+                            <textarea disabled placeholder="Descripción" id="direccion" type="text" name="direccion"
+                                class="center-align inputs-estilizados materialize-textarea"></textarea>
+                            <label for="input-descripcion">Dirección del cliente:</label>
+                        </div>
+                        <di class="col l12 m6 s12">
+                            <img id="imagen-per" class="responsive-img materialboxed"
+                                src="../../api/images/pedidosper/harrypotter.png" height="100px" width="100px"
+                                data-caption="Selecciona un producto para ver su descripcion">
+                        </di>
+                    </div>
+                </form>
+                <div class="col s12">
+                    <div class="row">
+                        <div class="col l12 m6 s12 right-align">
+                            <a class="modal-close waves-effect waves-light btn " id="cancelarPIN">Cancelar</a>
                         </div>
                     </div>
                 </div>
+                <div class="col s12" id="decoracionr-modal"></div>
             </div>
         </div>
     </main>
@@ -299,7 +252,10 @@
     </footer>
     <!--JavaScript at end of body for optimized loading-->
     <script type="text/javascript" src="../../resources/js/materialize.min.js"></script>
-    <script type="text/javascript" src="../../controllers/dashboard/pedidosami.js"></script>
+    <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    <script src="../../controllers/components.js"></script>
+    <script src="../../controllers/validaciones.js"></script>
+    <script type="text/javascript" src="../../controllers/dashboard/pedidosper.js"></script>
 </body>
 
 </html>

@@ -16,9 +16,10 @@
     <link href="https://fonts.googleapis.com/css2?family=PT+Serif&family=Poppins&display=swap" rel="stylesheet">
     <!--Icono del sitio web-->
     <link rel="icon" href="../../resources/img/icons/icono-web.jpeg">
+    <title>Lolin.sv-Usuarios</title>
 </head>
 
-<body>
+<body class="UsuariosP">
     <header>
         <div class="navbar-fixed">
             <nav>
@@ -68,177 +69,196 @@
             <h4>Usuarios</h4>
         </div>
         <div class="encabezado">
-            <!--Botón añadir e imagen de añadir-->
-            <div class="añadir">
-                <div class="imagen-añadir">
-                    <img src="../../resources/img/icons/añadir.png">
+            <!--Botón añadir e imagen de añadir-->  
+            <div class="row">
+                <div class="col offset-m6 m6 s12  right-align">
+                  <a class="btn-floating waves-effect waves-light green tooltipped"><i class="material-icons">add</i></a>
+                  <a onclick="openCreate()" class="modal-trigger waves-effect waves-light btn tooltipped boton-añadir" data-tooltip="Crear"
+                    id="pagar_btn">Añadir</a>
                 </div>
-                <a class="boton-añadir waves-effect waves-teal btn-flat center-align">Añadir</a>
-            </div>
+                <form method="post" id="search-form">
+                  <div class="input-field col s8 m4 l2  left-align">
+                    <i class="material-icons prefix">search</i>
+                    <input id="search" type="text" name="search" required>
+                    <label for="search">Buscador</label>
+                  </div>
+                </form>
+              </div>
             <!--Buscador e icono del buscador-->
-            <span class="icon"><i class="fa fa-search"></i></span>
-            <div class="buscador">
-                <div class="imagen-lupa">
-                    <img src="../../resources/img/icons/lupa.png">
-                </div>
-                <input type="search" id="search" placeholder="Buscar..." />
-            </div>
+            
         </div>
         <div class="container-main">
             <div class="row" id="usuario-row">
-                <div class="col l3 s12 m6">
-                    <div class="card" id="tarjetas-privado" id="tarjetas-privado">
-                        <div class="botones">
-                            <a class="modal-trigger btn-floating waves-effect waves-light red" href="#borrar-usuario"
-                                id=""><i class="material-icons">delete</i></a>
-                            <!--Modal eliminar-->
-                            <div id="borrar-usuario" class="modal">
-                                <div class="fondo-modaldatos modal-content">
-                                    <div class="center-align">
-                                        <h4>Eliminar</h4>
-                                        <p>¿Está seguro que quiere eliminarlo?</p>
-                                        <a class="boton-noborrar waves-effect waves-teal btn-flat center-align">No</a>
-                                        <a class="boton-siborrar waves-effect waves-teal btn-flat center-align">Si</a>
-                                    </div>
-                                </div>
-                            </div>
-                            <a class="btn-floating waves-effect waves-grey lighten-1"><i
-                                    class="material-icons">edit</i></a>
-                        </div>
-                        <div class="imagen-usuario center-align col s12 m12 s12">
-                            <img src="../../resources/img/icons/UserIcon-Perfil.png">
-                            <span class="card-title">
-                                <h6>Jesús Esquivel</h6>
-                        </div>
-                        <div class="card-content">
-                            <p>Super Admin</p>
-                        </div>
-                    </div>
-                </div>
-                <div class="col l3 s12 m6">
-                    <div class="card" id="tarjetas-privado">
-                        <div class="botones">
-                            <a class="modal-trigger btn-floating waves-effect waves-light red" href="#borrar-usuario"
-                                id=""><i class="material-icons">delete</i></a>
-                            <!--Modal eliminar-->
-                            <div id="borrar-usuario" class="modal">
-                                <div class="fondo-modaldatos modal-content">
-                                    <div class="center-align">
-                                        <h4>Eliminar</h4>
-                                        <p>¿Está seguro que quiere eliminarlo?</p>
-                                        <a class="boton-noborrar waves-effect waves-teal btn-flat center-align">No</a>
-                                        <a class="boton-siborrar waves-effect waves-teal btn-flat center-align">Si</a>
-                                    </div>
-                                </div>
-                            </div>
-                            <a class="btn-floating waves-effect waves-grey lighten-1"><i
-                                    class="material-icons">edit</i></a>
-                        </div>
-                        <div class="imagen-usuario center-align col s12 m12 s12">
-                            <img src="../../resources/img/icons/UserIcon-Perfil.png">
-                            <span class="card-title">
-                                <h6>Isabel Martínez</h6>
-                            </span>
-                        </div>
-                        <div class="card-content">
-                            <p>Administrador</p>
-                        </div>
-                    </div>
-                </div>
-                <div class="col l3 s12 m6">
-                    <div class="card" id="tarjetas-privado">
-                        <div class="botones">
-                            <a class="modal-trigger btn-floating waves-effect waves-light red" href="#borrar-usuario"
-                                id=""><i class="material-icons">delete</i></a>
-                            <!--Modal eliminar-->
-                            <div id="borrar-usuario" class="modal">
-                                <div class="fondo-modaldatos modal-content">
-                                    <div class="center-align">
-                                        <h4>Eliminar</h4>
-                                        <p>¿Está seguro que quiere eliminarlo?</p>
-                                        <a class="boton-noborrar waves-effect waves-teal btn-flat center-align">No</a>
-                                        <a class="boton-siborrar waves-effect waves-teal btn-flat center-align">Si</a>
-                                    </div>
-                                </div>
-                            </div>
-                            <a class="btn-floating waves-effect waves-grey lighten-1"><i
-                                    class="material-icons">edit</i></a>
-                        </div>
-                        <div class="imagen-usuario center-align col s12 m12 s12">
-                            <img src="../../resources/img/icons/UserIcon-Perfil.png">
-                            <span class="card-title">
-                                <h6>Josué Alemán</h6>
-                            </span>
-                        </div>
-                        <div class="card-content">
-                            <p>Super Admin</p>
-                        </div>
-                    </div>
-                </div>
-                <div class="col l3 s12 m6">
-                    <div class="card" id="tarjetas-privado">
-                        <div class="botones">
-                            <a class="modal-trigger btn-floating waves-effect waves-light red" href="#borrar-usuario"
-                                id=""><i class="material-icons">delete</i></a>
-                            <!--Modal eliminar-->
-                            <div id="borrar-usuario" class="modal">
-                                <div class="fondo-modaldatos modal-content">
-                                    <div class="center-align">
-                                        <h4>Eliminar</h4>
-                                        <p>¿Está seguro que quiere eliminarlo?</p>
-                                        <a class="boton-noborrar waves-effect waves-teal btn-flat center-align">No</a>
-                                        <a class="boton-siborrar waves-effect waves-teal btn-flat center-align">Si</a>
-                                    </div>
-                                </div>
-                            </div>
-                            <a class="btn-floating waves-effect waves-grey lighten-1"><i
-                                    class="material-icons">edit</i></a>
-                        </div>
-                        <div class="imagen-usuario center-align col s12 m12 s12">
-                            <img src="../../resources/img/icons/UserIcon-Perfil.png">
-                            <span class="card-title">
-                                <h6>Jona Grande</h6>
-                            </span>
-                        </div>
-                        <div class="card-content">
-                            <p>Administrador</p>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <div class="row" id="usuario-row2">
-                <div class="col l4 s12 m6">
-                    <div class="card" id="tarjetas-privado">
-                        <div class="botones">
-                            <a class="modal-trigger btn-floating waves-effect waves-light red" href="#borrar-usuario"
-                                id=""><i class="material-icons">delete</i></a>
-                            <!--Modal eliminar-->
-                            <div id="borrar-usuario" class="modal">
-                                <div class="fondo-modaldatos modal-content">
-                                    <div class="center-align">
-                                        <h4>Eliminar</h4>
-                                        <p>¿Está seguro que quiere eliminarlo?</p>
-                                        <a class="boton-noborrar waves-effect waves-teal btn-flat center-align">No</a>
-                                        <a class="boton-siborrar waves-effect waves-teal btn-flat center-align">Si</a>
-                                    </div>
-                                </div>
-                            </div>
-                            <a class="btn-floating waves-effect waves-grey lighten-1"><i
-                                    class="material-icons">edit</i></a>
-                        </div>
-                        <div class="imagen-usuario center-align col s12 m12 s12">
-                            <img src="../../resources/img/icons/UserIcon-Perfil.png">
-                            <span class="card-title">
-                                <h6>Stanley Carranza</h6>
-                        </div>
-                        <div class="card-content">
-                            <p>Super Admin</p>
-                        </div>
-                    </div>
-                </div>
+                <div id="Admins">
+                    
+                </div>         
             </div>
         </div>
+
+
+
+
+
+       <!--Diseño del modal de confirmación de actualización de datos-->
+    <div id="actualizar-usuario" class="modal">
+        <div class="fondo-modaldatos modal-content">
+          <div class="center-align">
+            <div class="row">
+              <div class="col offset-s3 s6 center-align" id="banner-confirmacion">
+                <h5 id="titleA" >Actualizar usuario</h5>
+              </div>
+            </div>
+  
+            <div class="col s12" id="decoracion-modal"></div>
+            <div class="col l1 m2 s10 left-align" id="div-regresarboton">
+              <a class="modal-close" id="regresar-boton-popup">
+                < Volver a usuarios</a>
+            </div>
+          </div>               
+          <form class="row" method="post" id="save-form2" enctype="multipart/form-data">
+            <input class="hide" type="number" id="id_admin" name="id_admin"> 
+            <div class="col s12">
+                <div class="row">
+                    <div class="input-field col s12 m6 l4">
+                        <input id="nombre_admin" type="text" name="nombre_admin" class="validate" required>
+                        <label for="nombre_admin">Nombre del usuario</label>
+                    </div>
+                    <div class="input-field col s12 m6 l4">
+                        <input id="apellidoA" type="text" name="apellido" class="validate" required>
+                        <label for="apellidoA">Apellido del usuario</label>
+                    </div>
+                    <div class="input-field col s12 m6 l4">
+                        <input id="usuarioA" type="text" name="usuario" class="validate" required>
+                        <label for="usuarioA">Usuario</label>
+                    </div>
+                    <div class="input-field col s12 m6 l4" id="contrasena">
+                      <input type="password" name="contrasena" class="validate" required>
+                      <label for="usuarioA">Contraseña</label>
+                  </div>
+                  <div class="input-field col s12 m6 l4" id="coContrasena">
+                    <input type="password" name="coContrasena" class="validate" required>
+                    <label for="usuarioA">Confirmar contraseña</label>
+                </div>
+                </div>
+              <div class="row">
+                <div class="col m12 s12 submit-form right-align">
+                  <a class="waves-effect waves-light btn center-align boton-añadir" id="cambiarcontra">Cambiar
+                    Contra</a> 
+                  <a href="#!" class="modal-close waves-effect waves-light btn tooltipped boton-añadir"
+                    id="GuardarU_btn">Cancelar</a>
+                  <button type="submit" id="editarbtn" class="waves-effect waves-light btn tooltipped boton-añadir" data-tooltip="Guardar"
+                    id="GuardarU_btn">Guardar</button>
+                               
+                </div>
+              </div>
+            </div>
+          </form>
+  
+          <div class="col s12" id="decoracion-modal"></div>
+        </div>
+      </div>
     </main>
+
+    <!--Modal de renovar contraseña-->
+    <div id="modalrestablecer" class="modal">
+      <div class="modal-content">
+          <div class="center-align">
+              <h4>Restablecer contraseña</h4>
+              <p>Ingresa tu nueva contraseña y confirmala para poder iniciar sesión</p>
+              <i class="tooltipped material-icons right-align" data-position="top" data-tooltip="Mostrar/Ocultar"
+                  id="ocultarmostrar_contraseñas">visibility</i>
+          </div>
+          <form class="col s12" id="renovarcontr-form">
+              <div class="row">
+                  <!--Inputs para restablecer contraseña-->
+                  <div class="input-field col l6 m6 s12">
+                      <input placeholder="Contraseña actual" id="contraseña_nueva" type="password"
+                          class="center-align inputs-estilizados" name="contrasena">
+                      <label for="contraseña_nueva">Contraseña nueva</label>
+                  </div>
+                  <div class="input-field col l6 m6 s12">
+                      <input placeholder="Confirma tu contraseña" id="contraseña_confirma" type="password"
+                          class="center-align inputs-estilizados">
+                      <label for="contraseña_confirma">Confirmación</label>
+                  </div>
+              </div>
+          </form>
+          <div class="col s12">
+              <div class="row">
+                  <div class="col m12 ofsset-m8 s12 center-align">
+                      <a class="waves-effect waves-light btn center-align" id="restablecerContraseña">Restablecer
+                          contraseña</a>
+                      <div class="preloader-wrapper active" id="actdatoscontra_preloader">
+                          <div class="spinner-layer spinner-red-only">
+                              <div class="circle-clipper left">
+                                  <div class="circle"></div>
+                              </div>
+                              <div class="gap-patch">
+                                  <div class="circle"></div>
+                              </div>
+                              <div class="circle-clipper right">
+                                  <div class="circle"></div>
+                              </div>
+                          </div>
+                      </div>
+                  </div>
+              </div>
+              <div class="col s12">
+                  <div class="row">
+                      <div class="col m6 s12 left-align">
+                          <h6 id="mensaje-restablecer">El PIN no es el correcto</h6>
+                      </div>
+                      <div class="col m6 s12 right-align">
+                          <a class="modal-close waves-effect waves-light btn " id="cancelarPIN">Cancelar</a>
+                      </div>
+                  </div>
+              </div>
+              <div class="col s12" id="decoracionr-modal"></div>
+          </div>
+      </div>
+  </div>
+     
+
+    <!--Contenedor del menu para la páginación-->
+    <div class="container">
+        <div class="row">
+          <div class="col s2 offset-s2 m2 offset-m2 l1 offset-l4 center" id="contenedor-botonnavg">
+            <div class="botonnavg-footer center" id="pagnavg-atr">
+              <a class="tooltipped" data-position="left" data-tooltip="Regresar página anterior"><i
+                  class="material-icons medium">chevron_left</i></a>
+            </div>
+          </div>
+          <div class="col s2 m2 l1 center" id="contenedor-botonnavg">
+            <div class="botonnavg-footer center contnpag">
+              <a><span class="pagnavg" id="pagnumeroi">1</span></a>
+            </div>
+          </div>
+          <div class="col s2  m2 l1 center" id="contenedor-botonnavg">
+            <div class="botonnavg-footer center contnpag">
+              <a><span class="pagnavg" id="pagnumerof">2</span></a>
+            </div>
+          </div>
+          <div class="col s2 m2 l1 center" id="contenedor-botonnavg">
+            <div class="botonnavg-footer center tooltipped" data-position="top" data-tooltip="¡Más muy pronto!">
+              <a><span>...</span></a>
+            </div>
+          </div>
+          <div class="col s2 m2 l1 center" id="contenedor-botonnavg">
+            <div class="botonnavg-footer center" id="pagnavg-adl">
+              <a class="tooltipped" data-position="right" data-tooltip="Página siguiente"><i
+                  class="material-icons medium">chevron_right</i></a>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!--Boton de hasta arriba-->
+    <div class="fixed-action-btn">
+        <a class="btn-floating btn-large red" id="hasta_arriba">
+          <i class="large material-icons">arrow_upward</i>
+        </a>
+        <ul>
+      </div>
 
     <!--Parte del footer-->
     <footer class="page-footer">
@@ -288,7 +308,10 @@
     </footer>
     <!--JavaScript at end of body for optimized loading-->
     <script type="text/javascript" src="../../resources/js/materialize.min.js"></script>
-    <script type="text/javascript" src="../../controllers/dashboard/clientes.js"></script>
+    <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    <script src="../../controllers/components.js"></script>
+    <script src="../../controllers/validaciones.js"></script>
+    <script src="../../controllers/dashboard/usuarios.js"></script>
+    
 </body>
-
 </html>

@@ -2510,3 +2510,45 @@ border-bottom: 2px solid black;*/
   margin-bottom: 10%;
   height: 150px;
 }
+/*Arístides perfil*/
+.botonpf-cambiar {
+  font-family: 'Poppins', sans-serif;
+  background: linear-gradient(99.82deg, #FFBD81 42.62%, #FB1515 198.11%);
+  border-radius: 15px;
+  color: black;
+  border-top: 6px solid black;
+  border-left: 5px solid black;
+  padding: 0 25px 35px 25px;
+
+}
+
+#modalrestablecer .input-field {
+  margin-top: 40px;
+}
+
+/*Usuarios Jonathan*/
+.boton-añadir {
+  float: right;
+  font-family: "Poppins", sans-serif;
+  background: linear-gradient(99.82deg, #ffbd81 42.62%, #fb1515 198.11%);
+  box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+  color: #000;
+  border-radius: 15px;
+  height: 40px;
+  width: 130px;
+  font-weight: bold;
+  margin-top: 0px;
+  margin-bottom: 5px;
+  border-top: 4.5px solid black;
+  border-left: 4.5px solid black;
+}
+
+.UsuariosP a{
+  color: black !important;
+}
+
+/*Pedidos personalizados Yesenia*/
+.pedidosY #modalaceptar #imagen-per{
+  margin-left: 40%;
+}
+
