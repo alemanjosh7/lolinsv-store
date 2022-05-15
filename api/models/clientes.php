@@ -194,7 +194,7 @@ class Clientes extends Validator
     //Comprobar la contraseña del usuario
     public function checkContrasenaCl($contrasena)
     {
-        $sql = 'SELECT contrasena FROM clientes WHERE id_usuario = ?';
+        $sql = 'SELECT contrasena FROM clientes WHERE id_cliente = ?';
         $params = array($this->id);
         $data = Database::getRow($sql, $params);
         // Se verifica si la contraseña coincide con el hash almacenado en la base de datos.
