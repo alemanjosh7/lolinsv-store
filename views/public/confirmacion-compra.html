@@ -17,7 +17,7 @@
   <link rel="icon" href="../../resources/img/icons/icono-web.png">
 </head>
 
-<body>
+<body class="conf-J">
   <header>
     <div class="navbar-fixed">
       <nav class="primary-bg-color">
@@ -456,8 +456,11 @@
             </div>
             <!--Input del punto de referencia-->
             <div class="input-field col s12">
-              <textarea id="preferencia_usuario-confirmacion-compra"
-                class="materialize-textarea">Tercer parqueo frente a unos chalets verdes</textarea>
+              <textarea id="preferencia_usuario-confirmacion-compra" placeholder="Descripción del lugar de entrega"
+                class="materialize-textarea inputs-estilizados" name="dsc_lugar"></textarea>
+            </div>
+            <div class="input-field col s12 hide">
+              <input id="total_pagar" name="total">
             </div>
           </div>
         </div>
@@ -579,9 +582,13 @@
             </div>
             <div class="col s12">
               <div class="row">
-                <div class="col offset-m3 m6 s12">
-                  <a href="#confirmar-compra_modal" class="modal-trigger waves-effect waves-light btn"
-                    id="pagar_btn">Pagar</a>
+                <div class="col l6  m6 s12">
+                  <a href="#confirmar-compra_modal" class="modal-trigger waves-effect waves-light btn tooltipped" data-position="left" data-tooltip="Confirmar la compra del pedido"
+                    id="pagar_btn" onclick="prepararPago()">Pagar</a>
+                </div>
+                <div class="col l6 m7 s12">
+                  <a href="#confirmar-compra_modal" class="modal-trigger waves-effect waves-light btn tooltipped" data-position="right" data-tooltip="Eliminar pedido y limpiar carrito"
+                    id="pagar_btn" onclick="prepararEliminar()">Eliminar pedido</a>
                 </div>
               </div>
             </div>
@@ -593,8 +600,8 @@
     <div id="confirmar-compra_modal" class="modal">
       <div class="fondo-modaldatos modal-content">
         <div class="center-align">
-          <h4>Confirmar compra</h4>
-          <p>¿Desea proseguir con la compra?</p>
+          <h4 id="encabezado-modal">Confirmar compra</h4>
+          <p id="indicacion-modal">¿Desea proseguir con la compra?</p>
         </div>
         <!--Preloader de la actualización de los datos del perdil-->
         <div class="preloader-wrapper active" id="confirmarcompra_preloader">
@@ -621,6 +628,20 @@
         </div>
       </div>
     </div>
+    <!--Preloader de carga-->
+    <div class="preloader-wrapper big active" id="preloader-cl">
+      <div class="spinner-layer spinner-red-only">
+          <div class="circle-clipper left">
+              <div class="circle"></div>
+          </div>
+          <div class="gap-patch">
+              <div class="circle"></div>
+          </div>
+          <div class="circle-clipper right">
+              <div class="circle"></div>
+          </div>
+      </div>
+  </div>
   </main>
   <footer class="page-footer">
     <div class="container">
@@ -677,10 +698,8 @@
   <script src="../../controllers/components.js"></script>
   <script src="../../controllers/validaciones.js"></script>
   <script type="text/javascript" src="../../controllers/public/online.js"></script>
-  <!--<script type="text/javascript" src="../../controllers/public/carrito.js"></script>
-  <script type="text/javascript" src="../../controllers/public/confirmacion-compra.js"></script>-->
+  <script type="text/javascript" src="../../controllers/public/carrito.js"></script>
+  <script type="text/javascript" src="../../controllers/public/confirmacion-compra.js"></script>
 
 </body>
-<!--../../resources/Amigurumis/
-  ../../resources/img/amigurumis/-->
 </html>

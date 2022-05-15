@@ -3454,3 +3454,28 @@ a {
     padding-top: 0;
   }
 }
+/*Confirmación de compra-Jesús*/
+.inputs-estilizados:focus{
+  box-shadow: 0 3px 0 0 #DF5333 !important;
+  border-bottom: .01 !important;
+}
+
+.inputs-estilizados:focus+i {
+  color: #fa7479 !important;  
+}
+
+.inputs-estilizados:focus+label {
+  color: black !important;  
+}
+
+.conf-J #preloader-cl{
+  display: none;
+  position: absolute;
+  z-index: 3;
+  left: 48%;
+  top: 45%;
+}
+
+.input-field .prefix.active {
+  color: #000;
+}
