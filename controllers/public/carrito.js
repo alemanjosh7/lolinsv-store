@@ -1,6 +1,6 @@
 // Constante para establecer la ruta y parámetros de comunicación con la API.
 const API_ADMINS = SERVER + 'public/carrito.php?action=';
-const API_GLBVAR = SERVER + 'variablesgb.php?action=';
+const API_GLBVARC = SERVER + 'variablesgb.php?action=';
 
 /*Estilo de las opciones de los carritos y el navbar mobile*/
 var carritoIni = {
