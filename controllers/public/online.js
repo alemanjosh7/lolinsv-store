@@ -6,22 +6,6 @@
 // Constante para establecer la ruta y parámetros de comunicación con la API_HEADER_GLBVAR.
 const API_HEADER = SERVER + 'variablesgb.php?action=';//Colocar la direccion correcta aqui
 
-/*Estilo de las opciones de los carritos y el navbar mobile*/
-var opcionesCarrito = {
-    edge: "right",
-    onOpenStart: function () {
-        console.log('debería');
-        hola();
-    }
-};
-var navbarmobile = {
-    edge: "left",
-    onOpenStart: function () {
-        console.log('debería');
-        hola();
-    }
-};
-
 // Método manejador de eventos que se ejecuta cuando el documento ha cargado.
 document.addEventListener('DOMContentLoaded', function () {
     // Petición para obtener en nombre del usuario que ha iniciado sesión.
@@ -200,7 +184,6 @@ document.addEventListener('DOMContentLoaded', function () {
                     /*Ocultar el NavBar si se aprieta en seguir viendo*/
                     var btncontinuarv = document.getElementById('seguirv_carrito');
                     btncontinuarv.addEventListener('click', function () {
-                        console.log('hola');
                         let carrito = M.Sidenav.getInstance(document.querySelector('#carrito'));
                         carrito.close();
                     });

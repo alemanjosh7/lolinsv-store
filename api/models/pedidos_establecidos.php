@@ -135,7 +135,7 @@ class Pedidos_establecidos extends Validator
     //Mostrar los pedidos
     public function readPedido()
     {
-        $sql = 'SELECT pes.id_pedidos_establecidos, pes.fecha_pedidoesta, pes.descripcionlugar_entrega, pes.montototal_pedidoesta, clt.nombre_cliente, clt.apellido_cliente, clt.direccion_cliente
+        $sql = 'SELECT pes.id_pedidos_establecidos, pes.fecha_pedidoesta, pes.descripcionlugar_entrega, pes.montototal_pedidoesta, clt.nombre_cliente, clt.apellido_cliente, clt.direccion_cliente, clt.correo_cliente
         FROM pedidos_establecidos as pes
         INNER JOIN clientes AS clt ON pes.fk_id_cliente = clt.id_cliente
         WHERE pes.id_pedidos_establecidos = ?';
@@ -154,10 +154,11 @@ class Pedidos_establecidos extends Validator
     //Obteniendo detalle del pedido
     public function ObtenerDetalle()
     {
-        $sql ='SELECT det.id_detalle_pedidos,det.cantidad_detallep, det.subtotal_detallep, prd.nombre_producto, prd.precio_producto
-        FROM detallepedidos_establecidos AS det
-        INNER JOIN productos AS prd ON det.fk_id_producto = prd.id_producto
-        WHERE det.fk_id_pedidos_establecidos = ?';
+        $sql ='SELECT det.id_detalle_pedidos,det.cantidad_detallep, det.subtotal_detallep, prd.nombre_producto, prd.precio_producto, prd.imagen_producto, pes.montototal_pedidoesta, pes.id_pedidos_establecidos
+               FROM detallepedidos_establecidos AS det
+               INNER JOIN productos AS prd ON det.fk_id_producto = prd.id_producto
+		       INNER JOIN pedidos_establecidos AS pes ON det.fk_id_pedidos_establecidos = pes.id_pedidos_establecidos
+               WHERE det.fk_id_pedidos_establecidos = ?';
         $params = array($this->id);
         return Database::getRows($sql, $params);
     }
@@ -191,4 +192,39 @@ class Pedidos_establecidos extends Validator
         $params = array($limit);
         return Database::getRows($sql, $params);
     }
+    //Obtener el detalle del carrito
+    public function ObtenerDetalleC(){
+        $sql ='SELECT det.id_detalle_pedidos,det.cantidad_detallep, det.subtotal_detallep, prd.nombre_producto, prd.precio_producto, prd.imagen_producto, pes.montototal_pedidoesta, pes.id_pedidos_establecidos
+               FROM detallepedidos_establecidos AS det
+               INNER JOIN productos AS prd ON det.fk_id_producto = prd.id_producto
+		       INNER JOIN pedidos_establecidos AS pes ON det.fk_id_pedidos_establecidos = pes.id_pedidos_establecidos
+               WHERE det.id_detalle_pedidos = ?';
+        $params = array($this->id);
+        return Database::getRows($sql, $params);
+    }
+    //Eliminar el detalle del carrito
+    public function eliminarDetalle(){
+        $sql = 'DELETE FROM detallepedidos_establecidos
+                WHERE id_detalle_pedidos = ?';
+        $params = array($this->id);
+        return Database::executeRow($sql, $params);
+    }
+    //Actualizar el monto total de pedidos establecidos
+    public function actualizarMontoT($idp){
+        $sql = 'UPDATE pedidos_establecidos 
+                SET montototal_pedidoesta = (SELECT SUM(subtotal_detallep) FROM detallepedidos_establecidos WHERE fk_id_pedidos_establecidos = ?) 
+                WHERE id_pedidos_establecidos=?';
+        $params = array($idp,$idp);
+        return Database::executeRow($sql, $params);
+    }
+    //Confirmar la venta del pedido
+    /*Se cambiara su estado a pendiente, se añadira la descripción de la entrega y se actualizara el montotal sumando los $5 dolares*/
+    public function confirmarVenta(){
+        $sql = 'UPDATE pedidos_establecidos 
+                SET montototal_pedidoesta = ?, fk_id_estado = 1, descripcionlugar_entrega = ? 
+                WHERE id_pedidos_establecidos = ?';
+        $params = array($this->montototal_pedidoesta,$this->descripcionlugar_entrega, $_SESSION['id_pedidoEsta']);
+        return Database::executeRow($sql, $params);
+    }
 }
+?>

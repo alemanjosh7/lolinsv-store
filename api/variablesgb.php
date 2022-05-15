@@ -9,10 +9,14 @@ id_pedidoEsta = El id del pedido establecido
 id_producto = El id del producto
 */
 require_once('helpers/database.php');
+
 // Se comprueba si existe una acción a realizar, de lo contrario se finaliza el script con un mensaje de error.
 if (isset($_GET['action'])) {
     // Se crea una sesión o se reanuda la actual para poder utilizar variables de sesión en el script.
     session_start();
+    /*$_SESSION['id_cliente'] = 1;
+    $_SESSION['id_pedidoEsta'] = 1;
+    $_SESSION['usuario'] = 'Fuentesc82';*/
     // Se declara e inicializa un arreglo para guardar el resultado que retorna la API.
     $result = array('status' => 0, 'session' => 0, 'message' => null, 'exception' => null, 'idusuario' => null, 'usuario' => null,
     'nombre' => null, 'apellido' => null, 'id_pedidoEsta' => null, 'id_producto' => null);
@@ -48,22 +52,31 @@ if (isset($_GET['action'])) {
                 $result['nombre'] = $_SESSION['nombreUsuario'];
                 $result['apellido'] = $_SESSION['apellidoUsuario'];
             break;
+        //Caso para verificar el saludo al pasar el login 
         case 'verificarSaludoI':
+            //Si el saludo no es true
             if($_SESSION['saludoI']!=true){
+                //Se envia una comprobación que no es verdadero y se envia el nombre y el apellido del usuario
+                //Adicionalmente se cambia su valor a true
                 $result['status'] = 1;
                 $result['nombre'] = $_SESSION['nombreUsuario'];
                 $result['apellido'] = $_SESSION['apellidoUsuario'];
                 $_SESSION['saludoI'] = true; 
             }else{
+                //Como no es verdadero, solo se envia el nombre y el apellido del usuario
                 $result['nombre'] = $_SESSION['nombreUsuario'];
                 $result['apellido'] = $_SESSION['apellidoUsuario']; 
             }
             break;
+        //Caso para verificar si hay una sesión iniciada por parte del cliente
         case 'verificarCLLog':
+            //Se comprueba si se ha inicializado la variable de session id_cliente
             if(isset($_SESSION['id_cliente'])){
+                //Si lo esta se comprueba y se envia su usuario
                 $result['status'] = 1;
                 $result['usuario'] = $_SESSION['usuario'];
             }else{
+                //Si no lo esta se envia un error
                 $result['exception'] = 'El cliente no ha iniciado session';
             }
             break;
@@ -78,6 +91,18 @@ if (isset($_GET['action'])) {
         case 'setIdProducto':
             $result['status'] = 1;
             $result['id_producto'] = $_POST['id_producto'];
+            break;
+        //Caso para verificar si hay un carrito que cargar
+        case 'verificarCarrito':
+            //Se compureba si se ha inicializado la variable de session id_pedidoEsta
+            if(isset($_SESSION['id_pedidoEsta'])){
+                //Si lo esta se comprueba y se envia el id
+                $result['status'] = 1;
+                $result['id_pedidoEsta'] = $_SESSION['id_pedidoEsta'];
+            }else{
+                //Si no lo esta se envia un error
+                $result['exception'] = 'No hay un id de pedido establecido declarado';
+            }
             break;
         default:
             $result['exception'] = 'Acción no disponible dentro de la sesión';

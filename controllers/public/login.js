@@ -1,12 +1,13 @@
+// Constante para establecer la ruta y parámetros de comunicación con la API.
+const API_CLIENTES = SERVER + 'public/login.php?action=';
+const API_GLBVAR = SERVER + 'variablesgb.php?action=';
+
 /*Estilo de las opciones de los carritos y el navbar mobile*/
-var opcionesCarrito = {
-    edge: 'right'
-}
-var navbarmobile = {
-    edge: 'left'
-}
+
 //Inicializando componentes de Materialize
 document.addEventListener('DOMContentLoaded', function () {
+    comprobaClientes();
+
     M.Sidenav.init(document.querySelectorAll('.sidenav'));
     M.Sidenav.init(document.querySelectorAll('#mobile-demo'), navbarmobile);
     M.Sidenav.init(document.querySelectorAll('#carrito'), opcionesCarrito);
@@ -18,6 +19,14 @@ function copiarWhat() {
     var content = document.getElementById('copywhat').innerHTML;
     navigator.clipboard.writeText(content)
 }
+
+//declarando algunos componentes
+const LOGINBTN = document.getElementById('iniciarsesion_boton');//Boton de inicio de sesión
+const USUARIOTXT = document.getElementById('username');//input del nombre del usuario
+const CONTRAINPUT = document.getElementById('contraseña');//input de la contraseña de usuario
+/*Copiar número de Whatsaap en el Footer*/
+
+
 /*Validar el PIN del correo MOMENTANEO PARA PRACTICIDAD*/
 var comprobarPIN = document.getElementById('recuperarPIN');
 comprobarPIN.addEventListener('click', function () {
@@ -155,15 +164,59 @@ restablecerctr.addEventListener('click',function(){
         mensaje.innerText = 'No se permiten espacios vacios';
     }
 });
-/*Ocultar el NavBar si se aprieta en seguir viendo*/
-var btncontinuarv = document.getElementById('seguirv_carrito');
-btncontinuarv.addEventListener('click', function () {
-    let carrito = M.Sidenav.getInstance(document.querySelector('#carrito'));
-    carrito.close();
+
+
+// Petición para consultar si existen usuarios registrados.
+function comprobaClientes() {
+    fetch(API_CLIENTES + 'readUsers', {
+        method: 'get'
+    }).then(function (request) {
+        // Se verifica si la petición es correcta, de lo contrario se muestra un mensaje en la consola indicando el problema.
+        if (request.ok) {
+            request.json().then(function (response) {
+                // Se comprueba si existe una sesión, de lo contrario se revisa si la respuesta es satisfactoria.
+                if (response.session) {
+                    location.href = 'index.html';
+                    console.log("si hay sesión");
+                }
+                else{
+                    console.log("no hay sesión");
+                }
+            });
+        } else {
+            console.log(request.status + ' ' + request.statusText);
+        }
+    });
+}
+
+
+//Función de log in
+LOGINBTN.addEventListener('click',function(){
+    if (USUARIOTXT.value.length > 0 && CONTRAINPUT.value.length > 0) {
+        LOGINBTN.classList.add('disabled');
+        fetch(API_CLIENTES + 'logIn', {
+            method: 'post',
+            body: new FormData(document.getElementById('session-form'))
+        }).then(function (request) {
+            // Se verifica si la petición es correcta, de lo contrario se muestra un mensaje en la consola indicando el problema.
+            if (request.ok) {
+                request.json().then(function (response) {
+                    // Se comprueba si la respuesta es satisfactoria, de lo contrario se muestra un mensaje con la excepción.
+                    if (response.status) {
+                        sweetAlert(1, response.message, 'index.html');
+                        LOGINBTN.classList.remove('disabled');
+                    } else {
+                        LOGINBTN.classList.remove('disabled');
+                        sweetAlert(2, response.exception, null);
+                    }
+                });
+            } else {
+                LOGINBTN.classList.remove('disabled');
+                console.log(request.status + ' ' + request.statusText);
+            }
+        });
+    } else {
+        sweetAlert(3, 'Debe de completar el formulario para iniciar sesion', null);
+    }
 });
-/*Ocultar navbar mobile tras aparecer carrito*/
-var btnabrircarrito = document.getElementById('abrircarrito-mobile');
-btnabrircarrito.addEventListener('click', function () {
-    let navmobile = M.Sidenav.getInstance(document.querySelector('#mobile-demo'));
-    navmobile.close();
-});
+

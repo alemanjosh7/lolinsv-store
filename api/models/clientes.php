@@ -194,7 +194,7 @@ class Clientes extends Validator
     //Comprobar la contraseña del usuario
     public function checkContrasenaCl($contrasena)
     {
-        $sql = 'SELECT contrasena FROM clientes WHERE id_usuario = ?';
+        $sql = 'SELECT contrasena FROM clientes WHERE id_cliente = ?';
         $params = array($this->id);
         $data = Database::getRow($sql, $params);
         // Se verifica si la contraseña coincide con el hash almacenado en la base de datos.
@@ -294,7 +294,21 @@ class Clientes extends Validator
             NOT IN(SELECT id_cliente FROM clientes ORDER BY id_cliente LIMIT ?) ORDER BY id_cliente limit 8';
         $params = array($limit);
         return Database::getRows($sql, $params);
+
     }
+
+        //Colocamos las variables de sesión del nombre del usuario y su apellido
+        public function nombreApellidoAdminCl(){
+            $sql = 'SELECT nombre_cliente, apellido_cliente FROM clientes WHERE id_cliente= ?';
+            $params = array($_SESSION['id_cliente']);
+            if ($data = Database::getRow($sql, $params)) {
+                $_SESSION['nombreUsuario']= $data['nombre_cliente'];
+                $_SESSION['apellidoUsuario']= $data['apellido_cliente'];
+                return true;
+            } else {
+                return false;
+            }
+        }
 
     //Cambiar contraseña del cliente
     public function cambiarContrasenaCl()

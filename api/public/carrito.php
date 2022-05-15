@@ -17,91 +17,14 @@ if (isset($_GET['action'])) {
         // Se compara la acción a realizar cuando un administrador ha iniciado sesión.
         switch ($_GET['action']) {
             case 'obtenerCarrito':
-                if (isset($_SESSION['alias_carrito'])) {
-                    $result['status'] = 1;
-                    $result['username'] = $_SESSION['alias_carrito'];
-                } else {
-                    $result['exception'] = 'Alias de administrador indefinido';
-                }
-                break;
-            case 'logOut':
-                if (session_destroy()) {
-                    $result['status'] = 1;
-                    $result['message'] = 'Sesión eliminada correctamente';
-                } else {
-                    $result['exception'] = 'Ocurrió un problema al cerrar la sesión';
-                }
-                break;
-            case 'changePassword':
-                $_POST = $carrito->validateForm($_POST);
-                if (!$carrito->setId_admin($_SESSION['id_usuario'])) {
-                    $result['exception'] = 'Admin incorrecto';
-                } elseif (!$carrito->checkContrasenaADM($_POST['contrasena_actual'])) {
-                    $result['exception'] = 'Clave actual incorrecta';
-                    $result['message'] = $_POST['contrasena_actual'];
-                } elseif ($_POST['contrasena_nueva'] != $_POST['contrasena_confirma']) {
-                    $result['exception'] = 'Claves nuevas diferentes';
-                } elseif (!$carrito->setContrasena($_POST['contrasena_nueva'])) {
-                    $result['exception'] = $carrito->getPasswordError();
-                } elseif ($carrito->cambiarContrasenaADM()) {
-                    $result['status'] = 1;
-                    $result['message'] = 'Contraseña cambiada correctamente';
-                } else {
-                    $result['exception'] = Database::getException();
-                }
-                break;
-            case 'readAll':
-                if ($result['dataset'] = $carrito->readAll()) {
-                    $result['status'] = 1;
-                } elseif (Database::getException()) {
-                    $result['exception'] = Database::getException();
-                } else {
-                    $result['exception'] = 'No hay datos registrados';
-                }
-                break;
-            case 'search':
-                $_POST = $carrito->validateForm($_POST);
-                if ($_POST['search'] == '') {
-                    $result['exception'] = 'Ingrese un valor para buscar';
-                } elseif ($result['dataset'] = $carrito->searchRows($_POST['search'])) {
-                    $result['status'] = 1;
-                    $result['message'] = 'Valor encontrado';
-                } elseif (Database::getException()) {
-                    $result['exception'] = Database::getException();
-                } else {
-                    $result['exception'] = 'No hay coincidencias';
-                }
-                break;
-            case 'create':
-                $_POST = $carrito->validateForm($_POST);
-                if (!$carrito->setNombres($_POST['nombres'])) {
-                    $result['exception'] = 'Nombres incorrectos';
-                } elseif (!$carrito->setApellidos($_POST['apellidos'])) {
-                    $result['exception'] = 'Apellidos incorrectos';
-                } elseif (!$carrito->setCorreo($_POST['correo'])) {
-                    $result['exception'] = 'Correo incorrecto';
-                } elseif (!$carrito->setAlias($_POST['alias'])) {
-                    $result['exception'] = 'Alias incorrecto';
-                } elseif ($_POST['clave'] != $_POST['confirmar']) {
-                    $result['exception'] = 'Claves diferentes';
-                } elseif (!$carrito->setClave($_POST['clave'])) {
-                    $result['exception'] = $carrito->getPasswordError();
-                } elseif ($carrito->createRow()) {
-                    $result['status'] = 1;
-                    $result['message'] = 'Administrador creado correctamente';
-                } else {
-                    $result['exception'] = Database::getException();
-                }
-                break;
-            case 'readOne':
                 if (!$carrito->setId($_POST['id'])) {
-                    $result['exception'] = 'Administrador incorrecto';
-                } elseif ($result['dataset'] = $carrito->readOne()) {
+                    $result['exception'] = 'Pedido establecido incorrecto';
+                } elseif ($result['dataset'] = $carrito->ObtenerDetalle()) {
                     $result['status'] = 1;
                 } elseif (Database::getException()) {
                     $result['exception'] = Database::getException();
                 } else {
-                    $result['exception'] = 'carrito inexistente';
+                    $result['exception'] = 'Pedido inexistente inexistente';
                 }
                 break;
             case 'update':
@@ -124,15 +47,17 @@ if (isset($_GET['action'])) {
                 }
                 break;
             case 'delete':
-                if ($_POST['id'] == $_SESSION['id_carrito']) {
-                    $result['exception'] = 'No se puede eliminar a sí mismo';
-                } elseif (!$carrito->setId($_POST['id'])) {
-                    $result['exception'] = 'administrador incorrecto';
-                } elseif (!$carrito->readOne()) {
-                    $result['exception'] = 'administrador inexistente';
-                } elseif ($carrito->deleteRow()) {
+                if (!$carrito->setId($_POST['id'])) {
+                    $result['exception'] = 'Detalle incorrecto';
+                } elseif (!$carrito->ObtenerDetalleC()) {
+                    $result['exception'] = 'Detalle inexistente';
+                } elseif ($carrito->eliminarDetalle()) {
                     $result['status'] = 1;
-                    $result['message'] = 'administrador eliminado correctamente';
+                    if($carrito->actualizarMontoT($_POST['idp'])){
+                        $result['message'] = 'Producto eliminado correctamente del carrito';
+                    }else{
+                        $result['message'] = 'Producto eliminado correctamente del carrito pero no se pudo actualizar su monto total';
+                    }
                 } else {
                     $result['exception'] = Database::getException();
                 }
@@ -185,3 +110,4 @@ if (isset($_GET['action'])) {
 } else {
     print(json_encode('Recurso no disponible'));
 }
+?>
