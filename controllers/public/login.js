@@ -177,6 +177,10 @@ function comprobaClientes() {
                 // Se comprueba si existe una sesión, de lo contrario se revisa si la respuesta es satisfactoria.
                 if (response.session) {
                     location.href = 'index.html';
+                    console.log("si hay sesión");
+                }
+                else{
+                    console.log("no hay sesión");
                 }
             });
         } else {
@@ -199,7 +203,7 @@ LOGINBTN.addEventListener('click',function(){
                 request.json().then(function (response) {
                     // Se comprueba si la respuesta es satisfactoria, de lo contrario se muestra un mensaje con la excepción.
                     if (response.status) {
-                        sweetAlert(1, response.message, 'inicio.html');
+                        sweetAlert(1, response.message, 'index.html');
                         LOGINBTN.classList.remove('disabled');
                     } else {
                         LOGINBTN.classList.remove('disabled');
