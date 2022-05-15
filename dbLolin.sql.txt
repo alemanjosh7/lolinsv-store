@@ -15,6 +15,8 @@ CREATE TABLE admins(
 alter table admins add column fk_id_estado int;--Añadiendo el campo 
 alter table admins alter column fk_id_estado set default 8;--Añadiendo el default a la tabla
 alter table admins add constraint admins_fk foreign key (fk_id_estado) references estados(id_estados) on update cascade on delete cascade;
+
+select * from estados
 --Cliente--
 CREATE TABLE clientes(
 	id_cliente serial,
@@ -47,30 +49,37 @@ create table estados(
 --Pedidos Personalizados
 CREATE TABLE pedidos_personalizados(
 	id_pedidos_personalizado serial NOT NULL,
-	fecha_pedidopersonal date NOT NULL,
+	fecha_pedidopersonal date default current_date NOT NULL,
 	descripcion_pedidopersonal varchar(500) NOT NULL,
 	imagenejemplo_pedidopersonal varchar(500) NOT NULL,
 	descripcionlugar_entrega varchar(500)NOT NULL,
 	fk_id_cliente integer NOT NULL,
 	fk_id_tamano integer NOT NULL,
-	fk_id_estado integer NOT NULL,
+	fk_id_estado integer NOT NULL default 1,
 	CONSTRAINT pedidos_personalizados_pk PRIMARY KEY (id_pedidos_personalizado),
 	CONSTRAINT pedidos_personalizados_clientes_fk FOREIGN KEY (fk_id_cliente) REFERENCES clientes(id_cliente) ON UPDATE CASCADE ON DELETE CASCADE,
 	CONSTRAINT pedidos_personalizados_tamanos_fk FOREIGN KEY (fk_id_tamano) REFERENCES tamanos(id_tamanos) ON UPDATE CASCADE ON DELETE CASCADE,
 	CONSTRAINT pedidos_personalizados_estados_fk FOREIGN KEY (fk_id_estado) REFERENCES estados(id_estados) ON UPDATE CASCADE ON DELETE CASCADE
 );
+--Por si acaso
+alter table pedidos_personalizados alter column fecha_pedidopersonal set default current_date;--Añadiendo el default a la tabla
+
 --Pedidos Establecidos
 create table pedidos_establecidos(
 	id_pedidos_establecidos serial not null,
-	fecha_pedidoesta date not null,
+	fecha_pedidoesta date default current_date not null,
 	descripcionlugar_entrega varchar(500) not null,
 	montototal_pedidoesta numeric(6,2) not null,
 	fk_id_cliente int not null,
-	fk_id_estado int not null,
+	fk_id_estado int not null default 7,
 	constraint pedidosesta_pk primary key (id_pedidos_establecidos),
 	constraint pedidosesta_clientes_fk foreign key (fk_id_cliente) references clientes(id_cliente) on update cascade on delete cascade,
 	constraint pedidosesta_estados_fk foreign key (fk_id_estado) references estados(id_estados) on update cascade on delete cascade
 );
+
+--Por si acaso
+alter table pedidos_establecidos alter column fecha_pedidoesta set default current_date;--Añadiendo el default a la tabla
+
 --Categorias--
 create table categorias(
 	id_categoria serial NOT NULL,
@@ -947,8 +956,8 @@ INNER JOIN clientes AS clt ON pes.fk_id_cliente = clt.id_cliente;
 
 --TRIGGER DE ACTUALIZAR EL SUBTOTAL del detalle del producto de acuerdo a la cantidad del producto que se ingrese
 --TRIGGERS
---Que actualice monto total del pedido luego de cada insert en el detalle de dicho 
---pedido Se le sumará al monto total el subtotal nuevo
+--Que actualice el subtotal de cada detalle del pedido luego de cada insert en el detalle de dicho 
+--pedido Se calculará su subtotal automaticamente
 --Primero se ejecuta la función que el trigger realizara
 CREATE FUNCTION actualizarSubtotal() RETURNS TRIGGER
 AS
@@ -961,10 +970,10 @@ cant int:=(SELECT cantidad_detallep FROM detallepedidos_establecidos
 idprd int:= (SELECT fk_id_producto FROM detallepedidos_establecidos WHERE id_detalle_pedidos=idmax);
 preciop numeric(6,2):=(SELECT precio_producto FROM productos
 					  WHERE id_producto=idprd);
+subt numeric(6,2):= (SELECT preciop*cant);
 BEGIN
 --Indicamos el procedimiento a realizar
-UPDATE detallepedidos_establecidos SET subtotal_detallep=cant*preciop 
-WHERE detallepedidos_establecidos=idmax;
+UPDATE detallepedidos_establecidos SET subtotal_detallep=subt WHERE id_detalle_pedidos=idmax;
 RETURN NEW;
 END
 $$
@@ -974,6 +983,12 @@ CREATE TRIGGER tr_actualizarsubtotal AFTER INSERT ON detallepedidos_establecidos
 FOR EACH ROW
 EXECUTE PROCEDURE actualizarSubtotal();--Final del Trigger
 
+insert into detallepedidos_establecidos(cantidad_detallep,subtotal_detallep,
+			fk_id_producto,fk_id_pedidos_establecidos) values
+			(1,8.44,1,12),--
+select * from pedidos_establecidos
+select * from detallepedidos_establecidos
+select * from productos
 
 update pedidos_personalizados set imagenejemplo_pedidopersonal='harrypotter.png' where id_pedidos_personalizado=1;
 update pedidos_personalizados set imagenejemplo_pedidopersonal='amigurumi2.png' where id_pedidos_personalizado=2
@@ -981,5 +996,15 @@ update pedidos_personalizados set imagenejemplo_pedidopersonal='amigurumi2.png' 
 
 insert into pedidos_personalizados (fecha_pedidopersonal, descripcion_pedidopersonal, imagenejemplo_pedidopersonal, descripcionlugar_entrega, fk_id_cliente, fk_id_tamano, fk_id_estado)
 values ('16/03/2022', 'color naranja', 'amigurumi1.png', 'Tercer Parque, calle principar frente a unas champas', 5, 1, 2)
+
+select * from clientes
+
+select * from pedidos_establecidos WHERE fk_id_estado = 7 AND fk_id_cliente=1;
+
+select * from pedidos_establecidos
+
+update pedidos_establecidos set montototal_pedidoesta = 25.30 where id_pedidos_establecidos =1
+
+Tercer Parqueo, calle principal frente a unas champas
 
 select * from clientes
