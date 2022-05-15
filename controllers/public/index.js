@@ -1,3 +1,6 @@
+// Constante para establecer la ruta y parámetros de comunicación con la API.
+const API_GLBVAR = SERVER + 'variablesgb.php?action=';
+
 var slideIndex = 1;
 showSlides(slideIndex);
 function plusSlides(n) {
@@ -30,6 +33,8 @@ var navbarmobile = {
 };
 //Inicializando componentes de Materialize
 document.addEventListener("DOMContentLoaded", function () {
+  saludo();
+  
   M.Sidenav.init(document.querySelectorAll(".sidenav"));
   M.Sidenav.init(document.querySelectorAll("#mobile-demo"), navbarmobile);
   M.Sidenav.init(document.querySelectorAll("#carrito"), opcionesCarrito);
@@ -81,3 +86,39 @@ hastatop.addEventListener("click", function () {
     behavior: "smooth",
   });
 });
+
+
+//Creando función para el saludo
+function saludo() {
+  // Se define un objeto con la fecha y hora actual.
+  let today = new Date();
+  // Se define una variable con el número de horas transcurridas en el día.
+  let hour = today.getHours();
+  // Se define una variable para guardar un saludo.
+  let greeting = '';
+  // Dependiendo del número de horas transcurridas en el día, se asigna un saludo para el usuario.
+  if (hour < 12) {
+      greeting = 'mañana';
+  } else if (hour < 19) {
+      greeting = 'tarde';
+  } else if (hour <= 23) {
+      greeting = 'noche';
+  }
+  fetch(API_GLBVAR + 'verificarSaludoI', {
+      method: 'get',
+  }).then(function (request) {
+      // Se verifica si la petición es correcta, de lo contrario se muestra un mensaje en la consola indicando el problema.
+      if (request.ok) {
+          request.json().then(function (response) {
+              // Se comprueba si existe una sesión, de lo contrario se revisa si la respuesta es satisfactoria.
+              if (response.session) {
+              } else if (response.status) {
+                  sweetAlert(4, "Bienvenido " + response.nombre + " " + response.apellido + " ¡Ten una " + greeting + " productiva!", null);
+              } else {
+              }
+          });
+      } else {
+          console.log(request.status + ' ' + request.statusText);
+      }
+  });
+}
