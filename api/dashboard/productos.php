@@ -163,7 +163,7 @@ if (isset($_GET['action'])) {
                     $result['exception'] = Database::getException();
                 }
                 break;
-            /*case 'delete': Metodo original de eliminar
+                /*case 'delete': Metodo original de eliminar
                 if (!$producto->setId($_POST['id'])) {
                     $result['exception'] = 'Producto incorrecto';
                 } elseif (!$data = $producto->readOneProduct()) {
@@ -193,7 +193,7 @@ if (isset($_GET['action'])) {
                 }
                 break;
             case 'updateProductPrice':
-                if ($result['dataset'] = $producto->cantidadProductosCategoria()) {
+                if ($result['dataset'] = $producto->updateProductPrice()) {
                     $result['status'] = 1;
                 } else {
                     $result['exception'] = 'No hay datos disponibles';

@@ -63,7 +63,7 @@ if (isset($_GET['action'])) {
                 $_POST = $admins->validateForm($_POST);
                 if ($_POST['search'] == '') {
                     $result['exception'] = 'Ingrese un valor para buscar';
-                } elseif ($result['dataset'] = $admins->searchRows($_POST['search'])) {
+                } elseif ($result['dataset'] = $admins->buscarAdmins($_POST['search'])) {
                     $result['status'] = 1;
                     $result['message'] = 'Valor encontrado';
                 } elseif (Database::getException()) {
@@ -74,9 +74,9 @@ if (isset($_GET['action'])) {
                 break;
             case 'create':
                 $_POST = $admins->validateForm($_POST);
-                if (!$admins->setNombres($_POST['nombres'])) {
+                if (!$admins->setNombre_admin($_POST['nombres'])) {
                     $result['exception'] = 'Nombres incorrectos';
-                } elseif (!$admins->setApellidos($_POST['apellidos'])) {
+                } elseif (!$admins->setApellido_admin($_POST['apellidos'])) {
                     $result['exception'] = 'Apellidos incorrectos';
                 } elseif (!$admins->setCorreo($_POST['correo'])) {
                     $result['exception'] = 'Correo incorrecto';
@@ -207,6 +207,8 @@ if (isset($_GET['action'])) {
                 $_POST = $admins->validateForm($_POST);
                 if (!$admins->checkAdmin($_POST['usuario'])) {
                     $result['exception'] = 'Nombre de usuario incorrecto';
+                }if (!$admins->checkAdminLog()) {
+                    $result['exception'] = 'Nombre de usuario eliminado';
                 } elseif ($admins->checkContrasenaADM($_POST['contrasena'])) {
                     $result['status'] = 1;
                     $result['message'] = 'Autenticación correcta';

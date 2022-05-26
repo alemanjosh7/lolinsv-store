@@ -16,85 +16,85 @@ if (isset($_GET['action'])) {
         $result['session'] = 1;
         // Se compara la acción a realizar cuando un administrador ha iniciado sesión.
         switch ($_GET['action']) {
-                case 'readAll':
-                    if ($result['dataset'] = $categorias->readCategories()) {
-                        $result['status'] = 1;
-                    } elseif (Database::getException()) {
-                        $result['exception'] = Database::getException();
-                    } else {
-                        $result['exception'] = 'No hay datos registrados';
-                    }
+            case 'readAll':
+                if ($result['dataset'] = $categorias->readCategories()) {
+                    $result['status'] = 1;
+                } elseif (Database::getException()) {
+                    $result['exception'] = Database::getException();
+                } else {
+                    $result['exception'] = 'No hay datos registrados';
+                }
                 break;
-                case 'readAllLimit':
-                    if ($result['dataset'] = $categorias->limit($_POST['limit'])){
-                        $result['status'] = 1;
-                    } elseif (Database::getException()){
-                        $result['exception'] = Database::getException();
-                    } else{
-                        $result['exception'] = 'No hay categorias registradas';
-                    }
-                    break;
-                    case 'search':
-                    $_POST = $categorias->validateForm($_POST);
-                    if ($_POST['search'] == '') {
-                        $result['exception'] = 'Ingrese un valor para buscar';
-                    } elseif ($result['dataset'] = $categorias->searchCategory($_POST['search'])) {
-                        $result['status'] = 1;
-                        $result['message'] = 'Valor encontrado';
-                    } elseif (Database::getException()) {
-                        $result['exception'] = Database::getException();
-                    } else {
-                        $result['exception'] = 'No hay coincidencias';
-                    }
+            case 'readAllLimit':
+                if ($result['dataset'] = $categorias->limit($_POST['limit'])) {
+                    $result['status'] = 1;
+                } elseif (Database::getException()) {
+                    $result['exception'] = Database::getException();
+                } else {
+                    $result['exception'] = 'No hay categorias registradas';
+                }
                 break;
-                    case 'create':
-                        $_POST = $categorias->validateForm($_POST);
-                        if (!$categorias->setNombre($_POST['nombre'])) {
-                            $result['exception'] = 'Nombres incorrectos';
-                        } elseif ($categorias->createCategory()) {
-                            $result['status'] = 1;
-                            $result['message'] = 'Categoría creada correctamente';
-                        } else {
-                            $result['exception'] = Database::getException();
-                        }
-                        break;
-                        case 'update':
-                            $_POST = $categorias->validateForm($_POST);
-                            if (!$categorias->setId($_POST['id_categoria'])) {
-                                $result['exception'] = 'Cliente incorrecto';
-                            } elseif (!$categorias->readACategory()) {
-                                $result['exception'] = 'Cliente inexistente';
-                            } elseif (!$categorias->setNombre($_POST['nombre'])) {
-                                $result['exception'] = 'Nombres invalido';
-                            } elseif ($categorias->updateCategory()) {
-                                $result['status'] = 1;
-                                $result['message'] = 'Categoria modificado correctamente';
-                            } else {
-                                $result['exception'] = Database::getException();
-                            }
-                            break;
-                        case 'readACategory':
-                            if (!$categorias->setId($_POST['id_categoria'])) {
-                                $result['exception'] = 'Categoría incorrecta';
-                            } elseif ($result['dataset'] = $categorias->readACategory()) {
-                                $result['status'] = 1;
-                            } elseif (Database::getException()) {
-                                $result['exception'] = Database::getException();
-                            } else {
-                                $result['exception'] = 'Categoría inexistente';
-                            }
-                        break;
-                        case 'delete':
-                            if (!$categorias->setId($_POST['id_categoria'])) {
-                                $result['exception'] = 'Categoría incorrecta';
-                            } elseif (!$data = $categorias->readACategory()) {
-                                $result['exception'] = 'Categoría inexistente';
-                            } elseif ($categorias->deleteCategory()) {
-                                $result['status'] = 1;
-                            } else {
-                                $result['exception'] = Database::getException();
-                            }
-                            break;
+            case 'search':
+                $_POST = $categorias->validateForm($_POST);
+                if ($_POST['search'] == '') {
+                    $result['exception'] = 'Ingrese un valor para buscar';
+                } elseif ($result['dataset'] = $categorias->searchCategory($_POST['search'])) {
+                    $result['status'] = 1;
+                    $result['message'] = 'Valor encontrado';
+                } elseif (Database::getException()) {
+                    $result['exception'] = Database::getException();
+                } else {
+                    $result['exception'] = 'No hay coincidencias';
+                }
+                break;
+            case 'create':
+                $_POST = $categorias->validateForm($_POST);
+                if (!$categorias->setNombre($_POST['nombre'])) {
+                    $result['exception'] = 'Nombres incorrectos';
+                } elseif ($categorias->createCategory()) {
+                    $result['status'] = 1;
+                    $result['message'] = 'Categoría creada correctamente';
+                } else {
+                    $result['exception'] = Database::getException();
+                }
+                break;
+            case 'update':
+                $_POST = $categorias->validateForm($_POST);
+                if (!$categorias->setId($_POST['id_categoria'])) {
+                    $result['exception'] = 'Cliente incorrecto';
+                } elseif (!$categorias->readACategory()) {
+                    $result['exception'] = 'Cliente inexistente';
+                } elseif (!$categorias->setNombre($_POST['nombre'])) {
+                    $result['exception'] = 'Nombres invalido';
+                } elseif ($categorias->updateCategory()) {
+                    $result['status'] = 1;
+                    $result['message'] = 'Categoria modificado correctamente';
+                } else {
+                    $result['exception'] = Database::getException();
+                }
+                break;
+            case 'readACategory':
+                if (!$categorias->setId($_POST['id_categoria'])) {
+                    $result['exception'] = 'Categoría incorrecta';
+                } elseif ($result['dataset'] = $categorias->readACategory()) {
+                    $result['status'] = 1;
+                } elseif (Database::getException()) {
+                    $result['exception'] = Database::getException();
+                } else {
+                    $result['exception'] = 'Categoría inexistente';
+                }
+                break;
+            case 'delete':
+                if (!$categorias->setId($_POST['id_categoria'])) {
+                    $result['exception'] = 'Categoría incorrecta';
+                } elseif (!$data = $categorias->readACategory()) {
+                    $result['exception'] = 'Categoría inexistente';
+                } elseif ($categorias->deleteCategory()) {
+                    $result['status'] = 1;
+                } else {
+                    $result['exception'] = Database::getException();
+                }
+                break;
             default:
                 $result['exception'] = 'Acción no disponible fuera de la sesión';
         }
