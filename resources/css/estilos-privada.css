@@ -2552,3 +2552,20 @@ border-bottom: 2px solid black;*/
   margin-left: 40%;
 }
 
+/*Inputs estilizados*/
+.inputs-estilizados:focus{
+  box-shadow: 0 3px 0 0 #DF5333 !important;
+}
+
+.inputs-estilizados:focus+i {
+  color: #fa7479 !important;  
+}
+
+.inputs-estilizados:focus+label {
+  color: black !important;  
+}
+
+/* icon prefix focus color */
+.input-field .prefix.active {
+  color: #000;
+}
