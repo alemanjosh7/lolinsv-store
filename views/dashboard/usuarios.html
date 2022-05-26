@@ -79,7 +79,7 @@
                 <form method="post" id="search-form">
                   <div class="input-field col s8 m4 l2  left-align">
                     <i class="material-icons prefix">search</i>
-                    <input id="search" type="text" name="search" required>
+                    <input id="search" type="text" name="search" required class="inputs-estilizados">
                     <label for="search">Buscador</label>
                   </div>
                 </form>
@@ -115,28 +115,28 @@
                 < Volver a usuarios</a>
             </div>
           </div>               
-          <form class="row" method="post" id="save-form2" enctype="multipart/form-data">
+          <form class="row" id="save-form2">
             <input class="hide" type="number" id="id_admin" name="id_admin"> 
             <div class="col s12">
                 <div class="row">
                     <div class="input-field col s12 m6 l4">
-                        <input id="nombre_admin" type="text" name="nombre_admin" class="validate" required>
-                        <label for="nombre_admin">Nombre del usuario</label>
+                        <input id="nombre_admin" type="text" name="nombre_admin" class="validate inputs-estilizados" required>
+                        <label for="nombre_admin">Nombre del administrador</label>
                     </div>
                     <div class="input-field col s12 m6 l4">
-                        <input id="apellidoA" type="text" name="apellido" class="validate" required>
-                        <label for="apellidoA">Apellido del usuario</label>
+                        <input id="apellidoA" type="text" name="apellido" class="validate inputs-estilizados" required>
+                        <label for="apellidoA">Apellido del administrador</label>
                     </div>
                     <div class="input-field col s12 m6 l4">
-                        <input id="usuarioA" type="text" name="usuario" class="validate" required>
+                        <input id="usuarioA" type="text" name="usuario" class="validate inputs-estilizados" required>
                         <label for="usuarioA">Usuario</label>
                     </div>
                     <div class="input-field col s12 m6 l4" id="contrasena">
-                      <input type="password" name="contrasena" class="validate" required>
+                      <input id="contrasena" type="password" name="contrasena" class="validate inputs-estilizados">
                       <label for="usuarioA">Contraseña</label>
                   </div>
                   <div class="input-field col s12 m6 l4" id="coContrasena">
-                    <input type="password" name="coContrasena" class="validate" required>
+                    <input id="coContrasena" type="password" name="coContrasena" class="validate inputs-estilizados">
                     <label for="usuarioA">Confirmar contraseña</label>
                 </div>
                 </div>
@@ -145,9 +145,9 @@
                   <a class="waves-effect waves-light btn center-align boton-añadir" id="cambiarcontra">Cambiar
                     Contra</a> 
                   <a href="#!" class="modal-close waves-effect waves-light btn tooltipped boton-añadir"
-                    id="GuardarU_btn">Cancelar</a>
-                  <button type="submit" id="editarbtn" class="waves-effect waves-light btn tooltipped boton-añadir" data-tooltip="Guardar"
-                    id="GuardarU_btn">Guardar</button>
+                    id="GuardarU_bt">Cancelar</a>
+                  <button id="editarbtn" type="submit" class="waves-effect waves-light btn tooltipped boton-añadir" data-tooltip="Guardar"
+                    id="GuardarU_b">Guardar</button>
                                
                 </div>
               </div>
@@ -306,7 +306,7 @@
             </div>
         </div>
     </footer>
-    <!--JavaScript at end of body for optimized loading-->
+    <!--JavaScript al final para optimizar-->
     <script type="text/javascript" src="../../resources/js/materialize.min.js"></script>
     <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
     <script src="../../controllers/components.js"></script>
