@@ -24,20 +24,10 @@ function showSlides(n) {
 
   setTimeout(showSlides, 2000);
 }
-/*Estilo de las opciones de los carritos y el navbar mobile*/
-var opcionesCarrito = {
-  edge: "right",
-};
-var navbarmobile = {
-  edge: "left",
-};
 //Inicializando componentes de Materialize
 document.addEventListener("DOMContentLoaded", function () {
   saludo();
-  
   M.Sidenav.init(document.querySelectorAll(".sidenav"));
-  M.Sidenav.init(document.querySelectorAll("#mobile-demo"), navbarmobile);
-  M.Sidenav.init(document.querySelectorAll("#carrito"), opcionesCarrito);
   M.Slider.init(document.querySelectorAll(".slider"));
   M.Carousel.init(document.querySelectorAll(".carousel"));
   M.Tooltip.init(document.querySelectorAll(".tooltipped"));

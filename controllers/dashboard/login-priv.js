@@ -193,7 +193,7 @@ LOGINBTN.addEventListener('click', function () {
             }
         });
     } else {
-        sweetAlert(3, 'Debe de completar el formulario para iniciar sesion', null);
+        sweetAlert(3, 'Debe de completar el formulario para iniciar sesión', null);
     }
 });
 //Función para comprobar si las contraseñas son iguales

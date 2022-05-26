@@ -390,9 +390,9 @@ function logOut() {
 *   El limite es necesario para poder usar la páginación
 *   Retorno: ninguno.
 */
-function readRowsLimit(api,limit) {
+function readRowsLimit(api, limit) {
     let form = new FormData();
-    form.append('limit',limit);
+    form.append('limit', limit);
     fetch(api + 'readAllLimit', {
         method: 'post',
         body: form
@@ -424,9 +424,9 @@ function readRowsLimit(api,limit) {
 *   El limite es necesario para poder usar la páginación
 *   Retorno: ninguno.
 */
-function predictLImit(api,limit) {
+function predictLImit(api, limit) {
     let form = new FormData();
-    form.append('limit',limit);
+    form.append('limit', limit);
     fetch(api + 'readAllLimit', {
         method: 'post',
         body: form
@@ -457,7 +457,7 @@ function predictLImit(api,limit) {
 *
 *   Retorno: ninguno.
 */
-function confirmDeleteL(api, data,limit) {
+function confirmDeleteL(api, data, limit) {
     Swal.fire({
         title: 'Advertencia',
         text: '¿Desea eliminar el registro?',
@@ -483,7 +483,7 @@ function confirmDeleteL(api, data,limit) {
                         // Se comprueba si la respuesta es satisfactoria, de lo contrario se muestra un mensaje con la excepción.
                         if (response.status) {
                             // Se cargan nuevamente las filas en la tabla de la vista después de borrar un registro y se muestra un mensaje de éxito.
-                            readRowsLimit(api,limit);
+                            readRowsLimit(api, limit);
                             sweetAlert(1, response.message, null);
                         } else {
                             sweetAlert(2, response.exception, null);
@@ -504,7 +504,7 @@ function confirmDeleteL(api, data,limit) {
 *
 *   Retorno: ninguno.
 */
-function saveRowL(api, action, form, modal,limit) {
+function saveRowL(api, action, form, modal, limit) {
     fetch(api + action, {
         method: 'post',
         body: new FormData(document.getElementById(form))
@@ -518,7 +518,7 @@ function saveRowL(api, action, form, modal,limit) {
                     // Se cierra la caja de dialogo (modal) del formulario.
                     M.Modal.getInstance(document.getElementById(modal)).close();
                     // Se cargan nuevamente las filas en la tabla de la vista después de guardar un registro y se muestra un mensaje de éxito.
-                    readRowsLimit(api,limit);
+                    readRowsLimit(api, limit);
                     sweetAlert(1, response.message, null);
                 } else {
                     sweetAlert(2, response.exception, null);
@@ -648,7 +648,7 @@ function saveValuationsSummed(api, data) {
 function logOut() {
     Swal.fire({
         title: 'Advertencia',
-        text: '¿Está seguro de cerrar la sesión?',
+        text: '¿Desea cerrar sesion?',
         icon: 'warning',
         showDenyButton: true,
         confirmButtonText: 'Si',
@@ -658,8 +658,8 @@ function logOut() {
         background: '#F7F0E9',
         confirmButtonColor: 'green',
     }).then(function (value) {
-        // Se verifica si fue cliqueado el botón Sí para hacer la petición de cerrar sesión, de lo contrario se muestra un mensaje.
-        if (value) {
+        // Se comprueba si fue cliqueado el botón Sí para hacer la petición de borrado, de lo contrario no se hace nada.
+        if (value.isConfirmed) {
             fetch(API + 'logOut', {
                 method: 'get'
             }).then(function (request) {
@@ -678,8 +678,113 @@ function logOut() {
                     console.log(request.status + ' ' + request.statusText);
                 }
             });
+        }
+    });
+}
+
+/*
+*   Función para cargar las opciones en un select de la página de productos en el sitio publico.
+*
+*   Parámetros: endpoint (ruta específica del servidor para obtener los datos), select (identificador del select en el formulario) y selected (valor seleccionado).
+*
+*   Retorno: ninguno.
+*/
+function fillSelect2(endpoint, select) {
+    fetch(endpoint, {
+        method: 'get'
+    }).then(function (request) {
+        // Se verifica si la petición es correcta, de lo contrario se muestra un mensaje en la consola indicando el problema.
+        if (request.ok) {
+            // Se obtiene la respuesta en formato JSON.
+            request.json().then(function (response) {
+                let content = '';
+                // Se comprueba si la respuesta es satisfactoria, de lo contrario se muestra un mensaje con la excepción.
+                if (response.status) {
+                    // Se añade la opción de "Todas las categorias".
+                    content += '<option selected>Todas las categorias</option>';
+                    // Se recorre el conjunto de registros devuelto por la API (dataset) fila por fila a través del objeto row.
+                    response.dataset.map(function (row) {
+                        // Se obtiene el dato del primer campo de la sentencia SQL (valor para cada opción).
+                        value = Object.values(row)[0];
+                        // Se obtiene el dato del segundo campo de la sentencia SQL (texto para cada opción).
+                        text = Object.values(row)[1];
+                        // Se añaden las opciones.
+                        content += `<option value="${value}">${text}</option>`;
+                    });
+                } else {
+                    content += '<option>No hay opciones disponibles</option>';
+                }
+                // Se agregan las opciones a la etiqueta select mediante su id.
+                document.getElementById(select).innerHTML = content;
+                // Se inicializa el componente Select del formulario para que muestre las opciones.
+                M.FormSelect.init(document.querySelectorAll('select'));
+            });
         } else {
-            sweetAlert(4, 'Puede continuar con la sesión', null);
+            console.log(request.status + ' ' + request.statusText);
+        }
+    });
+}
+
+/*
+*   Función para obtener todos los registros con limites en los mantenimientos de tablas (operación read).
+*
+*   Parámetros: api (ruta del servidor para obtener los datos) y limit (limite que no estará dentro de la consulta).
+*   El limite es necesario para poder usar la páginación
+*   Retorno: ninguno.
+*/
+function dynamicSearcher2Filter(api, form) {
+    fetch(api + 'searchFilter', {
+        method: 'post',
+        body: form
+    }).then(function (request) {
+        // Se verifica si la petición es correcta, de lo contrario se muestra un mensaje en la consola indicando el problema.
+        if (request.ok) {
+            // Se obtiene la respuesta en formato JSON.
+            request.json().then(function (response) {
+                // Se comprueba si la respuesta es satisfactoria, de lo contrario se muestra un mensaje con la excepción.
+                if (response.status) {
+                    // Se envían los datos a la función del controlador para que llene la tabla en la vista y se muestra un mensaje de éxito.
+                    fillTable(response.dataset);
+                } else {
+                    noDatos();
+                }
+            });
+        } else {
+            console.log(request.status + ' ' + request.statusText);
+        }
+    });
+}
+
+/*
+*   Función para obtener todos los registros con limites en los mantenimientos de tablas (operación read) y lográr predecir si
+*    habra otra página para la páginación.
+*
+*   Parámetros: api (ruta del servidor para obtener los datos) y limit (limite que no estará dentro de la consulta).
+*   El limite es necesario para poder usar la páginación
+*   Retorno: ninguno.
+*/
+function predictLImit2(api, limit) {
+    let form = new FormData();
+    form.append('limit', limit);
+    fetch(api + 'readAllLimitNT', {
+        method: 'post',
+        body: form
+    }).then(function (request) {
+        // Se verifica si la petición es correcta, de lo contrario se muestra un mensaje en la consola indicando el problema.
+        if (request.ok) {
+            // Se obtiene la respuesta en formato JSON.
+            request.json().then(function (response) {
+                // Se comprueba si la respuesta es satisfactoria para obtener los datos, de lo contrario se muestra un mensaje con la excepción.
+                if (response.status) {
+                    console.log('hay más datos');
+                    ocultarMostrarAdl(true);
+                } else {
+                    console.log('No hay más datos')
+                    ocultarMostrarAdl(false);
+                }
+            });
+        } else {
+            console.log(request.status + ' ' + request.statusText);
         }
     });
 }

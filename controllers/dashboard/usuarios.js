@@ -233,9 +233,9 @@ function openCreate() {
     // Se establece el campo de archivo como obligatorio.
     document.getElementById('contrasena').classList.remove('hide'); 
     document.getElementById('coContrasena').classList.remove('hide');
+    document.getElementById('coContrasena').setAttribute('required',"");
+    document.getElementById('contrasena').setAttribute('required',"");
     CAMBIARCTRBTN.classList.add('hide');
-
-
 }
 
 
@@ -244,6 +244,8 @@ function openUpdate(id_admin) {
     CAMBIARCTRBTN.classList.remove('hide');
     document.getElementById('contrasena').classList.add('hide');
     document.getElementById('coContrasena').classList.add('hide');
+    document.getElementById('coContrasena').removeAttribute('required');
+    document.getElementById('contrasena').removeAttribute('required');
     // Se abre la caja de diálogo (modal) que contiene el formulario.
     M.Modal.getInstance(document.getElementById('actualizar-usuario')).open();
     // Se define un objeto con los datos del registro seleccionado.
@@ -372,10 +374,11 @@ CONTRAC.addEventListener('keyup', function () {
 
 
 // Método manejador de eventos que se ejecuta cuando se envía el formulario de guardar.
-document.getElementById('save-form2').addEventListener('submit', function (event) {
+document.getElementById('save-form2').addEventListener('submit',function(event){
     // Se evita recargar la página web después de enviar el formulario.
-    event.preventDefault();
     // Se define una variable para establecer la acción a realizar en la API.
+    event.preventDefault();
+    console.log('hola');
     let action = '';
     // Se comprueba si el campo oculto del formulario esta seteado para actualizar, de lo contrario será para crear.
     (document.getElementById('id_admin').value) ? action = 'update' : action = 'create';

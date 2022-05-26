@@ -9,7 +9,7 @@ document.addEventListener('DOMContentLoaded', function () {
     comprobarAdmins();//Comprobamos si hay admins
     predecirAdelante();//
     // Se llama a la función que obtiene los registros para llenar la tabla. Se encuentra en el archivo components.js
-    readRowsLimit(API_CATEGORIAS,0);
+    readRowsLimit(API_CATEGORIAS, 0);
     // Se define una variable para establecer las opciones del componente Modal.
     let options = {
         dismissible: false,
@@ -19,7 +19,7 @@ document.addEventListener('DOMContentLoaded', function () {
         }
     }
     // Se inicializa el componente Modal para que funcionen las cajas de diálogo.
-    M.Modal.init(document.querySelectorAll('.modal'),options);
+    M.Modal.init(document.querySelectorAll('.modal'), options);
     //Ocultamos el boton de atras para la páginación
     BOTONATRAS.style.display = 'none';
     M.Sidenav.init(document.querySelectorAll('.sidenav'));
@@ -141,8 +141,8 @@ document.querySelectorAll(".contnpag").forEach(el => {
         //Ejecutamos la función para predecir si habrá un boton de adelante
 
         readRowsLimit(API_CATEGORIAS
-, limit);//Enviamos el metodo a buscar los datos y como limite 0 por ser el inicio
-    }); 
+            , limit);//Enviamos el metodo a buscar los datos y como limite 0 por ser el inicio
+    });
 });
 
 //Función que realizará los botones con numero de la páginacion
@@ -166,7 +166,7 @@ document.querySelectorAll(".contnpag").forEach(el => {
         //Ejecutamos la función para predecir si habrá un boton de adelante
 
         readRowsLimit(API_CATEGORIAS
-, limit);//Enviamos el metodo a buscar los datos y como limite 0 por ser el inicio
+            , limit);//Enviamos el metodo a buscar los datos y como limite 0 por ser el inicio
     });
 });
 
@@ -352,16 +352,16 @@ document.getElementById('save-form').addEventListener('submit', function (event)
     saveRowL(API_CATEGORIAS, action, 'save-form', 'confirmar-compra_modal', 0);
 });
 
-BUSCADOR.addEventListener('keyup',function(e){
-    if(BUSCADOR.value == ''){
+BUSCADOR.addEventListener('keyup', function (e) {
+    if (BUSCADOR.value == '') {
         readRowsLimit(API_CATEGORIAS, 0);//Enviamos el metodo a buscar los datos y como limite 0 por ser el inicio
-    }else{
+    } else {
         // Se llama a la función que realiza la búsqueda. Se encuentra en el archivo components.js
-    dynamicSearcher2(API_CATEGORIAS, 'search-form');
+        dynamicSearcher2(API_CATEGORIAS, 'search-form');
     }
 });
 
-function noDatos(){
+function noDatos() {
     let h = document.createElement("h3");
     let text = document.createTextNode("0 resultados");
     h.appendChild(text);

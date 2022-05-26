@@ -173,7 +173,7 @@ function predecirAdelante() {
     let paginaFinal = (Number(BOTONNUMEROPAGF.innerHTML)) + 2;
     console.log("pagina maxima " + paginaFinal);
     //Calculamos el limite que tendria el filtro de la consulta dependiendo de la cantidad de Clientes a mostrar
-    let limit = (paginaFinal * 8) - 8;
+    let limit = (paginaFinal * 1) - 1;
     console.log("El limite sería: " + limit);
     //Ejecutamos el metodo de la API para saber si hay productos y esta ejecutará una función que oculte o muestre el boton de adelante
     predictLImit(API_CLIENTES, limit);
@@ -229,7 +229,7 @@ document.querySelectorAll(".contnpag").forEach(el => {
         let number = Number(el.lastElementChild.textContent);
         console.log('numero seleccionado ' + number);
         //Se hace la operación para calcular cuanto será el top de elementos a no mostrarse en la consulta en este caso seran 8
-        let limit = (number * 8) - 8;
+        let limit = (number * 1) - 1;
         //Se ejecuta la recarga de datos enviando la variable de topAct
         //Ejecutamos la función para predecir si habrá un boton de adelante
         readRowsLimit(API_CLIENTES, limit);//Enviamos el metodo a buscar los datos y como limite 0 por ser el inicio

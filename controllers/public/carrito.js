@@ -27,6 +27,7 @@ function cargarCarrito() {
                     console.log(response.id_pedidoEsta);
                     cargarDetalle(response.id_pedidoEsta);
                 } else {
+                    console.log('No hay');
                     //Como no hay un carrito, entonces colocaremos un texto informando 
                     let h = document.createElement("h5");
                     let text = document.createTextNode("Aun no ha añadido productos al carrito");

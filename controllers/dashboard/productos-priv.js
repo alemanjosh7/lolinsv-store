@@ -167,6 +167,7 @@ function openCreate() {
     // Se establece el campo de archivo como obligatorio.
     document.getElementById('modal-title').textContent = 'Crear producto';
     document.getElementById('archivo').required = true;
+    document.getElementById('reiniciarfomr').classList.remove("hide");
     var id_producto = document.getElementById('input-id');
     id_producto.style.display = 'none';
     id_producto.style.visibility = 'hidden';
@@ -184,7 +185,7 @@ function openUpdate(id) {
     // Se establece el campo de archivo como opcional.
 
     document.getElementById('archivo').required = false;
-
+    document.getElementById('reiniciarfomr').classList.add("hide");
     var input_rating = document.getElementById('rating-input');
     document.getElementById('modal-title').textContent = 'Editar producto';
     input_rating.style.display = 'block';
@@ -209,6 +210,7 @@ function openUpdate(id) {
                 if (response.status) {
                     // Se inicializan los campos del formulario con los datos del registro seleccionado.
                     document.getElementById('id').value = response.dataset.id_producto;
+                    document.getElementById('idp').value = response.dataset.id_producto;
                     document.getElementById('nombre').value = response.dataset.nombre_producto;
                     document.getElementById('precio').value = response.dataset.precio_producto;
                     document.getElementById('descripcion').value = response.dataset.descripcion;
