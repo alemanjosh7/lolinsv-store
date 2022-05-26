@@ -86,6 +86,13 @@ create table categorias(
 	nombre_categoria varchar(100) not null unique,
 	CONSTRAINT categorias_pk PRIMARY KEY (id_categoria)
 );
+alter table categorias add column fk_id_estado int;--Añadiendo el campo 
+alter table categorias alter column fk_id_estado set default 4;--Añadiendo el default a la tabla
+alter table categorias add constraint categorias_fk foreign key (fk_id_estado) references estados(id_estados) on update cascade on delete cascade;
+
+select * from categorias
+select * from estados
+update categorias set fk_id_estado = 4
 --Valoracion--
 create table valoraciones(
 	id_valoraciones serial NOT NULL,
