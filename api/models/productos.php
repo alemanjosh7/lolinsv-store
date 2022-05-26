@@ -213,8 +213,8 @@ class Productos extends Validator
                 FROM productos AS p 
                 INNER JOIN categorias AS cate ON cate.id_categoria = p.fk_id_categoria
                 INNER JOIN valoraciones AS val ON val.id_valoraciones = p.fk_id_valoraciones
-                WHERE nombre_producto ILIKE ? AND p.cantidad >=0';
-        $params = array("%$nombre%");
+                WHERE nombre_producto ILIKE ? OR cast(p.cantidad as varchar) ILIKE ? OR cast(val.valoraciones as varchar) ILIKE ? OR  cast(p.precio_producto as varchar) ILIKE ? OR  cate.nombre_categoria ILIKE ? AND p.cantidad >=0';
+        $params = array("%$nombre%", "%$nombre%", "%$nombre%", "%$nombre%", "%$nombre%");
         return Database::getRows($sql, $params);
     }
 
@@ -246,7 +246,7 @@ class Productos extends Validator
                 FROM productos AS p 
                 INNER JOIN categorias AS cate ON cate.id_categoria = p.fk_id_categoria
                 INNER JOIN valoraciones AS val ON val.id_valoraciones = p.fk_id_valoraciones
-                WHERE p.id_producto NOT IN (select id_producto from productos order by id_producto limit ?) AND p.cantidad >=0 order by p.cantidad DESC limit 12
+                WHERE p.cantidad >=0 AND p.id_producto NOT IN (select id_producto from productos order by cantidad DESC limit ?) order by p.cantidad DESC limit 12
                 ';
         $params = array($limit);
         return Database::getRows($sql, $params);
@@ -322,9 +322,63 @@ class Productos extends Validator
     }
 
     //Actualizar la cantidad del producto para eliminarla
-    public function deleteUpdatePrd(){
+    public function deleteUpdatePrd()
+    {
         $sql = 'UPDATE productos set cantidad = -1 WHERE id_producto = ?';
         $params = array($this->id_producto);
         return Database::executeRow($sql, $params);
+    }
+
+    //Buscar el top 3 de productos más vendidos
+    public function top3Productos()
+    {
+        $sql = 'SELECT prd.nombre_producto, prd.cantidad, prd.precio_producto, prd.imagen_producto, dpe.fk_id_producto, COUNT(fk_id_producto) AS total 
+                FROM detallepedidos_establecidos AS dpe
+                INNER JOIN productos AS prd ON dpe.fk_id_producto = prd.id_producto
+                WHERE prd.cantidad >0 
+                GROUP BY prd.nombre_producto,prd.cantidad, prd.precio_producto, prd.imagen_producto, dpe.fk_id_producto ORDER BY total DESC LIMIT 3';
+        $params = null;
+        return Database::getRows($sql, $params);
+    }
+
+    //Obtener todos los productos para la vista pública con limite
+    public function readAllProductsLP($limit)
+    {
+        $sql = 'SELECT p.id_producto, p.nombre_producto, p.precio_producto, p.cantidad, cate.nombre_categoria, val.valoraciones, p.imagen_producto
+        FROM productos AS p 
+        INNER JOIN categorias AS cate ON cate.id_categoria = p.fk_id_categoria
+        INNER JOIN valoraciones AS val ON val.id_valoraciones = p.fk_id_valoraciones
+        WHERE p.cantidad >0 AND p.id_producto NOT IN (select id_producto from productos order by cantidad DESC limit ?) 
+        AND p.id_producto NOT IN(select id_producto from productos where id_producto=? or id_producto = ? or id_producto = ?)
+        order by p.cantidad DESC limit 9
+                ';
+        $params = array($limit[0],intval($limit[2]),intval($limit[3]),intval($limit[4]));
+        return Database::getRows($sql, $params);
+    }
+    ////Obtener todos los productos para la vista pública con limite pero con un filtro seleccionado
+    public function readAllProductsLFilt($value,$cat)
+    {
+        $sql = 'SELECT p.id_producto, p.nombre_producto, p.precio_producto, p.cantidad, cate.id_categoria, val.valoraciones, p.imagen_producto
+        FROM productos AS p 
+        INNER JOIN categorias AS cate ON cate.id_categoria = p.fk_id_categoria
+        INNER JOIN valoraciones AS val ON val.id_valoraciones = p.fk_id_valoraciones
+        WHERE p.cantidad >0 AND cate.id_categoria = ? AND p.nombre_producto ILIKE ?
+        order by p.cantidad DESC limit 9
+                ';
+        $params = array($cat,"%$value%");
+        return Database::getRows($sql, $params);
+    }
+    //Obtener todos los productos para la vista pública con limite pero sin importar el top
+    public function readAllProductsLPNT($limit)
+    {
+        $sql = 'SELECT p.id_producto, p.nombre_producto, p.nombre_producto, p.precio_producto, p.cantidad, cate.nombre_categoria, val.valoraciones, p.imagen_producto
+        FROM productos AS p 
+        INNER JOIN categorias AS cate ON cate.id_categoria = p.fk_id_categoria
+        INNER JOIN valoraciones AS val ON val.id_valoraciones = p.fk_id_valoraciones
+        WHERE p.cantidad >0 AND p.id_producto NOT IN (select id_producto from productos order by cantidad DESC limit ?)
+        ORDER BY p.cantidad DESC LIMIT 9        
+                ';
+        $params = array($limit);
+        return Database::getRows($sql, $params);
     }
 }

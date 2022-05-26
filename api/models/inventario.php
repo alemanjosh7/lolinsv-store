@@ -165,7 +165,7 @@ class Inventario extends Validator
     }
     //Buscar la imagen de un producto
     public function imgProducto($idp){
-        $sql = 'SELECT imagen_producto,nombre_producto,descripcion_producto,cantidad FROM productos WHERE id_producto = ?';
+        $sql = 'SELECT imagen_producto,nombre_producto,descripcion,cantidad FROM productos WHERE id_producto = ?';
         $params = array($idp);
         return Database::getRow($sql, $params);
     }

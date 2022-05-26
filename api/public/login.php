@@ -22,29 +22,58 @@ if (isset($_GET['action'])) {
     }else {
         switch ($_GET['action']){
             case 'readUsers':
-            if($clientes->obtenerClientes()){
-                $result['status'] = 1;
-                $result['message'] = 'Existen';
+                if($clientes->obtenerClientes()){
+                    $result['status'] = 1;
+                    $result['message'] = 'Existen';
+                    }else {
+                        $result['exeption'] = 'No existen clientes registrados';
+                    }
+                break;
+            case 'logIn':
+                $_POST = $clientes->validateForm($_POST);
+                if (!$clientes->checkUsuarioCl($_POST['usuario'])) {
+                    $result['exception'] = 'Nombre de usuario incorrecto';
+                } elseif (!$clientes->checkUsuarioClLog()) {
+                    $result['exception'] = 'Nombre de usuario bloqueado, contacte con soporte';
+                } elseif ($clientes->checkContrasenaCl($_POST['contrasena'])) {
+                    $result['status'] = 1;
+                    $result['message'] = 'Autenticación correcta';
+                    $_SESSION['id_cliente'] = $clientes->getId();
+                    $_SESSION['usuario'] = $clientes->getUsuario();
+                    $_SESSION['saludoI'] = false;
+                    $clientes->nombreApellidoAdminCl();
+                    $clientes->checkPedidoCl();
                 }else {
-                    $result['exeption'] = 'No existen clientes registrados';
+                    $result['exception'] = 'Contraseña incorrecta';
                 }
                 break;
-                case 'logIn':
-                    $_POST = $clientes->validateForm($_POST);
-                    if (!$clientes->checkUsuarioCl($_POST['usuario'])) {
-                        $result['exception'] = 'Nombre de usuario incorrecto';
-                    } elseif ($clientes->checkContrasenaCl($_POST['contrasena'])) {
-                        $result['status'] = 1;
-                        $result['message'] = 'Autenticación correcta';
-                        $_SESSION['id_cliente'] = $clientes->getId();
-                        $_SESSION['usuario'] = $clientes->getUsuario();
-                        $_SESSION['saludoI'] = false;
-                        $clientes->nombreApellidoAdminCl();
-                    }else {
-                        $result['exception'] = 'Contraseña incorrecta';
-                    }
-                    break;
-            }
+            case 'obtenerCorreo':
+                $_POST = $clientes->validateForm($_POST);
+                if (!$clientes->checkUsuarioCl($_POST['usuario'])) {
+                     $result['exception'] = 'Nombre de usuario incorrecto';
+                }elseif (!$clientes->checkUsuarioClLog()) {
+                    $result['exception'] = 'Nombre de usuario bloqueado, contacte con soporte';
+                } elseif ($result['dataset'] = $clientes->obtenerCorreoCl()) {
+                    $result['status'] = 1;
+                    $result['message'] = 'Correo encontrado';
+                }else {
+                    $result['exception'] = 'No se pudo obtener el correo asociado al usuario';
+                }
+                break;
+            case 'actualizarContraLog':
+                $_POST = $clientes->validateForm($_POST);
+                if (!$clientes->checkUsuarioCl($_POST['usuario'])) {
+                    $result['exception'] = 'Usuario inexistente';
+                } elseif (!$clientes->setContrasena($_POST['contrasena'])) {
+                    $result['exception'] = $clientes->getPasswordError();
+                } elseif ($clientes->cambiarContrasenaCl()) {
+                    $result['status'] = 1;
+                    $result['message'] = 'Contraseña cambiada correctamente';
+                } else {
+                    $result['exception'] = 'La contraseña no se pudo actualizar';
+                }
+                break;
+        }
     }
     // Se indica el tipo de contenido a mostrar y su respectivo conjunto de caracteres.
     header('content-type: application/json; charset=utf-8');

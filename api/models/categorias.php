@@ -52,7 +52,7 @@ class Categorias extends Validator
     {
         $sql = 'SELECT id_categoria, nombre_categoria
                 FROM categorias
-                WHERE nombre_categoria ILIKE ? 
+                WHERE nombre_categoria ILIKE ? AND fk_id_estado = 4
                 ORDER BY id_categoria';
         $params = array("%$value%");
         return Database::getRows($sql, $params);
@@ -104,7 +104,7 @@ class Categorias extends Validator
 
     public function deleteCategory()
     {
-        $sql = 'DELETE FROM categorias
+        $sql = 'UPDATE categorias SET fk_id_estado = 10
                 WHERE id_categoria = ?';
         $params = array($this->id_categoria);
         return Database::executeRow($sql, $params);
@@ -114,7 +114,7 @@ class Categorias extends Validator
     {
         $sql = 'SELECT id_categoria, nombre_categoria
                 FROM categorias
-                WHERE id_categoria
+                WHERE fk_id_estado = 4 AND id_categoria 
                 NOT IN (SELECT id_categoria FROM categorias ORDER BY id_categoria LIMIT ?) ORDER BY id_categoria LIMIT 12';
         $params = array($limit);
         return Database::getRows($sql, $params);

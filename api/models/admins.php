@@ -47,7 +47,7 @@ class Admins extends Validator
 
     public function setUsuario($value)
     {
-        if ($this->validateAlphanumeric($value, 1,50)) {
+        if ($this->validateAlphanumeric($value, 1, 50)) {
             $this->usuario = $value;
             return true;
         } else {
@@ -94,9 +94,10 @@ class Admins extends Validator
     }
 
 
-     /*
+    /*
     *   Métodos para gestionar la cuenta del admin
     */
+    //Función para validar que exista un usuario
     public function checkAdmin($alias)
     {
         $sql = 'SELECT id_admin FROM admins WHERE usuario = ?';
@@ -109,8 +110,19 @@ class Admins extends Validator
             return false;
         }
     }
+    //Función para validar que el usuario existente este activo
+    public function checkAdminLog()
+    {
+        $sql = 'SELECT usuario FROM admins WHERE id_admin = ? AND fk_id_estado = 8';
+        $params = array($this->id_admin);
+        if ($data = Database::getRow($sql, $params)) {
+            return true;
+        } else {
+            return false;
+        }
+    }
 
-     //Comprobar la contraseña del admin
+    //Comprobar la contraseña del admin
     public function checkContrasenaADM($contrasena)
     {
         $sql = 'SELECT contrasena FROM admins WHERE id_admin = ?';
@@ -150,7 +162,7 @@ class Admins extends Validator
     }
 
 
-       /*
+    /*
     *   Métodos para realizar las operaciones SCRUD (search, create, read, update, delete).
     */
     //Buscar Admins
@@ -184,7 +196,7 @@ class Admins extends Validator
     //Obntener un admine en especifico
     public function obtenerAdmin()
     {
-             $sql = 'SELECT id_admin, nombre_admin, apellido_admin, usuario
+        $sql = 'SELECT id_admin, nombre_admin, apellido_admin, usuario
                 FROM admins 
                 WHERE id_admin = ?
                 ORDER BY id_admin';
@@ -209,12 +221,13 @@ class Admins extends Validator
         return Database::executeRow($sql, $params);
     }
     //Colocamos las variables de sesión del nombre del usuario y su apellido
-    public function nombreApellidoAdminL(){
+    public function nombreApellidoAdminL()
+    {
         $sql = 'SELECT nombre_admin, apellido_admin FROM admins WHERE id_admin= ?';
         $params = array($_SESSION['id_usuario']);
         if ($data = Database::getRow($sql, $params)) {
-            $_SESSION['nombreUsuario']= $data['nombre_admin'];
-            $_SESSION['apellidoUsuario']= $data['apellido_admin'];
+            $_SESSION['nombreUsuario'] = $data['nombre_admin'];
+            $_SESSION['apellidoUsuario'] = $data['apellido_admin'];
             return true;
         } else {
             return false;
@@ -239,7 +252,8 @@ class Admins extends Validator
         return Database::executeRow($sql, $params);
     }
     //Obtener admins limit
-    public function obtenerAdminsLimit($limit){
+    public function obtenerAdminsLimit($limit)
+    {
         $sql = 'SELECT adm.id_admin, adm.nombre_admin, adm.apellido_admin, adm.usuario, adm.contrasena
             FROM admins as adm 
             WHERE fk_id_estado = 8 AND adm.id_admin NOT IN (select id_admin from admins order by id_admin limit ?) order by adm.id_admin DESC limit 12';
@@ -255,4 +269,3 @@ class Admins extends Validator
         return Database::executeRow($sql, $params);
     }
 }
- 

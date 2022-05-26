@@ -191,6 +191,17 @@ class Clientes extends Validator
             return false;
         }
     }
+    //Comprobar que el usuario exista y no este bloqueado en el 
+    public function checkUsuarioClLog()
+    {
+        $sql = 'SELECT usuario FROM clientes WHERE id_cliente = ? AND fk_id_estado = 8';
+        $params = array($this->id);
+        if ($data = Database::getRow($sql, $params)) {
+            return true;
+        } else {
+            return false;
+        }
+    }
     //Comprobar la contraseña del usuario
     public function checkContrasenaCl($contrasena)
     {
@@ -230,9 +241,10 @@ class Clientes extends Validator
     //Buscar Clientes
     public function buscarClientes($value)
     {
-        $sql = 'SELECT id_cliente, nombre_cliente, apellido_cliente, correo_cliente, dui_cliente, telefono_cliente, 
-                direccion_cliente, usuario, fk_id_estado
-                FROM clientes
+        $sql = 'SELECT clt.id_cliente,clt.nombre_cliente,clt.apellido_cliente,clt.correo_cliente,clt.dui_cliente,clt.telefono_cliente,
+                clt.direccion_cliente,clt.usuario,est.estado
+                FROM clientes as clt 
+                INNER JOIN estados AS est ON clt.fk_id_estado = est.id_estados
                 WHERE apellido_cliente ILIKE ? OR nombre_cliente ILIKE ? OR usuario ILIKE ? OR telefono_cliente ILIKE ? OR correo_cliente ILIKE ?
                 ORDER BY id_cliente';
         $params = array("%$value%", "%$value%", "%$value%", "%$value%", "%$value%");
@@ -291,7 +303,7 @@ class Clientes extends Validator
             FROM clientes as clt 
             INNER JOIN estados AS est ON clt.fk_id_estado = est.id_estados
             WHERE id_cliente
-            NOT IN(SELECT id_cliente FROM clientes ORDER BY id_cliente LIMIT ?) ORDER BY id_cliente limit 8';
+            NOT IN(SELECT id_cliente FROM clientes ORDER BY id_cliente LIMIT ?) ORDER BY id_cliente limit 1';
         $params = array($limit);
         return Database::getRows($sql, $params);
 
@@ -313,10 +325,30 @@ class Clientes extends Validator
     //Cambiar contraseña del cliente
     public function cambiarContrasenaCl()
     {
-        $sql = 'UPDATE clientes SET contrasena = ? WHERE id_clientes = ?';
+        $sql = 'UPDATE clientes SET contrasena = ? WHERE id_cliente = ?';
         $params = array($this->contrasena, $this->id);
         $data = Database::executeRow($sql, $params);
         return true;
+    }
+    //Comprobar que halla un pedido aun en proceso de compra en la bd
+    public function checkPedidoCl()
+    {
+        $sql = 'SELECT * FROM pedidos_establecidos WHERE fk_id_estado = 7 AND fk_id_cliente = ?';
+        $params = array($_SESSION['id_cliente']);
+        if ($data = Database::getRow($sql, $params)) {
+            $_SESSION['id_pedidoEsta'] = $data['id_pedidos_establecidos'];
+            return true;
+        } else {
+            return false;
+        }
+    }
+    //Metodo para obtener el pedido del cliente
+    //Comprobar que halla un pedido aun en proceso de compra en la bd
+    public function obtenerCorreoCl()
+    {
+        $sql = 'SELECT correo_cliente,usuario,nombre_cliente,apellido_cliente FROM clientes WHERE id_cliente = ?';
+        $params = array($this->id);
+        return Database::getRow($sql, $params);
     }
 }
 ?>
