@@ -1015,3 +1015,41 @@ update pedidos_establecidos set montototal_pedidoesta = 25.30 where id_pedidos_e
 Tercer Parqueo, calle principal frente a unas champas
 
 select * from clientes
+
+SELECT prd.nombre_producto, prd.cantidad, prd.precio_producto, dpe.fk_id_producto, COUNT(fk_id_producto) AS total 
+FROM detallepedidos_establecidos AS dpe
+INNER JOIN productos AS prd ON dpe.fk_id_producto = prd.id_producto
+WHERE prd.cantidad >0 
+GROUP BY prd.nombre_producto,prd.cantidad, prd.precio_producto, dpe.fk_id_producto ORDER BY total DESC LIMIT 3;
+
+
+
+SELECT prd.nombre_producto, prd.cantidad, prd.precio_producto,prd.imagen_producto, dpe.fk_id_producto, COUNT(fk_id_producto) AS total 
+                FROM detallepedidos_establecidos AS dpe
+                INNER JOIN productos AS prd ON dpe.fk_id_producto = prd.id_producto
+                WHERE prd.cantidad >0 
+				GROUP BY prd.nombre_producto,prd.cantidad, prd.precio_producto, prd.imagen_producto, dpe.fk_id_producto ORDER BY total DESC LIMIT 3
+	
+SELECT p.id_producto, p.nombre_producto, p.nombre_producto, p.precio_producto, p.cantidad, cate.nombre_categoria, val.valoraciones, p.imagen_producto
+FROM productos AS p 
+INNER JOIN categorias AS cate ON cate.id_categoria = p.fk_id_categoria
+INNER JOIN valoraciones AS val ON val.id_valoraciones = p.fk_id_valoraciones
+WHERE p.cantidad >0 AND p.id_producto NOT IN (select id_producto from productos order by cantidad DESC limit 27) 
+AND p.id_producto NOT IN(select id_producto from productos where id_producto=1 or id_producto = 2 or id_producto = 3)
+order by p.cantidad DESC limit 9
+
+
+SELECT p.id_producto, p.nombre_producto, p.nombre_producto, p.precio_producto, p.cantidad, cate.id_categoria, val.valoraciones, p.imagen_producto
+FROM productos AS p 
+INNER JOIN categorias AS cate ON cate.id_categoria = p.fk_id_categoria
+INNER JOIN valoraciones AS val ON val.id_valoraciones = p.fk_id_valoraciones
+WHERE p.cantidad >0 AND cate.id_categoria = 1  AND p.id_producto NOT IN (select id_producto from productos ORDER by cantidad DESC limit 0)
+AND p.nombre_producto = ?
+order by p.cantidad DESC limit 9
+
+SELECT p.id_producto, p.nombre_producto, p.nombre_producto, p.precio_producto, p.cantidad, cate.nombre_categoria, val.valoraciones, p.imagen_producto
+FROM productos AS p 
+INNER JOIN categorias AS cate ON cate.id_categoria = p.fk_id_categoria
+INNER JOIN valoraciones AS val ON val.id_valoraciones = p.fk_id_valoraciones
+WHERE p.cantidad >0 AND p.id_producto NOT IN (select id_producto from productos order by cantidad DESC limit 27)
+ORDER BY p.cantidad DESC LIMIT 9
