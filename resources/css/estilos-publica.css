@@ -3654,3 +3654,81 @@ a {
   font-size: 30px;
   color: white;
 }
+/*Yesenia y Jesus Registro de cliente*/
+/*Inputs estilizados 2*/
+.inputs-estilizados2{
+  color: black !important;
+  box-shadow: inset 515px 5px white !important;
+  margin-top: 15px !important;
+  font-family: 'Poppins', sans-serif !important;
+}
+.inputs-estilizados2:focus{
+  border: 2px solid #DF5333 !important;
+  color: black !important;
+  transition: .01s ease all !important;
+}
+
+.inputs-estilizados2:focus+i {
+  color: #fa7479 !important;  
+}
+
+.inputs-estilizados2:focus+label {
+  color: black !important;  
+}
+/*Mensaje de las contraseñas*/
+#mensaje-contra{
+  display: none;
+}
+
+.productos-public #div-regresarboton{
+  margin-bottom: 15px;
+  position: relative;
+  top: -25px;
+  right: 50px;
+}
+/*Contenedor de previsualizar*/
+.preview-file{
+  border: 3px solid black;
+  background: linear-gradient(145.17deg, rgba(235, 158, 158, 0) 50.31%, rgba(235, 158, 158, 0.703125) 61.08%, #EB9E9E 61.08%);
+  width: 98%;
+  margin-left: 1%;
+  min-height: 315px !important;
+  max-height: 550px !important;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  font-weight: bold;
+  color: black;
+  margin-bottom: 25px;
+}
+/*Estilo de la imagen de preview por defecto*/
+#imagen-Preview{
+  min-width: 25px;
+  min-height: 25px;
+}
+/*Estilo de los inputs estilizados para archivos*/
+.inputs-estilizadosarc{
+  color: black !important;
+  box-shadow: inset 515px 5px white !important;
+  font-family: 'Poppins', sans-serif !important; 
+}
+
+.inputs-estilizadosarc::placeholder{
+  color: black;
+}
+/*Info producto Jesús - Arístides*/
+#anadir-coment{
+  cursor: pointer;
+}
+
+/*Iconos de las calificaciones*/
+.calificacion_cont:hover img{
+  opacity: 0.9;
+  width: 75px;
+  height: 75px;
+}
+
+.calificacion_cont:hover span{
+  color: green;
+}

@@ -14,7 +14,7 @@
     <title>Lolin.sv-Productos</title>
 </head>
 
-<body>
+<body class="productos-public">
     <header>
         <div class="navbar-fixed">
             <nav class="primary-bg-color">
@@ -478,7 +478,7 @@
                     deseas convertir en un amigurumi y envíanos tu solicitud. Crea un regalo creativo y único!</div>
 
                 <div class="center-align about-btn row s4">
-                    <a class="waves-effect waves-light btn ">Vamos!</a>
+                    <a class="waves-effect waves-light btn" id="iniciar-pedp">Vamos!</a>
                 </div>
             </div>
         </div>
@@ -577,6 +577,107 @@
             <i class="large material-icons">arrow_upward</i>
         </a>
         <ul>
+    </div>
+    <!--Inicio del diseño del Modal de Restablecer contraseña-->
+    <div id="modalrestablecer" class="modal">
+        <div class="modal-content">
+            <div class="center-align">
+                <div class="row">
+                    <div class="col offset-s4 s6 center-align hide-on-small-only" id="banner-confirmacion">
+                        <h5 id="modal-title">Pedido Personalizado</h5>
+                    </div>
+                </div>
+                <div class="col s12">Realiza tu pedido personalizado, si es aceptado Lolin se contactará contigo por tu
+                    correo <b>OJO</b> el tamaño es solo un aproximado.¡Suerte!</div>
+                <div class="col s12" id="decoracion-modal"></div>
+                <div class="col l1 m2 s10 left-align" id="div-regresarboton">
+                    <a class="modal-close" id="regresar-boton-popup">
+                        < Volver a productos</a>
+                </div>
+            </div>
+            <!--Input de previsualizar archivo-->
+            <div class="row">
+                <!--Input de previsualizar archivo-->
+                <div class="progress hide" id="barraraprg-garch">
+                    <div class="indeterminate"></div>
+                </div>
+                <div class="preview-file col m6 s12" id="preview-col">
+                    <img src="../../resources/img/icons/previsualizar-img.png" alt="Previsualizar Imagen"
+                        class="responsive-image imagen-previmg" id="imagen-Preview">
+                    <span class="texto-previmg" id="texto-prevw">Previsualizador de Archivos</span>
+                </div>
+                <form class="col s12 m6" id="form-pedidoper">
+                    <div class="row">
+                        <!--Inputs para el formulario-->
+                        <!--Input de la imagen-->
+                        <div class="file-field input-field col s12">
+                            <div class="btn red lighten-3 tooltipped" id="btn-añadirArchivoarhModal"
+                                data-tooltip="Elegir imagen de al menos 500x500 px">
+                                <i class="material-icons">image</i>
+                                <input id="archivo" type="file" name="archivo"
+                                    accept=".jpg, .png, .jpeg, .JPG, .PNG, .JPEG">
+                            </div>
+                            <div class="file-path-wrapper">
+                                <input type="text" class="file-path validate inputs-estilizadosarc"
+                                    placeholder="Formatos válidos: jpg y png">
+                            </div>
+                        </div>
+                        <!--Select del tamaño-->
+                        <div class="input-field col s12" id="columna-select">
+                            <select id="tamano" name="tamano">
+                                <option disabled selected>Elije una opcion</option>
+                                <option value="1">Grande:21 cm a 35cm</option>
+                                <option value="2">Mediano:13 cm a 20cm</option>
+                                <option value="3">Pequeño:12 cm o menos</option>
+                            </select>
+                            <label>Seleccione un tamaño:</label>
+                        </div>
+                        <!--Input de la descripción del pedido-->
+                        <div class="input-field col s12">
+                            <textarea placeholder="Descripción del pedido" id="desc_pedido"
+                                class="inputs-estilizados2 materialize-textarea" required name="desc_pedido"></textarea>
+                        </div>
+                        <!--Input de la descripción del lugar de entrega-->
+                        <div class="input-field col s12">
+                            <textarea placeholder="Descripción del lugar de entrega" id="desc_lugar"
+                                class="inputs-estilizados2 materialize-textarea" required name="desc_lugar"></textarea>
+                        </div>
+                    </div>
+                </form>
+            </div>
+            <div class="col s12">
+                <div class="row">
+                    <div class="col m12 ofsset-m8 s12 center-align">
+                        <a class="waves-effect waves-light btn center-align" id="restablecerContraseña">Realizar
+                            Pedido</a>
+                        <div class="preloader-wrapper active" id="actdatoscontra_preloader-login">
+                            <div class="spinner-layer spinner-red-only">
+                                <div class="circle-clipper left">
+                                    <div class="circle"></div>
+                                </div>
+                                <div class="gap-patch">
+                                    <div class="circle"></div>
+                                </div>
+                                <div class="circle-clipper right">
+                                    <div class="circle"></div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col s12">
+                    <div class="row">
+                        <div class="col m6 s12 left-align">
+                            <h6 id="mensaje-restablecer">El PIN no es el correcto</h6>
+                        </div>
+                        <div class="col m6 s12 right-align">
+                            <a class="modal-close waves-effect waves-light btn " id="cancelarPIN">Cancelar</a>
+                        </div>
+                    </div>
+                </div>
+                <div class="col s12" id="decoracionr-modal"></div>
+            </div>
+        </div>
     </div>
     <footer class="page-footer">
         <div class="container">

@@ -411,7 +411,7 @@
     </header>
     <section>
         <div class="card-wrapper">
-            <div class="card-producto">
+            <div class="card-producto" id="infoprd_contenedor">
                 <!-- card left -->
                 <div class="product-imgs" id="card-product">
                     <div class="img-display">
@@ -469,7 +469,7 @@
                             <li>Disponible: <span>En stock</span></li>
                             <li>Categoría: <span>Cartoon</span></li>
                             <li>Zona de envío <span>El Salvador</span></li>
-                            <li>Cargo de envío: <span>Gratis</span></li>
+                            <li>Cargo de envío: <span>$5.00</span></li>
                         </ul>
                     </div>
 
@@ -490,12 +490,12 @@
 
     <section class="comments-section">
         <div class="title-comment">
-            <div class="animate-text-product">
+            <div class="animate-text-product" id="anadir-coment">
                 <p>Añade tu opinión</p>
             </div>
-            <p>Comentarios: 2</p>
+            <p id="cantidad_coment">Comentarios: 2</p>
         </div>
-        <div class="opinions container">
+        <div class="opinions container" id="comentarios_cont">
             <div class="container primera">
                 <div class="user">
                     <div class="photo-user ">
@@ -534,9 +534,122 @@
                         que adquiere sentido en determinado contexto.</p>
                 </div>
             </div>
-
+        </div>
+        <div class="row center">
+            <a class="waves-effect waves-light btn " id="cancelar_restablecer">Cargar más comentarios</a>
         </div>
     </section>
+    <!--Boton de hasta el tope-->
+    <div class="fixed-action-btn">
+        <a class="btn-floating btn-large red" id="hasta_arriba">
+            <i class="large material-icons">arrow_upward</i>
+        </a>
+        <ul>
+    </div>
+    <!--Modal de añadir un comentario-->
+    <div id="modalrestablecer" class="modal">
+        <div class="modal-content">
+            <div class="center-align">
+                <h4>Añadir un comentario</h4>
+                <p>En lolin sv, nos interesa tu opinion. Por favor ingresa tu opinion sin insultos o palabras soeces, de
+                    lo contrario tu cuenta será bloqueada</p>
+            </div>
+            <form class="col s12">
+                <div class="row">
+                    <!--Sección de las calificaciones-->
+                    <div class="col m6 s12">
+                        <h6><b>Escoge tu calificación:</b></h6>
+                        <!--Contenedores de las caritas-->
+                        <div class="col l2 m4 s6 calificacion_cont" id="1">
+                            <div class="row center-align" id="1">
+                                <img src="../../api/images/calificaciones/1.png" class="responsive-image" id="1">
+                            </div>
+                            <div class="row center-align" id="1">
+                                <span id="1" class="texto-cal">No me gusto</span>
+                            </div>
+                        </div>
+                        <!--Contenedores de las caritas-->
+                        <div class="col l2 m4 s6 calificacion_cont" id="2">
+                            <div class="row center-align" id="2">
+                                <img src="../../api/images/calificaciones/2.png" class="responsive-image" id="2">
+                            </div>
+                            <div class="row center-align" id="2">
+                                <span id="2" class="texto-cal">Puede mejorar</span>
+                            </div>
+                        </div>
+                        <!--Contenedores de las caritas-->
+                        <div class="col l2 m4 s6 calificacion_cont" id="3">
+                            <div class="row center-align" id="3">
+                                <img src="../../api/images/calificaciones/3.png" class="responsive-image" id="3">
+                            </div>
+                            <div class="row center-align" id="3">
+                                <span id="3" class="texto-cal">Indeciso</span>
+                            </div>
+                        </div>
+                        <!--Contenedores de las caritas-->
+                        <div class="col l3 m6 s6 calificacion_cont" id="4">
+                            <div class="row center-align" id="4">
+                                <img src="../../api/images/calificaciones/4.png" class="responsive-image" id="4">
+                            </div>
+                            <div class="row center-align" id="4">
+                                <span id="4" class="texto-cal">Me gusto</span>
+                            </div>
+                        </div>
+                        <!--Contenedores de las caritas-->
+                        <div class="col l3 m6 s12 calificacion_cont" id="5">
+                            <div class="row center-align" id="5">
+                                <img src="../../api/images/calificaciones/5.png" class="responsive-image" id="5">
+                            </div>
+                            <div class="row center-align" id="5">
+                                <span id="5" class="texto-cal">Me encanto, lo recomiendo</span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col m6 s12">
+                        <form id="comentarios_form">
+                            <!--Input del comentario del cliente-->
+                            <div class="input-field col s12">
+                                <textarea placeholder="Tu comentario va aqui" id="comentario_input"
+                                    class="inputs-estilizados materialize-textarea" name="comentario"></textarea>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </form>
+            <div class="col s12">
+                <div class="row">
+                    <div class="col m12 ofsset-m8 s12 center-align">
+                        <a class="waves-effect waves-light btn center-align boton_comentario" id="restablecerContraseña">Añadir un
+                            comentario</a>
+                        <div class="preloader-wrapper active comentario_preloader" id="actdatoscontra_preloader-login">
+                            <div class="spinner-layer spinner-red-only">
+                                <div class="circle-clipper left">
+                                    <div class="circle"></div>
+                                </div>
+                                <div class="gap-patch">
+                                    <div class="circle"></div>
+                                </div>
+                                <div class="circle-clipper right">
+                                    <div class="circle"></div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col s12">
+                    <div class="row">
+                        <div class="col m6 s12 left-align">
+                            <h6 id="mensaje-restablecer" class="mensaje_comentario">El PIN no es el correcto</h6>
+                        </div>
+                        <div class="col m6 s12 right-align">
+                            <a class="modal-close waves-effect waves-light btn " id="cancelarPIN">Cancelar</a>
+                        </div>
+                    </div>
+                </div>
+                <div class="col s12" id="decoracionr-modal"></div>
+            </div>
+        </div>
+    </div>
     <footer class="page-footer">
         <div class="container">
             <div class="row" id="redes-footer">
@@ -588,6 +701,7 @@
     </footer>
     <!--JavaScript al final para optimizar-->
     <script type="text/javascript" src="../../resources/js/materialize.min.js"></script>
+    <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
     <script src="../../controllers/components.js"></script>
     <script src="../../controllers/validaciones.js"></script>
     <script type="text/javascript" src="../../controllers/public/online.js"></script>

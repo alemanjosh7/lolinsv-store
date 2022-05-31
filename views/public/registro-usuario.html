@@ -101,7 +101,8 @@
                                 <div class="col s12" id="fondocompra-carrito1">
                                     <!--Icono de eliminar-->
                                     <div class="elimardel-carrito">
-                                        <img class="responsive-img" src="../../resources/img/icons/eliminardel-carrito.png">
+                                        <img class="responsive-img"
+                                            src="../../resources/img/icons/eliminardel-carrito.png">
                                     </div>
                                     <!--Contenedor del contenido del carrito-->
                                     <div class="row" id="fila-contenidocarrito">
@@ -157,7 +158,8 @@
                                 <div class="col s12" id="fondocompra-carrito1">
                                     <!--Icono de eliminar-->
                                     <div class="elimardel-carrito">
-                                        <img class="responsive-img" src="../../resources/img/icons/eliminardel-carrito.png">
+                                        <img class="responsive-img"
+                                            src="../../resources/img/icons/eliminardel-carrito.png">
                                     </div>
                                     <!--Contenedor del contenido del carrito-->
                                     <div class="row" id="fila-contenidocarrito">
@@ -213,7 +215,8 @@
                                 <div class="col s12" id="fondocompra-carrito1">
                                     <!--Icono de eliminar-->
                                     <div class="elimardel-carrito">
-                                        <img class="responsive-img" src="../../resources/img/icons/eliminardel-carrito.png">
+                                        <img class="responsive-img"
+                                            src="../../resources/img/icons/eliminardel-carrito.png">
                                     </div>
                                     <!--Contenedor del contenido del carrito-->
                                     <div class="row" id="fila-contenidocarrito">
@@ -269,7 +272,8 @@
                                 <div class="col s12" id="fondocompra-carrito1">
                                     <!--Icono de eliminar-->
                                     <div class="elimardel-carrito">
-                                        <img class="responsive-img" src="../../resources/img/icons/eliminardel-carrito.png">
+                                        <img class="responsive-img"
+                                            src="../../resources/img/icons/eliminardel-carrito.png">
                                     </div>
                                     <!--Contenedor del contenido del carrito-->
                                     <div class="row" id="fila-contenidocarrito">
@@ -325,7 +329,8 @@
                                 <div class="col s12" id="fondocompra-carrito1">
                                     <!--Icono de eliminar-->
                                     <div class="elimardel-carrito">
-                                        <img class="responsive-img" src="../../resources/img/icons/eliminardel-carrito.png">
+                                        <img class="responsive-img"
+                                            src="../../resources/img/icons/eliminardel-carrito.png">
                                     </div>
                                     <!--Contenedor del contenido del carrito-->
                                     <div class="row" id="fila-contenidocarrito">
@@ -415,57 +420,87 @@
             </div>
             <div class="line"></div>
             <!--Fila de la información-->
-            <div class="row form-registro">
-                <!--Columna de información para el envio-->
-                <div class="col" id="columna-info">
-                    <div class="row">
-                        <div class="col s12 center-align datos-usuario">
-                            <h5>Datos de Usuario</h5>
-                        </div>
-                        <div class="input-field col s12">
-                            <input disabled value="Nombre de Usuario" type="text" id="nombre_usuario">
-                        </div>
-                        <div class="input-field col s6">
-                            <input disabled value="Contraseña" type="text" id="contrasena_usuario">
-                        </div>
-                        <div class="input-field col s6">
-                            <input disabled value="Confirmar contraseña" type="text" id="confirmar">
-                        </div>
-                        <div class="input-field col s12">
-                            <input disabled value="Nombres" type="text" id="nombre_usuario">
-                        </div>
-                        <div class="input-field col s12">
-                            <input disabled value="Apellidos" type="text" id="apellido_usuario">
-                        </div>
-                        <div class="input-field col s12">
-                            <input disabled value="DUI" type="text" id="dui_usuario">
-                        </div>
-                        <!--Input del correo-->
-                        <div class="input-field col s12">
-                            <input disabled class="inputs-establecidos" value="correoprueba@gmail.com" type="text"
-                                id="correo">
-                        </div>
-                        <div class="input-field col s12">
-                            <input disabled value="Teléfono" type="text" id="telefono_usuario">
-                        </div>
-                        <div class="input-field col s12">
-                            <input disabled value="Dirección" type="text" id="direccion_usuario">
-                        </div>
+            <form method="post" id="registro-form">
+                <!-- Campo oculto para asignar el token del reCAPTCHA -->
+                <input class="hide" id="g-recaptcha-response" name="g-recaptcha-response">
+                <div class="row form-registro">
+                    <!--Columna de información para el envio-->
+                    <div class="col" id="columna-info">
+                        <div class="row">
+                            <div class="col s12 center-align datos-usuario">
+                                <h5>Datos de Usuario</h5>
+                            </div>
+                            <!--Input del nombre del usuario-->
+                            <div class="input-field col s12">
+                                <input placeholder="Nombre de Usuario" type="text" id="nombre_usuario"
+                                    class="inputs-estilizados2" required name="usuario">
+                            </div>
+                            <div class="center">
+                                <i class="tooltipped material-icons right-align" data-position="top"
+                                    data-tooltip="Mostrar/Ocultar" id="ocultarmostrar_contraseñas">visibility</i>
+                            </div>
+                            <!--Input de la contraseña-->
+                            <div class="input-field col s6">
+                                <input placeholder="Contraseña" type="password" id="contrasena_usuario"
+                                    class="inputs-estilizados2" required name="contrasena">
+                            </div>
+                            <!--Input de la contraseña confirmacion-->
+                            <div class="input-field col s6">
+                                <input placeholder="Confirmar contraseña" type="password" id="confirmar"
+                                    class="inputs-estilizados2" required>
+                            </div>
 
+                            <div class="col s12 center-align">
+                                <span class="red-text" id="mensaje-contra"><b>Las contraseñas deben coincidir</b></span>
+                            </div>
+                            <!--Input del nombre del cliente-->
+                            <div class="input-field col s12">
+                                <input placeholder="Nombres" type="text" id="nombre_cliente" class="inputs-estilizados2"
+                                    required name="nombre">
+                            </div>
+                            <!--Input del apellido del cliente-->
+                            <div class="input-field col s12">
+                                <input placeholder="Apellidos" type="text" id="apellido_usuario"
+                                    class="inputs-estilizados2" required name="apellido">
+                            </div>
+                            <!--Input del DUI-->
+                            <div class="input-field col s12">
+                                <input placeholder="DUI" type="tel" minlength="10" maxlength="10" id="dui_usuario"
+                                    class="inputs-estilizados2" required name="dui">
+                            </div>
+                            <!--Input del correo-->
+                            <div class="input-field col s12">
+                                <input placeholder="correoprueba@gmail.com" type="email" id="correo"
+                                    class="inputs-estilizados2" required name="correo">
+                            </div>
+                            <!--Input del telefono-->
+                            <div class="input-field col s12">
+                                <input placeholder="Teléfono" type="tel" id="telefono_usuario" maxlength="9"
+                                    minlength="9" class="inputs-estilizados2" required name="telefono">
+                            </div>
+                            <!--Input de la direccion-->
+                            <div class="input-field col s12">
+                                <textarea placeholder="Dirección" id="direccion_usuario"
+                                    class="inputs-estilizados2 materialize-textarea" required
+                                    name="direccion"></textarea>
+                            </div>
+                            <label class="col s12 center-align">
+                                <input type="checkbox" id="condicion" name="condicion" required>
+                                <span>Acepto<a>términos y condiciones</a></span>
+                            </label>
+                        </div>
+                    </div>
+                    <!--Boton de aceptar el registro-->
+                </div>
+                <div class="col s12">
+                    <div class="row  center-align">
+                        <div class="col offset-m3 m6 s12">
+                            <button type="submit"class="waves-effect waves-light btn" id="pagar_btn">Registrar</button>
+                        </div>
                     </div>
                 </div>
-                <!--Apartado de la orden-->
-            </div>
-            <div class="col s12">
-                <div class="row  center-align">
-                    <div class="col offset-m3 m6 s12">
-                        <a href="#confirmar-compra_modal" class="modal-trigger waves-effect waves-light btn"
-                            id="pagar_btn">Registrar</a>
-                    </div>
-                </div>
-            </div>
+            </form>
         </div>
-
     </main>
     <footer class="page-footer">
         <div class="container">
@@ -519,6 +554,11 @@
     </footer>
     <!--JavaScript al final para optimizar-->
     <script type="text/javascript" src="../../resources/js/materialize.min.js"></script>
+    <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    <script src="../../controllers/components.js"></script>
+    <script src="../../controllers/validaciones.js"></script>
+    <script type="text/javascript" src="../../controllers/public/online.js"></script>
+    <script type="text/javascript" src="../../controllers/public/carrito.js"></script>
     <script type="text/javascript" src="../../controllers/public/registro-usuario.js"></script>
 
 </body>
