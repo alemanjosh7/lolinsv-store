@@ -2,6 +2,8 @@
 const API_PRODUCTOS = SERVER + 'public/productos.php?action=';
 const API_GLBVAR = SERVER + 'variablesgb.php?action=';
 const ENDPOINT_CATEGORIAS = SERVER + 'public/categorias.php?action=readAll';
+const API_CLIENTES = SERVER + 'public/login.php?action=';
+const API_PEDIDOPER = SERVER + 'public/pedidosPersonalizados.php?action=';
 /*Estilo de las opciones de los carritos y el navbar mobile*/
 
 //Inicializando componentes de Materialize
@@ -110,7 +112,12 @@ SELECTCAT.addEventListener('change', (event) => {
     dynamicSearcher2(API_PRODUCTOS, 'search-form');
   }
   else if (BUSCADORINP.value == '' && categoria != false) {
-    readRowsLimit(API_PRODUCTOS, top3Array);
+    let formbuscat = new FormData();
+    formbuscat.append('limit', 0);
+    formbuscat.append('search', BUSCADORINP.value);
+    formbuscat.append('cat', categoria);
+    dynamicSearcher3Filter(API_PRODUCTOS, formbuscat);
+    console.log('hola');
   }
   BOTONNUMEROPAGI.innerHTML = 1;
   BOTONNUMEROPAGF.innerHTML = 2;
@@ -279,7 +286,7 @@ document.querySelectorAll(".contnpag").forEach(el => {
 function infoProducto(id) {
   console.log(id)
   let form = new FormData();
-  form.append('id_producto',id);
+  form.append('id_producto', id);
   fetch(API_GLBVAR + 'setIdProducto', {
     method: 'post',
     body: form
@@ -301,3 +308,159 @@ function infoProducto(id) {
     }
   });
 }
+//Programación para el pedido personalizado
+//Declaramos algunas constantes
+
+const ARCHIVINPUT = document.getElementById('archivo');//Input del archivo
+const PREVIEWCONT = document.getElementById('preview-col');//Contenedor del preview
+const TEXTOPREVIEW = document.getElementById('texto-prevw');//Texto del preview
+const IMGPREVIEW = document.getElementById('imagen-Preview');//Imagen del preview
+const AÑADIRARCH = document.getElementById('btn-añadirArchivoarhModal');//Boton de añadir archivo
+const BARRAESTADOSUB = document.getElementById('barraraprg-garch');//Barra de la subida
+const FORMPEDIDOPER = document.getElementById('form-pedidoper');//Formulario del pedido personalizado
+const PEDIRPEDIDOBTN = document.getElementById('restablecerContraseña');//Boton del pedido
+const PRELOADER = document.getElementById('actdatoscontra_preloader-login');//Preloader
+const MENSAJEPEDPER = document.getElementById('mensaje-restablecer');//Mensaje del modal
+const CANCELARPED = document.getElementById('cancelarPIN');//Cancelar pedido
+const SELECTTAM = document.getElementById('tamano');//Selec del tamaño
+const INICIARPED = document.getElementById('iniciar-pedp');//Boton para abrir el modal de pedido personalizado
+const MODALPEDPER = document.getElementById('modalrestablecer');//Modal del pedido personalizado
+
+INICIARPED.addEventListener('click', function () {
+  //Validamos si hay una sesión
+  fetch(API_CLIENTES + 'readUsers', {
+    method: 'get'
+  }).then(function (request) {
+    // Se verifica si la petición es correcta, de lo contrario se muestra un mensaje en la consola indicando el problema.
+    if (request.ok) {
+      request.json().then(function (response) {
+        // Se comprueba si existe una sesión, de lo contrario se revisa si la respuesta es satisfactoria.
+        if (response.session) {
+          M.Modal.getInstance(MODALPEDPER).open();
+        }
+        else {
+          sweetAlert(4, 'Debe iniciar sesión para poder realizar un pedido personalizado', 'login.html');
+        }
+      });
+    } else {
+      console.log(request.status + ' ' + request.statusText);
+    }
+  });
+});
+
+//Creamos evento para que al seleccionar un archivo se pueda visualizar o mostrar una opción que 
+ARCHIVINPUT.addEventListener('change', function (e) {
+  //Mostramos la barra de carga
+  BARRAESTADOSUB.classList.remove('hide');
+  //Así se obtiene el formato del archivo js
+  /*
+  let arc = ARCHIVINPUT.files[0].type;
+  let arrayString = arc.split('/');
+  let extension = arrayString.pop();
+  console.log(extension);*/
+  //Validamos que no este vacio
+  if (ARCHIVINPUT.value != 0) {
+    prevArchivo(e);
+  } else {
+    resetPrevisualizador();
+    BARRAESTADOSUB.classList.add('hide');
+  };
+});
+
+//Creamos función para previsualizar
+function prevArchivo(e) {
+  //Creamos la  ruta del archivo
+  var archivoRuta = ARCHIVINPUT.value;
+  //Creamos las extensiones de imagenes y pdf para saber si es pdf o imagen
+  var extIMG = /(.JPG|.PNG|.png|.jpg|.jpeg|.JPEG)$/i;//Imagen 
+  //Creamos un lector de archivos
+  const reader = new FileReader();
+  //Comprobamos si es compatible para previsualizar
+  if (!extIMG.exec(archivoRuta) && !extPDF.exec(archivoRuta)) {
+    //Como no lo es mandamos una alerta
+    sweetAlert(4, 'Formato del archivo incorrecto, debe ser: jpg, png o jpeg', null);
+    //Cambiamos el texto del previsualizar para indicar que no se pudo previsualizar
+    TEXTOPREVIEW.style.display = 'block';
+    TEXTOPREVIEW.innerText = 'Formato de archivo no permitido';
+    //Regresando la imagen a su estado original
+    IMGPREVIEW.style.display = 'block';
+    IMGPREVIEW.style.width = '45px';
+    IMGPREVIEW.style.height = '45px';
+    //Colocando la imagen que indica que hubo un error
+    IMGPREVIEW.setAttribute("src", '../../resources/img/icons/previsualizar-imgerror.png');
+    BARRAESTADOSUB.classList.add('hide');
+  } else if (extIMG.exec(archivoRuta)) {
+    //Ocultamos el texto del preview
+    TEXTOPREVIEW.style.display = 'none';
+    //Mostramos imagen
+    IMGPREVIEW.style.display = 'block';
+    //Asignamos nuevos valores al componente de la imagen para que avarque el maximo de altura y anchura
+    IMGPREVIEW.style.width = '100%';
+    IMGPREVIEW.style.height = '100%';
+    //Creamos evento que coloque el resultado del lector de archivo al cargar
+    reader.addEventListener("load", function () {
+      IMGPREVIEW.setAttribute("src", this.result);
+      BARRAESTADOSUB.classList.add('hide');
+    })
+    //Indicamos de donde obtendra el lector de archivos el resultado
+    reader.readAsDataURL(ARCHIVINPUT.files[0]);
+  }
+}
+
+//Regresar el previsualizar a estado normal
+function resetPrevisualizador() {
+  //Regresamos todo al estado original
+  TEXTOPREVIEW.innerText = 'Previsualizador de Archivos';
+  TEXTOPREVIEW.style.display = 'block';
+  //Mostramos imagen
+  IMGPREVIEW.style.display = 'block';
+  IMGPREVIEW.style.width = '100px';
+  IMGPREVIEW.style.height = '100px';
+  IMGPREVIEW.setAttribute("src", '../../resources/img/icons/previsualizar-img.png');
+};
+
+//Función cuando se cancela el pedido
+CANCELARPED.addEventListener('click', function () {
+  PRELOADER.style.display = "none";
+  MENSAJEPEDPER.style.display = "none";
+  BARRAESTADOSUB.classList.add('hide');
+  document.getElementById('form-pedidoper').reset();
+});
+
+//Función cuando se acepta el pedido
+PEDIRPEDIDOBTN.addEventListener('click', function () {
+  //Comprobamos que no hallan campos vacios
+  //Creamos arreglo de componentes para enviarlos a una función que los evaluará
+  let arregloVCV = [ARCHIVINPUT, document.getElementById('desc_pedido'), document.getElementById('desc_lugar')];
+  if (validarCamposVacios(arregloVCV) != false && SELECTTAM.options[SELECTTAM.selectedIndex].text != 'Elije una opcion') {
+    fetch(API_PEDIDOPER + 'create', {
+      method: 'post',
+      body: new FormData(document.getElementById('form-pedidoper'))
+    }).then(function (request) {
+      // Se verifica si la petición es correcta, de lo contrario se muestra un mensaje en la consola indicando el problema.
+      if (request.ok) {
+        // Se obtiene la respuesta en formato JSON.
+        request.json().then(function (response) {
+          // Se comprueba si la respuesta es satisfactoria, de lo contrario se constata si el cliente ha iniciado sesión.
+          if (response.status) {
+            sweetAlert(1, response.message, null);
+            M.Modal.getInstance(MODALPEDPER).close();
+          } else {
+            // Se verifica si el cliente ha iniciado sesión para mostrar la excepción, de lo contrario se direcciona para que se autentique. 
+            if (response.session) {
+              sweetAlert(2, response.exception, null);
+            } else {
+              sweetAlert(3, response.exception, 'login.html');
+            }
+          }
+        });
+      } else {
+        console.log(request.status + ' ' + request.statusText);
+      }
+    });
+  } else {
+    MENSAJEPEDPER.style.display = 'block';
+    MENSAJEPEDPER.innerText = 'No se permiten campos vacios';
+  }
+});
+

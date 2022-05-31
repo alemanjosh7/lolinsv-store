@@ -788,3 +788,33 @@ function predictLImit2(api, limit) {
         }
     });
 }
+
+/*
+*   Función para obtener todos los registros con limites en los mantenimientos de tablas (operación read).
+*
+*   Parámetros: api (ruta del servidor para obtener los datos) y limit (limite que no estará dentro de la consulta).
+*   El limite es necesario para poder usar la páginación
+*   Retorno: ninguno.
+*/
+function dynamicSearcher3Filter(api, form) {
+    fetch(api + 'searchFilter1', {
+        method: 'post',
+        body: form
+    }).then(function (request) {
+        // Se verifica si la petición es correcta, de lo contrario se muestra un mensaje en la consola indicando el problema.
+        if (request.ok) {
+            // Se obtiene la respuesta en formato JSON.
+            request.json().then(function (response) {
+                // Se comprueba si la respuesta es satisfactoria, de lo contrario se muestra un mensaje con la excepción.
+                if (response.status) {
+                    // Se envían los datos a la función del controlador para que llene la tabla en la vista y se muestra un mensaje de éxito.
+                    fillTable(response.dataset);
+                } else {
+                    noDatos();
+                }
+            });
+        } else {
+            console.log(request.status + ' ' + request.statusText);
+        }
+    });
+}

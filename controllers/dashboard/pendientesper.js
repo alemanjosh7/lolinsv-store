@@ -248,6 +248,7 @@ function dePediP(id){
                     INPUTFECHA.value=response.dataset.fecha_pedidopersonal;
                     INPUTPEDIDO.value=response.dataset.descripcion_pedidopersonal;
                     document.getElementById('direccion').value = response.dataset.direccion_cliente;
+                    document.getElementById('input-tamano').value = response.dataset.tamano;
                     INPUTID.value=id;
                     M.updateTextFields();
                     M.textareaAutoResize(INPUTDESCRIP);

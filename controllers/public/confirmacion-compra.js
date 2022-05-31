@@ -61,7 +61,7 @@ var preloaderactperfil = document.getElementById('confirmarcompra_preloader');
 var btncancelperfil = document.getElementById('cancelacompra_boton');
 btnactperfil.addEventListener("click", function () {
     //Analizamos si el metodo es para eliminar o actualizar
-    if (eliminar == false)  {
+    if (eliminar == false) {
         //Analizamos si ya ha añadido una descripción del lugar de entrega
         if (DESCRLGE.value.length > 0) {
             //Mostramos el preloader y desactivamos el boton
@@ -85,6 +85,7 @@ btnactperfil.addEventListener("click", function () {
                         if (response.status) {
                             PRELOADER.style.display = 'none';
                             btnactperfil.classList.remove("disabled");
+                            enviarConfirmacionCompra(id_pedidoEsta);
                             sweetAlert(1, response.message + '. El número de pedido es: ' + id_pedidoEsta + ' por favor guardelo', 'index.html');
                         } else {
                             sweetAlert(2, response.exception, null);
@@ -99,7 +100,7 @@ btnactperfil.addEventListener("click", function () {
         } else {
             sweetAlert(4, 'Debe de colocar una descripción del lugar de entrega', null);
         }
-    }else{
+    } else {
         //Eliminamos el pedido
         // Petición para obtener confirmar el pedido
         fetch(API_PEDIDOEST + 'delete', {
@@ -246,7 +247,7 @@ function cargarOrden() {
     });
 }
 //Creamos metodo para preparar el modal para el pago
-function prepararPago(){
+function prepararPago() {
     //Cambiamos la variable de eliminar a false
     eliminar = false;
     //Cambiamos los textos dentro del header y la indicación
@@ -255,12 +256,65 @@ function prepararPago(){
 }
 
 //Creamos metodo para preparar el modal para eliminar el pedido
-function prepararEliminar(){
+function prepararEliminar() {
     //Cambiamos la variable de eliminar a false
     eliminar = true;
     //Cambiamos los textos dentro del header y la indicación
     ENCABEZADOMODAL.innerText = 'Eliminar el pedido';
     INDICACIONMODAL.innerText = '¿Desea limpiar el carrito y eliminar el pedido?';
+}
+
+function enviarConfirmacionCompra(id) {
+    //Primero obtenemos el correo del usuario
+    //Creamos un formulario y añadimos el nombre del usuario y realizamos la petición
+    let url = SERVER + 'enviarcorreoconfirmacion.php';
+    form = new FormData();
+    form.append('id', id);
+    let correo;
+    fetch(API_PEDIDOEST + 'obtenerPedidoVendido', {
+        method: 'post',
+        body: form
+    }).then(function (request) {
+        // Se verifica si la petición es correcta, de lo contrario se muestra un mensaje en la consola indicando el problema.
+        if (request.ok) {
+            request.json().then(function (response) {
+                // Se comprueba si la respuesta es satisfactoria, de lo contrario se muestra un mensaje con la excepción.
+                if (response.status) {
+                    correo = response.dataset.correo_cliente;
+                    console.log(correo);
+                    form.append('correo', correo);
+                    form.append('nombre', response.dataset.nombre_cliente);
+                    form.append('apellido', response.dataset.apellido_cliente);
+                    form.append('total', response.dataset.montototal_pedidoesta);
+                    //Una vez seteado ejecutamos el metodo para enviar el correo
+                    fetch(url, {
+                        method: 'post',
+                        body: form
+                    }).then(function (request) {
+                        // Se verifica si la petición es correcta, de lo contrario se muestra un mensaje en la consola indicando el problema.
+                        if (request.ok) {
+                            request.json().then(function (response) {
+                                // Se comprueba si la respuesta es satisfactoria, de lo contrario se muestra un mensaje con la excepción.
+                                if (response.status) {
+                                    console.log('Mensaje enviado con exito');
+                                } else {
+                                    sweetAlert(2, response.exception, null);
+                                }
+                            });
+                        } else {
+                            LOGINBTN.classList.remove('disabled');
+                            console.log(request.status + ' ' + request.statusText);
+                        }
+                    });
+                } else {
+                    sweetAlert(2, response.exception, null);
+                }
+            });
+        } else {
+            LOGINBTN.classList.remove('disabled');
+            console.log(request.status + ' ' + request.statusText);
+        }
+    });
 }
 /*Opciones xtra
 .opciones-select{
