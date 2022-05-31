@@ -27,7 +27,7 @@ class Pedidos_establecidos extends Validator
 
     public function setFecha($value)
     {
-        if ($this->date($value)) {
+        if ($this->Validatedate($value)) {
             $this->fecha_pedidopersonal = $value;
             return true;
         } else {

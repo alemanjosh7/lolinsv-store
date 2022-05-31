@@ -16,9 +16,9 @@ horaPIN = La hora en la que se creo el pin, este solo será una vez
     if (isset($_GET['action'])) {
         // Se crea una sesión o se reanuda la actual para poder utilizar variables de sesión en el script.
         session_start();
-        /*$_SESSION['id_cliente'] = 1;
-    $_SESSION['id_pedidoEsta'] = 1;
-    $_SESSION['usuario'] = 'Fuentesc82';*/
+        /*$_SESSION['id_cliente'] = 1;*/
+        /*$_SESSION['id_pedidoEsta'] = 2;
+    /*$_SESSION['usuario'] = 'Fuentesc82';*/
         // Se declara e inicializa un arreglo para guardar el resultado que retorna la API.
         $result = array(
             'status' => 0, 'session' => 0, 'message' => null, 'exception' => null, 'idusuario' => null, 'usuario' => null,

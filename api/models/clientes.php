@@ -6,15 +6,15 @@
 class Clientes extends Validator
 {
     // Declaración de atributos (propiedades).
-    private $id = null;//id de cliente
-    private $nombre = null;//nombre del cliente
-    private $apellido = null;//apellido del cliente
-    private $correo = null;//correo del cliente
-    private $dui = null;//dui del cliente
-    private $telefono = null;//telefono del cliente
-    private $direccion = null;//direccion del cliente
-    private $usuario = null;//usuario del cliente
-    private $contrasena = null;//contraseña del cliente
+    private $id = null; //id de cliente
+    private $nombre = null; //nombre del cliente
+    private $apellido = null; //apellido del cliente
+    private $correo = null; //correo del cliente
+    private $dui = null; //dui del cliente
+    private $telefono = null; //telefono del cliente
+    private $direccion = null; //direccion del cliente
+    private $usuario = null; //usuario del cliente
+    private $contrasena = null; //contraseña del cliente
     private $idestado = null;
 
     /*
@@ -60,7 +60,8 @@ class Clientes extends Validator
         }
     }
 
-    public function setDUI($value){
+    public function setDUI($value)
+    {
         if ($this->validateDUI($value)) {
             $this->dui = $value;
             return true;
@@ -72,7 +73,7 @@ class Clientes extends Validator
     public function setTelefono($value)
     {
         if ($this->validatePhone($value)) {
-            $this-> telefono = $value;
+            $this->telefono = $value;
             return true;
         } else {
             return false;
@@ -109,7 +110,8 @@ class Clientes extends Validator
         }
     }
 
-    public function setEstado($value){
+    public function setEstado($value)
+    {
         if ($this->validateBoolean($value)) {
             $this->idestado = $value;
             return true;
@@ -136,8 +138,9 @@ class Clientes extends Validator
         return $this->apellido;
     }
 
-    public function getNombreCl(){
-        $ncl = $nombre+" "+$apellido;
+    public function getNombreCl()
+    {
+        $ncl = $this->nombre . " " . $this->apellido;
         return $ncl;
     }
 
@@ -171,8 +174,9 @@ class Clientes extends Validator
         return $this->contrasena;
     }
 
-    public function getEstado(){
-        return $this ->idestado;
+    public function getEstado()
+    {
+        return $this->idestado;
     }
 
     /*
@@ -225,13 +229,13 @@ class Clientes extends Validator
         return Database::getRow($sql, $params);
     }
     //Editar o cambiar el perfil del cliente
-    public function editarPerfilCl($idu, $nombre, $apellido, $correo,$DUI, $tel, $direc, $usu)
+    public function editarPerfilCl($idu, $nombre, $apellido, $correo, $DUI, $tel, $direc, $usu)
     {
         $sql = 'UPDATE clientes
                 SET nombre_cliente = ?, apellido_cliente = ?, correo_cliente = ?, dui_cliente = ?, telefono_cliente = ?, 
                 direccion_cliente = ?, usuario = ?
                 WHERE id_cliente = ?';
-        $params = array($nombre, $apellido, $correo, $DUI, $telefono, $direc, $idu);
+        $params = array($nombre, $apellido, $correo, $DUI, $tel, $direc, $idu);
         return Database::executeRow($sql, $params);
     }
 
@@ -253,10 +257,10 @@ class Clientes extends Validator
     //Crear cliente
     public function crearCliente()
     {
-        $sql = 'INSERT INTO usuarios(nombres_cliente, apellidos_cliente, correo_cliente, dui_cliente, 
+        $sql = 'INSERT INTO clientes(nombre_cliente, apellido_cliente, correo_cliente, dui_cliente, 
                 telefono_cliente , direccion_cliente, usuario, contrasena, fk_id_estado)
-                VALUES(?, ?, ?, ?, ?, ?, ?, ?)';
-        $params = array($this->nombre, $this->apellido, $this->correo, $this->dui, $this->telefono, $this->direccion, $this->usuario, $this->contrasena,8);
+                VALUES(?, ?, ?, ?, ?, ?, ?, ?, 8)';
+        $params = array($this->nombre,$this->apellido,$this->correo,$this->dui,$this->telefono,$this->direccion,$this->usuario,$this->contrasena);
         return Database::executeRow($sql, $params);
     }
     //Obtener clientes
@@ -297,7 +301,8 @@ class Clientes extends Validator
         return Database::executeRow($sql, $params);
     }
     //Buscar Clientes por limite
-    public function obtenerClientesLimit($limit){
+    public function obtenerClientesLimit($limit)
+    {
         $sql = 'SELECT clt.id_cliente,clt.nombre_cliente,clt.apellido_cliente,clt.correo_cliente,clt.dui_cliente,clt.telefono_cliente,
             clt.direccion_cliente,clt.usuario,est.estado
             FROM clientes as clt 
@@ -306,21 +311,21 @@ class Clientes extends Validator
             NOT IN(SELECT id_cliente FROM clientes ORDER BY id_cliente LIMIT ?) ORDER BY id_cliente limit 1';
         $params = array($limit);
         return Database::getRows($sql, $params);
-
     }
 
-        //Colocamos las variables de sesión del nombre del usuario y su apellido
-        public function nombreApellidoAdminCl(){
-            $sql = 'SELECT nombre_cliente, apellido_cliente FROM clientes WHERE id_cliente= ?';
-            $params = array($_SESSION['id_cliente']);
-            if ($data = Database::getRow($sql, $params)) {
-                $_SESSION['nombreUsuario']= $data['nombre_cliente'];
-                $_SESSION['apellidoUsuario']= $data['apellido_cliente'];
-                return true;
-            } else {
-                return false;
-            }
+    //Colocamos las variables de sesión del nombre del usuario y su apellido
+    public function nombreApellidoAdminCl()
+    {
+        $sql = 'SELECT nombre_cliente, apellido_cliente FROM clientes WHERE id_cliente= ?';
+        $params = array($_SESSION['id_cliente']);
+        if ($data = Database::getRow($sql, $params)) {
+            $_SESSION['nombreUsuario'] = $data['nombre_cliente'];
+            $_SESSION['apellidoUsuario'] = $data['apellido_cliente'];
+            return true;
+        } else {
+            return false;
         }
+    }
 
     //Cambiar contraseña del cliente
     public function cambiarContrasenaCl()
@@ -351,4 +356,3 @@ class Clientes extends Validator
         return Database::getRow($sql, $params);
     }
 }
-?>

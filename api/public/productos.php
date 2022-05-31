@@ -51,6 +51,16 @@ if (isset($_GET['action'])) {
                 $result['exception'] = 'No se encontro resultado con el filtro ni busqueda';
             }
             break;
+        case 'searchFilter1':
+            $_POST = $producto->validateForm($_POST);
+            if ($result['dataset'] = $producto->readAllProductsLFil1($_POST['cat'])) {
+                $result['status'] = 1;
+            } elseif (Database::getException()) {
+                $result['exception'] = Database::getException();
+            } else {
+                $result['exception'] = 'No se encontro resultado con el filtro ni busqueda';
+            }
+            break;
         case 'search':
             $_POST = $producto->validateForm($_POST);
             if ($_POST['search'] == '') {
@@ -100,6 +110,7 @@ if (isset($_GET['action'])) {
                 $result['exception'] = Database::getException();
             }
             break;
+            //Obtener un producto especifico
         case 'readOne':
             if (!$producto->setId($_POST['id'])) {
                 $result['exception'] = 'Producto incorrecto';
@@ -215,6 +226,30 @@ if (isset($_GET['action'])) {
                 $result['status'] = 1;
             } else {
                 $result['exception'] = 'No hay datos disponibles';
+            }
+            break;
+            //Obtener un producto especifico pero con Inner Join
+        case 'obtenerInfoProducto':
+            if (!$producto->setId($_POST['id'])) {
+                $result['exception'] = 'Producto incorrecto';
+            } elseif ($result['dataset'] = $producto->obtenerInfoProducto()) {
+                $result['status'] = 1;
+            } elseif (Database::getException()) {
+                $result['exception'] = Database::getException();
+            } else {
+                $result['exception'] = 'Producto inexistente';
+            }
+            break;
+            //Obtenemos las valoraciones totales
+        case 'valoracionesTotales':
+            if (!$producto->setId($_POST['id'])) {
+                $result['exception'] = 'Producto incorrecto';
+            } elseif ($result['dataset'] = $producto->valoracionesTotales()) {
+                $result['status'] = 1;
+            } elseif (Database::getException()) {
+                $result['exception'] = Database::getException();
+            } else {
+                $result['exception'] = 'Producto inexistente';
             }
             break;
         default:

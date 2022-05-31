@@ -18,7 +18,7 @@ if (isset($_GET['action'])) {
         switch ($_GET['action']) {
             case 'obtenerPedido':
                 if (isset($_SESSION['id_pedidoEsta'])) {
-                    if(!$confirmacion_cmp->setId($_SESSION['id_pedidoEsta'])){
+                    if (!$confirmacion_cmp->setId($_SESSION['id_pedidoEsta'])) {
                         $result['exception'] = 'Id del pedido incorrecto';
                     } elseif ($result['dataset'] = $confirmacion_cmp->readPedido()) {
                         $result['status'] = 1;
@@ -31,9 +31,20 @@ if (isset($_GET['action'])) {
                     $result['exception'] = 'No hay un pedido que mostrar';
                 }
                 break;
+            case 'obtenerPedidoVendido':
+                if (!$confirmacion_cmp->setId($_POST['id'])) {
+                    $result['exception'] = 'Id del pedido incorrecto';
+                } elseif ($result['dataset'] = $confirmacion_cmp->readPedido()) {
+                    $result['status'] = 1;
+                } elseif (Database::getException()) {
+                    $result['exception'] = Database::getException();
+                } else {
+                    $result['exception'] = 'Pedido inexistente';
+                }
+                break;
             case 'obtenerOrden':
                 if (isset($_SESSION['id_pedidoEsta'])) {
-                    if(!$confirmacion_cmp->setId($_SESSION['id_pedidoEsta'])){
+                    if (!$confirmacion_cmp->setId($_SESSION['id_pedidoEsta'])) {
                         $result['exception'] = 'Id del pedido incorrecto';
                     } elseif ($result['dataset'] = $confirmacion_cmp->ObtenerDetalle()) {
                         $result['status'] = 1;
@@ -80,7 +91,7 @@ if (isset($_GET['action'])) {
             default:
                 $result['exception'] = 'Acción no disponible dentro de la sesión';
         }
-    }else {
+    } else {
         $result['exception'] = 'Necesita Loguearse para poder visualizar el carrito';
     }
     // Se indica el tipo de contenido a mostrar y su respectivo conjunto de caracteres.

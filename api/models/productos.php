@@ -363,7 +363,7 @@ class Productos extends Validator
         INNER JOIN categorias AS cate ON cate.id_categoria = p.fk_id_categoria
         INNER JOIN valoraciones AS val ON val.id_valoraciones = p.fk_id_valoraciones
         WHERE p.cantidad >0 AND cate.id_categoria = ? AND p.nombre_producto ILIKE ?
-        order by p.cantidad DESC limit 9
+        order by p.cantidad DESC
                 ';
         $params = array($cat,"%$value%");
         return Database::getRows($sql, $params);
@@ -380,5 +380,37 @@ class Productos extends Validator
                 ';
         $params = array($limit);
         return Database::getRows($sql, $params);
+    }
+    ////Obtener todos los productos para la vista pública con limite pero con un filtro seleccionado
+    public function readAllProductsLFil1($cat)
+    {
+        $sql = 'SELECT p.id_producto, p.nombre_producto, p.precio_producto, p.cantidad, cate.id_categoria, val.valoraciones, p.imagen_producto
+        FROM productos AS p 
+        INNER JOIN categorias AS cate ON cate.id_categoria = p.fk_id_categoria
+        INNER JOIN valoraciones AS val ON val.id_valoraciones = p.fk_id_valoraciones
+        WHERE p.cantidad >0 AND cate.id_categoria = ? 
+        order by p.cantidad DESC
+                ';
+        $params = array($cat);
+        return Database::getRows($sql, $params);
+    }
+    //Obtener la información de un producto pero con Inner Join
+    public function obtenerInfoProducto()
+    {
+        $sql = 'SELECT prd.id_producto, prd.nombre_producto, prd.descripcion, prd.precio_producto, 
+                prd.imagen_producto, prd.cantidad, cat.nombre_categoria, prd.fk_id_valoraciones, prd.fk_id_admin
+                FROM productos AS prd
+                INNER JOIN categorias AS cat ON prd.fk_id_categoria = cat.id_categoria
+                WHERE id_producto = ?';
+        $params = array($this->id_producto);
+        return Database::getRow($sql, $params);
+    }
+    //Obtenemos las valoraciones totales de un producto
+    public function valoracionesTotales()
+    {
+        $sql = 'SELECT cast(count(*) as decimal) from valoraciones_clientes
+                WHERE fk_id_productos = ?';
+        $params = array($this->id_producto);
+        return Database::getRow($sql, $params);
     }
 }
