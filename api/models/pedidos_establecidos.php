@@ -27,7 +27,7 @@ class Pedidos_establecidos extends Validator
 
     public function setFecha($value)
     {
-        if ($this->date($value)) {
+        if ($this->Validatedate($value)) {
             $this->fecha_pedidopersonal = $value;
             return true;
         } else {
@@ -165,7 +165,7 @@ class Pedidos_establecidos extends Validator
 
     //Eliminar Pedido
     public function deletePedido(){
-        $sql = 'DELETE FROM pedidos_establecidos
+        $sql = 'UPDATE pedidos_establecidos SET fk_id_estado = 10
                 WHERE id_pedidos_establecidos = ?';
         $params = array($this->id);
         return Database::executeRow($sql, $params);

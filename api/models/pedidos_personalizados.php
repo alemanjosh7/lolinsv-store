@@ -14,6 +14,7 @@ class Pedidos_personalizados extends Validator
     private $id_cliente = null;//id del cliente llave foranea
     private $id_tamano = null;//id del tamaño llave foranea
     private $id_estado = null;//id de estado llave foranea
+    private $ruta = '../images/pedidosper/';
     /*
     *   Métodos para validar y asignar valores de los atributos.
     */
@@ -138,6 +139,10 @@ class Pedidos_personalizados extends Validator
         return $this->id_estado;
     }
 
+    public function getRuta()
+    {
+        return $this->ruta;
+    }
 
     /*
     *   Métodos para realizar las operaciones SCRUD (search, create, read, update, delete).
@@ -169,16 +174,17 @@ class Pedidos_personalizados extends Validator
     public function readPedido()
     {
         $sql = 'SELECT pes.id_pedidos_personalizado, pes.fecha_pedidopersonal, pes.descripcion_pedidopersonal, pes.imagenejemplo_pedidopersonal, pes.descripcionlugar_entrega,
-        clt.nombre_cliente, clt.apellido_cliente, clt.direccion_cliente
+        clt.nombre_cliente, clt.apellido_cliente, clt.direccion_cliente, tam.tamano
         FROM pedidos_personalizados as pes
         INNER JOIN clientes AS clt ON pes.fk_id_cliente = clt.id_cliente
-        WHERE pes.id_pedidos_personalizado = ?';
+		INNER JOIN tamanos AS tam ON pes.fk_id_tamano = tam.id_tamanos
+		WHERE pes.id_pedidos_personalizado = ?';
         $params = array($this->id);
         return Database::getRow($sql, $params);
     }
 
     public function deletePedido(){
-        $sql = 'DELETE FROM pedidos_personalizados
+        $sql = 'UPDATE pedidos_personalizados SET fk_id_estado = 10
                 WHERE id_pedidos_personalizado = ?';
         $params = array($this->id);
         return Database::executeRow($sql, $params);
@@ -221,6 +227,15 @@ class Pedidos_personalizados extends Validator
     {
         $sql='update pedidos_personalizados set fk_id_estado=5 where id_pedidos_personalizado=?';
         $params = array($this->id);
+        return Database::executeRow($sql, $params);
+    }
+
+    //Función para crear un pedido
+    public function crearPedidoPer()
+    {
+        $sql='INSERT INTO pedidos_personalizados(descripcion_pedidopersonal,imagenejemplo_pedidopersonal,descripcionlugar_entrega,fk_id_cliente,fk_id_tamano,fk_id_estado)
+              VALUES(?,?,?,?,?,1)';
+        $params = array($this->descripcion_pedidopersonal,$this->imagenejemplo_pedidopersonal,$this->descripcionlugar_entrega,$_SESSION['id_cliente'],$this->id_tamano);
         return Database::executeRow($sql, $params);
     }
 }
