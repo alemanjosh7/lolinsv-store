@@ -411,12 +411,14 @@
                   <!--Icono de Usuario no modificable-->
                   <img class="responsive-image" src="../../resources/img/icons/UserIcon-Perfil.png">
                 </div>
-                <div class="col s12 center-align input-field" id="input-username">
-                  <!--Nombre de usuario-->
-                  <input value="Username" id="Username" type="text" class="validate center-align">
-                  <label for="Username">Nombre de Usuario</label>
-                  <span class="helper-text" data-error="Nombre de Usuario invalido"
-                    data-success="Nombre de Usuario permitido"></span>
+                <div id="usuarioM">
+                  <div class="col s12 center-align input-field" id="input-username">
+                    <!--Nombre de usuario-->
+                    <input value="" id="Username" name="Username"  type="text" class="validate center-align">
+                    <label for="Username">Nombre de Usuario</label>
+                    <span class="helper-text" data-error="Nombre de Usuario invalido"
+                      data-success="Nombre de Usuario permitido"></span>
+                  </div>
                 </div>
                 <div class="center-align col s12">
                   <!--Boton de Cerrar sesion-->
@@ -439,15 +441,15 @@
                       <form class="col s12" id="cambiocontra">
                         <div class="row">
                           <div class="input-field col l4 m4 s12">
-                            <input placeholder="Contraseña actual" id="contraseña_actual" type="password">
+                            <input placeholder="Contraseña actual" id="contraseña_actual" name="contraseña_actual" type="password">
                             <label for="contraseña_actual">Contraseña actual</label>
                           </div>
                           <div class="input-field col l4 m4 s12">
-                            <input placeholder="Contraseña nueva" id="contraseña_nueva" type="password">
+                            <input placeholder="Contraseña nueva" id="contraseña_nueva" name="contraseña_nueva" type="password">
                             <label for="contraseña_nueva">Contraseña nueva</label>
                           </div>
                           <div class="input-field col l4 m4 s12">
-                            <input placeholder="Confirme nueva contraseña" id="contraseña_confirma" type="password">
+                            <input placeholder="Confirme nueva contraseña" id="contraseña_confirma" name="contraseña_confirma" type="password">
                             <label for="contraseña_confirma">Confirmación</label>
                           </div>
                         </div>
@@ -532,27 +534,28 @@
                       </div>
                     </div>
                   </div>
-                  <!--Continuación de la parte de datos del perfil-->
+                 <form id="datosForm">
+                    <!--Continuación de la parte de datos del perfil-->
                   <div class="col s12 center-align input-field" id="inputs-datos">
                     <!--Nombre de usuario-->
-                    <input value="Jesús" id="nombre_usuario-perfil" type="text" class="center-align">
+                    <input value="Jesús" id="nombre_usuario-perfil" name="nombre_usuario-perfil" type="text" class="center-align">
                     <label for="nombre_usuario">Nombre:</label>
                   </div>
                   <div class="col s12 center-align input-field " id="inputs-datos">
                     <!--Apellido de usuario-->
-                    <input value="Esquivel" id="apellido_usuario-perfil" type="text" class="center-align">
+                    <input value="Esquivel" id="apellido_usuario-perfil" name="apellido_usuario-perfil" type="text" class="center-align">
                     <label for="apellido_usuario">Apellido:</label>
                   </div>
                   <div class="col s12 center-align input-field" id="inputs-datos">
                     <!--Correo de usuario-->
-                    <input value="20200067@ricaldone.edu.sv" id="e-mail" type="email" class=" validate center-align">
+                    <input value="20200067@ricaldone.edu.sv" id="e-mail" name="e-mail" type="email" class=" validate center-align">
                     <label for="e-mail">Correo:</label>
                     <span class="helper-text" data-error="Correo de Usuario invalido"
                       data-success="Correo de usuario permitido"></span>
                   </div>
                   <div class="col s12 center-align input-field" id="inputs-datos">
                     <!--DUI de usuario-->
-                    <input value="85857858-7" id="dui_usuario-perfil" type="password"
+                    <input value="85857858-7" id="dui_usuario-perfil" name="dui_usuario-perfil" type="password"
                       class="ocultar-mostrar validate center-align">
                     <label for="dui_usuario">DUI:</label>
                     <i class="tooltipped material-icons prefix right-align" data-position="top"
@@ -560,16 +563,17 @@
                   </div>
                   <div class="col s12 center-align input-field" id="inputs-datos">
                     <!--Telefono de usuario-->
-                    <input value="7708-5832" id="telefono_usuario-perfil" type="password" class="validate center-align">
+                    <input value="7708-5832" id="telefono_usuario-perfil" name="telefono_usuario-perfil" type="password" class="validate center-align">
                     <label for="telefono_usuario">Telefono:</label>
                     <i class="tooltipped material-icons prefix right-align" data-position="bottom"
                       data-tooltip="Mostrar/Ocultar" id="ocultarmostrar_teleuser">visibility</i>
                   </div>
                   <div class="col s12 center-align input-field" id="inputs-datos">
                     <!--Dirección de usuario-->
-                    <textarea id="direccion_usuario-perfil" class="materialize-textarea">Calle honduras 123</textarea>
+                    <textarea id="direccion_usuario-perfil" name="direccion_usuario-perfil" class="materialize-textarea">calle honduras 123</textarea>
                     <label for="direccion_usuario">Direccion</label>
                   </div>
+                 </form>
                   <div class="col l10" id="decoracion-perfildatos2">
                   </div>
                 </div>
@@ -631,8 +635,12 @@
   </footer>
   <!--JavaScript at end of body for optimized loading-->
   <script type="text/javascript" src="../../resources/js/materialize.min.js"></script>
+  <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+  <script src="../../controllers/components.js"></script>
+  <script src="../../controllers/validaciones.js"></script>
+  <script type="text/javascript" src="../../controllers/public/online.js"></script>
+  <script type="text/javascript" src="../../controllers/public/carrito.js"></script>
   <script type="text/javascript" src="../../controllers/public/perfil.js"></script>
-
 </body>
 
 </html>
