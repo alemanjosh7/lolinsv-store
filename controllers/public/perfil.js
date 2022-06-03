@@ -1,3 +1,10 @@
+// Constante para establecer la ruta y parámetros de comunicación con la API_HEADER_GLBVAR.
+const API_GLBVAR = SERVER + 'variablesgb.php?action=';
+const API_CLIENTES = SERVER + 'public/clientes.php?action=';
+const API_USUARIOS = SERVER + 'public/clientes.php?action=';
+const API_CLIENTESENDPOINT = SERVER + 'public/login.php?action=';
+
+
 /*Estilo de las opciones de los carritos y el navbar mobile*/
 var opcionesCarrito = {
     edge: 'right'
@@ -8,21 +15,84 @@ var navbarmobile = {
 var opcionesModalg = {
     //onOpenStart: function () {
     // Se restauran los elementos del formulario.
-    dissmisible:false,
+    dissmisible: false,
     onOpenStart: function () {
         // Se restauran los elementos del formulario.
         document.getElementById('cambiocontra').reset();
     }
 }
+
+
+
 document.addEventListener('DOMContentLoaded', function () {
+    comprobaClientes()
     M.Sidenav.init(document.querySelectorAll('.sidenav'));
     M.Sidenav.init(document.querySelectorAll('#mobile-demo'), navbarmobile);
     M.Sidenav.init(document.querySelectorAll('#carrito'), opcionesCarrito);
     M.Slider.init(document.querySelectorAll('.slider'));
     M.Carousel.init(document.querySelectorAll('.carousel'));
     M.Tooltip.init(document.querySelectorAll('.tooltipped'));
-    M.Modal.init(document.querySelectorAll('.modal'),opcionesModalg);
+    M.Modal.init(document.querySelectorAll('.modal'), opcionesModalg);
+
+    fetch(API_CLIENTES + 'readProfile', {
+        method: 'get'
+    }).then(function (request) {
+        // Se verifica si la petición es correcta, de lo contrario se muestra un mensaje en la consola indicando el problema.
+        if (request.ok) {
+            // Se obtiene la respuesta en formato JSON.
+            request.json().then(function (response) {
+                // Se comprueba si la respuesta es satisfactoria, de lo contrario se muestra un mensaje con la excepción.
+                if (response.status) {
+                    // Se inicializan los campos del formulario con los datos del usuario que ha iniciado sesión.
+                    document.getElementById('nombre_usuario-perfil').value = response.dataset[0].nombre_cliente;
+                    document.getElementById('apellido_usuario-perfil').value = response.dataset[0].apellido_cliente;
+                    document.getElementById('e-mail').value = response.dataset[0].correo_cliente;
+                    document.getElementById('dui_usuario-perfil').value = response.dataset[0].dui_cliente;
+                    document.getElementById('telefono_usuario-perfil').value = response.dataset[0].telefono_cliente;
+                    document.getElementById('direccion_usuario-perfil').value = response.dataset[0].direccion_cliente;
+                    document.getElementById('Username').value = response.dataset[0].usuario;
+                    // Se actualizan los campos para que las etiquetas (labels) no queden sobre los datos.
+                    M.updateTextFields();
+                    M.textareaAutoResize(document.getElementById('direccion_usuario-perfil').value);
+                } else {
+                    sweetAlert(2, response.exception, null);
+                }
+            });
+        } else {
+            console.log(request.status + ' ' + request.statusText);
+        }
+    });
+    // Se inicializa el componente Tooltip para que funcionen las sugerencias textuales.
+    M.Tooltip.init(document.querySelectorAll('.tooltipped'));
 });
+
+
+//Función para verificar si hay una sesion
+// Petición para consultar si existen usuarios registrados.
+function comprobaClientes() {
+    fetch(API_CLIENTESENDPOINT + 'readUsers', {
+        method: 'get'
+    }).then(function (request) {
+        // Se verifica si la petición es correcta, de lo contrario se muestra un mensaje en la consola indicando el problema.
+        if (request.ok) {
+            request.json().then(function (response) {
+                // Se comprueba si existe una sesión, de lo contrario se revisa si la respuesta es satisfactoria.
+                if (response.session) {
+
+                }
+                else {
+                    location.href = 'index.html';
+                }
+            });
+        } else {
+            console.log(request.status + ' ' + request.statusText);
+        }
+    });
+}
+
+
+
+
 
 document.addEventListener('DOMContentLoaded', function () {
     var elems = document.querySelectorAll('.tooltipped');
@@ -65,8 +135,45 @@ ojo2.addEventListener("click", function () {
 /*Mostrar-Ocultar preloader para la actualización de datos del perfil*/
 var btnactperfil = document.getElementById('aceptaractdatosperfil_boton');
 var preloaderactperfil = document.getElementById('actdatosperfil_preloader');
-var btncancelperfil = document.getElementById('cancelactdatosperfil_boton');
+var btncancelperfil = document.getElementById('cancelactdatosperfil_boton');//
 btnactperfil.addEventListener("click", function () {
+    //Validamos campos vacios creando un arreglo de los componentes
+    let arreglo = [
+        document.getElementById('nombre_usuario-perfil'),
+        document.getElementById('apellido_usuario-perfil'),
+        document.getElementById('e-mail'),
+        document.getElementById('dui_usuario-perfil'),
+        document.getElementById('telefono_usuario-perfil'),
+        document.getElementById('direccion_usuario-perfil'),
+        document.getElementById('Username')];
+    //Validamos 
+    if (validarCamposVacios(arreglo) != false) {
+        let form = new FormData(document.getElementById('datosForm'));
+        form.append('Username', document.getElementById('Username').value);
+
+        fetch(API_CLIENTES + 'update', {
+            method: 'post',
+            body: form
+        }).then(function (request) {
+            // Se verifica si la petición es correcta, de lo contrario se muestra un mensaje en la consola indicando el problema.
+            if (request.ok) {
+                // Se obtiene la respuesta en formato JSON.
+                request.json().then(function (response) {
+                    // Se comprueba si la respuesta es satisfactoria, de lo contrario se muestra un mensaje con la excepción.
+                    if (response.status) {
+                        // Se muestra un mensaje de éxito.
+                        sweetAlert(1, response.message, 'perfil.html');
+                    } else {
+                        sweetAlert(2, response.exception, null);
+                    }
+                });
+            } else {
+                console.log(request.status + ' ' + request.statusText);
+            }
+        })
+    } else {
+        sweetAlert(3, 'no se permiten campos basios', null);
+    }
     preloaderactperfil.style.display = "block";
     btnactperfil.classList.add("disabled")
 });
@@ -88,12 +195,39 @@ btnactcontra.addEventListener("click", function () {
     let mensaje = document.getElementById('mensajecontra');
     if (contra.value.length != 0 && contran.value.length != 0 && contrac.value.length != 0) {
         if (contran.value == contrac.value) {
-            preloaderactcontra.style.display = "block";
-            btnactcontra.classList.add("disabled");
-            mensaje.style.display = 'none';
-            contra.value = '';
-            contrac.value = '';
-            contran.value = '';
+            fetch(API_USUARIOS + 'changePassword', {
+                method: 'post',
+                body: new FormData(document.getElementById('cambiocontra'))
+            }).then(function (request) {
+                // Se verifica si la petición es correcta, de lo contrario se muestra un mensaje en la consola indicando el problema.
+                if (request.ok) {
+                    // Se obtiene la respuesta en formato JSON.
+                    request.json().then(function (response) {
+                        // Se comprueba si la respuesta es satisfactoria, de lo contrario se muestra un mensaje con la excepción.
+                        if (response.status) {
+                            preloaderactcontra.style.display = "block";
+                            btnactcontra.classList.add("disabled");
+                            mensaje.style.display = 'none';
+                            contra.value = '';
+                            contrac.value = '';
+                            contran.value = '';
+                            // Se muestra un mensaje de éxito.
+                            sweetAlert(1, response.message, 'perfil.html');
+                        } else {
+                            preloaderactcontra.style.display = "none";
+                            btnactcontra.classList.remove("disabled");
+                            mensaje.style.display = 'none';
+                            contra.value = '';
+                            contrac.value = '';
+                            contran.value = '';
+                            // 
+                            sweetAlert(2, response.exception, null);
+                        }
+                    });
+                } else {
+                    console.log(request.status + ' ' + request.statusText);
+                }
+            });
         } else {
             mensaje.innerText = 'Las contraseñas deben coincidir';
             mensaje.style.display = 'block';
@@ -140,3 +274,5 @@ btnabrircarrito.addEventListener('click', function () {
     let navmobile = M.Sidenav.getInstance(document.querySelector('#mobile-demo'));
     navmobile.close();
 });
+
+
