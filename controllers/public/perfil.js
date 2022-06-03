@@ -172,7 +172,7 @@ btnactperfil.addEventListener("click", function () {
             }
         })
     } else {
-        sweetAlert(3, 'no se permiten campos basios', null);
+        sweetAlert(3, 'no se permiten campos vacios', null);
     }
     preloaderactperfil.style.display = "block";
     btnactperfil.classList.add("disabled")
