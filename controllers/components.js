@@ -5,7 +5,7 @@
 /*
 *   Constante para establecer la ruta del servidor.
 */
-const SERVER = 'http://localhost/lolinsv/api/';
+const SERVER = 'http://localhost/lolinsv-store/api/';
 const API = SERVER + 'dashboard/admins.php?action=';
 
 /*

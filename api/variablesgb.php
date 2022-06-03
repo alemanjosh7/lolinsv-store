@@ -22,7 +22,7 @@ horaPIN = La hora en la que se creo el pin, este solo será una vez
         // Se declara e inicializa un arreglo para guardar el resultado que retorna la API.
         $result = array(
             'status' => 0, 'session' => 0, 'message' => null, 'exception' => null, 'idusuario' => null, 'usuario' => null,
-            'nombre' => null, 'apellido' => null, 'id_pedidoEsta' => null, 'id_producto' => null, 'PIN' => null, 'hora' => null
+            'nombre' => null, 'apellido' => null, 'id_pedidoEsta' => null, 'id_producto' => null, 'PIN' => null, 'hora' => null, 'cantidad' => null
         );
         switch ($_GET['action']) {
             case 'getIdUsuario':
@@ -101,6 +101,11 @@ horaPIN = La hora en la que se creo el pin, este solo será una vez
                 $_SESSION['id_producto'] = $_POST['id_producto'];
                 $result['id_producto'] =  $_SESSION['id_producto'];
                 break;
+            case 'setCantidadProducto':
+                $result['status'] = 1;
+                $_SESSION['cantidad'] = $_POST['cantidad'];
+                $result['cantidad'] =  $_SESSION['cantidad'];
+                break;   
                 //Caso para verificar si hay un carrito que cargar
             case 'verificarCarrito':
                 //Se compureba si se ha inicializado la variable de session id_pedidoEsta

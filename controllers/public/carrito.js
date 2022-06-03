@@ -128,7 +128,7 @@ function cargarDetalle(id) {
                     //Colocamos los detalles en el contenedor de los detalles
                     document.getElementById('elemcarr-form').innerHTML = content;
                     //Colocamos el total a pagar en el componente
-                    document.getElementById('pagot_carrito').innerText = '$'+response.dataset[0].montototal_pedidoesta;
+                    document.getElementById('pagot_carrito').innerText = '$' + response.dataset[0].montototal_pedidoesta;
                 } else {
                     document.getElementById('elemcarr-form').innerHTML = '';
                     sweetAlert(2, 'No se ha logrado cargar el detalle del carrito', null);
@@ -142,7 +142,7 @@ function cargarDetalle(id) {
 }
 
 //Función de eliminar un detalle del pedido
-function delDet(id,idp){
+function delDet(id, idp) {
     const data = new FormData();
     data.append('id', id);
     data.append('idp', idp);
@@ -185,3 +185,4 @@ function delDet(id,idp){
         }
     });
 }
+

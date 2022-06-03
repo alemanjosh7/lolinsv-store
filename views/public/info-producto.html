@@ -409,80 +409,30 @@
             </li>
         </ul>
     </header>
-    <section>
-        <div class="card-wrapper">
-            <div class="card-producto" id="infoprd_contenedor">
-                <!-- card left -->
-                <div class="product-imgs" id="card-product">
-                    <div class="img-display">
-                        <div class="img-showcase">
-                            <img src="../../resources/img/amigurumis/amigurumi2.png" alt="shoe image">
-                            <img src="../../resources/img/amigurumis/amigurumi2.png" alt="shoe image">
-                            <img src="../../resources/img/amigurumis/amigurumi1.png" alt="shoe image">
-                            <img src="../../resources/img/amigurumis/amigurumi1.png" alt="shoe image">
-                        </div>
-                    </div>
-                    <div class="img-select">
-                        <div class="img-item">
-                            <a href="#" data-id="1">
-                                <img src="../../resources/img/amigurumis/amigurumi1.png" alt="shoe image">
-                            </a>
-                        </div>
-                        <div class="img-item">
-                            <a href="#" data-id="2">
-                                <img src="../../resources/img/amigurumis/amigurumi2.png" alt="shoe image">
-                            </a>
-                        </div>
-                        <div class="img-item">
-                            <a href="#" data-id="3">
-                                <img src="../../resources/img/amigurumis/amigurumi1.png" alt="shoe image">
-                            </a>
-                        </div>
-                        <div class="img-item">
-                            <a href="#" data-id="4">
-                                <img src="../../resources/img/amigurumis/amigurumi1.png" alt="shoe image">
-                            </a>
-                        </div>
-                    </div>
-                </div>
-                <!-- card right -->
-                <div class="product-content">
-                    <h2 class="product-title">Stitch</h2>
-                    <div class="product-rating">
-                        <img src="../../resources/img/faces/sad.png" alt="">
-                        <span class="rating">2.6 de calificación </span>
-                        <span class="opinions">
-                            < </span>
-                                <span>2 calificaciones</span>
-                    </div>
+    <section class="row">
+        <div class="card-wrapper col s12">
+            <div class="card-producto col s12" id="infoprd_contenedor">
 
-                    <div class="product-price">
-                        <p class="new-price">Precio: <span>$10.00</span></p>
-                    </div>
-                    <div class="line-3"></div>
-                    <div class="product-detail">
-                        <p class="desc">Descripción:</p>
-                        <p>Un texto es una composición de signos codificados en un sistema de escritura que forma una
-                            unidad de sentido. En otras palabras, un texto es un entramado de signos con una intención
-                            comunicativa que adquiere sentido en determinado contexto.</p>
-                        <ul>
-                            <li>Disponible: <span>En stock</span></li>
-                            <li>Categoría: <span>Cartoon</span></li>
-                            <li>Zona de envío <span>El Salvador</span></li>
-                            <li>Cargo de envío: <span>$5.00</span></li>
-                        </ul>
-                    </div>
-
-                    <div class="purchase-info">
-                        <a class="waves-effect waves-light btn">
-                            <div class="btn-carrito">
-                                <img src="../../resources/img/amigurumis/shopping.png">
-                                <p>Añadir al carrito</p>
-                            </div>
-                        </a>
-                    </div>
-                </div>
             </div>
+
+        </div>
+        <div class="card-action col s12 offset-s7">
+            <form class="row" method="post" id="shopping-form">
+                <div class="input-field col s12 m6">
+                    <i class="material-icons prefix">list</i>
+                    <input type="number" id="cantidad" name="cantidad" min="1" class="validate" required>
+                    <label for="cantidad">Cantidad</label>
+                </div>
+                <div class="purchase-info col s3">
+                    <button type="submit" class="btn">
+                        <div class="btn-carrito">
+                            <img src="../../resources/img/amigurumis/shopping.png">
+                            <p>Añadir al carrito</p>
+                        </div>
+                    </button>
+
+                </div>
+            </form>
         </div>
 
     </section>
@@ -548,6 +498,7 @@
     </div>
     <!--Modal de añadir un comentario-->
     <div id="modalrestablecer" class="modal">
+
         <div class="modal-content">
             <div class="center-align">
                 <h4>Añadir un comentario</h4>
@@ -619,7 +570,8 @@
             <div class="col s12">
                 <div class="row">
                     <div class="col m12 ofsset-m8 s12 center-align">
-                        <a class="waves-effect waves-light btn center-align boton_comentario" id="restablecerContraseña">Añadir un
+                        <a class="waves-effect waves-light btn center-align boton_comentario"
+                            id="restablecerContraseña">Añadir un
                             comentario</a>
                         <div class="preloader-wrapper active comentario_preloader" id="actdatoscontra_preloader-login">
                             <div class="spinner-layer spinner-red-only">
@@ -707,6 +659,7 @@
     <script type="text/javascript" src="../../controllers/public/online.js"></script>
     <script type="text/javascript" src="../../controllers/public/carrito.js"></script>
     <script type="text/javascript" src="../../controllers/public/info-producto.js"></script>
+    <script type="text/javascript" src="../../controllers/public/detalle-pedido-establecido.js"></script>
 
 </body>
 

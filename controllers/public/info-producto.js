@@ -134,7 +134,7 @@ function llenarComentarios(limit) {
                             </div>
                             <div class="line-2"></div>
                                 <div class="comment">
-                                    <p>${row.comentario}.</p>
+                                    <p style="width: 10px;">${row.comentario}.</p>
                                 </div>
                             </div>
                             `;
@@ -274,34 +274,7 @@ function cargarInfoProducto(id) {
                         <!-- card left -->
                         <div class="product-imgs" id="card-product">
                             <div class="img-display">
-                                <div class="img-showcase">
-                                    <img src="../../api/images/productos/${response.dataset.imagen_producto}" alt="shoe image">
-                                    <img src="../../api/images/productos/${response.dataset.imagen_producto}" alt="shoe image">
-                                    <img src="../../api/images/productos/${response.dataset.imagen_producto}" alt="shoe image">
-                                    <img src="../../api/images/productos/${response.dataset.imagen_producto}" alt="shoe image">
-                                </div>
-                            </div>
-                            <div class="img-select">
-                                <div class="img-item">
-                                    <a data-id="1">
-                                        <img src="../../api/images/productos/${response.dataset.imagen_producto}" alt="shoe image">
-                                    </a>
-                                </div>
-                                <div class="img-item">
-                                    <a data-id="2">
-                                        <img src="../../api/images/productos/${response.dataset.imagen_producto}" alt="shoe image">
-                                    </a>
-                                </div>
-                                <div class="img-item">
-                                    <a data-id="3">
-                                        <img src="../../api/images/productos/${response.dataset.imagen_producto}" alt="shoe image">
-                                    </a>
-                                </div>
-                                <div class="img-item">
-                                    <a data-id="4">
-                                        <img src="../../api/images/productos/${response.dataset.imagen_producto}" alt="shoe image">
-                                    </a>
-                                </div>
+                                <img src="../../api/images/productos/${response.dataset.imagen_producto}" alt="shoe image">
                             </div>
                         </div>
                         <!-- card right -->
@@ -329,17 +302,10 @@ function cargarInfoProducto(id) {
                                     <li>Cargo de envío: <span>$5.00</span></li>
                                 </ul>
                             </div>
-        
-                            <div class="purchase-info">
-                                <a class="waves-effect waves-light btn" onclick="anadirCarrito()">
-                                    <div class="btn-carrito">
-                                        <img src="../../resources/img/amigurumis/shopping.png">
-                                        <p>Añadir al carrito</p>
-                                    </div>
-                                </a>
-                            </div>
                         </div>
-                            `;
+
+                        
+                        `;
                     CONTENEDORINFPRD.innerHTML = content;
                     cargarCalificacionesT(id);
                 } else {
@@ -353,7 +319,7 @@ function cargarInfoProducto(id) {
 }
 
 //Metodo para cargar las calificaciones
-function cargarCalificacionesT(id){
+function cargarCalificacionesT(id) {
     //Se crea un formulario y se setea el id del producto
     let form = new FormData();
     form.append('id', id);
@@ -366,7 +332,7 @@ function cargarCalificacionesT(id){
             request.json().then(function (response) {
                 // Se comprueba si existe una sesión, de lo contrario se revisa si la respuesta es satisfactoria.
                 if (response.status) {
-                    document.getElementById('calif_totales').innerText = response.dataset.count+' calificaciones';
+                    document.getElementById('calif_totales').innerText = response.dataset.count + ' calificaciones';
                     NUMCOMENTARIOS.innerText = 'Comentarios: ' + response.dataset.count;
                 } else {
                     sweetAlert(2, response.exception, null);
@@ -381,6 +347,6 @@ function cargarCalificacionesT(id){
 /*Función para añadir al carrito el producto, debes setear el id_pedidoEsta para que te cargue el carrito
 si no esta seteado creas un pedido y luego insertas en el detalle de ese pedido si lo esta pues solo insertas podes usar el 
 isset() que verifica si una variable esta iniciada*/
-function anadirCarrito(){
-    console.log('pueba')
+function anadirCarrito() {
+    console.log('pueba');
 };

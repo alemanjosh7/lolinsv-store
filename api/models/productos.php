@@ -352,11 +352,11 @@ class Productos extends Validator
         AND p.id_producto NOT IN(select id_producto from productos where id_producto=? or id_producto = ? or id_producto = ?)
         order by p.cantidad DESC limit 9
                 ';
-        $params = array($limit[0],intval($limit[2]),intval($limit[3]),intval($limit[4]));
+        $params = array($limit[0], intval($limit[2]), intval($limit[3]), intval($limit[4]));
         return Database::getRows($sql, $params);
     }
     ////Obtener todos los productos para la vista pública con limite pero con un filtro seleccionado
-    public function readAllProductsLFilt($value,$cat)
+    public function readAllProductsLFilt($value, $cat)
     {
         $sql = 'SELECT p.id_producto, p.nombre_producto, p.precio_producto, p.cantidad, cate.id_categoria, val.valoraciones, p.imagen_producto
         FROM productos AS p 
@@ -365,7 +365,7 @@ class Productos extends Validator
         WHERE p.cantidad >0 AND cate.id_categoria = ? AND p.nombre_producto ILIKE ?
         order by p.cantidad DESC
                 ';
-        $params = array($cat,"%$value%");
+        $params = array($cat, "%$value%");
         return Database::getRows($sql, $params);
     }
     //Obtener todos los productos para la vista pública con limite pero sin importar el top

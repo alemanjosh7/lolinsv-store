@@ -3,19 +3,19 @@
 *	Clase para manejar la tabla categorias de la base de datos.
 *   Es clase hija de Validator.
 */
-class detallePedidos_establecidos extends Validator
+class detallePedidosEstablecidos extends Validator
 {
-   // Declaración de atributos (propiedades).
-    private $id_detalle_pedidos = null;//Id de detalle de pedidos
-    private $cantidad_detallep = null;//cantidad
-    private $subtotal_detallep = null;//subtotal
-    private $id_producto = null;//id del producto llave foranea
-    private $id_pedidos_establecidos = null;//id de pedidos establecidos llave foranea
+    // Declaración de atributos (propiedades).
+    private $id_detalle_pedidos = null; //Id de detalle de pedidos
+    private $cantidad_detallep = null; //cantidad
+    private $subtotal_detallep = null; //subtotal
+    private $id_producto = null; //id del producto llave foranea
+    private $id_pedidos_establecidos = null; //id de pedidos establecidos llave foranea
 
     /*
     *   Métodos para validar y asignar valores de los atributos.
     */
-     public function setId_detalle_pedidos($value)
+    public function setId_detalle_pedidos($value)
     {
         if ($this->validateNaturalNumber($value)) {
             $this->id_detalle_pedidos = $value;
@@ -35,7 +35,8 @@ class detallePedidos_establecidos extends Validator
         }
     }
 
-    public function setSubtotal_detallep($value){
+    public function setSubtotal_detallep($value)
+    {
         if ($this->validateMoney($value)) {
             $this->subtotal_detallep = $value;
             return true;
@@ -44,7 +45,8 @@ class detallePedidos_establecidos extends Validator
         }
     }
 
-    public function setId_producto($value){
+    public function setId_producto($value)
+    {
         if ($this->validateNaturalNumber($value)) {
             $this->id_producto = $value;
             return true;
@@ -53,7 +55,8 @@ class detallePedidos_establecidos extends Validator
         }
     }
 
-    public function setId_pedidos_establecidos($value){
+    public function setId_pedidos_establecidos($value)
+    {
         if ($this->validateNaturalNumber($value)) {
             $this->id_pedidos_establecidos = $value;
             return true;
@@ -149,7 +152,7 @@ class detallePedidos_establecidos extends Validator
 
     public function obtenerDPEesp()
     {
-             $sql = 'SELECT id_detalle_pedidos, cantidad_detallep, subtotal_detallep
+        $sql = 'SELECT id_detalle_pedidos, cantidad_detallep, subtotal_detallep
                 FROM detallepedidos_establecidos 
                 WHERE id_detalle_pedidos = ?
                 ORDER BY id_detalle_pedidos';

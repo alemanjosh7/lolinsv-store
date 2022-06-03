@@ -157,7 +157,7 @@ main {
   box-shadow: -10px -5px black;
 }
 
-#registro-usuario-banner{
+#registro-usuario-banner {
   font-family: 'Pt Serif', serif;
   background-color: #F48080;
   margin-top: 50px;
@@ -666,9 +666,10 @@ main {
 
 /*Tablets*/
 @media screen and (min-width: 600px) and (max-width: 992px) {
-  #apartado-orden{
+  #apartado-orden {
     margin-top: 0;
   }
+
   #facebook-container {
     position: relative;
     right: 26px;
@@ -804,6 +805,7 @@ main {
   margin: 5px auto 5px auto;
   padding-bottom: 5px;
 }
+
 .navbar-fixed .boton,
 .sidenav .boton {
   background: linear-gradient(99.82deg, #ffbd81 42.62%, #fb1515 198.11%);
@@ -3027,11 +3029,11 @@ a {
 #dui_usuario,
 #telefono_usuario,
 #direccion_usuario {
-    box-shadow: inset 515px 5px white;
-    color: #807B7B;
-    font-family: 'Poppins', sans-serif;
-    padding: 0 3px 0 3px;
-    font-size: 15px;
+  box-shadow: inset 515px 5px white;
+  color: #807B7B;
+  font-family: 'Poppins', sans-serif;
+  padding: 0 3px 0 3px;
+  font-size: 15px;
 }
 
 .input-field {
@@ -3054,7 +3056,6 @@ a {
 
 .card-wrapper {
   max-width: 1000px;
-  margin: 4% auto 0 auto;
   margin-bottom: 0;
 }
 
@@ -3065,6 +3066,7 @@ a {
 
 /*Info producto*/
 @import url("https://fonts.googleapis.com/css2?family=Open+Sans:wght@300;400;600;700;800&display=swap");
+
 .card-wrapper {
   max-width: 1000px;
   margin: 4% auto 0 auto;
@@ -3110,7 +3112,6 @@ a {
 }
 
 .product-content {
-  padding: 2rem 1rem;
   margin-left: 10px;
   display: flex;
   justify-content: center;
@@ -3220,7 +3221,7 @@ a {
 .product-detail ul li {
   margin: 0;
   list-style: none;
-  background: url(../resources/Info-Producto/checked.png) left center no-repeat;
+  /* background: url(../resources/Info-Producto/checked.png) left center no-repeat; */
   background-size: 18px;
   padding-left: 1.7rem;
   margin: 0.4rem 0;
@@ -3233,7 +3234,8 @@ a {
 }
 
 .purchase-info {
-  margin: 1.5rem 0;
+  margin-top: 20px;
+  margin-left: 0 !important;
   display: flex;
   justify-content: center;
   align-items: center;
@@ -3342,7 +3344,6 @@ a {
 .line-1 {
   border-bottom: 2px solid rgb(100, 100, 100);
   width: 80%;
-  margin: 0 auto 0 auto;
 }
 
 .line-2 {
@@ -3387,7 +3388,7 @@ a {
 .comment {
   margin-top: 18px;
   font-size: 18px;
-
+  padding: 10px;
 }
 
 .title-comment {
@@ -3428,9 +3429,10 @@ a {
 }
 
 @media screen and (min-width: 992px) {
-  .line-1{
-    margin: 10% auto 0 auto;
+  .line-1 {
+    margin: 0 auto 0 auto;
   }
+
   .card-producto {
     display: grid;
     grid-template-columns: repeat(2, 1fr);
@@ -3438,7 +3440,7 @@ a {
   }
 
   .card-wrapper {
-    height: 80vh;
+    /* height: 80vh; */
     display: flex;
     justify-content: center;
     align-items: center;
@@ -3454,21 +3456,22 @@ a {
     padding-top: 0;
   }
 }
+
 /*Confirmación de compra-Jesús*/
-.inputs-estilizados:focus{
+.inputs-estilizados:focus {
   box-shadow: 0 3px 0 0 #DF5333 !important;
   border-bottom: .01 !important;
 }
 
 .inputs-estilizados:focus+i {
-  color: #fa7479 !important;  
+  color: #fa7479 !important;
 }
 
 .inputs-estilizados:focus+label {
-  color: black !important;  
+  color: black !important;
 }
 
-.conf-J #preloader-cl{
+.conf-J #preloader-cl {
   display: none;
   position: absolute;
   z-index: 3;
@@ -3479,6 +3482,7 @@ a {
 .input-field .prefix.active {
   color: #000;
 }
+
 /*Jesús-Aristides-Yesenia-Productos*/
 /*Estilo del select*/
 /*.select-css {
@@ -3534,7 +3538,7 @@ a {
 
 /*pruebas*/
 /*Select*/
-.select-wrapper input.select-dropdown{
+.select-wrapper input.select-dropdown {
   margin-top: 10px !important;
   background-color: #fff !important;
   border: 1px solid #aaa !important;
@@ -3545,38 +3549,45 @@ a {
   color: #444;
   padding-left: .8em;
 }
+
 /*Select cuando el mouse esta por encima*/
-.select-wrapper input.select-dropdown:hover{
+.select-wrapper input.select-dropdown:hover {
   border-color: #DF5333;
   box-shadow: 0 0 1px 3px rgba(250, 93, 3, .8);
   transition: .01s ease all;
 }
+
 /*Select al estar en focus*/
-.select-wrapper input.select-dropdown:focus{
+.select-wrapper input.select-dropdown:focus {
   border-color: #DF5333;
   box-shadow: 0 0 1px 3px rgba(250, 93, 3, .8);
   box-shadow: 0 0 0 3px -moz-mac-focusring;
-  color: #222; 
+  color: #222;
   outline: none;
 }
+
 /*Felcha del select al select estar en focus*/
-.select-wrapper input.select-dropdown:focus ~ .caret{
+.select-wrapper input.select-dropdown:focus~.caret {
   fill: rgba(250, 93, 3, .8);
 }
+
 /*Letras del las opciones del select*/
-.dropdown-content li>span{
+.dropdown-content li>span {
   color: #000;
 }
+
 /*Opcion del select seleccionada*/
 .select-dropdown.dropdown-content li.selected {
   background-color: #DF5333 !important;
 }
+
 /*contenido del select*/
-.dropdown-content{
+.dropdown-content {
   margin: 100px !important;
   top: -50px;
   max-height: 300px;
 }
+
 /*flecha del select*/
 .select-wrapper .caret {
   position: absolute;
@@ -3585,38 +3596,45 @@ a {
   bottom: 0;
   margin: auto 0;
   z-index: 1;
-  fill: rgba(0,0,0,0.87);
+  fill: rgba(0, 0, 0, 0.87);
 }
+
 /*flecha del select al estar el mouse encima del select*/
-.select-wrapper input.select-dropdown:hover ~ .caret{
+.select-wrapper input.select-dropdown:hover~.caret {
   fill: rgba(250, 93, 3, .8);
 }
+
 /*Columna del select*/
 /*Ajustes responsive*/
 /*Telefonos*/
 @media (max-width:600px) {
-  .dropdown-content{
+  .dropdown-content {
     max-height: 150px;
   }
 }
+
 /*Tablets*/
 @media screen and (min-width: 600px) and (max-width: 992px) {
-  .dropdown-content{
+  .dropdown-content {
     max-height: 150px;
   }
 }
+
 /*Columna del select*/
-#columna-select{
+#columna-select {
   margin-top: 30px;
 }
+
 /*label de la columna del select*/
-#columna-select label{
+#columna-select label {
   color: black !important;
   font-weight: bold;
 }
-.info-boton{
+
+.info-boton {
   cursor: pointer;
 }
+
 /*Estilos de los botones de navegación*/
 /*Inicio de estilos del footer*/
 /*Contenedor de los botones de navegación footer*/
@@ -3654,40 +3672,44 @@ a {
   font-size: 30px;
   color: white;
 }
+
 /*Yesenia y Jesus Registro de cliente*/
 /*Inputs estilizados 2*/
-.inputs-estilizados2{
+.inputs-estilizados2 {
   color: black !important;
   box-shadow: inset 515px 5px white !important;
   margin-top: 15px !important;
   font-family: 'Poppins', sans-serif !important;
 }
-.inputs-estilizados2:focus{
+
+.inputs-estilizados2:focus {
   border: 2px solid #DF5333 !important;
   color: black !important;
   transition: .01s ease all !important;
 }
 
 .inputs-estilizados2:focus+i {
-  color: #fa7479 !important;  
+  color: #fa7479 !important;
 }
 
 .inputs-estilizados2:focus+label {
-  color: black !important;  
+  color: black !important;
 }
+
 /*Mensaje de las contraseñas*/
-#mensaje-contra{
+#mensaje-contra {
   display: none;
 }
 
-.productos-public #div-regresarboton{
+.productos-public #div-regresarboton {
   margin-bottom: 15px;
   position: relative;
   top: -25px;
   right: 50px;
 }
+
 /*Contenedor de previsualizar*/
-.preview-file{
+.preview-file {
   border: 3px solid black;
   background: linear-gradient(145.17deg, rgba(235, 158, 158, 0) 50.31%, rgba(235, 158, 158, 0.703125) 61.08%, #EB9E9E 61.08%);
   width: 98%;
@@ -3702,33 +3724,36 @@ a {
   color: black;
   margin-bottom: 25px;
 }
+
 /*Estilo de la imagen de preview por defecto*/
-#imagen-Preview{
+#imagen-Preview {
   min-width: 25px;
   min-height: 25px;
 }
+
 /*Estilo de los inputs estilizados para archivos*/
-.inputs-estilizadosarc{
+.inputs-estilizadosarc {
   color: black !important;
   box-shadow: inset 515px 5px white !important;
-  font-family: 'Poppins', sans-serif !important; 
+  font-family: 'Poppins', sans-serif !important;
 }
 
-.inputs-estilizadosarc::placeholder{
+.inputs-estilizadosarc::placeholder {
   color: black;
 }
+
 /*Info producto Jesús - Arístides*/
-#anadir-coment{
+#anadir-coment {
   cursor: pointer;
 }
 
 /*Iconos de las calificaciones*/
-.calificacion_cont:hover img{
+.calificacion_cont:hover img {
   opacity: 0.9;
   width: 75px;
   height: 75px;
 }
 
-.calificacion_cont:hover span{
+.calificacion_cont:hover span {
   color: green;
 }
