@@ -207,7 +207,7 @@ class Clientes extends Validator
     //obtener el perfil del cliente
     public function obtenerPerfilCl($id)
     {
-        $sql = 'SELECT id_cliente, nombre_cliente, apellido_cliente, correo_cliente, dui_cliente, telefono_cliente, direccion, usuario
+        $sql = 'SELECT id_cliente, nombre_cliente, apellido_cliente, correo_cliente, dui_cliente, telefono_cliente, direccion_cliente, usuario
                 FROM clientes
                 WHERE id_cliente = ?';
         $params = array($id);
@@ -266,6 +266,15 @@ class Clientes extends Validator
         $params = array($this->id);
         return Database::getRow($sql, $params);
     }
+     //Obtener el perfil
+     public function obtenerPerfil()
+     {
+         $sql = 'SELECT nombre_cliente, apellido_cliente, correo_cliente, dui_cliente, telefono_cliente, direccion_cliente, usuario
+                 FROM clientes
+                 WHERE id_cliente = ?';
+         $params = array($_SESSION['id_cliente']);
+         return Database::getRows($sql, $params);
+     }
     //Actualizar Cliente
     public function actualizarCliente()
     {
