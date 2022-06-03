@@ -32,6 +32,62 @@ if (isset($_GET['action'])) {
                     $result['exception'] = 'Ocurrió un problema al cerrar la sesión';
                 }
                 break;
+            case 'readProfile':
+                    if ($result['dataset'] = $cliente->obtenerPerfil()) {
+                        $result['status'] = 1;
+                    } elseif (Database::getException()) {
+                        $result['exception'] = Database::getException();
+                    } else {
+                        $result['exception'] = 'Usuario inexistente';
+                    }
+            break;
+            case 'update':
+                $_POST = $cliente->validateForm($_POST);
+                if (!$cliente->setId($_SESSION['id_cliente'])) {
+                    $result['exception'] = 'Cliente incorrecto';
+                } elseif (!$cliente->obtenerCliente()) {
+                    $result['exception'] = 'Cliente inexistente';
+                } elseif (!$cliente->setNombre($_POST['nombre_usuario-perfil'])) {
+                    $result['exception'] = 'Nombres invalido';
+                } elseif (!$cliente->setApellido($_POST['apellido_usuario-perfil'])) {
+                    $result['exception'] = 'Apellidos invalido';
+                } elseif (!$cliente->setCorreo($_POST['e-mail'])) {
+                    $result['exception'] = 'Correo invalido';
+                } elseif (!$cliente->setDUI($_POST['dui_usuario-perfil'])) {
+                    $result['exception'] = 'DUI invalido';
+                } elseif (!$cliente->setTelefono($_POST['telefono_usuario-perfil'])) {
+                    $result['exception'] = 'Telefono invalido';
+                } elseif (!$cliente->setUsuario($_POST['Username'])) {
+                    $result['exception'] = 'Usuario invalido';
+                } elseif (!$cliente->setDireccion($_POST['direccion_usuario-perfil'])) {
+                    $result['exception'] = 'Direccion invalida';
+                } elseif (!$cliente->setEstado(8)) {
+                    $result['exception'] = 'DUI invalido';
+                } elseif ($cliente->actualizarCliente()) {
+                    $result['status'] = 1;
+                    $result['message'] = 'Cliente modificado correctamente';
+                } else {
+                    $result['exception'] = Database::getException();
+                }
+                break;
+                case 'changePassword':
+                    $_POST = $cliente->validateForm($_POST);
+                    if (!$cliente->setId($_SESSION['id_cliente'])) {
+                        $result['exception'] = 'Admin incorrecto';
+                    } elseif (!$cliente->checkContrasenaCl($_POST['contraseña_actual'])) {
+                        $result['exception'] = 'Clave actual incorrecta';
+                        $result['message'] = $_POST['contraseña_actual'];
+                    } elseif ($_POST['contraseña_nueva'] != $_POST['contraseña_confirma']) {
+                        $result['exception'] = 'Claves nuevas diferentes';
+                    } elseif (!$cliente->setContrasena($_POST['contraseña_nueva'])) {
+                        $result['exception'] = $cliente->getPasswordError();
+                    } elseif ($cliente->cambiarContrasenaCl()) {
+                        $result['status'] = 1;
+                        $result['message'] = 'Contraseña cambiada correctamente';
+                    } else {
+                        $result['exception'] = Database::getException();
+                    }
+                    break;
             default:
                 $result['exception'] = 'Acción no disponible dentro de la sesión';
         }
@@ -98,6 +154,7 @@ if (isset($_GET['action'])) {
                     $result['exception'] = 'Clave incorrecta';
                 }
                 break;
+                
             default:
                 $result['exception'] = 'Acción no disponible fuera de la sesión';
         }
