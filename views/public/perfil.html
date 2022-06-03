@@ -1,0 +1,326 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <!--Import Google Icon Font-->
+  <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+  <!--Import materialize.css-->
+  <link type="text/css" rel="stylesheet" href="../../resources/css/materialize.min.css" media="screen,projection" />
+  <link type="text/css" rel="stylesheet" href="../../resources/css/estilos-publica.css" media="screen,projection" />
+  <!--Let browser know website is optimized for mobile-->
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" charset="utf-8" />
+  <!--Importando las fuentes de google-->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=PT+Serif&family=Poppins&display=swap" rel="stylesheet">
+  <!--Icono del sitio web-->
+  <link rel="icon" href="../../resources/img/icons/icono-web.png">
+  <title>Perfil</title>
+</head>
+
+<body>
+  <header>
+    <div class="navbar-fixed">
+      <nav class="primary-bg-color">
+        <div class="container">
+          <div class="nav-wrapper">
+            <a href="#!" class="brand-logo">
+              <img class="logo-navbar" src="../../resources/img/icons/logo.png" alt="">
+            </a>
+            <a href="#carrito" data-target="mobile-demo" class="sidenav-trigger"><i class="material-icons">menu</i></a>
+            <ul class="right hide-on-med-and-down">
+              <li>
+                <a class="waves-effect waves-light btn second-bg-color boton" href="index.html">Inicio</a>
+              </li>
+              <li>
+                <a class="waves-effect waves-light btn second-bg-color boton" href="productos.html">Productos</a>
+              </li>
+              <li>
+                <a class="waves-effect waves-light btn second-bg-color boton"
+                  href="registro-usuario.html">Registrarse</a>
+              </li>
+              <li>
+              <li><a class="waves-effect waves-light btn second-bg-color boton" href="login.html">Iniciar sesión <i
+                    class="material-icons left">person</i></a></li>
+              </li>
+              <li><a href="#carrito" data-target="carrito"
+                  class="sidenav-trigger show-on-large waves-effect waves-light btn second-bg-color boton"
+                  id="carrito-correcion"><img class="responsive-img" src="../../resources/img/amigurumis/shopping.png"
+                    alt=""></a></li>
+              </li>
+            </ul>
+          </div>
+        </div>
+      </nav>
+    </div>
+    <ul class="sidenav" id="mobile-demo">
+      <li>
+        <a class="waves-effect waves-light btn second-bg-color boton" href="index.html">Inicio</a>
+      </li>
+      <li>
+        <a class="waves-effect waves-light btn second-bg-color boton" href="productos.html">Productos</a>
+      </li>
+      <li>
+        <a class="waves-effect waves-light btn second-bg-color boton" href="registro-usuario.html">Registrarse</a>
+      </li>
+      <li>
+      <li><a class="waves-effect waves-light btn second-bg-color boton" href="login.html">Iniciar sesión <i
+            class="material-icons left">person</i></a></li>
+      </li>
+      <li><a href="#carrito" data-target="carrito"
+          class="sidenav-trigger show-on-large waves-effect waves-light btn second-bg-color boton"
+          id="abrircarrito-mobile"><img src="../../resources/img/amigurumis/shopping.png" alt=""></a></li>
+      </li>
+    </ul>
+  </header>
+  <main>
+    <div class="container-main">
+      <div class="row">
+        <!--Parte de boton regresar-->
+        <div class="col l1 m2 s4 left-align" id="div-regresarboton">
+          <a href="javascript: history.go(-1)" id="regresar-boton">
+            < Volver</a>
+        </div>
+        <!--Parte del perfil-->
+        <div class="col l8 m12 s12" id="col-perfil">
+          <div class="container">
+            <div class="row">
+              <!--Perfil del usuario-->
+              <div class="col l5 m6 s12" id="perfil-usuario">
+                <div class="imagen-perfil center-align col s12 m12 s12">
+                  <!--Icono de Usuario no modificable-->
+                  <img class="responsive-image" src="../../resources/img/icons/UserIcon-Perfil.png">
+                </div>
+                <div id="usuarioM">
+                  <div class="col s12 center-align input-field" id="input-username">
+                    <!--Nombre de usuario-->
+                    <input value="" id="Username" name="Username"  type="text" class="validate center-align inputs-estilizados">
+                    <label for="Username">Nombre de Usuario</label>
+                    <span class="helper-text" data-error="Nombre de Usuario invalido"
+                      data-success="Nombre de Usuario permitido"></span>
+                  </div>
+                </div>
+                <div class="center-align col s12">
+                  <!--Boton de Cerrar sesion-->
+                  <a class="waves-effect waves-light btn-large" id="cerrarsesion-boton">Cerrar
+                    Sesion</a>
+                </div>
+                <div class="col s12 center-align" id="div-botoncambiarcontra">
+                  <!--Activador del Modal-->
+                  <a class="modal-trigger" href="#modal-cambiarcontra" id="boton-cambiarcontra">Cambiar contraseña</a>
+                  <!-- Modal diseño -->
+                  <div id="modal-cambiarcontra" class="modal">
+                    <div class="fondo-modaldatos modal-content">
+                      <div class="center-align">
+                        <h4>Cambiar contraseña</h4>
+                        <p>Ingrese su contraseña actual, confirmela e ingrese la contraseña nueva</p>
+                        <i class="tooltipped material-icons right-align" data-position="top"
+                          data-tooltip="Mostrar/Ocultar" id="ocultarmostrar_contraseñas">visibility</i>
+                      </div>
+                      <!--Inputs para el cambio de la contraseña-->
+                      <form class="col s12" id="cambiocontra">
+                        <div class="row">
+                          <div class="input-field col l4 m4 s12">
+                            <input class="inputs-estilizados" placeholder="Contraseña actual" id="contraseña_actual" name="contraseña_actual" type="password">
+                            <label for="contraseña_actual">Contraseña actual</label>
+                          </div>
+                          <div class="input-field col l4 m4 s12">
+                            <input  class="inputs-estilizados" placeholder="Contraseña nueva" id="contraseña_nueva" name="contraseña_nueva" type="password">
+                            <label for="contraseña_nueva">Contraseña nueva</label>
+                          </div>
+                          <div class="input-field col l4 m4 s12">
+                            <input  class="inputs-estilizados" placeholder="Confirme nueva contraseña" id="contraseña_confirma" name="contraseña_confirma" type="password">
+                            <label for="contraseña_confirma">Confirmación</label>
+                          </div>
+                        </div>
+                      </form>
+                      <!--Preloader del cambio de contraseña-->
+                      <div class="preloader-wrapper active" id="actdatoscontra_preloader">
+                        <div class="spinner-layer spinner-red-only">
+                          <div class="circle-clipper left">
+                            <div class="circle"></div>
+                          </div>
+                          <div class="gap-patch">
+                            <div class="circle"></div>
+                          </div>
+                          <div class="circle-clipper right">
+                            <div class="circle"></div>
+                          </div>
+                        </div>
+                      </div>
+                      <!--Campos o contenido importante del modal de actualizar contraseña-->
+                      <div class="center-align">
+                        <a href="#!" class="waves-effect waves-light btn center-align"
+                          id="aceptaractcontra_boton">Actualizar contraseña</a>
+                      </div>
+                      <!--Pie del modal-->
+                      <div class="modal-footer center-align" id="fondomodal-footer">
+                        <div class="col s12">
+                          <div class="col m6 s12 left-align">
+                            <h6 id="mensajecontra">Las contraseñas deben coincidir</h6>
+                          </div>
+                          <div class="col m6 s12">
+                            <a href="#!" class="modal-close waves-effect waves-light btn "
+                              id="cancelactdatoscontra_boton">Cancelar</a>
+                          </div>
+                        </div>
+                        <div class="col s12" id="decoracion-modal"></div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div class="col l5 offset-l2 m5 offset-m1 s12 center-align" id="perfil-datos">
+                <div class="row">
+                  <div class="col l10" id="decoracion-perfildatos">
+                  </div>
+                  <div class="col l2 m12 right-align" id="boton_guardadoperfil">
+                    <button class="tooltipped modal-trigger" data-position="bottom" data-tooltip="Modificar perfil"
+                      type="button" id="whatsappcopied" href="#confirmardatosact_modal">
+                      <img class="responsive-img" src="../../resources/img/icons/editaricon-perfil.png">
+                    </button>
+                    <!--Diseño del modal de confirmación de actualización de datos-->
+                    <div id="confirmardatosact_modal" class="modal">
+                      <div class="fondo-modaldatos modal-content">
+                        <div class="center-align">
+                          <h4>Confirmar actualización de datos de perfil</h4>
+                          <p>¿Desea actualizar sus datos?</p>
+                        </div>
+                        <!--Preloader de la actualización de los datos del perdil-->
+                        <div class="preloader-wrapper active" id="actdatosperfil_preloader">
+                          <div class="spinner-layer spinner-red-only">
+                            <div class="circle-clipper left">
+                              <div class="circle"></div>
+                            </div>
+                            <div class="gap-patch">
+                              <div class="circle"></div>
+                            </div>
+                            <div class="circle-clipper right">
+                              <div class="circle"></div>
+                            </div>
+                          </div>
+                        </div>
+                        <!--Contenido importante del modal-Boton de actualizar-->
+                        <div class="center-align">
+                          <a href="#!" class="waves-effect waves-light btn center-align"
+                            id="aceptaractdatosperfil_boton">Actualizar Datos</a>
+                        </div>
+                        <!--Pie del modal-->
+                        <div class="modal-footer center-align" id="fondomodal-footer">
+                          <a href="#!" class="modal-close waves-effect waves-light btn "
+                            id="cancelactdatosperfil_boton">Cancelar</a>
+                          <div class="col s12" id="decoracion-modal"></div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                 <form id="datosForm">
+                    <!--Continuación de la parte de datos del perfil-->
+                  <div class="col s12 center-align input-field" id="inputs-datos">
+                    <!--Nombre de usuario-->
+                    <input value="Jesús" id="nombre_usuario-perfil" name="nombre_usuario-perfil" type="text" class="center-align inputs-estilizados">
+                    <label for="nombre_usuario">Nombre:</label>
+                  </div>
+                  <div class="col s12 center-align input-field " id="inputs-datos">
+                    <!--Apellido de usuario-->
+                    <input value="Esquivel" id="apellido_usuario-perfil" name="apellido_usuario-perfil" type="text" class="center-align inputs-estilizados">
+                    <label for="apellido_usuario">Apellido:</label>
+                  </div>
+                  <div class="col s12 center-align input-field" id="inputs-datos">
+                    <!--Correo de usuario-->
+                    <input value="20200067@ricaldone.edu.sv" id="e-mail" name="e-mail" type="email" class=" validate center-align inputs-estilizados">
+                    <label for="e-mail">Correo:</label>
+                    <span class="helper-text" data-error="Correo de Usuario invalido"
+                      data-success="Correo de usuario permitido"></span>
+                  </div>
+                  <div class="col s12 center-align input-field" id="inputs-datos">
+                    <!--DUI de usuario-->
+                    <input value="85857858-7" id="dui_usuario-perfil" name="dui_usuario-perfil" type="password"
+                      class="ocultar-mostrar center-align inputs-estilizados">
+                    <label for="dui_usuario">DUI:</label>
+                    <i class="tooltipped material-icons prefix right-align" data-position="top"
+                      data-tooltip="Mostrar/Ocultar" id="ocultarmostrar_duiuser">visibility</i>
+                  </div>
+                  <div class="col s12 center-align input-field" id="inputs-datos">
+                    <!--Telefono de usuario-->
+                    <input value="7708-5832" id="telefono_usuario-perfil" name="telefono_usuario-perfil" type="password" class="center-align inputs-estilizados">
+                    <label for="telefono_usuario">Telefono:</label>
+                    <i class="tooltipped material-icons prefix right-align" data-position="bottom"
+                      data-tooltip="Mostrar/Ocultar" id="ocultarmostrar_teleuser">visibility</i>
+                  </div>
+                  <div class="col s12 center-align input-field" id="inputs-datos">
+                    <!--Dirección de usuario-->
+                    <textarea id="direccion_usuario-perfil" name="direccion_usuario-perfil" class="materialize-textarea inputs-estilizados">calle honduras 123</textarea>
+                    <label for="direccion_usuario">Direccion</label>
+                  </div>
+                 </form>
+                  <div class="col l10" id="decoracion-perfildatos2">
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </main>
+  <footer class="page-footer">
+    <div class="container">
+      <div class="row" id="redes-footer">
+        <div class="col center-align l1 offset-l5 m1 offset-m5 s2 offset-s4" id="facebook-container">
+          <div class="center-align z-depth-4" id="facebook">
+            <a class="tooltip" href="https://www.instagram.com/lolin.sv/" target="_blank">
+              <img class="responsive-img " src="../../resources/img/icons/facebook.png">
+              <span class="tooltip-box">¡Siguenos! en Facebook</span>
+            </a>
+          </div>
+        </div>
+        <div class="col l1 m1 s2" id="whatsapp-container">
+          <div class="center-align z-depth-4" id="whatsapp">
+            <a href="https://api.whatsapp.com/send?phone=77085832" target="_blank">
+              <button class="tooltip" type="button" id="whatsappcopied">
+                <p class="center-align" id="copywhat">77085832</p>
+                <img class="responsive-img " src="../../resources/img/icons/whatsapp.png">
+                <span class="tooltip-box">¡Copia nuestro Whatsapp!</span>
+              </button>
+            </a>
+          </div>
+        </div>
+        <div class="col l1 m1 s2" id="instagram-container">
+          <div class="center-align z-depth-4" id="instagram">
+            <a class="tooltip" href="https://www.instagram.com/lolin.sv/">
+              <img class="responsive-img " src="../../resources/img/icons/instagram.png" target="_blank">
+              <span class="tooltip-box">¡Siguenos! en Instagram</span>
+            </a>
+          </div>
+        </div>
+      </div>
+      <div class="row" id="Anexo">
+        <!--Anexo-->
+        <div class="col l6 m4 offset-m2 s6 right-align">
+          <a href="preguntasfrec.html" class="right-align " id="preguntasfrec">Preguntas Frecuentes</a>
+        </div>
+        <div class="col l6 m4 s6">
+          <a href="https://www.instagram.com/lolin.sv/" id="terminos-footer" class="left-align">Teminos y
+            condiciones</a>
+        </div>
+      </div>
+      <div>
+        <!--Derechos de autor-->
+        <div class="container center-align" id="copyrigth">
+          <p id="copyri"><span>&copy 2022 Lolin</span></p>
+        </div>
+      </div>
+    </div>
+  </footer>
+  <!--JavaScript at end of body for optimized loading-->
+  <script type="text/javascript" src="../../resources/js/materialize.min.js"></script>
+  <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+  <script src="../../controllers/components.js"></script>
+  <script src="../../controllers/validaciones.js"></script>
+  <script type="text/javascript" src="../../controllers/public/online.js"></script>
+  <script type="text/javascript" src="../../controllers/public/carrito.js"></script>
+  <script type="text/javascript" src="../../controllers/public/perfil.js"></script>
+</body>
+
+</html>

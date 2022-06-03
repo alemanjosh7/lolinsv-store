@@ -1,0 +1,178 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <!--Import Google Icon Font-->
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    <!--Import materialize.css-->
+    <link type="text/css" rel="stylesheet" href="../../resources/css/materialize.min.css" media="screen,projection" />
+    <link type="text/css" rel="stylesheet" href="../../resources/css/estilos-privada.css" media="screen,projection" />
+    <!--Let browser know website is optimized for mobile-->
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" charset="utf-8" />
+    <!--Importando las fuentes de google-->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=PT+Serif&family=Poppins&display=swap" rel="stylesheet">
+    <!--Icono del sitio web-->
+    <link rel="icon" href="../../resources/img/icons/icono-web.png">
+    <title>Registrar Primer Uso</title>
+</head>
+
+<body class="primeruso">
+    <header>
+        <div class="navbar-fixed">
+            <nav class="primary-bg-color">
+                <div class="container">
+                    <div class="nav-wrapper">
+                        <div class="row">
+                            <div class="col s12">
+                                <a class="brand-logo center logoprimer-us">
+                                    <img class="logo-navbar" src="../../resources/img/icons/logo.png" alt="">
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </nav>
+        </div>
+    </header>
+    <main>
+        <!--Contenedor del formulario-->
+        <div class="container fondo">
+            <!--Indicación con salto de linea-->
+            <h5 class="center-align">Registre al primer Administrador</h5><br>
+            <!--Información a tomar en cuenta-->
+            <p class="center-align"><b>Tomar Nota:</b> El codigo para restablecer contraseña será un PIN de 6 dígitos,
+                el cual es: <b>Root1L</b></p>
+            <p class="center-align"><i class="tooltipped material-icons right-align" data-position="top"
+                    data-tooltip="Mostrar/Ocultar Contraseñas" id="ocultarmostrar_contraseñas">visibility</i></p>
+            <form id="registrar-primerus">
+                <div class="row form-container">
+                    <div class="input-field col s12 m6 l4">
+                        <input class="inputs-estilizados center-align" placeholder="Nombre de administrador"
+                            id="nombre-admin" name="nombre" type="text">
+                        <label for="nombre-admin" class="labels-estilizados">Nombre Administrador</label>
+                    </div>
+                    <div class="input-field col s12 m6 l4">
+                        <input class="inputs-estilizados center-align" placeholder="Apellido de administrador"
+                            id="apellido-admin" name="apellido" type="text">
+                        <label for="apellido-admin" class="labels-estilizados">Apellido Administrador</label>
+                    </div>
+                    <div class="input-field col s12 m6 l4">
+                        <input class="inputs-estilizados center-align" placeholder="Usuario de administrador"
+                            id="usuario-admin" name="usuario" type="text">
+                        <label for="usuario-admin" class="labels-estilizados">Usuario Administrador</label>
+                    </div>
+                    <div class="input-field col s12 m6 l6">
+                        <input class="inputs-estilizados center-align" placeholder="Contraseña de usuario"
+                            id="contrasena-usu" name="contrasena" type="password">
+                        <label for="contrasena-admin" class="labels-estilizados">Contraseña Usuario</label>
+                    </div>
+                    <div class="input-field col s12 l6">
+                        <input class="inputs-estilizados center-align" placeholder="Confirme la contraseña"
+                            id="contrasenac-usu" name="contrasenac" type="password">
+                        <label for="contrasenac-usu" class="labels-estilizados">Confirmación de contraseña</label>
+                    </div>
+                    <div class="col s12 center-align botones-container">
+                        <p class="indicacion" id="indicacion">Las contraseñas no coinciden</p>
+                        <button class="btn-floating waves-effect grey tooltipped " data-tooltip="Limpiar Campos"
+                            data-position="left" id="reinciar-form">
+                            <i class="material-icons">autorenew</i>
+                        </button>
+                        <button class="btn waves-effect tooltipped boton-estilizado"
+                            data-tooltip="Registrar Administrador" data-position="right" id="registrarprimer">
+                            Crear Administrador
+                        </button>
+                    </div>
+                </div>
+            </form>
+        </div>
+        <div id="confirmar-primeruso" class="modal">
+            <div class="fondo-modaldatos modal-content">
+                <div class="center-align">
+                    <h4>Confirmar Registro</h4>
+                    <p>¿Desea registrar al primer administrador?</p>
+                </div>
+                <!--Preloader de la actualización de los datos del perdil-->
+                <div class="preloader-wrapper active" id="confirmarprimer_preloader">
+                    <div class="spinner-layer spinner-red-only">
+                        <div class="circle-clipper left">
+                            <div class="circle"></div>
+                        </div>
+                        <div class="gap-patch">
+                            <div class="circle"></div>
+                        </div>
+                        <div class="circle-clipper right">
+                            <div class="circle"></div>
+                        </div>
+                    </div>
+                </div>
+                <!--Contenido importante del modal-Boton de actualizar-->
+                <div class="center-align">
+                    <a class="waves-effect waves-light btn center-align"
+                        id="confirmar-primerbtn">Confirmar</a>
+                </div>
+                <!--Pie del modal-->
+                <div class="center-align" id="fondomodal-footer">
+                    <a class="modal-close waves-effect waves-light btn " id="cancelaprimer_boton">Cancelar</a>
+                    <div class="col s12" id="decoracion-modal"></div>
+                </div>
+            </div>
+        </div>
+    </main>
+    <footer class="page-footer">
+        <div class="container">
+            <div class="row" id="redes-footer">
+                <div class="col center-align l1 offset-l5 m1 offset-m5 s2 offset-s4" id="facebook-container">
+                    <div class="center-align z-depth-4" id="facebook">
+                        <a class="tooltip" href="https://www.instagram.com/lolin.sv/" target="_blank">
+                            <img class="responsive-img " src="../../resources/img/icons/facebook.png">
+                            <span class="tooltip-box">¡Siguenos! en Facebook</span>
+                        </a>
+                    </div>
+                </div>
+                <div class="col l1 m1 s2" id="whatsapp-container">
+                    <div class="center-align z-depth-4" id="whatsapp">
+                        <a href="https://api.whatsapp.com/send?phone=77085832" target="_blank">
+                            <button class="tooltip" type="button" id="whatsappcopied">
+                                <p class="center-align" id="copywhat">77085832</p>
+                                <img class="responsive-img " src="../../resources/img/icons/whatsapp.png">
+                                <span class="tooltip-box">¡Copia nuestro Whatsapp!</span>
+                            </button>
+                        </a>
+                    </div>
+                </div>
+                <div class="col l1 m1 s2" id="instagram-container">
+                    <div class="center-align z-depth-4" id="instagram">
+                        <a class="tooltip" href="https://www.instagram.com/lolin.sv/">
+                            <img class="responsive-img " src="../../resources/img/icons/instagram.png" target="_blank">
+                            <span class="tooltip-box">¡Siguenos! en Instagram</span>
+                        </a>
+                    </div>
+                </div>
+            </div>
+            <div class="row" id="Anexo">
+                <!--Anexo-->
+                <div class="center-align">
+                    <a href="../public/index.html" class="right-align " id="preguntasfrec">Sitio público</a>
+                </div>
+            </div>
+            <div>
+                <!--Derechos de autor-->
+                <div class="container center-align" id="copyrigth">
+                    <p id="copyri"><span>&copy 2022 Lolin</span></p>
+                </div>
+            </div>
+        </div>
+    </footer>
+    <!--Javascripts-->
+    <script type="text/javascript" src="../../resources/js/materialize.min.js"></script>
+    <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    <script src="../../controllers/components.js"></script>
+    <script src="../../controllers/validaciones.js"></script>
+    <script type="text/javascript" src="../../controllers/validaciones.js"></script>
+    <script type="text/javascript" src="../../controllers/dashboard/primeruso.js"></script>
+    
+</body>
+
+</html>
