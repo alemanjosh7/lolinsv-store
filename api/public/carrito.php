@@ -53,14 +53,15 @@ if (isset($_GET['action'])) {
                     $result['exception'] = 'Detalle inexistente';
                 } elseif ($carrito->eliminarDetalle()) {
                     $result['status'] = 1;
-                    if($carrito->actualizarMontoT($_POST['idp'])){
-                        if($carrito->actualizarCantPrdDtl($_POST['cantidad'],$_POST['idprd'])){
+                    if ($carrito->actualizarCantPrdDtl($_POST['cantidad'], $_POST['idprd'])) {
+                        if ($carrito->actualizarMontoT($_POST['idp'])) {
                             $result['message'] = 'Producto eliminado correctamente del carrito, aun puedes volverlo a añadir';
-                        } else{
-                            $result['exception'] = 'Producto eliminado del carrito pero no se pudo actualizar la cantidad del producto';
+                        } else {
+                            $result['message'] = 'Producto eliminado del carrito pero no se pudo actualizar el monto total del pedido';
                         }
-                    } else{
-                        $result['exception'] = 'Producto eliminado del carrito pero no se pudo actualizar su monto total';
+                    } else {
+                        //$result['exception'] = 'Producto eliminado del carrito pero no se pudo actualizar su monto total';
+                        $result['exception'] = Database::getException();
                     }
                 } else {
                     $result['exception'] = Database::getException();
@@ -91,7 +92,7 @@ if (isset($_GET['action'])) {
                     $result['message'] = $_POST['nombre'];
                 } elseif (!$carrito->setApellido_admin($_POST['apellido'])) {
                     $result['exception'] = 'Apellidos incorrectos';
-                }elseif (!$carrito->setUsuario($_POST['usuario'])) {
+                } elseif (!$carrito->setUsuario($_POST['usuario'])) {
                     $result['exception'] = 'Usuario incorrecto';
                 } elseif ($carrito->updateProfile()) {
                     $result['status'] = 1;
@@ -104,7 +105,7 @@ if (isset($_GET['action'])) {
             default:
                 $result['exception'] = 'Acción no disponible dentro de la sesión';
         }
-    }else {
+    } else {
         $result['exception'] = 'Necesita Loguearse para poder visualizar el carrito';
     }
     // Se indica el tipo de contenido a mostrar y su respectivo conjunto de caracteres.
@@ -114,4 +115,3 @@ if (isset($_GET['action'])) {
 } else {
     print(json_encode('Recurso no disponible'));
 }
-?>
