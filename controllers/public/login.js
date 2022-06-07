@@ -31,7 +31,7 @@ document.addEventListener('DOMContentLoaded', function () {
     M.Sidenav.init(document.querySelectorAll('.sidenav'));
     M.Modal.init(document.querySelectorAll('.modal'));
     M.Modal.init(document.querySelectorAll('#modalPIN'), pinmodal);
-    M.Modal.init(document.querySelectorAll('#modalrestablecer'), pinmodal);
+    M.Modal.init(document.querySelectorAll('#modalrestablecer'), restablecerctrmodal);
     M.Tooltip.init(document.querySelectorAll('.tooltipped'));
 });
 /*Copiar número de Whatsaap en el Footer*/

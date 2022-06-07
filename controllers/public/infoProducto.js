@@ -154,7 +154,7 @@ ANADIRCOMENT.addEventListener('click', function () {
             request.json().then(function (response) {
                 // Se comprueba si existe una sesión, de lo contrario se revisa si la respuesta es satisfactoria.
                 if (response.session) {
-                    if (!response.status) {
+                    if (response.status) {
                         //Reiniciamos el formulario
                         document.getElementById('comentario_input').value = '';
                         M.textareaAutoResize(document.getElementById('comentario_input'));

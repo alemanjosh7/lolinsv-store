@@ -238,6 +238,10 @@ function cargarOrden() {
                 } else {
                     sweetAlert(2, response.exception, null);
                     CONTORD.innerHTML = '';
+                    //Colocamos el subtotal y calculamos el total
+                    SUBTINP.innerText = '$0.00';
+                    TOTALORD.innerText = '$0.00';
+                    TOTALINP.value = '$0.00';
                 }
             });
             PRELOADER.style.display = 'none';
@@ -296,7 +300,7 @@ function enviarConfirmacionCompra(id) {
                             request.json().then(function (response) {
                                 // Se comprueba si la respuesta es satisfactoria, de lo contrario se muestra un mensaje con la excepción.
                                 if (response.status) {
-                                    console.log('Mensaje enviado con exito');
+                                    console.log('Mensaje de correo enviado con exito');
                                 } else {
                                     sweetAlert(2, response.exception, null);
                                 }

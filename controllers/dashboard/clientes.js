@@ -120,48 +120,48 @@ HASTATOP.addEventListener('click', function () {
     })
 });
 
-//Función para llenar el contenedor de clientes con los datos obtenidos del controlador de components
-function fillTable(dataset) {
-    let content = '';
-    PRELOADER.style.display = 'block';
-    // Se recorre el conjunto de registros (dataset) fila por fila a través del objeto row.
-    dataset.map(function (row) {
-        // Se crean y concatenan las filas de la tabla con los datos de cada registro.
-        content += `
-            <div class="col l3 s12 m6">
-                <!--Tarjeta clientes-->
-                <div class="card" id="tarjetas-privado">
-                    <!--Botones  de la tarjeta-->
-                    <div class="botones">
-                        <!--Boton borrar-->
-                        <a onclick="delCli(${row.id_cliente})" class="btn-floating waves-effect waves-light red eliminarbtn"><i
-                            class="material-icons tooltipped" data-position="left" data-tooltip="Eliminar CLiente">delete</i></a>
-                        <!--Boton editar-->
-                        <a onclick="actCli(${row.id_cliente})" class="btn-floating waves-effect waves-grey lighten-1 modbtn"><i
-                            class="material-icons tooltipped" data-position="right" data-tooltip="Modificar CLiente">edit</i></a>
-                    </div>
-                    <!--Imagen de la tarjeta-->
-                    <div class="imagen-cliente center-align col s12 m12 s12">
-                        <img src="../../resources/img/icons/UserIcon-Perfil.png">
-                        <!--Contenido de la tarjeta-->
-                        <span class="card-title">
-                        <h6>${row.nombre_cliente}${' '}${row.apellido_cliente}</h6>
-                        </span>
-                    </div>
-                    <div class="card-content">
-                        <p class="estado-cl">${row.estado}</p>
+    //Función para llenar el contenedor de clientes con los datos obtenidos del controlador de components
+    function fillTable(dataset) {
+        let content = '';
+        PRELOADER.style.display = 'block';
+        // Se recorre el conjunto de registros (dataset) fila por fila a través del objeto row.
+        dataset.map(function (row) {
+            // Se crean y concatenan las filas de la tabla con los datos de cada registro.
+            content += `
+                <div class="col l3 s12 m6">
+                    <!--Tarjeta clientes-->
+                    <div class="card" id="tarjetas-privado">
+                        <!--Botones  de la tarjeta-->
+                        <div class="botones">
+                            <!--Boton borrar-->
+                            <a onclick="delCli(${row.id_cliente})" class="btn-floating waves-effect waves-light red eliminarbtn"><i
+                                class="material-icons tooltipped" data-position="left" data-tooltip="Eliminar CLiente">delete</i></a>
+                            <!--Boton editar-->
+                            <a onclick="actCli(${row.id_cliente})" class="btn-floating waves-effect waves-grey lighten-1 modbtn"><i
+                                class="material-icons tooltipped" data-position="right" data-tooltip="Modificar CLiente">edit</i></a>
+                        </div>
+                        <!--Imagen de la tarjeta-->
+                        <div class="imagen-cliente center-align col s12 m12 s12">
+                            <img src="../../resources/img/icons/UserIcon-Perfil.png">
+                            <!--Contenido de la tarjeta-->
+                            <span class="card-title">
+                            <h6>${row.nombre_cliente}${' '}${row.apellido_cliente}</h6>
+                            </span>
+                        </div>
+                        <div class="card-content">
+                            <p class="estado-cl">${row.estado}</p>
+                        </div>
                     </div>
                 </div>
-            </div>
-        `;
-    });
-    // Se agregan las filas al cuerpo de la tabla mediante su id para mostrar los registros.
-    CLIENTESCONTENEDOR.innerHTML = content;
-    PRELOADER.style.display = 'none';
-    analizarEstado();
-    // Se inicializa el componente Tooltip para que funcionen las sugerencias textuales.
-    M.Tooltip.init(document.querySelectorAll('.tooltipped'));
-}
+            `;
+        });
+        // Se agregan las filas al cuerpo de la tabla mediante su id para mostrar los registros.
+        CLIENTESCONTENEDOR.innerHTML = content;
+        PRELOADER.style.display = 'none';
+        analizarEstado();
+        // Se inicializa el componente Tooltip para que funcionen las sugerencias textuales.
+        M.Tooltip.init(document.querySelectorAll('.tooltipped'));
+    }
 
 //Funciones para la páginación
 
@@ -173,7 +173,7 @@ function predecirAdelante() {
     let paginaFinal = (Number(BOTONNUMEROPAGF.innerHTML)) + 2;
     console.log("pagina maxima " + paginaFinal);
     //Calculamos el limite que tendria el filtro de la consulta dependiendo de la cantidad de Clientes a mostrar
-    let limit = (paginaFinal * 1) - 1;
+    let limit = (paginaFinal * 8) - 4;
     console.log("El limite sería: " + limit);
     //Ejecutamos el metodo de la API para saber si hay productos y esta ejecutará una función que oculte o muestre el boton de adelante
     predictLImit(API_CLIENTES, limit);
@@ -229,7 +229,7 @@ document.querySelectorAll(".contnpag").forEach(el => {
         let number = Number(el.lastElementChild.textContent);
         console.log('numero seleccionado ' + number);
         //Se hace la operación para calcular cuanto será el top de elementos a no mostrarse en la consulta en este caso seran 8
-        let limit = (number * 1) - 1;
+        let limit = (number * 8) - 8;
         //Se ejecuta la recarga de datos enviando la variable de topAct
         //Ejecutamos la función para predecir si habrá un boton de adelante
         readRowsLimit(API_CLIENTES, limit);//Enviamos el metodo a buscar los datos y como limite 0 por ser el inicio
