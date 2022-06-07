@@ -277,7 +277,7 @@ function cargarInfoProducto(id) {
                                 <p class="desc">Descripción:</p>
                                 <p>${response.dataset.descripcion}.</p>
                                 <ul>
-                                    <li>Disponible: <span>En stock</span></li>
+                                    <li>Disponible: <span>${response.dataset.cantidad}</span></li>
                                     <li>Categoría: <span>${response.dataset.nombre_categoria}</span></li>
                                     <li>Zona de envío <span>El Salvador</span></li>
                                     <li>Cargo de envío: <span>$5.00</span></li>

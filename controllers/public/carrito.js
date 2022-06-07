@@ -125,13 +125,21 @@ function cargarDetalle(id) {
                         </div>
                         `;
                     });
+                    document.getElementById('comprar_carrito').classList.remove('hide');
                     //Colocamos los detalles en el contenedor de los detalles
                     document.getElementById('elemcarr-form').innerHTML = content;
                     //Colocamos el total a pagar en el componente
                     document.getElementById('pagot_carrito').innerText = '$'+response.dataset[0].montototal_pedidoesta;
                 } else {
+                    //Como no hay un carrito, entonces colocaremos un texto informando 
+                    let h = document.createElement("h5");
+                    let text = document.createTextNode("Aun no ha añadido productos al carrito");
+                    h.appendChild(text);
                     document.getElementById('elemcarr-form').innerHTML = '';
-                    sweetAlert(2, 'No se ha logrado cargar el detalle del carrito', null);
+                    document.getElementById('elemcarr-form').append(h);
+                    document.getElementById('pagot_carrito').innerText = '$0.00';
+                    document.getElementById('comprar_carrito').classList.add('hide');
+                    //sweetAlert(2, 'No se ha logrado cargar el detalle del carrito', null);
                 }
             });
         } else {
@@ -175,7 +183,7 @@ function delDet(id,idp,cant,idprd){
                         if (response.status) {
                             // Se cargan nuevamente el carrito
                             cargarDetalle(idp);
-                            sweetAlert(1, response.message, null);
+                            sweetAlert(1, response.exception, null);
                         } else {
                             sweetAlert(2, response.exception, null);
                         }

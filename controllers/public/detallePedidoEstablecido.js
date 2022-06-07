@@ -21,6 +21,7 @@ document.getElementById('shopping-form').addEventListener('submit', function (ev
                 // Se comprueba si la respuesta es satisfactoria, de lo contrario se constata si el cliente ha iniciado sesión.
                 if (response.status) {
                     sweetAlert(1, response.message, '');
+                    obtenerIdProducto();
                 } else {
                     // Se verifica si el cliente ha iniciado sesión para mostrar la excepción, de lo contrario se direcciona para que se autentique. 
                     if (response.session) {
