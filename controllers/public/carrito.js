@@ -183,7 +183,7 @@ function delDet(id,idp,cant,idprd){
                         if (response.status) {
                             // Se cargan nuevamente el carrito
                             cargarDetalle(idp);
-                            sweetAlert(1, response.exception, null);
+                            sweetAlert(1, response.message, null);
                         } else {
                             sweetAlert(2, response.exception, null);
                         }
