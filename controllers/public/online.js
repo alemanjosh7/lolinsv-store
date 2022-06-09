@@ -38,6 +38,10 @@ document.addEventListener('DOMContentLoaded', function () {
                                             href="productos.html">Productos</a>
                                     </li>
                                     <li>
+                                        <a class="waves-effect waves-light btn second-bg-color boton"
+                                            href="pendientesami.html">Pedidos realizados</a>
+                                    </li>
+                                    <li>
                                     <li><a class="waves-effect waves-light btn second-bg-color boton" href="perfil.html">${response.usuario}<i class="material-icons left">person</i></a></li>
                                     </li>
                                     <li><a href="#carrito" data-target="carrito"
@@ -55,6 +59,9 @@ document.addEventListener('DOMContentLoaded', function () {
                     </li>
                     <li>
                         <a class="waves-effect waves-light btn second-bg-color boton" href="productos.html">Productos</a>
+                    </li>
+                    <li>
+                        <a class="waves-effect waves-light btn second-bg-color boton" href="pendientesami.html">Pedidos realizados</a>
                     </li>
                     <li>
                     <li><a class="waves-effect waves-light btn second-bg-color boton" href="perfil.html">${response.usuario}<i
