@@ -382,5 +382,29 @@ class Pedidos_establecidos extends Validator
             return false;
         }
     }
+	//Pedidos realizados por el cliente
+    public function limitPendienteCL($limit)
+    {
+        $sql = 'SELECT pes.id_pedidos_establecidos, pes.fecha_pedidoesta, pes.descripcionlugar_entrega, pes.montototal_pedidoesta, clt.nombre_cliente, clt.apellido_cliente, est.estado
+        FROM pedidos_establecidos as pes
+		INNER JOIN clientes AS clt ON pes.fk_id_cliente = clt.id_cliente
+		INNER JOIN estados AS est ON pes.fk_id_estado = est.id_estados
+		WHERE pes.fk_id_cliente = ? AND (pes.fk_id_estado = 1 OR pes.fk_id_estado=2) OFFSET ?';
+        $params = array($_SESSION['id_cliente'],$limit);
+        return Database::getRows($sql, $params);
+    }
+
+    //Buscar Pedido realizado por el cliente
+    public function searchPedidoCl($value)
+    {
+        $sql = 'SELECT pes.id_pedidos_establecidos, pes.fecha_pedidoesta, pes.descripcionlugar_entrega, pes.montototal_pedidoesta, clt.nombre_cliente, clt.apellido_cliente, est.estado
+        FROM pedidos_establecidos as pes
+        INNER JOIN clientes AS clt ON pes.fk_id_cliente = clt.id_cliente
+        INNER JOIN estados AS est ON pes.fk_id_estado = est.id_estados
+        WHERE pes.fk_id_cliente = ? AND (pes.fk_id_estado = 1 OR pes.fk_id_estado=2) and (clt.nombre_cliente ILIKE ? OR clt.apellido_cliente ILIKE ? OR cast(pes.id_pedidos_establecidos as varchar)ILIKE ? OR cast(pes.montototal_pedidoesta as varchar) ILIKE ? OR cast(pes.fecha_pedidoesta as varchar) ILIKE ?)
+        ORDER BY pes.id_pedidos_establecidos DESC';
+        $params = array($_SESSION['id_cliente'],"%$value%", "%$value%", "%$value%", "%$value%", "%$value%");
+        return Database::getRows($sql, $params);
+    }
 }
 ?>
