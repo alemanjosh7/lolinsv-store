@@ -256,7 +256,7 @@ class Admins extends Validator
     {
         $sql = 'SELECT adm.id_admin, adm.nombre_admin, adm.apellido_admin, adm.usuario, adm.contrasena
             FROM admins as adm 
-            WHERE fk_id_estado = 8 AND adm.id_admin NOT IN (select id_admin from admins order by id_admin limit ?) order by adm.id_admin DESC limit 12';
+            WHERE fk_id_estado = 8 AND adm.id_admin NOT IN (select id_admin from admins order by id_admin DESC limit ?) order by adm.id_admin DESC limit 12';
         $params = array($limit);
         return Database::getRows($sql, $params);
     }

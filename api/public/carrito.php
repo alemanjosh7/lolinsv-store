@@ -27,25 +27,6 @@ if (isset($_GET['action'])) {
                     $result['exception'] = 'Pedido inexistente inexistente';
                 }
                 break;
-            case 'update':
-                $_POST = $carrito->validateForm($_POST);
-                if (!$carrito->setId($_POST['id'])) {
-                    $result['exception'] = 'administrador incorrecto';
-                } elseif (!$carrito->readOne()) {
-                    $result['exception'] = 'administrador inexistente';
-                } elseif (!$carrito->setNombres($_POST['nombres'])) {
-                    $result['exception'] = 'Nombres incorrectos';
-                } elseif (!$carrito->setApellidos($_POST['apellidos'])) {
-                    $result['exception'] = 'Apellidos incorrectos';
-                } elseif (!$carrito->setCorreo($_POST['correo'])) {
-                    $result['exception'] = 'Correo incorrecto';
-                } elseif ($carrito->updateRow()) {
-                    $result['status'] = 1;
-                    $result['message'] = 'administrador modificado correctamente';
-                } else {
-                    $result['exception'] = Database::getException();
-                }
-                break;
             case 'delete':
                 if (!$carrito->setId($_POST['id'])) {
                     $result['exception'] = 'Detalle incorrecto';
@@ -63,41 +44,6 @@ if (isset($_GET['action'])) {
                         //$result['exception'] = 'Producto eliminado del carrito pero no se pudo actualizar su monto total';
                         $result['exception'] = Database::getException();
                     }
-                } else {
-                    $result['exception'] = Database::getException();
-                }
-                break;
-            case 'nombreApellido':
-                if ($result['dataset'] = $carrito->nombreApellidoAdminL()) {
-                    $result['status'] = 1;
-                } elseif (Database::getException()) {
-                    $result['exception'] = Database::getException();
-                } else {
-                    $result['exception'] = 'No se pudo obtener la información necesaria para el saludo';
-                }
-                break;
-            case 'readProfile':
-                if ($result['dataset'] = $carrito->getProfile()) {
-                    $result['status'] = 1;
-                } elseif (Database::getException()) {
-                    $result['exception'] = Database::getException();
-                } else {
-                    $result['exception'] = 'Usuario inexistente';
-                }
-                break;
-            case 'editProfile':
-                $_POST = $carrito->validateForm($_POST);
-                if (!$carrito->setNombre_admin($_POST['nombre'])) {
-                    $result['exception'] = 'Nombres incorrectos';
-                    $result['message'] = $_POST['nombre'];
-                } elseif (!$carrito->setApellido_admin($_POST['apellido'])) {
-                    $result['exception'] = 'Apellidos incorrectos';
-                } elseif (!$carrito->setUsuario($_POST['usuario'])) {
-                    $result['exception'] = 'Usuario incorrecto';
-                } elseif ($carrito->updateProfile()) {
-                    $result['status'] = 1;
-                    $result['message'] = 'Perfil modificado correctamente';
-                    $carrito->nombreApellidoAdminL();
                 } else {
                     $result['exception'] = Database::getException();
                 }

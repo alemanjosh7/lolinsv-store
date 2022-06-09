@@ -18,7 +18,9 @@ if (isset($_GET['action'])) {
         switch ($_GET['action']) {
             case 'createDetail':
                 $_POST = $pedido->validateForm($_POST);
-                if (!$pedido->startOrder()) {
+                if (!$pedido->validarCantidad($_POST['cantidad'])) {
+                    $result['exception'] = 'La cantidad que esta ingresando es superior a la que se encuentra en existencias. Por favor verifique que sea menor o igual';
+                } elseif (!$pedido->startOrder()) {
                     $result['exception'] = 'Ocurrió un problema al obtener el pedido';
                     $result['message'] = $pedido->getId_pedidos_establecidos();
                 } elseif (!$pedido->setId_producto($_SESSION['id_producto'])) {
