@@ -198,6 +198,8 @@ document.querySelectorAll(".contnpag").forEach(el => {
         //Se ejecuta la recarga de datos enviando la variable de topAct
         //Ejecutamos la función para predecir si habrá un boton de adelante
         readRowsLimit(API_INVENTARIO, limit);//Enviamos el metodo a buscar los datos y como limite 0 por ser el inicio
+        //Ejecutamos la función para predecir si hay más páginas
+        predecirAdelante();
     });
 });
 

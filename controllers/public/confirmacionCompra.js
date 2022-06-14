@@ -271,7 +271,7 @@ function prepararEliminar() {
 function enviarConfirmacionCompra(id) {
     //Primero obtenemos el correo del usuario
     //Creamos un formulario y añadimos el nombre del usuario y realizamos la petición
-    let url = SERVER + 'enviarcorreoconfirmacion.php';
+    let url = SERVER + 'enviarCorreoConfirmacion.php';
     form = new FormData();
     form.append('id', id);
     let correo;

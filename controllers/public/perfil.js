@@ -14,6 +14,28 @@ var opcionesModalg = {
     }
 }
 
+//Función para verificar si hay una sesion
+// Petición para consultar si existen usuarios registrados.
+function comprobaClientes() {
+    fetch(API_CLIENTESENDPOINT + 'readUsers', {
+        method: 'get'
+    }).then(function (request) {
+        // Se verifica si la petición es correcta, de lo contrario se muestra un mensaje en la consola indicando el problema.
+        if (request.ok) {
+            request.json().then(function (response) {
+                // Se comprueba si existe una sesión, de lo contrario se revisa si la respuesta es satisfactoria.
+                if (response.session) {
+
+                }
+                else {
+                    location.href = 'index.html';
+                }
+            });
+        } else {
+            console.log(request.status + ' ' + request.statusText);
+        }
+    });
+}
 
 
 document.addEventListener('DOMContentLoaded', function () {
@@ -56,29 +78,6 @@ document.addEventListener('DOMContentLoaded', function () {
     M.Tooltip.init(document.querySelectorAll('.tooltipped'));
 });
 
-
-//Función para verificar si hay una sesion
-// Petición para consultar si existen usuarios registrados.
-function comprobaClientes() {
-    fetch(API_CLIENTESENDPOINT + 'readUsers', {
-        method: 'get'
-    }).then(function (request) {
-        // Se verifica si la petición es correcta, de lo contrario se muestra un mensaje en la consola indicando el problema.
-        if (request.ok) {
-            request.json().then(function (response) {
-                // Se comprueba si existe una sesión, de lo contrario se revisa si la respuesta es satisfactoria.
-                if (response.session) {
-
-                }
-                else {
-                    location.href = 'index.html';
-                }
-            });
-        } else {
-            console.log(request.status + ' ' + request.statusText);
-        }
-    });
-}
 
 
 

@@ -37,7 +37,7 @@ const BOTONNUMEROPAGF = document.getElementById("pagnumerof");//Boton de navegac
 
 const BOTONADELANTE = document.getElementById("pagnavg-adl");//Boton de navegacion de adelante
 
-const MODALACEPTAR = document.getElementById("modalaceptar");
+const MODALACEPTAR = document.getElementById("modalrestablecer");
 
 const INPUTID = document.getElementById("id_pedido");
 

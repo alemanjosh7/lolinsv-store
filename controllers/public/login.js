@@ -330,7 +330,7 @@ function generarPIN() {
 function enviarPINCorreo() {
     //Primero obtenemos el correo del usuario
     //Creamos un formulario y añadimos el nombre del usuario y realizamos la petición
-    let url = SERVER + 'enviarcorreo.php';
+    let url = SERVER + 'enviarCorreo.php';
     if (USUARIOTXT.value.length > 0) {
         form = new FormData();
         form.append('usuario', USUARIOTXT.value);
