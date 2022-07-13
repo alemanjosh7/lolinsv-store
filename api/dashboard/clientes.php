@@ -16,6 +16,7 @@ if (isset($_GET['action'])) {
         $result['session'] = 1;
         // Se compara la acción a realizar cuando un administrador ha iniciado sesión.
         switch ($_GET['action']) {
+
             case 'getUser':
                 if (isset($_SESSION['alias_admins'])) {
                     $result['status'] = 1;
@@ -32,6 +33,7 @@ if (isset($_GET['action'])) {
                     $result['exception'] = 'Ocurrió un problema al cerrar la sesión';
                 }
                 break;
+
             case 'readProfile':
                 if ($result['dataset'] = $clientes->readProfile()) {
                     $result['status'] = 1;
@@ -96,12 +98,12 @@ if (isset($_GET['action'])) {
                 }
                 break;
             case 'readAllLimit':
-                if ($result['dataset'] = $clientes->obtenerClientesLimit($_POST['limit'])){
+                if ($result['dataset'] = $clientes->obtenerClientesLimit($_POST['limit'])) {
                     $result['status'] = 1;
                     $result['message'] = 'Clientes encontrados';
-                } elseif (Database::getException()){
+                } elseif (Database::getException()) {
                     $result['exception'] = Database::getException();
-                } else{
+                } else {
                     $result['exception'] = '¡Lo sentimos! No hay clientes registrados';
                 }
                 break;
@@ -184,7 +186,7 @@ if (isset($_GET['action'])) {
                     $result['exception'] = 'Cliente invalido';
                 } elseif (!$clientes->setContrasena($_POST['contrasena'])) {
                     $result['exception'] = $clientes->getPasswordError();
-                }elseif ($clientes->cambiarContrasenaCl()) {
+                } elseif ($clientes->cambiarContrasenaCl()) {
                     $result['status'] = 1;
                     $result['message'] = 'Contraseña de cliente actualizada';
                 } else {
@@ -200,7 +202,14 @@ if (isset($_GET['action'])) {
                     $result['exception'] = 'No se pudo obtener la información necesaria para el saludo';
                 }
                 break;
-            
+            case 'clientesConMasCompras':
+                if ($result['dataset'] = $clientes->clientesConMasCompras()) {
+                    $result['message'] = $clientes->clientesConMasCompras();
+                    $result['status'] = 1;
+                } else {
+                    $result['exception'] = 'No hay datos registrados';
+                }
+                break;
             default:
                 $result['exception'] = 'Acción no disponible dentro de la sesión';
         }
@@ -208,7 +217,7 @@ if (isset($_GET['action'])) {
         // Se compara la acción a realizar cuando el administrador no ha iniciado sesión.
         switch ($_GET['action']) {
             case 'readUsers':
-                if ($clientes->obtenerAdmins()){
+                if ($clientes->obtenerAdmins()) {
                     $result['status'] = 1;
                     $result['message'] = 'Existe al menos un administrador registrado';
                 } else {
@@ -243,7 +252,7 @@ if (isset($_GET['action'])) {
                     $_SESSION['usuario'] = $clientes->getUsuario();
                     $_SESSION['saludoI'] = false;
                     $clientes->nombreApellidoAdminL();
-                }else {
+                } else {
                     $result['exception'] = 'Contraseña incorrecta';
                 }
                 break;
@@ -271,4 +280,3 @@ if (isset($_GET['action'])) {
 } else {
     print(json_encode('Recurso no disponible'));
 }
-?>

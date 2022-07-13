@@ -75,40 +75,18 @@
       </div>
 
       <div class="row">
-        <div class="center-align col s12 m6 l6">
-          <div class="card" id="grafica1">
-            <div class="card-image waves-effect waves-block waves-light">
-              <img class="activator" src="../../resources/img/icons/grafica-productos.png">
-            </div>
-            <div class="card-content">
-              <span class="card-title activator grey-text text-darken-4">5 productos más vendidos<i
-                  class="material-icons right">more_vert</i></span>
-            </div>
-            <div class="card-reveal">
-              <span class="card-title grey-text text-darken-4">5 productos más vendidos<i
-                  class="material-icons right">close</i></span>
-              <p>aqui se mostraran los 5 productos más vendidos.</p>
-            </div>
-          </div>
+        <div class="col s12 m6">
+          <!-- Se muestra un gráfico de dona con los 5 clientes con más compras y el número de compras -->
+          <canvas id="chart1"></canvas>
         </div>
-        <div class="center-align col s12 m6 l6">
-          <div class="card  center-align " id="grafica">
-            <div class="card-image waves-effect waves-block waves-light">
-              <img class="activator" src="../../resources/img/icons/grafica-productos.png">
-            </div>
-            <div class="card-content">
-              <span class="card-title activator grey-text text-darken-4">Ventas del mes<i
-                  class="material-icons right">more_vert</i></span>
-            </div>
-            <div class="card-reveal">
-              <span class="card-title grey-text text-darken-4">Ventas del mes<i
-                  class="material-icons right">close</i></span>
-              <p>aqui se mostraran las ventas del mes</p>
-            </div>
-          </div>
+        <div class="col s12 m6">
+          <!-- Se muestra un gráfico de tipo pie con los administradores que más registros han hecho el último mes -->
+          <canvas id="chart2"></canvas>
         </div>
       </div>
     </div>
+    <!-- Importación de librería para generar gráficos en tiempo real. Para más información https://www.chartjs.org/ -->
+    <script src="https://cdn.jsdelivr.net/npm/chart.js@3.7.0/dist/chart.min.js"></script>
   </main>
 
   <footer class="page-footer">

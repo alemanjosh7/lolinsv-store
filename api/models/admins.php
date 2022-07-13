@@ -268,4 +268,6 @@ class Admins extends Validator
         $params = array($this->id_admin);
         return Database::executeRow($sql, $params);
     }
+
+    
 }

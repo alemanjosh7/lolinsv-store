@@ -96,12 +96,12 @@ if (isset($_GET['action'])) {
                 }
                 break;
             case 'readAllLimit':
-                if ($result['dataset'] = $inventario->obtenerInventarioLt($_POST['limit'])){
+                if ($result['dataset'] = $inventario->obtenerInventarioLt($_POST['limit'])) {
                     $result['status'] = 1;
                     $result['message'] = 'Registros encontrados';
-                } elseif (Database::getException()){
+                } elseif (Database::getException()) {
                     $result['exception'] = Database::getException();
-                } else{
+                } else {
                     $result['exception'] = '¡Lo sentimos! No hay resgistros';
                 }
                 break;
@@ -145,9 +145,9 @@ if (isset($_GET['action'])) {
                     $result['exception'] = 'codigo del producto invalido';
                 } elseif ($inventario->actualizarInv()) {
                     $result['status'] = 1;
-                    if($inventario->actualizarCanPrd()){
+                    if ($inventario->actualizarCanPrd()) {
                         $result['message'] = 'Registro del inventario modificado correctamente y cantidad del producto corregida';
-                    }else{
+                    } else {
                         $result['message'] = 'Registro del inventario modificado correctamente pero la cantidad del producto no se pudo modificar, modificarla desde productos';
                     }
                 } else {
@@ -172,7 +172,7 @@ if (isset($_GET['action'])) {
                     $result['exception'] = 'Cliente invalido';
                 } elseif (!$inventario->setContrasena($_POST['contrasena'])) {
                     $result['exception'] = $inventario->getPasswordError();
-                }elseif ($inventario->cambiarContrasenaCl()) {
+                } elseif ($inventario->cambiarContrasenaCl()) {
                     $result['status'] = 1;
                     $result['message'] = 'Contraseña de cliente actualizada';
                 } else {
@@ -180,9 +180,9 @@ if (isset($_GET['action'])) {
                 }
                 break;
             case 'buscarImg':
-                if($result['dataset'] = $inventario->imgProducto($_POST['id'])){
+                if ($result['dataset'] = $inventario->imgProducto($_POST['id'])) {
                     $result['status'] = 1;
-                }elseif (Database::getException()) {
+                } elseif (Database::getException()) {
                     $result['exception'] = Database::getException();
                 } else {
                     $result['exception'] = 'No se pudo obtener la imagen del producto';
@@ -197,6 +197,15 @@ if (isset($_GET['action'])) {
                     $result['exception'] = 'No se pudo obtener la información necesaria para el saludo';
                 }
                 break;
+            case 'adminsConMasRegistros':
+                if ($result['dataset'] = $inventario->adminsConMasRegistros()) {
+                    $result['status'] = 1;
+                } elseif (Database::getException()) {
+                    $result['exception'] = Database::getException();
+                } else {
+                    $result['exception'] = 'No se pudo obtener la información necesaria para el saludo';
+                }
+                break;
             default:
                 $result['exception'] = 'Acción no disponible dentro de la sesión';
         }
@@ -204,7 +213,7 @@ if (isset($_GET['action'])) {
         // Se compara la acción a realizar cuando el administrador no ha iniciado sesión.
         switch ($_GET['action']) {
             case 'readUsers':
-                if ($inventario->obtenerAdmins()){
+                if ($inventario->obtenerAdmins()) {
                     $result['status'] = 1;
                     $result['message'] = 'Existe al menos un administrador registrado';
                 } else {
@@ -239,7 +248,7 @@ if (isset($_GET['action'])) {
                     $_SESSION['usuario'] = $inventario->getUsuario();
                     $_SESSION['saludoI'] = false;
                     $inventario->nombreApellidoAdminL();
-                }else {
+                } else {
                     $result['exception'] = 'Contraseña incorrecta';
                 }
                 break;
@@ -267,4 +276,3 @@ if (isset($_GET['action'])) {
 } else {
     print(json_encode('Recurso no disponible'));
 }
-?>

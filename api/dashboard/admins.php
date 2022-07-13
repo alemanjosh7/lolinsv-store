@@ -162,7 +162,7 @@ if (isset($_GET['action'])) {
                     $result['message'] = $_POST['nombre'];
                 } elseif (!$admins->setApellido_admin($_POST['apellido'])) {
                     $result['exception'] = 'Apellidos incorrectos';
-                }elseif (!$admins->setUsuario($_POST['usuario'])) {
+                } elseif (!$admins->setUsuario($_POST['usuario'])) {
                     $result['exception'] = 'Usuario incorrecto';
                 } elseif ($admins->updateProfile()) {
                     $result['status'] = 1;
@@ -172,14 +172,23 @@ if (isset($_GET['action'])) {
                     $result['exception'] = Database::getException();
                 }
                 break;
+            case 'adminsConMasRegistros':
+                if ($result['dataset'] = $admins->adminsConMasRegistros()) {
+                    $result['status'] = 1;
+                } elseif (Database::getException()) {
+                    $result['exception'] = Database::getException();
+                } else {
+                    $result['exception'] = 'Usuario inexistente';
+                }
+                break;
             default:
                 $result['exception'] = 'Acción no disponible dentro de la sesión';
         }
-    }else {
+    } else {
         // Se compara la acción a realizar cuando el administrador no ha iniciado sesión.
         switch ($_GET['action']) {
             case 'readUsers':
-                if ($admins->obtenerAdmins()){
+                if ($admins->obtenerAdmins()) {
                     $result['status'] = 1;
                     $result['message'] = 'Existe al menos un administrador registrado';
                 } else {
@@ -207,7 +216,8 @@ if (isset($_GET['action'])) {
                 $_POST = $admins->validateForm($_POST);
                 if (!$admins->checkAdmin($_POST['usuario'])) {
                     $result['exception'] = 'Nombre de usuario incorrecto';
-                }if (!$admins->checkAdminLog()) {
+                }
+                if (!$admins->checkAdminLog()) {
                     $result['exception'] = 'Nombre de usuario eliminado';
                 } elseif ($admins->checkContrasenaADM($_POST['contrasena'])) {
                     $result['status'] = 1;
@@ -216,7 +226,7 @@ if (isset($_GET['action'])) {
                     $_SESSION['usuario'] = $admins->getUsuario();
                     $_SESSION['saludoI'] = false;
                     $admins->nombreApellidoAdminL();
-                }else {
+                } else {
                     $result['exception'] = 'Contraseña incorrecta';
                 }
                 break;

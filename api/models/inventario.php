@@ -125,11 +125,12 @@ class Inventario extends Validator
         return $this->fk_id_producto;
     }
 
-     /*
+    /*
     *   Métodos para gestionar la tabla de inventario
     */
     //Obtener las valoraciones con limite
-    public function obtenerInventarioLt($limit){
+    public function obtenerInventarioLt($limit)
+    {
         $sql = 'SELECT inv.id_inventario, inv.cantidada, inv.cantidadn, inv.modificado, inv.fecha,  inv.fk_id_producto, adm.nombre_admin, adm.apellido_admin, prd.nombre_producto
         FROM inventario AS inv
         INNER JOIN admins AS adm ON inv.fk_id_admin = adm.id_admin
@@ -140,7 +141,8 @@ class Inventario extends Validator
         return Database::getRows($sql, $params);
     }
     //Buscar un inventario en especifico
-    public function buscarInventario(){
+    public function buscarInventario()
+    {
         $sql = 'SELECT inv.id_inventario, inv.cantidada, inv.cantidadn, inv.modificado, inv.fecha,  inv.fk_id_producto, adm.nombre_admin, adm.apellido_admin, prd.nombre_producto
         FROM inventario AS inv
         INNER JOIN admins AS adm ON inv.fk_id_admin = adm.id_admin
@@ -150,48 +152,62 @@ class Inventario extends Validator
         return Database::getRow($sql, $params);
     }
     //Eliminar un inventario
-    public function eliminarInventario(){
+    public function eliminarInventario()
+    {
         $sql = 'DELETE FROM inventario 
                 WHERE id_inventario = ?';
         $params = array($this->id);
         return Database::executeRow($sql, $params);
     }
     //Añadir un inventario
-    public function crearInventario(){
+    public function crearInventario()
+    {
         $sql = 'INSERT  INTO inventario(cantidada,cantidadn,modificado,fk_id_admin,fk_id_producto) 
                 VALUES(?,?,false,?,?)';
         $params = array($this->cantidada, $this->cantidadn, $_SESSION['id_usuario'], $this->fk_id_producto);
         return Database::executeRow($sql, $params);
     }
     //Buscar la imagen de un producto
-    public function imgProducto($idp){
+    public function imgProducto($idp)
+    {
         $sql = 'SELECT imagen_producto,nombre_producto,descripcion,cantidad FROM productos WHERE id_producto = ?';
         $params = array($idp);
         return Database::getRow($sql, $params);
     }
     //Actualizar inventario
-    public function actualizarInv(){
+    public function actualizarInv()
+    {
         $sql = 'UPDATE inventario SET cantidadn = ?, modificado = true, fk_id_admin= ?
                 WHERE id_inventario = ?';
         $params = array($this->cantidadn, $_SESSION['id_usuario'], $this->id);
         return Database::executeRow($sql, $params);
     }
     //Actualizar la cantidad del producto
-    public function actualizarCanPrd(){
+    public function actualizarCanPrd()
+    {
         $sql = 'UPDATE productos SET cantidad = ?
                 WHERE id_producto = ?';
         $params = array($this->cantidada, $this->fk_id_producto);
         return Database::executeRow($sql, $params);
     }
     //Metodo para buscar
-    public function buscarInv($value){
+    public function buscarInv($value)
+    {
         $sql = 'SELECT inv.id_inventario, inv.cantidada, inv.cantidadn, inv.modificado, inv.fecha,  inv.fk_id_producto, adm.nombre_admin, adm.apellido_admin, prd.nombre_producto
                 FROM inventario AS inv
                 INNER JOIN admins AS adm ON inv.fk_id_admin = adm.id_admin
                 INNER JOIN productos AS prd ON inv.fk_id_producto = prd.id_producto
                 WHERE cast(inv.cantidada as varchar) ILIKE ? OR cast(inv.cantidadn as varchar) ILIKE ? OR cast(inv.fecha as varchar) ILIKE ? OR adm.nombre_admin ILIKE ? OR adm.apellido_admin ILIKE ? OR prd.nombre_producto ILIKE ?
                  ORDER BY inv.id_inventario DESC';
-        $params = array("%$value%","%$value%","%$value%","%$value%","%$value%","%$value%");
+        $params = array("%$value%", "%$value%", "%$value%", "%$value%", "%$value%", "%$value%");
+        return Database::getRows($sql, $params);
+    }
+    public function adminsConMasRegistros()
+    {
+        $sql = 'select a.nombre_admin, a.apellido_admin, sum(inv.cantidada) cuenta
+        from inventario as inv inner join admins as a ON a.id_admin = inv.fk_id_admin and a.fk_id_estado = 8
+        WHERE (inv.fecha >= current_date-7) group by a.nombre_admin, a.apellido_admin order by cuenta desc limit 5';
+        $params = null;
         return Database::getRows($sql, $params);
     }
 }

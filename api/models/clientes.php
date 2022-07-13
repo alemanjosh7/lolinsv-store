@@ -260,7 +260,7 @@ class Clientes extends Validator
         $sql = 'INSERT INTO clientes(nombre_cliente, apellido_cliente, correo_cliente, dui_cliente, 
                 telefono_cliente , direccion_cliente, usuario, contrasena, fk_id_estado)
                 VALUES(?, ?, ?, ?, ?, ?, ?, ?, 8)';
-        $params = array($this->nombre,$this->apellido,$this->correo,$this->dui,$this->telefono,$this->direccion,$this->usuario,$this->contrasena);
+        $params = array($this->nombre, $this->apellido, $this->correo, $this->dui, $this->telefono, $this->direccion, $this->usuario, $this->contrasena);
         return Database::executeRow($sql, $params);
     }
     //Obtener clientes
@@ -362,6 +362,15 @@ class Clientes extends Validator
                 FROM clientes
                 WHERE id_cliente = ?';
         $params = array($_SESSION['id_cliente']);
+        return Database::getRows($sql, $params);
+    }
+
+    public function clientesConMasCompras()
+    {
+        $sql = 'select c.nombre_cliente, cast(sum(pe.montototal_pedidoesta) as decimal) suma
+        from pedidos_establecidos as pe inner join clientes as c ON pe.fk_id_cliente = c.id_cliente 
+        group by c.nombre_cliente order by suma desc limit 5';
+        $params = null;
         return Database::getRows($sql, $params);
     }
 }
