@@ -1,12 +1,20 @@
 // Constante para establecer la ruta y parámetros de comunicación con la API.
 const API_ADMINS = SERVER + 'dashboard/admins.php?action=';
 const API_GLBVAR = SERVER + 'variablesgb.php?action=';
+const API_PRODUCTOS = SERVER + 'dashboard/productos.php?action=';
+const API_CLIENTES = SERVER + 'dashboard/clientes.php?action=';
+const API_INVENTARIO = SERVER + 'dashboard/inventario.php?action=';
 //Iniciando las funciones y componentes
 // Método manejador de eventos que se ejecuta cuando el documento ha cargado.
 document.addEventListener('DOMContentLoaded', function () {
     M.Sidenav.init(document.querySelectorAll('.sidenav'));
     saludo();
     comprobarAdmins();
+    //Ejecutando graficas
+    graficoLineasProductosCM();//Productos con menores cantidades
+    graficoDonaCompras();//Clientes con las compras más grandes
+    graficoPieAdmins();//últimos admins que han registrado existencias en inventario
+    graficoBarrasCategorias();//Número de productos por categorías
 });
 //Declaramos algunos componentes
 const saludoUsuario = document.getElementById('saludo-usuario');
@@ -50,7 +58,7 @@ function saludo() {
 
 //Función para confirmar si hay admins
 // Petición para consultar si existen usuarios registrados.
-function comprobarAdmins(){
+function comprobarAdmins() {
     fetch(API_ADMINS + 'readUsers', {
         method: 'get'
     }).then(function (request) {
@@ -63,6 +71,137 @@ function comprobarAdmins(){
                     location.href = 'index.html';
                 } else {
                     sweetAlert(4, 'Debe crear un administrador para iniciar a usar el sistema, por favor leer la indicación', null);
+                }
+            });
+        } else {
+            console.log(request.status + ' ' + request.statusText);
+        }
+    });
+}
+
+//Metodo para la grafica de lineas sobre los productos con menor cantidad
+function graficoLineasProductosCM() {
+    // Petición para obtener los datos del gráfico.
+    fetch(API_PRODUCTOS + 'productosCantidadM', {
+        method: 'get'
+    }).then(function (request) {
+        // Se verifica si la petición es correcta, de lo contrario se muestra un mensaje en la consola indicando el problema.
+        if (request.ok) {
+            request.json().then(function (response) {
+                // Se comprueba si la respuesta es satisfactoria, de lo contrario se remueve la etiqueta canvas.
+                if (response.status) {
+                    // Se declaran los arreglos para guardar los datos a graficar.
+                    let producto = [];
+                    let cantidades = [];
+                    // Se recorre el conjunto de registros devuelto por la API (dataset) fila por fila a través del objeto row.
+                    response.dataset.map(function (row) {
+                        // Se agregan los datos a los arreglos.
+                        producto.push(row.nombre_producto);
+                        cantidades.push(row.cantidad);
+                    });
+                    // Se llama a la función que genera y muestra un gráfico de barras. Se encuentra en el archivo components.js
+                    lineGraph('grf_linea1', producto, cantidades, 'Cantidad de productos', 'Cantidad de productos en inventario de menor a ');
+                } else {
+                    document.getElementById('grf_linea1').remove();
+                    console.log(response.exception);
+                }
+            });
+        } else {
+            console.log(request.status + ' ' + request.statusText);
+        }
+    });
+}
+
+//Función de la grafica de dona para las compras más altas de los clientes
+function graficoDonaCompras() {
+    // Petición para obtener los datos del gráfico.
+    fetch(API_CLIENTES + 'clientesConMasCompras', {
+        method: 'get'
+    }).then(function (request) {
+        // Se verifica si la petición es correcta, de lo contrario se muestra un mensaje en la consola indicando el problema.
+        if (request.ok) {
+            request.json().then(function (response) {
+                // Se comprueba si la respuesta es satisfactoria, de lo contrario se remueve la etiqueta canvas.
+                if (response.status) {
+                    // Se declaran los arreglos para guardar los datos a gráficar.
+                    let clientes = [];
+                    let porcentajes = [];
+                    // Se recorre el conjunto de registros devuelto por la API (dataset) fila por fila a través del objeto row.
+                    response.dataset.map(function (row) {
+                        // Se agregan los datos a los arreglos.
+                        clientes.push(row.nombre_cliente);
+                        porcentajes.push(row.suma);
+                    });
+                    // Se llama a la función que genera y muestra un gráfico de pastel. Se encuentra en el archivo components.js
+                    doughnutGraph('grf_dona1', clientes, porcentajes, 'Clientes con mayor porcentaje de compra','Número de compras');
+                } else {
+                    document.getElementById('grf_dona1').remove();
+                    console.log(response.exception);
+                }
+            });
+        } else {
+            console.log(request.status + ' ' + request.statusText);
+        }
+    });
+}
+
+//Función para obtener los últimos administradores que han registrado en el inventario
+function graficoPieAdmins() {
+    // Petición para obtener los datos del gráfico.
+    fetch(API_INVENTARIO + 'adminsConMasRegistros', {
+        method: 'get'
+    }).then(function (request) {
+        // Se verifica si la petición es correcta, de lo contrario se muestra un mensaje en la consola indicando el problema.
+        if (request.ok) {
+            request.json().then(function (response) {
+                // Se comprueba si la respuesta es satisfactoria, de lo contrario se remueve la etiqueta canvas.
+                if (response.status) {
+                    // Se declaran los arreglos para guardar los datos a gráficar.
+                    let admins = [];
+                    let porcentajes = [];
+                    // Se recorre el conjunto de registros devuelto por la API (dataset) fila por fila a través del objeto row.
+                    response.dataset.map(function (row) {
+                        // Se agregan los datos a los arreglos.
+                        admins.push(row.nombre_admin);
+                        porcentajes.push(row.cuenta);
+                    });
+                    // Se llama a la función que genera y muestra un gráfico de pastel. Se encuentra en el archivo components.js
+                    pieGraph('grf_pie1', admins, porcentajes, 'Admins con más registros en la última semana');
+                } else {
+                    document.getElementById('grf_pie1').remove();
+                    console.log(response.exception);
+                }
+            });
+        } else {
+            console.log(request.status + ' ' + request.statusText);
+        }
+    });
+}
+
+function graficoBarrasCategorias() {
+    // Petición para obtener los datos del gráfico.
+    fetch(API_PRODUCTOS + 'productosCantidadCat', {
+        method: 'get'
+    }).then(function (request) {
+        // Se verifica si la petición es correcta, de lo contrario se muestra un mensaje en la consola indicando el problema.
+        if (request.ok) {
+            request.json().then(function (response) {
+                // Se comprueba si la respuesta es satisfactoria, de lo contrario se remueve la etiqueta canvas.
+                if (response.status) {
+                    // Se declaran los arreglos para guardar los datos a graficar.
+                    let categorias = [];
+                    let cantidades = [];
+                    // Se recorre el conjunto de registros devuelto por la API (dataset) fila por fila a través del objeto row.
+                    response.dataset.map(function (row) {
+                        // Se agregan los datos a los arreglos.
+                        categorias.push(row.nombre_categoria);
+                        cantidades.push(row.cantidad);
+                    });
+                    // Se llama a la función que genera y muestra un gráfico de barras. Se encuentra en el archivo components.js
+                    barGraph('grf_bar1', categorias, cantidades, 'Cantidad de productos', 'Cantidad de productos por categoría');
+                } else {
+                    document.getElementById('grf_bar1').remove();
+                    console.log(response.exception);
                 }
             });
         } else {

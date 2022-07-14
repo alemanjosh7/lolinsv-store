@@ -69,6 +69,9 @@
             <h4>Establecidos pendientes</h4>
         </div>
         <div class="encabezado">
+            <div class="pendiente reporte tooltipped" data-position="top" data-tooltip="Número de pedidos dentro de x fechas">
+                <a class="boton-cambio waves-effect waves-light btn-flat center-align" id="reportePF">Generar reporte</a>
+            </div>
             <!--Botón entregados-->
             <div class="entregado">
                 <a class="boton-cambio waves-effect waves-teal btn-flat center-align"
@@ -87,28 +90,6 @@
         <div class="container-main">
             <!--Primer fila de pedidos-->
             <div class="row" id="pedidos-row">
-                <div class="col l3 s12 m6">
-                    <!--Tarjeta-->
-                    <div class="card" id="tarjetas-privado">
-                        <div class="botones">
-                            <!--Botón eliminar-->
-                            <a class="btn-floating waves-effect waves-light red"><i
-                                    class="material-icons">delete</i></a>
-                            <!--Botón aceptado-->
-                            <a class="waves-effect waves-light btn modal-trigger green" href="#modalaceptar"><i
-                                    class="material-icons">check</i></a>
-                        </div>
-                        <!--Contenido-->
-                        <div class="imagen-pedidos center-align col s12 m12 s12">
-                            <img src="../../resources/img/icons/pedidos.png">
-                            <span class="card-title">
-                                <h6>Pendientes</h6>
-                        </div>
-                        <div class="card-content">
-                            <p>$15.98</p>
-                        </div>
-                    </div>
-                </div>
             </div>
         </div>
         <!--Boton de hasta arriba-->
@@ -163,6 +144,11 @@
                             <label for="id_pedido">Nombres Clientes</label>
                         </div>
                         <div class="input-field col l4 m6 s12">
+                            <input disabled placeholder="Nombres" id="id_pedidov" type="text"
+                                class="center-align inputs-estilizados">
+                            <label for="id_pedido">Número del pedido</label>
+                        </div>
+                        <div class="input-field col l4 m6 s12">
                             <input disabled placeholder="Nombres" id="input-nombre" type="text" name="nombre"
                                 class="center-align inputs-estilizados">
                             <label for="input-nombre">Nombres Clientes</label>
@@ -172,17 +158,17 @@
                                 class="center-align inputs-estilizados">
                             <label for="input-apellido">Apellidos Cliente</label>
                         </div>
-                        <div class="input-field col l4 m6 s12">
+                        <div class="input-field col l4 m6 s12 offset-l2">
                             <input disabled placeholder="Monto" id="input-monto" type="text" name="monto"
                                 class="center-align inputs-estilizados">
                             <label for="input-monto">Monto</label>
                         </div>
-                        <div class="input-field col l6 m6 s12">
+                        <div class="input-field col l4 m6 s12">
                             <input disabled placeholder="Fechha" id="input-fecha" type="text" name="fecha"
                                 class="center-align inputs-estilizados">
                             <label for="input-fecha">Fecha</label>
                         </div>
-                        <div class="input-field col l6 m6 s12">
+                        <div class="input-field col l12 m6 s12">
                             <textarea disabled placeholder="Descripción" id="input-descripcion" type="text" name="descripcion"
                                 class="center-align inputs-estilizados materialize-textarea"></textarea>
                             <label for="input-descripcion">Descripción Lugar Entrega</label>
@@ -224,6 +210,11 @@
                     </table>
                 </div>
                 </form>
+                <div>
+                    <div>
+                        <a onclick="generarPDFP()" class="btn-floating waves-effect waves-light black tooltipped" data-tooltip="Generar pdf del pedido"><i class="material-icons">assignment</i>Generar pdf</a>
+                    </div>
+                </div>
                 <div class="col s12">
                     <div class="row">
                         <div class="col l6 m6 s12 left-align">

@@ -68,6 +68,10 @@
             <h4>Personalizados pendientes</h4>
         </div>
         <div class="encabezado">
+            <!--Botón pendientes-->
+            <div class="pendiente reporte tooltipped" data-position="top" data-tooltip="Pedidos dentro de x fechas">
+                <a class="boton-cambio waves-effect waves-light btn-flat center-align" id="reportePF">Generar reporte</a>
+            </div>
             <!--Botón añadir e imagen de añadir-->
             <div class="entregado">
                 <a class="boton-cambio waves-effect waves-teal btn-flat center-align"
@@ -160,6 +164,11 @@
                                 class="center-align inputs-estilizados">
                             <label for="id_pedido">Nombres Clientes</label>
                         </div>
+                        <div class="input-field col l4 m6 s12">
+                            <input disabled placeholder="Nombres" id="id_pedidov" type="text"
+                                class="center-align inputs-estilizados">
+                            <label for="id_pedido">Número del pedido</label>
+                        </div>
                         <div class="input-field col l3 m6 s12">
                             <input disabled placeholder="Nombres" id="input-nombre" type="text" name="nombre"
                                 class="center-align inputs-estilizados">
@@ -202,6 +211,11 @@
                         </di>
                     </div>
                 </form>
+                <div>
+                    <div>
+                        <a onclick="generarPDFP()" class="btn-floating waves-effect waves-light black tooltipped" data-tooltip="Generar pdf del pedido"><i class="material-icons">assignment</i>Generar pdf</a>
+                    </div>
+                </div>
                 <div class="col s12">
                     <div class="row">
                         <div class="col l4 m6 s12 left-align">

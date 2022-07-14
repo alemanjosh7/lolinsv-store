@@ -64,12 +64,16 @@
         <!--Encabezado de la página-->
         <!--Título de la página-->
         <div class="titulo center-align">
-            <h4>Personalizados enviados</h4>
+            <h4>Personalizados aceptados</h4>
         </div>
         <div class="encabezado">
             <!--Botón pendientes-->
+            <div class="pendiente reporte tooltipped" data-position="top" data-tooltip="Pedidos dentro de x fechas">
+                <a class="boton-cambio waves-effect waves-light btn-flat center-align" id="reportePF">Generar reporte</a>
+            </div>
+            <!--Botón pendientes-->
             <div class="pendiente">
-                <a class="boton-cambio waves-effect waves-teal btn-flat center-align"
+                <a class="boton-cambio waves-effect waves-light btn-flat center-align"
                     href="pendientesper.html">Pendientes</a>
             </div>
             <!--Buscador e icono del buscador-->
@@ -86,27 +90,7 @@
         <div class="container-main">
             <!--Primer fila de pedidos-->
             <div class="row" id="pedidos-row">
-                <div class="col l3 s12 m6">
-                    <!--Tarjeta-->
-                    <div class="card" id="tarjetas-privado">
-                        <div class="botones">
-                            <!--Botón eliminar-->
-                            <a class="modal-trigger btn-floating waves-effect waves-light red" id=""><i
-                                    class="material-icons">delete</i></a>
-                            <a class="modal-trigger btn-floating waves-effect waves-light grey" href="#modalver"
-                                id=""><i class="material-icons">visibility</i></a>
-                        </div>
-                        <!--Contenido-->
-                        <div class="imagen-pedidos center-align col s12 m12 s12">
-                            <img src="../../resources/img/icons/personalizado.png">
-                            <span class="card-title">
-                                <h6>Entregado</h6>
-                        </div>
-                        <div class="card-content">
-                            <p>Aceptado</p>
-                        </div>
-                    </div>
-                </div>
+
             </div>
         </div>
         <div class="fixed-action-btn">
@@ -159,17 +143,22 @@
                                 class="center-align inputs-estilizados">
                             <label for="id_pedido">Nombres Clientes</label>
                         </div>
-                        <div class="input-field col l3 m6 s12">
+                        <div class="input-field col l4 m6 s12">
+                            <input disabled placeholder="Nombres" id="id_pedidov" type="text"
+                                class="center-align inputs-estilizados">
+                            <label for="id_pedido">Número del pedido</label>
+                        </div>
+                        <div class="input-field col l4 m6 s12">
                             <input disabled placeholder="Nombres" id="input-nombre" type="text" name="nombre"
                                 class="center-align inputs-estilizados">
                             <label for="input-nombre">Nombres Clientes</label>
                         </div>
-                        <div class="input-field col l3 m6 s12">
+                        <div class="input-field col l4 m6 s12">
                             <input disabled placeholder="Apellidos" id="input-apellido" type="text" name="apellido"
                                 class="center-align inputs-estilizados">
                             <label for="input-apellido">Apellidos Cliente</label>
                         </div>
-                        <div class="input-field col l3 m6 s12">
+                        <div class="input-field col l3 offset-l3 m6 s12">
                             <input disabled placeholder="Fecha" id="input-fecha" type="text" name="fecha"
                                 class="center-align inputs-estilizados">
                             <label for="input-fecha">Fecha</label>
@@ -202,6 +191,9 @@
                         </di>
                     </div>
                 </form>
+                <div>
+                    <a onclick="generarPDFP()" class="btn-floating waves-effect waves-light black tooltipped" data-tooltip="Generar pdf del pedido"><i class="material-icons">assignment</i>Generar pdf</a>
+                </div>
                 <div class="col s12">
                     <div class="row">
                         <div class="col l12 m6 s12 right-align">

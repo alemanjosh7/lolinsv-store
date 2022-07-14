@@ -75,40 +75,81 @@
       </div>
 
       <div class="row">
+        <!--Grafico de barras-->
         <div class="center-align col s12 m6 l6">
-          <div class="card" id="grafica1">
+          <div class="card">
             <div class="card-image waves-effect waves-block waves-light">
-              <img class="activator" src="../../resources/img/icons/grafica-productos.png">
+              <canvas id="grf_bar1"></canvas>
             </div>
             <div class="card-content">
-              <span class="card-title activator grey-text text-darken-4">5 productos más vendidos<i
+              <span class="card-title activator grey-text text-darken-4">Top 5 categorias con más productos<i
                   class="material-icons right">more_vert</i></span>
             </div>
             <div class="card-reveal">
-              <span class="card-title grey-text text-darken-4">5 productos más vendidos<i
+              <span class="card-title grey-text text-darken-4">Top 5 categorias con más productos<i
                   class="material-icons right">close</i></span>
-              <p>aqui se mostraran los 5 productos más vendidos.</p>
+              <p>Gráfica de barra que muestra la cantidad de productos que hay por categoría, se ha seleccionado un topo 5 para mayor fácilidad en la lectura</p>
             </div>
           </div>
         </div>
+        <!--Grafica de lineas-->
         <div class="center-align col s12 m6 l6">
-          <div class="card  center-align " id="grafica">
+          <div class="card">
             <div class="card-image waves-effect waves-block waves-light">
-              <img class="activator" src="../../resources/img/icons/grafica-productos.png">
+              <canvas id="grf_linea1"></canvas>
             </div>
             <div class="card-content">
-              <span class="card-title activator grey-text text-darken-4">Ventas del mes<i
+              <span class="card-title activator grey-text text-darken-4">Top 10 productos con menor cantidad de existencias<i
                   class="material-icons right">more_vert</i></span>
             </div>
             <div class="card-reveal">
-              <span class="card-title grey-text text-darken-4">Ventas del mes<i
+              <span class="card-title grey-text text-darken-4">Top 10 productos con menor cantidad de existencias<i
                   class="material-icons right">close</i></span>
-              <p>aqui se mostraran las ventas del mes</p>
+              <p>Gráfica de lineas que muestra los productos registrados, que no han sido borrados, con menor existencias en el inventario. Puede usar esta información junto con el reporte de existencias en productos para decidir si comprar más existencias o darlo de baja (Eliminarlo).</p>
+              <p>Estan ordenados de izquierda a derecha ascendente, por ende los productos más a la izquierda poseen menor cantidad</p>
+            </div>
+          </div>
+        </div>
+        <!--Grafico de dona-->
+        <div class="center-align col s12 m6 l6">
+          <div class="card">
+            <div class="card-image waves-effect waves-block waves-light">
+              <canvas id="grf_dona1"></canvas>
+            </div>
+            <div class="card-content">
+              <span class="card-title activator grey-text text-darken-4">Top 5 clientes con más compras<i
+                  class="material-icons right">more_vert</i></span>
+            </div>
+            <div class="card-reveal">
+              <span class="card-title grey-text text-darken-4">Top 5 clientes con más compras<i
+                  class="material-icons right">close</i></span>
+              <p>Gráfica de dona que muestra a los clientes con las compras más altas, si desea conocer más a detalle sobre cuantas compras ha realizado, solo colocar el mouse encima del area del cliente.</p>
+            </div>
+          </div>
+        </div>
+        <!--Grafico de pie-->
+        <div class="center-align col s12 m6 l6">
+          <div class="card">
+            <div class="card-image waves-effect waves-block waves-light">
+              <canvas id="grf_pie1"></canvas>
+            </div>
+            <div class="card-content">
+              <span class="card-title activator grey-text text-darken-4">Top 5 últimos administradores con registro en inventario<i
+                  class="material-icons right">more_vert</i></span>
+            </div>
+            <div class="card-reveal">
+              <span class="card-title grey-text text-darken-4">Top 5 últimos administradores con registro en inventario<i
+                  class="material-icons right">close</i></span>
+              <p>Gráfica de pie que muestra a los últimos 5 administradores que han añadido existencias a los productos en la pestaña de inventario durante la última semana, coloca tu mouse encima del administrador para visualizar la cantidad de existencias que añadio, recuerda que puedes visualizar con mayor detalle la información en la pestaña de <a href="inventario.html">Inventario</a>.
+              donde la información será más detalla, has uso del buscador colocando el nombre del administrador que veas en la grafica para ver los registros que ha hecho</p>
+              <p><b>En caso no se visualice la grafica es porque no se han hecho registros la última semana</b></p>
             </div>
           </div>
         </div>
       </div>
     </div>
+    <!-- Importación de librería para generar gráficos en tiempo real. Para más información https://www.chartjs.org/ -->
+    <script src="https://cdn.jsdelivr.net/npm/chart.js@3.7.0/dist/chart.min.js"></script>
   </main>
 
   <footer class="page-footer">

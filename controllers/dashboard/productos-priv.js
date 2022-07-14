@@ -311,3 +311,57 @@ document.querySelectorAll(".contnpag").forEach(el => {
         readRowsLimit(API_PRODUCTOS, limit);//Enviamos el metodo a buscar los datos y como limite 0 por ser el inicio
     });
 });
+
+//Programación para los reportes
+document.getElementById('reportePF').addEventListener('click', function () {
+    obtenerFiltro();
+});
+
+function obtenerFiltro() {
+    (async () => {
+
+        const { value: formValues } = await Swal.fire({
+            background: '#F7F0E9',
+            confirmButtonColor: 'black',
+            showDenyButton: true,
+            denyButtonText: '<i class="material-icons">cancel</i> Cancelar',
+            icon: 'info',
+            title: 'Indique el orden de filtrado: De mayor a menor cantidad o menor a mayor cantidad',
+            html:
+                `   
+                    <div>
+                    <div class="switch">
+                            <label>
+                                Mayor a menor
+                                <input type="checkbox" id="swal-check1">
+                                <span class="lever"></span>
+                                Menor a mayor
+                            </label>
+                        </div>
+                    </div>
+            `,
+            focusConfirm: false,
+            confirmButtonText:
+                '<i class="material-icons">assignment</i> Generar reporte',
+            preConfirm: () => {
+                return [
+                    document.getElementById('swal-check1')
+                ]
+            }
+        })
+
+        if (formValues) {
+            let params
+            if(formValues[0].checked){
+                params = '?filt='+2;   
+            }else{
+                params = '?filt='+1;
+            }
+            // Se establece la ruta del reporte en el servidor.
+            let url = SERVER + 'reports/dashboard/cantidadProductosPDF.php';
+            // Se abre el reporte en una nueva pestaña del navegador web.
+            window.open(url + params);
+            console.log(params);
+        }
+    })()
+}
