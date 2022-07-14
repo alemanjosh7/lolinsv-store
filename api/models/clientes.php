@@ -308,7 +308,7 @@ class Clientes extends Validator
             FROM clientes as clt 
             INNER JOIN estados AS est ON clt.fk_id_estado = est.id_estados
             WHERE id_cliente
-            NOT IN(SELECT id_cliente FROM clientes ORDER BY id_cliente LIMIT ?) ORDER BY id_cliente limit 8';
+            NOT IN(SELECT id_cliente FROM clientes ORDER BY id_cliente LIMIT ?) ORDER BY id_cliente limit 1';
         $params = array($limit);
         return Database::getRows($sql, $params);
     }

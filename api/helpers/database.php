@@ -16,7 +16,7 @@ class Database
     {
         // Credenciales para establecer la conexión con la base de datos.
         $server = 'localhost';
-        $database = 'dbLolin';
+        $database = 'dbdespcontesquivel';
         $username = 'postgres';
         $password = '1303';
 
@@ -153,6 +153,7 @@ class Database
                 break;
             default:
                 self::$error = 'Ocurrio un error en la base de datos';
+                //self::$error = $message;
         }
     }
 

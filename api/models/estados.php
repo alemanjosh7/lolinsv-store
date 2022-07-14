@@ -1,31 +1,31 @@
 <?php
 /*
-*	Clase para manejar la tabla categorias de la base de datos.
+*   Clase para manejar la tabla estados de la base de datos.
 *   Es clase hija de Validator.
 */
 class Estados extends Validator
 {
     // Declaración de atributos (propiedades).
-    private $id = null;
-    private $estado = null;
-
+    private $id_estado = null;
+    private $nombre_estado = null;
+  
     /*
     *   Métodos para validar y asignar valores de los atributos.
     */
     public function setId($value)
     {
         if ($this->validateNaturalNumber($value)) {
-            $this->id = $value;
+            $this->id_estado = $value;
             return true;
         } else {
             return false;
         }
     }
 
-    public function setName($value)
+    public function setNombreEstado($value)
     {
-        if ($this->validateAlphanumeric($value, 1, 50)) {
-            $this->estado = $value;
+        if ($this->validateString($value, 1, 100)) {
+            $this->nombre_estado = $value;
             return true;
         } else {
             return false;
@@ -37,63 +37,71 @@ class Estados extends Validator
     */
     public function getId()
     {
-        return $this->id;
+        return $this->id_estado;
     }
 
-    public function getNombre()
+    public function getNombreEstado()
     {
-        return $this->estado;
+        return $this->nombre_estado;
     }
+
+
+    /*
+    *   Metodos para consultas
+    */
+
+    //NA
 
     /*
     *   Métodos para realizar las operaciones SCRUD (search, create, read, update, delete).
     */
-    public function searchState($value)
-    {
-        $sql = '';
-        $params = array("%$value%", "%$value%");
-        return Database::getRows($sql, $params);
-    }
 
-    public function createState()
+    //Obtener estados 
+    public function obtenerEstados()
     {
-        $sql = 'INSERT INTO estados(estado)
-                VALUES(?)';
-        $params = array($this->estado);
-        return Database::executeRow($sql, $params);
-    }
-
-    public function readStates()
-    {
-        $sql = 'SELECT id_estados, estado
+        $sql = 'SELECT id_estado, nombre_estado
                 FROM estados
-                ORDER BY estado';
+                ORDER BY nombre_estado';
         $params = null;
         return Database::getRows($sql, $params);
     }
 
-    public function readAState()
+    //Obtener estado especifico
+    public function obtenerEstado()
     {
-        $sql = 'SELECT id_estados, estado
+        $sql = 'SELECT id_estado, nombre_estado
                 FROM estados
-                WHERE id_estados = ?';
+                WHERE id_estado = ?';
         $params = array($this->id_estado);
         return Database::getRow($sql, $params);
     }
+    
 
-    public function updateCategory()
+    //Crear estado
+    public function crearEstado()
     {
-        $sql = 'UPDATE estados
-                SET estado = ?';
-        $params = array($this->estado);
+        $sql = 'INSERT INTO estados(nombre_estado)
+                VALUES(?)';
+        $params = array($this->nombre_estado);
         return Database::executeRow($sql, $params);
     }
 
-    public function deleteCategory()
+    //Actualizar estado
+        public function actualizarEstado()
+    {
+        $sql = 'UPDATE estados
+                SET nombre_estado = ?';
+        $params = array($this->nombre_estado);
+        return Database::executeRow($sql, $params);
+    }
+
+    //Eliminar estado
+    public function eliminarEstado()
     {
         $sql = 'DELETE FROM estados
                 WHERE id_estados = ?';
         $params = array($this->id_estado);
         return Database::executeRow($sql, $params);
     }
+
 }
