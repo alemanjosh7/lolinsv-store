@@ -110,27 +110,6 @@ class Validator
     }
 
     /*
-    *   Método para validar un archivo 
-    *
-    *   Parámetros: $file (archivo de un formulario)
-    *   
-    *   Retorno: booleano (true si el archivo es correcto o false en caso contrario).
-    */
-    public function validateFile($file)
-    {
-        // Se verifica si el archivo existe, de lo contrario se establece el mensaje de error correspondiente.
-        if ($file) {
-            $extension = pathinfo($file['name'], PATHINFO_EXTENSION);
-            // Se establece un nombre único para el archivo.
-            $this->fileName = uniqid() . '.' . $extension;
-            return true;
-        } else {
-            $this->fileError = 'El archivo  no existe';
-            return false;
-        }
-    }
-
-    /*
     *   Método para validar un correo electrónico.
     *
     *   Parámetros: $value (dato a validar).
@@ -172,7 +151,7 @@ class Validator
     public function validateString($value, $minimum, $maximum)
     {
         // Se verifica el contenido y la longitud de acuerdo con la base de datos.
-        if (preg_match('/^[a-zA-Z0-9ñÑáÁéÉíÍóÓúÚ\s\,\;\.\#\-\_\"]{' . $minimum . ',' . $maximum . '}$/', $value)) {
+        if (preg_match('/^[a-zA-Z0-9ñÑáÁéÉíÍóÓúÚ\s\,\;\.]{' . $minimum . ',' . $maximum . '}$/', $value)) {
             return true;
         } else {
             return false;
@@ -265,23 +244,6 @@ class Validator
     {
         // Se verifica que el número tenga el formato 00000000-0.
         if (preg_match('/^[0-9]{8}[-][0-9]{1}$/', $value)) {
-            return true;
-        } else {
-            return false;
-        }
-    }
-
-    /*
-    *   Método para validar el formato del DUI (Documento Único de Identidad).
-    *
-    *   Parámetros: $value (dato a validar).
-    *   
-    *   Retorno: booleano (true si el valor es correcto o false en caso contrario).
-    */
-    public function validateNIT($value)
-    {
-        // Se verifica que el número tenga el formato 00000000-0.
-        if (preg_match('/^[0-9]{4}[-][0-9]{6}[-][0-9]{3}[-][0-9]{1}$/', $value)) {
             return true;
         } else {
             return false;
@@ -399,13 +361,5 @@ class Validator
             $this->fileError = 'El archivo no existe';
             return false;
         }
-    }
-    /*
-        Metodo para obtener el tamaño del archivo seleccionado legible para los humanos
-    */
-    function validateSize($bytes, $decimals = 2) {
-        $factor = floor((strlen($bytes) - 1) / 3);
-        if ($factor > 0) $sz = 'KMGT';
-        return sprintf("%.{$decimals}f", $bytes / pow(1024, $factor)) . @$sz[$factor - 1] . 'B';
     }
 }

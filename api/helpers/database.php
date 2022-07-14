@@ -16,7 +16,7 @@ class Database
     {
         // Credenciales para establecer la conexión con la base de datos.
         $server = 'localhost';
-        $database = 'dbdespcontesquivel';
+        $database = 'dbLolin';
         $username = 'postgres';
         $password = '1303';
 
@@ -143,6 +143,7 @@ class Database
                 self::$error = 'Dato duplicado, no se puede guardar';
                 break;
             case '42P01':
+                self::$error = $message;
                 self::$error = 'Nombre de tabla desconocido';
                 break;
             case '23503':
@@ -153,7 +154,6 @@ class Database
                 break;
             default:
                 self::$error = 'Ocurrio un error en la base de datos';
-                //self::$error = $message;
         }
     }
 
