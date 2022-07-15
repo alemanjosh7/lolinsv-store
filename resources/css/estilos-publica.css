@@ -3757,3 +3757,90 @@ a {
 .calificacion_cont:hover span {
   color: green;
 }
+
+/*Pedidos realizados*/
+.entregado {
+  float: right;
+  background: linear-gradient(90deg,
+      #df5333 50%,
+      rgba(255, 158, 134, 0) 102.37%);
+  border-radius: 15px;
+  color: #000;
+  height: 40px;
+  width: auto;
+  font-weight: bold;
+  margin-top: 0px;
+  margin-bottom: 5px;
+  border-top: 4.5px solid black;
+  border-left: 4.5px solid black;
+}
+
+.pendiente {
+  float: right;
+  background: linear-gradient(90deg,
+      #df5333 50%,
+      rgba(255, 158, 134, 0) 102.37%);
+  border-radius: 15px;
+  color: #000;
+  height: 40px;
+  width: auto;
+  font-weight: bold;
+  margin-top: 0px;
+  margin-bottom: 5px;
+  border-top: 4.5px solid black;
+  border-left: 4.5px solid black;
+}
+
+/*Estilos de las cards en general*/
+#tarjetas-privado {
+  width: 180px;
+  background: linear-gradient(145.17deg,
+      rgba(235, 158, 158, 0) 49.29%,
+      rgba(235, 158, 158, 0.703125) 61.08%,
+      #eb9e9e 61.08%);
+  border: 2px solid #000000;
+}
+
+.imagen-pedidos img {
+  height: 130px;
+  border: 2px solid #000000;
+  padding: 8px;
+}
+
+.botones {
+  float: right;
+}
+
+.card-content {
+  font-weight: bold;
+  text-align: center;
+}
+
+.card-title {
+  text-align: center;
+}
+
+#pedidos-row {
+  padding-left: 40px;
+}
+
+#pedidos-row2 {
+  padding-left: 40px;
+}
+
+.buscador {
+  display: flex;
+  align-items: center;
+  justify-content: space-evenly;
+  width: 230px;
+}
+
+/*Pedidos personalizados Yesenia*/
+.pedidosY #modalrestablecer{
+  margin-top: 5%;
+}
+
+/*Pedidos personalizados Yesenia*/
+.pedidosY #cancelarPIN{
+  margin-top: 5%;
+}

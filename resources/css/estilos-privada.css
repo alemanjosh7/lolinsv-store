@@ -2208,6 +2208,7 @@ border-bottom: 2px solid black;*/
   background-color: whitesmoke;
 }
 
+
 .clientes-J .fila-botones{
   margin-top: 0 !important;
   position: relative;
@@ -2568,4 +2569,77 @@ border-bottom: 2px solid black;*/
 /* icon prefix focus color */
 .input-field .prefix.active {
   color: #000;
+}
+
+
+/*Select*/
+.select-wrapper input.select-dropdown {
+  margin-top: 10px !important;
+  background-color: #fff !important;
+  border: 1px solid #aaa !important;
+  border-radius: .3em;
+  font-size: 16px;
+  font-family: 'Verdana', sans-serif;
+  font-weight: 400;
+  color: #444;
+  padding-left: .8em;
+}
+
+/*Select cuando el mouse esta por encima*/
+.select-wrapper input.select-dropdown:hover {
+  border-color: #DF5333;
+  box-shadow: 0 0 1px 3px rgba(250, 93, 3, .8);
+  transition: .01s ease all;
+}
+
+/*Select al estar en focus*/
+.select-wrapper input.select-dropdown:focus {
+  border-color: #DF5333;
+  box-shadow: 0 0 1px 3px rgba(250, 93, 3, .8);
+  box-shadow: 0 0 0 3px -moz-mac-focusring;
+  color: #222;
+  outline: none;
+}
+
+/*Felcha del select al select estar en focus*/
+.select-wrapper input.select-dropdown:focus~.caret {
+  fill: rgba(250, 93, 3, .8);
+}
+
+/*Letras del las opciones del select*/
+.dropdown-content li>span {
+  color: #000;
+}
+
+/*Opcion del select seleccionada*/
+.select-dropdown.dropdown-content li.selected {
+  background-color: #DF5333 !important;
+}
+
+/*contenido del select*/
+.dropdown-content {
+  margin: 100px !important;
+  top: -50px;
+  max-height: 300px;
+}
+
+/*flecha del select*/
+.select-wrapper .caret {
+  position: absolute;
+  right: 0;
+  top: 0;
+  bottom: 0;
+  margin: auto 0;
+  z-index: 1;
+  fill: rgba(0, 0, 0, 0.87);
+}
+
+/*flecha del select al estar el mouse encima del select*/
+.select-wrapper input.select-dropdown:hover~.caret {
+  fill: rgba(250, 93, 3, .8);
+}
+/*Jesús reportes*/
+/*Estilo del boton reporte dentro de pedidos personalizados*/
+.pedidosY .reporte{
+  margin-left: 25px;
 }
