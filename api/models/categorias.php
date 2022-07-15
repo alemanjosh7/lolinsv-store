@@ -120,4 +120,16 @@ class Categorias extends Validator
         return Database::getRows($sql, $params);
     }
     //Obtener la cantidad de producto por categoria
+    //Obtener la cantidad de producto por categoria
+    public function categoriasConMasItems()
+    {
+        $sql = 'select ca.nombre_producto, cast(count(pro.fk_id_producto) as decimal) total
+            from detallepedidos_establecidos as pro 
+            right join productos as ca ON pro.fk_id_producto = ca.id_producto
+            inner join pedidos_establecidos AS pes ON pro.fk_id_pedidos_establecidos = pes.id_pedidos_establecidos
+            WHERE pes.fk_id_estado = 2
+            group by ca.nombre_producto order by total desc limit 5';
+        $params = null;
+        return Database::getRows($sql, $params);
+    }
 }

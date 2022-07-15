@@ -21,7 +21,7 @@ if (isset($_GET['filt']) && is_numeric($_GET['filt'])) {
         $pdf->cell(50, 10, utf8_decode('Valoración global (Clientes)'), 1, 0, 'C', 1); //Valoración del producto
         $pdf->cell(42, 10, utf8_decode('Cantidad'), 1, 1, 'C', 1); //Cantidad
         // Se establece un color de relleno para los encabezados.
-        $pdf->setFillColor(255, 226, 205, 1);
+        $pdf->setFillColor(255, 190, 190, 1);
         // Se establece la fuente para los datos de los productos.
         $pdf->setFont('Times', '', 11);
         $pdf->Ln(5); //Espacio vertical
@@ -42,7 +42,7 @@ if (isset($_GET['filt']) && is_numeric($_GET['filt'])) {
                 $pdf->cell(50, 10, utf8_decode('Valoración global (Clientes)'), 1, 0, 'C', 1); //Valoración del producto
                 $pdf->cell(42, 10, utf8_decode('Cantidad'), 1, 1, 'C', 1); //Cantidad
                 // Se establece un color de relleno para los encabezados.
-                $pdf->setFillColor(255, 226, 205, 1);
+                $pdf->setFillColor(255, 190, 190, 1);
                 // Se establece la fuente para los datos de los productos.
                 $pdf->setFont('Times', '', 11);
                 $pdf->Ln(5); //Espacio vertical
@@ -50,7 +50,7 @@ if (isset($_GET['filt']) && is_numeric($_GET['filt'])) {
             }
             $pdf->SetWidths(array(30, 50, 35, 50, 42)); //Seteamos el ancho de las celdas
             $pdf->setHeight(10);
-            $pdf->Row(array($rowProducto['id_producto'], utf8_encode($rowProducto['nombre_producto']), '$' . $rowProducto['precio_producto'], obtenerVal($rowProducto['valoraciones']), $rowProducto['cantidad']));
+            $pdf->Row(array($rowProducto['id_producto'], utf8_decode($rowProducto['nombre_producto']), '$' . $rowProducto['precio_producto'], obtenerVal($rowProducto['valoraciones']), $rowProducto['cantidad']));
             $pdf->Ln(5); //Espacio vertical
         }
     } else {

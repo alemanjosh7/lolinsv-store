@@ -15,6 +15,29 @@ if (isset($_GET['fechai']) && isset($_GET['fechaf'])) {
         // Se verifica si existen registros (productos) para mostrar, de lo contrario se imprime un mensaje.
         if ($dataPedido = $pedido->reportPedidosFX($_GET['fechai'],$_GET['fechaf'])) {
             // Se establece un color de relleno para los encabezados.
+            // Se establece un color de relleno para los encabezados.
+            $pdf->setFillColor(255, 107, 107, 1); //Color de relleno
+            // Se establece la fuente para los encabezados.
+            //ESPACIO ENTRE CELDA
+            $pdf->cell(60, 10, ' ', 0, 0, 'C');
+            $pdf->setFont('Times', 'B', 11);
+            $pdf->cell(35, 10, utf8_decode('Fecha inicial: '), 1, 0, 'C', 1);
+            $pdf->setFillColor(252, 190, 190, 1);
+            // Se establece la fuente para los encabezados.
+            $pdf->setFont('Times', '', 11);
+            // Se imprimen las celdas con los encabezados.
+            $pdf->cell(40, 10, utf8_decode($_GET['fechai']), 1, 0, 'C', 1);
+            // Se establece un color de relleno para los encabezados.
+            $pdf->setFillColor(255, 107, 107, 1); //Color de relleno
+            //ESPACIO ENTRE CELDA
+            $pdf->cell(3, 10, ' ', 0, 0, 'C');
+            $pdf->cell(35, 10, utf8_decode('Fecha final:'), 1, 0, 'C', 1);
+            $pdf->setFillColor(252, 190, 190, 1);
+            // Se establece la fuente para los encabezados.
+            $pdf->setFont('Times', '', 11);
+            // Se imprimen las celdas con los encabezados.
+            $pdf->cell(40, 10, utf8_decode($_GET['fechaf']), 1, 1, 'C', 1);
+            $pdf->Ln(20);
             $pdf->setFillColor(255,107,107,1);//Color de relleno
             // Se establece la fuente para los encabezados.
             $pdf->setFont('Times', 'B', 11);
@@ -70,7 +93,7 @@ if (isset($_GET['fechai']) && isset($_GET['fechaf'])) {
                 //Aumentamos el contador
                 $cont++;
                 //Evaluamos si el contador esta en 4 que es él número de columnas para cambio  de página
-                if($cont > 4){
+                if($cont > 3){
                     //Si lo es colocamos de vuelta el header
                     $pdf->setFillColor(255,107,107,1);//Color de relleno
                     // Se establece la fuente para los encabezados.
@@ -93,7 +116,12 @@ if (isset($_GET['fechai']) && isset($_GET['fechaf'])) {
                 // Se imprimen las celdas con los datos de los productos.
                 $pdf->cell(25, 30, utf8_decode($rowPedido['id_pedidos_personalizado']), 1, 0, 'C', 1);
                 $pdf->cell(75, 30, utf8_decode($rowPedido['descripcion_pedidopersonal']), 1, 0, 'C', 1);
-                $pdf->cell(40, 30, $pdf->Image("../../images/pedidosper/".$rowPedido['imagenejemplo_pedidopersonal'], $pdf->GetX(), $pdf->GetY(),40,30),1,0,'C');
+                if (file_exists("../../images/pedidosper/" . $rowPedido['imagenejemplo_pedidopersonal'])) {
+
+                    $pdf->cell(40, 30, $pdf->Image("../../images/pedidosper/" . $rowPedido['imagenejemplo_pedidopersonal'], $pdf->GetX(), $pdf->GetY(), 40, 30), 1, 0, 'C');
+                } else {
+                    $pdf->cell(40, 30, $pdf->Image("../../images/imgerror.png", $pdf->GetX(), $pdf->GetY(), 40, 30), 1, 0, 'C');
+                }
                 $pdf->cell(50, 30, utf8_decode($rowPedido['nombre_cliente'].$rowPedido['apellido_cliente']), 1, 0, 'C', 1);
                 $pdf->cell(25, 30, utf8_decode($rowPedido['tamano']), 1, 0, 'C', 1);
                 $pdf->cell(25, 30, utf8_decode($rowPedido['estado']), 1, 0, 'C', 1);

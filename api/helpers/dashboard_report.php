@@ -248,6 +248,12 @@ class Report extends FPDF
             $y = $this->GetY();
             //Draw the border
             $this->Rect($x, $y, $w, $h);
+            /*if(str_starts_with($data[$i],'$pdf->Image(')){
+                //Print the text
+                $this->MultiCell($w, $this->heights, $data[$i], 1, $a, 0);
+            }else{
+                 
+            }*/
             //Print the text
             $this->MultiCell($w, $this->heights, $data[$i], 1, $a, 1);
             //Put the position to the right of the cell

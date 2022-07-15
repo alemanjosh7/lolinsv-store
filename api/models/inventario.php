@@ -204,4 +204,15 @@ class Inventario extends Validator
         $params = null;
         return Database::getRows($sql, $params);
     }
+    //Funciones para los reportes
+    public function reporteIFX($fechai, $fechaf)
+    {
+        $sql = 'SELECT inv.id_inventario, inv.cantidada, inv.cantidadn, inv.modificado, inv.fecha,  inv.fk_id_producto, adm.nombre_admin, adm.apellido_admin, prd.nombre_producto
+        FROM inventario AS inv
+        INNER JOIN admins AS adm ON inv.fk_id_admin = adm.id_admin
+        INNER JOIN productos AS prd ON inv.fk_id_producto = prd.id_producto
+        WHERE inv.fecha>= ? AND inv.fecha<=?';
+        $params = array($fechai, $fechaf);
+        return Database::getRows($sql, $params);
+    }
 }

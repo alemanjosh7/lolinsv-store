@@ -130,7 +130,11 @@ if (isset($_GET['id'])) {
             $pdf->Ln(10); //Espacio vertical
             //Espaciado a la derecha
             $pdf->SetX(15);
-            $pdf->Cell(180,180,$pdf->Image("../../images/pedidosper/" . $rowPedido['imagenejemplo_pedidopersonal'], $pdf->GetX(), $pdf->GetY(), 180, 180));
+            if (file_exists("../../images/pedidosper/" . $rowPedido['imagenejemplo_pedidopersonal'])) {
+                $pdf->Cell(180,180,$pdf->Image("../../images/pedidosper/" . $rowPedido['imagenejemplo_pedidopersonal'], $pdf->GetX(), $pdf->GetY(), 180, 180));
+            } else {
+                $pdf->cell(205, 10, utf8_decode('No se pudo encontrar la imagen de referencia'), 1, 1, 'C', 1);
+            }
             //Imprimimos el pdf
             $pdf->output('I', 'Reporte del pedido personalizado.pdf', true);
         }else{

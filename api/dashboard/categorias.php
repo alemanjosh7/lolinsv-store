@@ -95,6 +95,16 @@ if (isset($_GET['action'])) {
                     $result['exception'] = Database::getException();
                 }
                 break;
+                    //Metodo para obtener los números de las categorias por producto 
+            case 'categoriasConMasItems':
+                if ($result['dataset'] = $categorias->categoriasConMasItems()) {
+                    $result['status'] = 1;
+                } elseif (Database::getException()) {
+                    $result['exception'] = Database::getException();
+                } else {
+                    $result['exception'] = 'No hay datos registrados';
+                }
+                break;
             default:
                 $result['exception'] = 'Acción no disponible fuera de la sesión';
         }

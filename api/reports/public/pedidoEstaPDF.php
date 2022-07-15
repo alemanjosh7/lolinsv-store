@@ -165,7 +165,11 @@ if (isset($_GET['id'])) {
                     }
                     // Se imprimen las celdas con los datos del detalle
                     $pdf->cell(50, 30, utf8_decode($rowDetalle['nombre_producto']), 1, 0, 'C', 1);
-                    $pdf->cell(40, 30, $pdf->Image("../../images/productos/" . $rowDetalle['imagen_producto'], $pdf->GetX(), $pdf->GetY(), 40, 30), 1, 0, 'C');
+                    if (file_exists("../../images/productos/" . $rowDetalle['imagen_producto'])) {
+                        $pdf->cell(40, 30, $pdf->Image("../../images/productos/" . $rowDetalle['imagen_producto'], $pdf->GetX(), $pdf->GetY(), 40, 30), 1, 0, 'C');
+                    } else {
+                        $pdf->cell(40, 30, $pdf->Image("../../images/imgerror.png" . $rowDetalle['imagen_producto'], $pdf->GetX(), $pdf->GetY(), 40, 30), 1, 0, 'C');
+                    }
                     //Se preparan los encabezados para el detalle
                     $pdf->cell(20, 30, utf8_decode($rowDetalle['cantidad_detallep']), 1, 0, 'C', 1);
                     //Se llenan las celdas con la información del readPedido
