@@ -3,12 +3,14 @@ const API_ADMINS = SERVER + 'dashboard/admins.php?action=';
 const API_GLBVAR = SERVER + 'variablesgb.php?action=';
 const API_PEDIDOE = SERVER + 'dashboard/pendientesper.php?action=';
 
-var pedido_est = {dismissible: false,
+var pedido_est = {
+    dismissible: false,
 
     onCloseEnd: function () {
         // Se restauran los elementos del formulario.
-        document.getElementById('form-pedidos').reset();
-    }}
+        //document.getElementById('form-pedidos').reset();
+    }
+}
 
 // Método manejador de eventos que se ejecuta cuando el documento ha cargado.
 document.addEventListener('DOMContentLoaded', function () {
@@ -16,7 +18,7 @@ document.addEventListener('DOMContentLoaded', function () {
     comprobarAdmins();//Comprobamos si hay admins
     predecirAdelante();//
     // Se llama a la función que obtiene los registros para llenar la tabla. Se encuentra en el archivo components.js
-    readRowsLimit(API_PEDIDOE,0);
+    readRowsLimit(API_PEDIDOE, 0);
     // Se inicializa el componente Modal para que funcionen las cajas de diálogo.
     M.Modal.init(document.querySelectorAll('.modal'), pedido_est);
     //Ocultamos el boton de atras para la páginación
@@ -125,9 +127,9 @@ document.querySelectorAll(".contnpag").forEach(el => {
         let limit = (number * 8) - 8;
         //Se ejecuta la recarga de datos enviando la variable de topAct
         //Ejecutamos la función para predecir si habrá un boton de adelante
-        readRowsLimit(API_PEDIDOE 
-, limit);//Enviamos el metodo a buscar los datos y como limite 0 por ser el inicio
-    }); 
+        readRowsLimit(API_PEDIDOE
+            , limit);//Enviamos el metodo a buscar los datos y como limite 0 por ser el inicio
+    });
 });
 
 //Función para eliminar un pedido
@@ -193,7 +195,7 @@ function fillTable(dataset) {
                             <a onclick= "dePedP(${row.id_pedidos_personalizado})"  class="modal-trigger btn-floating waves-effect waves-light red" id=""><i
                                     class="material-icons">delete</i></a>
                             <!--Botón aceptado-->
-                            <a onclick= "dePediP(${row.id_pedidos_personalizado})"   class="waves-effect btn-floating waves-light btn modal-trigger green" href="#modalaceptar"><i
+                            <a onclick= "dePediP(${row.id_pedidos_personalizado})"   class="waves-effect btn-floating waves-light btn green"><i
                                     class="material-icons">check</i></a>
                         </div>
                         <!--Contenido de la tarjeta-->
@@ -209,16 +211,16 @@ function fillTable(dataset) {
                 </div>
         `;
     });
-     // Se agregan las filas al cuerpo de la tabla mediante su id para mostrar los registros.
-     document.getElementById('pedidos-row').innerHTML = content;
-     // Se inicializa el componente Material Box para que funcione el efecto Lightbox.
-     M.Materialbox.init(document.querySelectorAll('.materialboxed'));
-     // Se inicializa el componente Tooltip para que funcionen las sugerencias textuales.
-     M.Tooltip.init(document.querySelectorAll('.tooltipped'));
- }
+    // Se agregan las filas al cuerpo de la tabla mediante su id para mostrar los registros.
+    document.getElementById('pedidos-row').innerHTML = content;
+    // Se inicializa el componente Material Box para que funcione el efecto Lightbox.
+    M.Materialbox.init(document.querySelectorAll('.materialboxed'));
+    // Se inicializa el componente Tooltip para que funcionen las sugerencias textuales.
+    M.Tooltip.init(document.querySelectorAll('.tooltipped'));
+}
 
 
-function noDatos(){
+function noDatos() {
     let h = document.createElement("h3");
     let text = document.createTextNode("0 resultados");
     h.appendChild(text);
@@ -226,9 +228,9 @@ function noDatos(){
     document.getElementById('pedidos-row').append(h);
 }
 
-function dePediP(id){
+function dePediP(id) {
     // Se define un objeto con los datos del registro seleccionado.
-    const form = new FormData(); 
+    const form = new FormData();
     form.append('id_pedidos_personalizado', id);
     fetch(API_PEDIDOE + 'readPedido', {
         method: 'post',
@@ -239,17 +241,18 @@ function dePediP(id){
             request.json().then(function (response) {
                 // Se comprueba si existe una sesión, de lo contrario se revisa si la respuesta es satisfactoria.
                 if (response.status) {
-                    let url = SERVER+ 'images/pedidosper/'+response.dataset.imagenejemplo_pedidopersonal; 
+                    let url = SERVER + 'images/pedidosper/' + response.dataset.imagenejemplo_pedidopersonal;
                     //Se llenan los campos
-                    IMAGENMODAL.setAttribute('src',url)
-                    INPUTDESCRIP.value=response.dataset.descripcionlugar_entrega;
-                    INPUTAPELLIDO.value=response.dataset.apellido_cliente;
-                    INPUTNOMBRE.value=response.dataset.nombre_cliente;
-                    INPUTFECHA.value=response.dataset.fecha_pedidopersonal;
-                    INPUTPEDIDO.value=response.dataset.descripcion_pedidopersonal;
+                    IMAGENMODAL.setAttribute('src', url)
+                    INPUTDESCRIP.value = response.dataset.descripcionlugar_entrega;
+                    INPUTAPELLIDO.value = response.dataset.apellido_cliente;
+                    INPUTNOMBRE.value = response.dataset.nombre_cliente;
+                    INPUTFECHA.value = response.dataset.fecha_pedidopersonal;
+                    INPUTPEDIDO.value = response.dataset.descripcion_pedidopersonal;
                     document.getElementById('direccion').value = response.dataset.direccion_cliente;
                     document.getElementById('input-tamano').value = response.dataset.tamano;
-                    INPUTID.value=id;
+                    INPUTID.value = id;
+                    document.getElementById('id_pedidov').value = id;
                     M.updateTextFields();
                     M.textareaAutoResize(INPUTDESCRIP);
                     M.textareaAutoResize(INPUTPEDIDO);
@@ -277,20 +280,81 @@ function dePedP(id) {
 }
 
 //Método del buscador dinámico
-BUSCADOR_AMI.addEventListener('keyup',function(e){
-    if(BUSCADOR_AMI.value == ''){
-    readRowsLimit(API_PEDIDOE, 0);//Enviamos el metodo a buscar los datos y como limite 0 por ser el inicio
-    }else{
-    // Se llama a la función que realiza la búsqueda. Se encuentra en el archivo components.js
-    dynamicSearcher2(API_PEDIDOE, 'buscador_pedido');
+BUSCADOR_AMI.addEventListener('keyup', function (e) {
+    if (BUSCADOR_AMI.value == '') {
+        readRowsLimit(API_PEDIDOE, 0);//Enviamos el metodo a buscar los datos y como limite 0 por ser el inicio
+    } else {
+        // Se llama a la función que realiza la búsqueda. Se encuentra en el archivo components.js
+        dynamicSearcher2(API_PEDIDOE, 'buscador_pedido');
     }
 
 });
 
-BOTONACEPTAR.addEventListener('click',function(){
+BOTONACEPTAR.addEventListener('click', function () {
     saveRowL(API_PEDIDOE, 'cambiarAceptado', 'form-pedidos', 'modalaceptar', 0);
 });
 
-BOTONNEGAR.addEventListener('click',function(){
+BOTONNEGAR.addEventListener('click', function () {
     saveRowL(API_PEDIDOE, 'cambiarNegar', 'form-pedidos', 'modalaceptar', 0);
 });
+
+//Programación para los reportes
+document.getElementById('reportePF').addEventListener('click', function () {
+    obtenerFechasR();
+    M.updateTextFields();
+});
+
+function obtenerFechasR() {
+    (async () => {
+
+        const { value: formValues } = await Swal.fire({
+            background: '#F7F0E9',
+            confirmButtonColor: 'black',
+            showDenyButton: true,
+            denyButtonText: '<i class="material-icons">cancel</i> Cancelar',
+            icon: 'info',
+            title: 'Indique las fechas para el reporte, en formato YY-M-D',
+            html:
+                `   
+                <div class="input-field">
+                    <label for="swal-input1"><b>Fecha Inicial</b></label>
+                    <input type="date" placeholder="Fecha inicial" id="swal-input1" class="center">
+                </div>
+                <div class="input-field">
+                    <label for="swal-input2"><b>Fecha Final</b></label>
+                    <input type="date" placeholder="Fecha Final" id="swal-input2" class="center">
+                </div>
+            `,
+            focusConfirm: false,
+            confirmButtonText:
+                '<i class="material-icons">assignment</i> Generar reporte',
+            preConfirm: () => {
+                return [
+                    document.getElementById('swal-input1').value,
+                    document.getElementById('swal-input2').value
+                ]
+            }
+        })
+
+        if (formValues) {
+            //Swal.fire(JSON.stringify(formValues[0]))
+            let params = '?fechai=' + formValues[0] + '&fechaf=' + formValues[1];
+            // Se establece la ruta del reporte en el servidor.
+            let url = SERVER + 'reports/dashboard/pedidosPerFXV1.php';
+            // Se abre el reporte en una nueva pestaña del navegador web.
+            window.open(url + params);
+            console.log(params);
+        }
+
+    })()
+}
+
+//Metodos para generar el pdf
+function generarPDFP() {
+    //Obtenemos el id del pedido
+    let params = '?id=' + INPUTID.value;
+    // Se establece la ruta del reporte en el servidor.
+    let url = SERVER + 'reports/dashboard/pedidoPerPDF.php';
+    // Se abre el reporte en una nueva pestaña del navegador web.
+    window.open(url + params);
+}

@@ -394,3 +394,49 @@ function noDatos(){
     COMCONT.innerHTML = "";
     COMCONT.append(h);
 }
+
+//Funciones  para reportes
+function obtenerFechasR() {
+    M.updateTextFields();
+    (async () => {
+
+        const { value: formValues } = await Swal.fire({
+            background: '#F7F0E9',
+            confirmButtonColor: 'black',
+            showDenyButton: true,
+            denyButtonText: '<i class="material-icons">cancel</i> Cancelar',
+            icon: 'info',
+            title: 'Indique las fechas para el reporte, en formato YY-M-D',
+            html:
+                `   
+                <div class="input-field">
+                    <label for="swal-input1"><b>Fecha Inicial</b></label>
+                    <input type="date" placeholder="Fecha inicial" id="swal-input1" class="center">
+                </div>
+                <div class="input-field">
+                    <label for="swal-input2"><b>Fecha Final</b></label>
+                    <input type="date" placeholder="Fecha Final" id="swal-input2" class="center">
+                </div>
+            `,
+            focusConfirm: false,
+            confirmButtonText:
+                '<i class="material-icons">assignment</i> Generar reporte',
+            preConfirm: () => {
+                return [
+                    document.getElementById('swal-input1').value,
+                    document.getElementById('swal-input2').value
+                ]
+            }
+        })
+
+        if (formValues) {
+            //Swal.fire(JSON.stringify(formValues[0]))
+            let params = '?fechai=' + formValues[0] + '&fechaf=' + formValues[1];
+            // Se establece la ruta del reporte en el servidor.
+            let url = SERVER + 'reports/dashboard/inventarioFx.php';
+            // Se abre el reporte en una nueva pestaña del navegador web.
+            window.open(url + params);
+            console.log(params);
+        }
+    })()
+}

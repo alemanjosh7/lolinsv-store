@@ -87,6 +87,12 @@ btnactperfil.addEventListener("click", function () {
                             btnactperfil.classList.remove("disabled");
                             enviarConfirmacionCompra(id_pedidoEsta);
                             sweetAlert(1, response.message + '. El número de pedido es: ' + id_pedidoEsta + ' por favor guardelo', 'index.html');
+                            //Obtenemos el id del pedido
+                            let paramspdf = '?id='+id_pedidoEsta;
+                            // Se establece la ruta del reporte en el servidor.
+                            let urlpdf = SERVER + 'reports/public/pedidoEstaPDF.php';
+                            // Se abre el reporte en una nueva pestaña del navegador web.
+                            window.open(urlpdf + paramspdf);
                         } else {
                             sweetAlert(2, response.exception, null);
                             PRELOADER.style.display = 'none';
