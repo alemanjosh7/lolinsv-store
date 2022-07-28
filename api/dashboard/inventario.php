@@ -197,16 +197,6 @@ if (isset($_GET['action'])) {
                     $result['exception'] = 'No se pudo obtener la información necesaria para el saludo';
                 }
                 break;
-            //Metodos para graficas
-            case 'adminsConMasRegistros':
-                if ($result['dataset'] = $inventario->adminsConMasRegistros()) {
-                    $result['status'] = 1;
-                } elseif (Database::getException()) {
-                    $result['exception'] = Database::getException();
-                } else {
-                    $result['exception'] = 'No se pudo obtener la información necesaria para el grafico';
-                }
-                break;
             default:
                 $result['exception'] = 'Acción no disponible dentro de la sesión';
         }
@@ -277,3 +267,4 @@ if (isset($_GET['action'])) {
 } else {
     print(json_encode('Recurso no disponible'));
 }
+?>

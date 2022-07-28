@@ -7,8 +7,8 @@ var pedido_est = {dismissible: false,
 
     onCloseEnd: function () {
         // Se restauran los elementos del formulario.
-        //document.getElementById('form-pedidos').reset();
-        //BOTONCONFIRMAR.classList.remove('disabled');//Activando el boton
+        document.getElementById('form-pedidos').reset();
+        BOTONCONFIRMAR.classList.remove('disabled');//Activando el boton
         TABLEPEDIDO.innerHTML = "";//Vacienado la tabla en caso esté llena
     }}
 
@@ -191,9 +191,9 @@ function fillTable(dataset) {
             <div class="card" id="tarjetas-privado">
                 <div class="botones">
                 <!--Botón eliminar-->
-                    <a onclick= "deEntP(${row.id_pedidos_establecidos})" class="btn-floating waves-effect waves-light red"
+                    <a onclick= "deEntP(${row.id_pedidos_establecidos})" class="modal-trigger btn-floating waves-effect waves-light red"
                     id=""><i class="material-icons">delete</i></a>
-                    <a onclick= "deEntPe(${row.id_pedidos_establecidos})" class="btn-floating waves-effect waves-light grey"
+                    <a onclick= "deEntPe(${row.id_pedidos_establecidos})" class="modal-trigger btn-floating waves-effect waves-light grey" href="#modalver"
                     id=""><i class="material-icons">visibility</i></a>
                 </div>
                 <!--Contenido-->
@@ -329,62 +329,3 @@ BUSCADOR_AMI.addEventListener('keyup',function(e){
     }
 });
 
-//Metodos para generar el pdf
-function generarPDFP(){
-    //Obtenemos el id del pedido
-    let params = '?id='+INPUTID.value;
-    // Se establece la ruta del reporte en el servidor.
-    let url = SERVER + 'reports/dashboard/pedidoEstaPDF.php';
-    // Se abre el reporte en una nueva pestaña del navegador web.
-    window.open(url + params);
-}
-
-//Programación para los reportes
-document.getElementById('reportePF').addEventListener('click', function () {
-    obtenerFechasR();
-    M.updateTextFields();
-});
-
-function obtenerFechasR() {
-    (async () => {
-
-        const { value: formValues } = await Swal.fire({
-            background: '#F7F0E9',
-            confirmButtonColor: 'black',
-            showDenyButton: true,
-            denyButtonText: '<i class="material-icons">cancel</i> Cancelar',
-            icon: 'info',
-            title: 'Indique las fechas para el reporte, en formato YY-M-D',
-            html:
-                `   
-                <div class="input-field">
-                    <label for="swal-input1"><b>Fecha Inicial</b></label>
-                    <input type="date" placeholder="Fecha inicial" id="swal-input1" class="center">
-                </div>
-                <div class="input-field">
-                    <label for="swal-input2"><b>Fecha Final</b></label>
-                    <input type="date" placeholder="Fecha Final" id="swal-input2" class="center">
-                </div>
-            `,
-            focusConfirm: false,
-            confirmButtonText:
-                '<i class="material-icons">assignment</i> Generar reporte',
-            preConfirm: () => {
-                return [
-                    document.getElementById('swal-input1').value,
-                    document.getElementById('swal-input2').value
-                ]
-            }
-        })
-
-        if (formValues) {
-            //Swal.fire(JSON.stringify(formValues[0]))
-            let params = '?fechai=' + formValues[0] + '&fechaf=' + formValues[1];
-            // Se establece la ruta del reporte en el servidor.
-            let url = SERVER + 'reports/dashboard/pedidosEstaFX.php';
-            // Se abre el reporte en una nueva pestaña del navegador web.
-            window.open(url + params);
-            console.log(params);
-        }
-    })()
-}

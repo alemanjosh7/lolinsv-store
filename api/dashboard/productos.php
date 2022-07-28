@@ -199,22 +199,6 @@ if (isset($_GET['action'])) {
                     $result['exception'] = 'No hay datos disponibles';
                 }
                 break;
-                //Consulta para grafica obteniendo los productos con menor cantidad
-            case 'productosCantidadM':
-                if ($result['dataset'] = $producto->graficaProductosCM()) {
-                    $result['status'] = 1;
-                } else {
-                    $result['exception'] = 'No hay datos disponibles';
-                }
-                break;
-                //Consulta para grafica obteniendo la cantidad de productos por categoria
-            case 'productosCantidadCat':
-                if ($result['dataset'] = $producto->graficaCatNP()) {
-                    $result['status'] = 1;
-                } else {
-                    $result['exception'] = 'No hay datos disponibles';
-                }
-                break;
             default:
                 $result['exception'] = 'Acción no disponible dentro de la sesión';
         }
