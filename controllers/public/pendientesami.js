@@ -317,3 +317,13 @@ function comprobaClientes() {
         }
     });
 }
+
+//Metodos para generar el pdf
+function generarPDFP(){
+    //Obtenemos el id del pedido
+    let params = '?id='+INPUTID.value;
+    // Se establece la ruta del reporte en el servidor.
+    let url = SERVER + 'reports/dashboard/pedidoEstaPDF.php';
+    // Se abre el reporte en una nueva pestaña del navegador web.
+    window.open(url + params);
+}
