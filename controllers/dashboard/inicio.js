@@ -7,6 +7,7 @@ const API_INVENTARIO = SERVER + 'dashboard/inventario.php?action=';
 const API_CATEGORIA = SERVER + 'dashboard/categorias.php?action=';
 //Iniciando las funciones y componentes
 // Método manejador de eventos que se ejecuta cuando el documento ha cargado.
+
 document.addEventListener('DOMContentLoaded', function () {
     M.Sidenav.init(document.querySelectorAll('.sidenav'));
     saludo();
